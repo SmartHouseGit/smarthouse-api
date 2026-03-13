@@ -15,6 +15,7 @@ class Propiedad extends Model
     protected $fillable = [
         'id_publico',
         'nombre',
+        'tagline',
         'ciudad_estado',
         'tipo_inmueble',
         'precio',
@@ -22,7 +23,8 @@ class Propiedad extends Model
         'estado_publico',
         'detalles',
         'datos_especificos',
-        'agente_encargado',
+        'id_agente',
+        'propietario',
         'latitud',
         'longitud',
         'foto_principal',
@@ -31,6 +33,8 @@ class Propiedad extends Model
 
     protected $casts = [
         'precio' => 'decimal:2',
+        'id_agente' => 'integer',
+        'propietario' => 'integer',
         'datos_especificos' => 'array',
         'fotos_secundarias' => 'array',
         'latitud' => 'float',

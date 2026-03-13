@@ -19,11 +19,13 @@ class PropiedadController extends Controller
         $idInterno = $this->queryValue($request, ['id_interno', 'ID_interno']);
         $idPublico = $this->queryValue($request, ['id_publico', 'ID_publico']);
         $nombre = $this->queryValue($request, ['nombre', 'Nombre']);
+        $tagline = $this->queryValue($request, ['tagline', 'Tagline']);
         $ciudadEstado = $this->queryValue($request, ['ciudad_estado', 'Ciudad_Estado']);
         $tipoInmueble = $this->queryValue($request, ['tipo_inmueble', 'Tipo_Inmueble']);
         $estadoInterno = $this->queryValue($request, ['estado_interno', 'Estado_Interno']);
         $estadoPublico = $this->queryValue($request, ['estado_publico', 'Estado_Publico']);
-        $agente = $this->queryValue($request, ['agente_encargado', 'Agente_Encargado']);
+        $idAgente = $this->queryValue($request, ['id_agente', 'ID_Agente', 'agente_encargado', 'Agente_Encargado']);
+        $propietario = $this->queryValue($request, ['propietario', 'Propietario', 'id_propietario', 'ID_Propietario']);
         $precioMin = $this->queryValue($request, ['precio_min']);
         $precioMax = $this->queryValue($request, ['precio_max']);
         $cantidad = $this->queryValue($request, ['cantidad', 'Cantidad']);
@@ -37,6 +39,9 @@ class PropiedadController extends Controller
         if ($nombre !== null) {
             $query->where('nombre', 'like', '%'.$nombre.'%');
         }
+        if ($tagline !== null) {
+            $query->where('tagline', 'like', '%'.$tagline.'%');
+        }
         if ($ciudadEstado !== null) {
             $query->where('ciudad_estado', 'like', '%'.$ciudadEstado.'%');
         }
@@ -49,8 +54,11 @@ class PropiedadController extends Controller
         if ($estadoPublico !== null) {
             $query->where('estado_publico', 'like', '%'.$estadoPublico.'%');
         }
-        if ($agente !== null) {
-            $query->where('agente_encargado', 'like', '%'.$agente.'%');
+        if ($idAgente !== null && is_numeric($idAgente)) {
+            $query->where('id_agente', (int) $idAgente);
+        }
+        if ($propietario !== null && is_numeric($propietario)) {
+            $query->where('propietario', (int) $propietario);
         }
         if ($precioMin !== null && is_numeric($precioMin)) {
             $query->where('precio', '>=', $precioMin);
@@ -90,6 +98,7 @@ class PropiedadController extends Controller
                 'id_interno' => $propiedad->getAttribute('id_interno'),
                 'id_publico' => $propiedad->getAttribute('id_publico'),
                 'Nombre' => $propiedad->getAttribute('nombre'),
+                'Tagline' => $propiedad->getAttribute('tagline'),
                 'Ciudad_Estado' => $propiedad->getAttribute('ciudad_estado'),
                 'Tipo_Inmueble' => $propiedad->getAttribute('tipo_inmueble'),
                 'Precio' => (float) $propiedad->getAttribute('precio'),
@@ -97,7 +106,9 @@ class PropiedadController extends Controller
                 'Estado_Publico' => $propiedad->getAttribute('estado_publico'),
                 'Detalles' => $propiedad->getAttribute('detalles'),
                 'Datos_Especificos' => $propiedad->getAttribute('datos_especificos') ?? [],
-                'Agente_Encargado' => $propiedad->getAttribute('agente_encargado'),
+                'id_agente' => $propiedad->getAttribute('id_agente'),
+                'Agente_Encargado' => $propiedad->getAttribute('id_agente'),
+                'Propietario' => $propiedad->getAttribute('propietario'),
                 'Coordenadas' => [
                     'latitud' => $propiedad->getAttribute('latitud'),
                     'longitud' => $propiedad->getAttribute('longitud'),
@@ -152,6 +163,7 @@ class PropiedadController extends Controller
             Propiedad::query()->create([
                 'id_publico' => $data['id_publico'],
                 'nombre' => $data['nombre'],
+                'tagline' => $data['tagline'],
                 'ciudad_estado' => $data['ciudad_estado'],
                 'tipo_inmueble' => $data['tipo_inmueble'],
                 'precio' => $data['precio'],
@@ -159,7 +171,8 @@ class PropiedadController extends Controller
                 'estado_publico' => $data['estado_publico'],
                 'detalles' => $data['detalles'],
                 'datos_especificos' => $data['datos_especificos'],
-                'agente_encargado' => $data['agente_encargado'],
+                'id_agente' => $data['id_agente'],
+                'propietario' => $data['propietario'] ?? null,
                 'latitud' => $data['coordenadas']['latitud'],
                 'longitud' => $data['coordenadas']['longitud'],
                 'foto_principal' => $fotoPrincipal,

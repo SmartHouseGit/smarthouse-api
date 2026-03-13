@@ -112,6 +112,7 @@ class StorePropiedadRequest extends FormRequest
         $this->merge([
             'id_publico' => $this->firstInput(['id_publico', 'ID publico', 'ID_publico', 'idPublico']),
             'nombre' => $this->firstInput(['nombre', 'Nombre']),
+            'tagline' => $this->firstInput(['tagline', 'Tagline']),
             'ciudad_estado' => $this->firstInput([
                 'ciudad_estado',
                 'Ciudad, Estado',
@@ -133,12 +134,21 @@ class StorePropiedadRequest extends FormRequest
                 'Estado Publico',
             ]),
             'detalles' => $this->firstInput(['detalles', 'Detalles', 'Detalles en texto']),
-            'agente_encargado' => $this->firstInput([
+            'id_agente' => $this->firstInput([
+                'id_agente',
+                'ID Agente',
+                'agente_id',
                 'agente_encargado',
                 'agente',
                 'encargado',
                 'Agente',
                 'Encargado',
+            ]),
+            'propietario' => $this->firstInput([
+                'propietario',
+                'Propietario',
+                'id_propietario',
+                'ID Propietario',
             ]),
             'foto_principal' => $this->firstInput([
                 'foto_principal',
@@ -159,13 +169,15 @@ class StorePropiedadRequest extends FormRequest
         return [
             'id_publico' => ['required', 'string', 'max:100'],
             'nombre' => ['required', 'string', 'max:180'],
+            'tagline' => ['required', 'string', 'max:255'],
             'ciudad_estado' => ['required', 'string', 'max:180'],
             'tipo_inmueble' => ['required', 'string', 'max:120'],
             'precio' => ['required', 'numeric', 'min:0'],
             'estado_interno' => ['required', 'string', 'max:120'],
             'estado_publico' => ['required', 'string', 'max:120'],
             'detalles' => ['required', 'string', 'max:10000'],
-            'agente_encargado' => ['required', 'string', 'max:150'],
+            'id_agente' => ['required', 'integer', 'min:1', 'exists:agentes,id_agente'],
+            'propietario' => ['nullable', 'integer', 'min:1'],
             'coordenadas' => ['required', 'array'],
             'coordenadas.latitud' => ['required', 'numeric', 'between:-90,90'],
             'coordenadas.longitud' => ['required', 'numeric', 'between:-180,180'],
