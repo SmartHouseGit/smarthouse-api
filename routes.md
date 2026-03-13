@@ -230,3 +230,173 @@ curl -X GET "http://127.0.0.1:8000/ciudades"
   ]
 }
 ```
+
+## POST /setPropiedades
+
+Guarda una propiedad.
+
+Campos principales:
+
+- `id_publico`
+- `nombre`
+- `ciudad_estado`
+- `tipo_inmueble`
+- `precio`
+- `estado_interno`
+- `estado_publico`
+- `detalles`
+- `agente_encargado`
+- `coordenadas` (`latitud`, `longitud`)
+- `datos_especificos` (`dormitorios`, `banos`, `area_m2`, `estacionamientos`, `con_piscina`, `pet_friendly`, `ano_construccion`, `amoblada`, `balcon`, `seguridad_privada`, `financiable`)
+- `foto_principal`
+- `fotos_secundarias` (máximo 8)
+
+### Ejemplo request JSON
+
+```bash
+curl -X POST "http://127.0.0.1:8000/setPropiedades" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "id_publico": "PUB-0001",
+    "nombre": "Residencias El Bosque",
+    "ciudad_estado": "Valencia, Carabobo",
+    "tipo_inmueble": "Apartamento",
+    "precio": 125000,
+    "estado_interno": "disponible",
+    "estado_publico": "publicado",
+    "detalles": "Apartamento en excelente zona, cerca de centros comerciales.",
+    "agente_encargado": "Valentina Rojas",
+    "coordenadas": {
+      "latitud": 10.1620,
+      "longitud": -68.0077
+    },
+    "datos_especificos": {
+      "dormitorios": 3,
+      "banos": 2,
+      "area_m2": 110,
+      "estacionamientos": 2,
+      "con_piscina": true,
+      "pet_friendly": true,
+      "ano_construccion": 2018,
+      "amoblada": false,
+      "balcon": true,
+      "seguridad_privada": true,
+      "financiable": true
+    },
+    "foto_principal": "https://mi-cdn.com/propiedades/p-1-main.jpg",
+    "fotos_secundarias": [
+      "https://mi-cdn.com/propiedades/p-1-2.jpg",
+      "https://mi-cdn.com/propiedades/p-1-3.jpg"
+    ]
+  }'
+```
+
+### Ejemplo request multipart (archivo)
+
+```bash
+curl -X POST "http://127.0.0.1:8000/setPropiedades" \
+  -F "id_publico=PUB-0002" \
+  -F "nombre=Casa Los Naranjos" \
+  -F "ciudad_estado=Caracas, Distrito Capital" \
+  -F "tipo_inmueble=Casa" \
+  -F "precio=185000" \
+  -F "estado_interno=disponible" \
+  -F "estado_publico=publicado" \
+  -F "detalles=Casa de dos niveles remodelada." \
+  -F "agente_encargado=Pedro Rojas" \
+  -F "coordenadas={\"latitud\":10.4806,\"longitud\":-66.9036}" \
+  -F "datos_especificos={\"dormitorios\":4,\"banos\":3,\"area_m2\":220,\"estacionamientos\":2,\"con_piscina\":false,\"pet_friendly\":true,\"ano_construccion\":2012,\"amoblada\":false,\"balcon\":true,\"seguridad_privada\":true,\"financiable\":true}" \
+  -F "foto_principal=@/ruta/local/principal.jpg" \
+  -F "fotos_secundarias[]=@/ruta/local/sec-1.jpg" \
+  -F "fotos_secundarias[]=@/ruta/local/sec-2.jpg"
+```
+
+### Ejemplo response
+
+```json
+{
+  "status": "OK"
+}
+```
+
+## GET /obtPropiedades
+
+Obtiene la lista de propiedades.
+
+Filtros soportados (query params):
+
+- `id_interno`
+- `id_publico`
+- `nombre`
+- `ciudad_estado`
+- `tipo_inmueble`
+- `estado_interno`
+- `estado_publico`
+- `agente_encargado`
+- `precio_min`
+- `precio_max`
+- `latitud`
+- `longitud`
+- `dormitorios`
+- `banos`
+- `area_m2`
+- `estacionamientos`
+- `ano_construccion`
+- `con_piscina`
+- `pet_friendly`
+- `amoblada`
+- `balcon`
+- `seguridad_privada`
+- `financiable`
+- `cantidad`
+
+### Ejemplo request
+
+```bash
+curl -X GET "http://127.0.0.1:8000/obtPropiedades?ciudad_estado=Valencia&tipo_inmueble=Apartamento&precio_min=100000&precio_max=180000&dormitorios=3&con_piscina=true&cantidad=20"
+```
+
+### Ejemplo response
+
+```json
+{
+  "Propiedades": [
+    {
+      "id_interno": 1,
+      "id_publico": "PUB-0001",
+      "Nombre": "Residencias El Bosque",
+      "Ciudad_Estado": "Valencia, Carabobo",
+      "Tipo_Inmueble": "Apartamento",
+      "Precio": 125000,
+      "Estado_Interno": "disponible",
+      "Estado_Publico": "publicado",
+      "Detalles": "Apartamento en excelente zona, cerca de centros comerciales.",
+      "Datos_Especificos": {
+        "dormitorios": 3,
+        "banos": 2,
+        "area_m2": 110,
+        "estacionamientos": 2,
+        "con_piscina": true,
+        "pet_friendly": true,
+        "ano_construccion": 2018,
+        "amoblada": false,
+        "balcon": true,
+        "seguridad_privada": true,
+        "financiable": true
+      },
+      "Agente_Encargado": "Valentina Rojas",
+      "Coordenadas": {
+        "latitud": 10.162,
+        "longitud": -68.0077
+      },
+      "Fotos": {
+        "principal": "https://mi-cdn.com/propiedades/p-1-main.jpg",
+        "secundarias": [
+          "https://mi-cdn.com/propiedades/p-1-2.jpg",
+          "https://mi-cdn.com/propiedades/p-1-3.jpg"
+        ]
+      }
+    }
+  ]
+}
+```
