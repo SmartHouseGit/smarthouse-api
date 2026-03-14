@@ -46,6 +46,7 @@ class AgenteController extends Controller
                 'Foto_Perfil' => $agente->getAttribute('foto_perfil'),
                 'Nombre' => $agente->getAttribute('nombre'),
                 'Apellido' => $agente->getAttribute('apellido'),
+                'Telefono' => $agente->getAttribute('telefono'),
                 'Descripcion_Breve' => $agente->getAttribute('descripcion_breve'),
             ];
         })->values();

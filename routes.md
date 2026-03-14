@@ -439,6 +439,7 @@ curl -X GET "http://127.0.0.1:8000/obtAgentes?apellido=Rojas&cantidad=10"
       "Foto_Perfil": "https://mi-cdn.com/agentes/perfil-1.jpg",
       "Nombre": "Valentina",
       "Apellido": "Rojas",
+      "Telefono": "+584121234567",
       "Descripcion_Breve": "Asesora comercial con enfoque en inmuebles residenciales."
     }
   ]
