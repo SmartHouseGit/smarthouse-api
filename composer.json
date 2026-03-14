@@ -49,6 +49,12 @@
             "@php artisan config:clear --ansi",
             "@php artisan test"
         ],
+        "db:dump": [
+            "@bash scripts/generate-db-dump.sh"
+        ],
+        "db:dump-structure": [
+            "@bash -lc 'ONLY_STRUCTURE=1 bash scripts/generate-db-dump.sh'"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"

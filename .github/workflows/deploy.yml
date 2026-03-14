@@ -23,6 +23,49 @@ jobs:
             git config --global --add safe.directory /var/www/smarthouse-api
             git pull --ff-only origin main
 
+            if [ -s database/deploy/temp.sql ]; then
+              echo "Aplicando dump SQL: database/deploy/temp.sql"
+
+              env_value() {
+                key="$1"
+                default_value="${2:-}"
+                value="$(grep -m1 "^${key}=" .env | cut -d= -f2- || true)"
+                value="${value%\"}"
+                value="${value#\"}"
+
+                if [ -z "$value" ]; then
+                  echo "$default_value"
+                else
+                  echo "$value"
+                fi
+              }
+
+              DB_HOST="$(env_value DB_HOST 127.0.0.1)"
+              DB_PORT="$(env_value DB_PORT 3306)"
+              DB_DATABASE="$(env_value DB_DATABASE)"
+              DB_USERNAME="$(env_value DB_USERNAME root)"
+              DB_PASSWORD="$(env_value DB_PASSWORD)"
+
+              if [ -z "$DB_DATABASE" ]; then
+                echo "DB_DATABASE vacio en .env. Abortando deploy."
+                exit 1
+              fi
+
+              MYSQL_BIN="$(command -v mysql || command -v mariadb || true)"
+              if [ -z "$MYSQL_BIN" ]; then
+                echo "No se encontro cliente mysql/mariadb en VPS."
+                exit 1
+              fi
+
+              if [ -n "$DB_PASSWORD" ]; then
+                MYSQL_PWD="$DB_PASSWORD" "$MYSQL_BIN" -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USERNAME" "$DB_DATABASE" < database/deploy/temp.sql
+              else
+                "$MYSQL_BIN" -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USERNAME" "$DB_DATABASE" < database/deploy/temp.sql
+              fi
+            else
+              echo "No existe database/deploy/temp.sql (o esta vacio). Se omite import de BD."
+            fi
+
             composer install --no-dev --optimize-autoloader --no-interaction
             php artisan migrate --force
             php artisan optimize:clear
