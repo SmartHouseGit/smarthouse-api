@@ -52,6 +52,10 @@ class StoreSolicitarInRequest extends FormRequest
             ], static fn ($value) => $value !== null);
         }
 
+        if ($datosEspecificos === null || $datosEspecificos === '') {
+            $datosEspecificos = [];
+        }
+
         $this->merge([
             'nombre' => $this->input('nombre', $this->input('Nombre')),
             'telefono' => $this->input('telefono', $this->input('Telefono')),
@@ -77,7 +81,7 @@ class StoreSolicitarInRequest extends FormRequest
             'tipo_inmueble' => ['required', 'string', 'max:150'],
             'presupuesto' => ['required', 'numeric', 'min:0'],
             'mensaje' => ['required', 'string', 'max:2000'],
-            'datos_especificos' => ['required', 'array'],
+            'datos_especificos' => ['array'],
             'datos_especificos.numero_dormitorios' => ['nullable', 'integer', 'min:0'],
             'datos_especificos.cantidad_banos' => ['nullable', 'integer', 'min:0'],
             'datos_especificos.area_minima_m2' => ['nullable', 'numeric', 'min:0'],
