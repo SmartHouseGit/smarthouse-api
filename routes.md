@@ -122,7 +122,7 @@ Campos:
 - `tipo_inmueble`
 - `presupuesto`
 - `mensaje`
-- `datos_especificos` (objeto JSON)
+- `datos_especificos` (objeto JSON, opcional)
   - `numero_dormitorios`
   - `cantidad_banos`
   - `area_minima_m2`
