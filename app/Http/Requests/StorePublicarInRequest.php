@@ -29,10 +29,6 @@ class StorePublicarInRequest extends FormRequest
                 $this->input('Tipo de inmueble', $this->input('tipo de inmueble'))
             ),
             'mensaje' => $this->input('mensaje', $this->input('Mensaje')),
-            'imagen_referencial' => $this->input(
-                'imagen_referencial',
-                $this->input('Imagen referencial del inmueble')
-            ),
         ]);
     }
 
@@ -44,7 +40,7 @@ class StorePublicarInRequest extends FormRequest
             'ciudad' => ['required', 'string', 'max:120'],
             'zona' => ['required', 'string', 'max:120'],
             'tipo_inmueble' => ['required', 'string', 'max:150'],
-            'imagen_referencial' => ['required'],
+            'imagen_referencial' => ['required', 'file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
             'mensaje' => ['required', 'string', 'max:2000'],
         ];
     }

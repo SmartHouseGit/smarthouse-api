@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePublicarInRequest;
 use App\Models\PublicarIn;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\UploadedFile;
 use Throwable;
 
 class PublicarInController extends Controller
@@ -14,13 +13,10 @@ class PublicarInController extends Controller
     public function store(StorePublicarInRequest $request): JsonResponse
     {
         $data = $request->validated();
-        $imagenReferencial = $data['imagen_referencial'];
-
-        if ($imagenReferencial instanceof UploadedFile || $request->hasFile('imagen_referencial')) {
-            $imagenReferencial = $request->file('imagen_referencial')->store('publicar-in', 'public');
-        }
 
         try {
+            $imagenReferencial = $request->file('imagen_referencial')->store('publicar-in', 'public');
+
             PublicarIn::query()->create([
                 'nombre' => $data['nombre'],
                 'telefono' => $data['telefono'],
