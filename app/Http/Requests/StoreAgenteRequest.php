@@ -40,8 +40,8 @@ class StoreAgenteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'foto_portada' => ['required'],
-            'foto_perfil' => ['required'],
+            'foto_portada' => ['required', 'file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+            'foto_perfil' => ['required', 'file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
             'nombre' => ['required', 'string', 'max:120'],
             'apellido' => ['required', 'string', 'max:120'],
             'telefono' => ['required', 'string', 'max:40'],

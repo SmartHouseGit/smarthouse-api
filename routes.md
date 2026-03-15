@@ -87,24 +87,8 @@ Campos:
 - `ciudad`
 - `zona`
 - `tipo_inmueble`
-- `imagen_referencial` (texto o archivo)
+- `imagen_referencial` (archivo requerido)
 - `mensaje`
-
-### Ejemplo request JSON
-
-```bash
-curl -X POST "http://127.0.0.1:8000/publicarIn" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "nombre": "Maria Gomez",
-    "telefono": "+584121234567",
-    "ciudad": "Valencia",
-    "zona": "Prebo",
-    "tipo_inmueble": "Apartamento",
-    "imagen_referencial": "https://mi-cdn.com/inmueble.jpg",
-    "mensaje": "Deseo publicar este inmueble."
-  }'
-```
 
 ### Ejemplo request multipart (archivo)
 
@@ -234,6 +218,7 @@ curl -X GET "http://127.0.0.1:8000/ciudades"
 ## POST /setPropiedades
 
 Guarda una propiedad.
+Las imágenes deben enviarse como archivos en `multipart/form-data`.
 
 Campos principales:
 
@@ -252,48 +237,6 @@ Campos principales:
 - `datos_especificos` (`dormitorios`, `banos`, `area_m2`, `estacionamientos`, `con_piscina`, `pet_friendly`, `ano_construccion`, `amoblada`, `balcon`, `seguridad_privada`, `financiable`)
 - `foto_principal`
 - `fotos_secundarias` (máximo 8)
-
-### Ejemplo request JSON
-
-```bash
-curl -X POST "http://127.0.0.1:8000/setPropiedades" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "id_publico": "PUB-0001",
-    "nombre": "Residencias El Bosque",
-    "tagline": "Ubicacion premium y excelente retorno",
-    "ciudad_estado": "Valencia, Carabobo",
-    "tipo_inmueble": "Apartamento",
-    "precio": 125000,
-    "estado_interno": "disponible",
-    "estado_publico": "publicado",
-    "detalles": "Apartamento en excelente zona, cerca de centros comerciales.",
-    "id_agente": 1,
-    "propietario": 101,
-    "coordenadas": {
-      "latitud": 10.1620,
-      "longitud": -68.0077
-    },
-    "datos_especificos": {
-      "dormitorios": 3,
-      "banos": 2,
-      "area_m2": 110,
-      "estacionamientos": 2,
-      "con_piscina": true,
-      "pet_friendly": true,
-      "ano_construccion": 2018,
-      "amoblada": false,
-      "balcon": true,
-      "seguridad_privada": true,
-      "financiable": true
-    },
-    "foto_principal": "https://mi-cdn.com/propiedades/p-1-main.jpg",
-    "fotos_secundarias": [
-      "https://mi-cdn.com/propiedades/p-1-2.jpg",
-      "https://mi-cdn.com/propiedades/p-1-3.jpg"
-    ]
-  }'
-```
 
 ### Ejemplo request multipart (archivo)
 
@@ -402,10 +345,10 @@ curl -X GET "http://127.0.0.1:8000/obtPropiedades?ciudad_estado=Valencia&tipo_in
         "longitud": -68.0077
       },
       "Fotos": {
-        "principal": "https://mi-cdn.com/propiedades/p-1-main.jpg",
+        "principal": "https://k7pr2wn9xm4tb6vl1zq8.info/media/propiedades/p-1-main.jpg?expires=1710531000&signature=abc123",
         "secundarias": [
-          "https://mi-cdn.com/propiedades/p-1-2.jpg",
-          "https://mi-cdn.com/propiedades/p-1-3.jpg"
+          "https://k7pr2wn9xm4tb6vl1zq8.info/media/propiedades/p-1-2.jpg?expires=1710531000&signature=def456",
+          "https://k7pr2wn9xm4tb6vl1zq8.info/media/propiedades/p-1-3.jpg?expires=1710531000&signature=ghi789"
         ]
       }
     }
@@ -421,6 +364,7 @@ No se consume directamente; la URL firmada se obtiene desde `GET /obtPropiedades
 ## GET /obtAgentes
 
 Lista agentes. Filtros opcionales:
+Las fotos se devuelven como URLs privadas firmadas y temporales.
 
 - `id_agente`
 - `nombre`
@@ -441,8 +385,8 @@ curl -X GET "http://127.0.0.1:8000/obtAgentes?apellido=Rojas&cantidad=10"
   "Agentes": [
     {
       "id_agente": 1,
-      "Foto_Portada": "https://mi-cdn.com/agentes/portada-1.jpg",
-      "Foto_Perfil": "https://mi-cdn.com/agentes/perfil-1.jpg",
+      "Foto_Portada": "https://k7pr2wn9xm4tb6vl1zq8.info/media/agentes/portada-1.jpg?expires=1710531000&signature=abc123",
+      "Foto_Perfil": "https://k7pr2wn9xm4tb6vl1zq8.info/media/agentes/perfil-1.jpg?expires=1710531000&signature=def456",
       "Nombre": "Valentina",
       "Apellido": "Rojas",
       "Telefono": "+584121234567",
@@ -455,6 +399,7 @@ curl -X GET "http://127.0.0.1:8000/obtAgentes?apellido=Rojas&cantidad=10"
 ## POST /setAgente
 
 Crea un agente nuevo.
+Las imágenes deben enviarse como archivos en `multipart/form-data`.
 
 Campos:
 
@@ -464,21 +409,6 @@ Campos:
 - `apellido`
 - `telefono`
 - `descripcion_breve`
-
-### Ejemplo request JSON
-
-```bash
-curl -X POST "http://127.0.0.1:8000/setAgente" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "foto_portada": "https://mi-cdn.com/agentes/portada-1.jpg",
-    "foto_perfil": "https://mi-cdn.com/agentes/perfil-1.jpg",
-    "nombre": "Valentina",
-    "apellido": "Rojas",
-    "telefono": "+584121234567",
-    "descripcion_breve": "Asesora comercial con enfoque en inmuebles residenciales."
-  }'
-```
 
 ### Ejemplo request multipart (archivo)
 
@@ -532,6 +462,7 @@ curl -X PATCH "http://127.0.0.1:8000/updAgente/1" \
 ## GET /obtClientes
 
 Lista clientes. Filtros opcionales:
+Las fotos se devuelven como URLs privadas firmadas y temporales.
 
 - `id_cliente`
 - `nombre`
@@ -557,8 +488,8 @@ curl -X GET "http://127.0.0.1:8000/obtClientes?ciudad=Valencia&tipo=Comprador&ag
   "Clientes": [
     {
       "id_cliente": 1,
-      "Foto": "https://mi-cdn.com/clientes/foto-1.jpg",
-      "Portada": "https://mi-cdn.com/clientes/portada-1.jpg",
+      "Foto": "https://k7pr2wn9xm4tb6vl1zq8.info/media/clientes/foto-1.jpg?expires=1710531000&signature=abc123",
+      "Portada": "https://k7pr2wn9xm4tb6vl1zq8.info/media/clientes/portada-1.jpg?expires=1710531000&signature=def456",
       "Nombre": "Carlos Rojas",
       "Perfil": "Cliente interesado en compra de apartamento familiar.",
       "Tipo": "Comprador",
@@ -578,6 +509,7 @@ curl -X GET "http://127.0.0.1:8000/obtClientes?ciudad=Valencia&tipo=Comprador&ag
 ## POST /setCliente
 
 Crea un cliente nuevo.
+Las imágenes deben enviarse como archivos en `multipart/form-data`.
 
 Campos:
 
@@ -594,28 +526,6 @@ Campos:
 - `documento_rif`
 - `notas` (opcional)
 - `agente_res` (id del agente responsable)
-
-### Ejemplo request JSON
-
-```bash
-curl -X POST "http://127.0.0.1:8000/setCliente" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "foto": "https://mi-cdn.com/clientes/foto-1.jpg",
-    "portada": "https://mi-cdn.com/clientes/portada-1.jpg",
-    "nombre": "Carlos Rojas",
-    "perfil": "Cliente interesado en compra de apartamento familiar.",
-    "tipo": "Comprador",
-    "estado": "Activo",
-    "telefono": "+584141112233",
-    "correo": "carlos@email.com",
-    "direccion": "Av. Principal, Valencia",
-    "ciudad": "Valencia",
-    "documento_rif": "V-12345678",
-    "notas": "Prefiere zona norte.",
-    "agente_res": 1
-  }'
-```
 
 ### Ejemplo request multipart (archivo)
 

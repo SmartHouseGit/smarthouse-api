@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreClienteRequest;
 use App\Http\Requests\UpdateClienteRequest;
 use App\Models\Cliente;
+use App\Support\PrivateMediaUrl;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
 use Throwable;
 
 class ClienteController extends Controller
@@ -62,8 +62,8 @@ class ClienteController extends Controller
         $clientes = $query->get()->map(static function (Cliente $cliente): array {
             return [
                 'id_cliente' => $cliente->getAttribute('id_cliente'),
-                'Foto' => $cliente->getAttribute('foto'),
-                'Portada' => $cliente->getAttribute('portada'),
+                'Foto' => PrivateMediaUrl::make($cliente->getAttribute('foto')),
+                'Portada' => PrivateMediaUrl::make($cliente->getAttribute('portada')),
                 'Nombre' => $cliente->getAttribute('nombre'),
                 'Perfil' => $cliente->getAttribute('perfil'),
                 'Tipo' => $cliente->getAttribute('tipo'),
@@ -87,17 +87,10 @@ class ClienteController extends Controller
     {
         $data = $request->validated();
 
-        $foto = $data['foto'];
-        if ($foto instanceof UploadedFile || $request->hasFile('foto')) {
-            $foto = $request->file('foto')->store('clientes', 'public');
-        }
-
-        $portada = $data['portada'];
-        if ($portada instanceof UploadedFile || $request->hasFile('portada')) {
-            $portada = $request->file('portada')->store('clientes', 'public');
-        }
-
         try {
+            $foto = $request->file('foto')->store('clientes', 'local');
+            $portada = $request->file('portada')->store('clientes', 'local');
+
             Cliente::query()->create([
                 'foto' => $foto,
                 'portada' => $portada,
@@ -138,15 +131,11 @@ class ClienteController extends Controller
         unset($payload['foto'], $payload['portada']);
 
         if ($request->hasFile('foto')) {
-            $payload['foto'] = $request->file('foto')->store('clientes', 'public');
-        } elseif (array_key_exists('foto', $request->all())) {
-            $payload['foto'] = $request->input('foto');
+            $payload['foto'] = $request->file('foto')->store('clientes', 'local');
         }
 
         if ($request->hasFile('portada')) {
-            $payload['portada'] = $request->file('portada')->store('clientes', 'public');
-        } elseif (array_key_exists('portada', $request->all())) {
-            $payload['portada'] = $request->input('portada');
+            $payload['portada'] = $request->file('portada')->store('clientes', 'local');
         }
 
         try {

@@ -16,7 +16,7 @@ class PublicarInController extends Controller
         $data = $request->validated();
 
         try {
-            $imagenReferencial = $request->file('imagen_referencial')->store('publicar-in', 'public');
+            $imagenReferencial = $request->file('imagen_referencial')->store('publicar-in', 'local');
 
             PublicarIn::query()->create([
                 'nombre' => $data['nombre'],

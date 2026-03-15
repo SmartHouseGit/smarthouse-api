@@ -63,8 +63,8 @@ class UpdateAgenteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'foto_portada' => ['sometimes'],
-            'foto_perfil' => ['sometimes'],
+            'foto_portada' => ['sometimes', 'file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+            'foto_perfil' => ['sometimes', 'file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
             'nombre' => ['sometimes', 'string', 'max:120'],
             'apellido' => ['sometimes', 'string', 'max:120'],
             'telefono' => ['sometimes', 'string', 'max:40'],

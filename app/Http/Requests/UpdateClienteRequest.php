@@ -98,8 +98,8 @@ class UpdateClienteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'foto' => ['sometimes'],
-            'portada' => ['sometimes'],
+            'foto' => ['sometimes', 'file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+            'portada' => ['sometimes', 'file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
             'nombre' => ['sometimes', 'string', 'max:180'],
             'perfil' => ['sometimes', 'string', 'max:5000'],
             'tipo' => ['sometimes', 'string', 'max:100'],

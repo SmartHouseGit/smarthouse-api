@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePropiedadRequest;
 use App\Models\Propiedad;
+use App\Support\PrivateMediaUrl;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\URL;
 use Throwable;
 
 class PropiedadController extends Controller
@@ -120,10 +120,8 @@ class PropiedadController extends Controller
                     'longitud' => $propiedad->getAttribute('longitud'),
                 ],
                 'Fotos' => [
-                    'principal' => $this->privateMediaUrl($propiedad->getAttribute('foto_principal')),
-                    'secundarias' => array_values(array_filter(
-                        array_map(fn (mixed $path): ?string => $this->privateMediaUrl(is_string($path) ? $path : null), $fotosSecundarias)
-                    )),
+                    'principal' => PrivateMediaUrl::make($propiedad->getAttribute('foto_principal')),
+                    'secundarias' => PrivateMediaUrl::mapMany($fotosSecundarias),
                 ],
             ];
         })->values();
@@ -137,14 +135,10 @@ class PropiedadController extends Controller
     {
         $data = $request->validated();
 
-        $fotoPrincipal = $data['foto_principal'];
-        if ($fotoPrincipal instanceof UploadedFile || $request->hasFile('foto_principal')) {
-            $fotoPrincipal = $request->file('foto_principal')->store('propiedades', 'local');
-        }
+        $fotoPrincipal = $request->file('foto_principal')->store('propiedades', 'local');
 
-        $fotosSecundarias = $data['fotos_secundarias'] ?? [];
+        $fotosSecundarias = [];
         if ($request->hasFile('fotos_secundarias')) {
-            $fotosSecundarias = [];
             $files = $request->file('fotos_secundarias');
             if (! is_array($files)) {
                 $files = [$files];
@@ -224,24 +218,5 @@ class PropiedadController extends Controller
         }
 
         $query->where("datos_especificos->{$field}", $value);
-    }
-
-    private function privateMediaUrl(?string $path): ?string
-    {
-        if (! is_string($path) || trim($path) === '') {
-            return null;
-        }
-
-        if (preg_match('/^https?:\/\//i', $path) === 1) {
-            return $path;
-        }
-
-        $ttlMinutes = max((int) config('app.media_url_ttl', 30), 1);
-
-        return URL::temporarySignedRoute(
-            'media.private',
-            now()->addMinutes($ttlMinutes),
-            ['path' => $path]
-        );
     }
 }

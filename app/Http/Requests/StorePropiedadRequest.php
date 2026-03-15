@@ -193,9 +193,9 @@ class StorePropiedadRequest extends FormRequest
             'datos_especificos.balcon' => ['nullable', 'boolean'],
             'datos_especificos.seguridad_privada' => ['nullable', 'boolean'],
             'datos_especificos.financiable' => ['nullable', 'boolean'],
-            'foto_principal' => ['required'],
+            'foto_principal' => ['required', 'file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:8192'],
             'fotos_secundarias' => ['nullable', 'array', 'max:8'],
-            'fotos_secundarias.*' => ['nullable'],
+            'fotos_secundarias.*' => ['nullable', 'file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:8192'],
         ];
     }
 

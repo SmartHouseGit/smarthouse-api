@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAgenteRequest;
 use App\Http\Requests\UpdateAgenteRequest;
 use App\Models\Agente;
+use App\Support\PrivateMediaUrl;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
 use Throwable;
 
 class AgenteController extends Controller
@@ -42,8 +42,8 @@ class AgenteController extends Controller
         $agentes = $query->get()->map(static function (Agente $agente): array {
             return [
                 'id_agente' => $agente->getAttribute('id_agente'),
-                'Foto_Portada' => $agente->getAttribute('foto_portada'),
-                'Foto_Perfil' => $agente->getAttribute('foto_perfil'),
+                'Foto_Portada' => PrivateMediaUrl::make($agente->getAttribute('foto_portada')),
+                'Foto_Perfil' => PrivateMediaUrl::make($agente->getAttribute('foto_perfil')),
                 'Nombre' => $agente->getAttribute('nombre'),
                 'Apellido' => $agente->getAttribute('apellido'),
                 'Telefono' => $agente->getAttribute('telefono'),
@@ -60,17 +60,10 @@ class AgenteController extends Controller
     {
         $data = $request->validated();
 
-        $fotoPortada = $data['foto_portada'];
-        if ($fotoPortada instanceof UploadedFile || $request->hasFile('foto_portada')) {
-            $fotoPortada = $request->file('foto_portada')->store('agentes', 'public');
-        }
-
-        $fotoPerfil = $data['foto_perfil'];
-        if ($fotoPerfil instanceof UploadedFile || $request->hasFile('foto_perfil')) {
-            $fotoPerfil = $request->file('foto_perfil')->store('agentes', 'public');
-        }
-
         try {
+            $fotoPortada = $request->file('foto_portada')->store('agentes', 'local');
+            $fotoPerfil = $request->file('foto_perfil')->store('agentes', 'local');
+
             Agente::query()->create([
                 'foto_portada' => $fotoPortada,
                 'foto_perfil' => $fotoPerfil,
@@ -104,15 +97,11 @@ class AgenteController extends Controller
         unset($payload['foto_portada'], $payload['foto_perfil']);
 
         if ($request->hasFile('foto_portada')) {
-            $payload['foto_portada'] = $request->file('foto_portada')->store('agentes', 'public');
-        } elseif (array_key_exists('foto_portada', $request->all())) {
-            $payload['foto_portada'] = $request->input('foto_portada');
+            $payload['foto_portada'] = $request->file('foto_portada')->store('agentes', 'local');
         }
 
         if ($request->hasFile('foto_perfil')) {
-            $payload['foto_perfil'] = $request->file('foto_perfil')->store('agentes', 'public');
-        } elseif (array_key_exists('foto_perfil', $request->all())) {
-            $payload['foto_perfil'] = $request->input('foto_perfil');
+            $payload['foto_perfil'] = $request->file('foto_perfil')->store('agentes', 'local');
         }
 
         try {
