@@ -66,6 +66,18 @@ jobs:
               echo "No existe database/deploy/temp.sql (o esta vacio). Se omite import de BD."
             fi
 
+            APP_USER="$(id -un)"
+            APP_GROUP="www-data"
+            if ! getent group "$APP_GROUP" >/dev/null 2>&1; then
+              APP_GROUP="$(id -gn)"
+            fi
+
+            mkdir -p storage/logs bootstrap/cache
+            touch storage/logs/laravel.log
+            chown -R "$APP_USER:$APP_GROUP" storage bootstrap/cache
+            find storage bootstrap/cache -type d -exec chmod 775 {} \;
+            find storage bootstrap/cache -type f -exec chmod 664 {} \;
+
             composer install --no-dev --optimize-autoloader --no-interaction
             php artisan migrate --force
             php artisan optimize:clear
