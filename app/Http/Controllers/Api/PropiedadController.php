@@ -8,6 +8,7 @@ use App\Models\Propiedad;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\URL;
 use Throwable;
 
 class PropiedadController extends Controller
@@ -93,7 +94,12 @@ class PropiedadController extends Controller
             $query->limit((int) $cantidad);
         }
 
-        $propiedades = $query->get()->map(static function (Propiedad $propiedad): array {
+        $propiedades = $query->get()->map(function (Propiedad $propiedad): array {
+            $fotosSecundarias = $propiedad->getAttribute('fotos_secundarias') ?? [];
+            if (! is_array($fotosSecundarias)) {
+                $fotosSecundarias = [];
+            }
+
             return [
                 'id_interno' => $propiedad->getAttribute('id_interno'),
                 'id_publico' => $propiedad->getAttribute('id_publico'),
@@ -114,8 +120,10 @@ class PropiedadController extends Controller
                     'longitud' => $propiedad->getAttribute('longitud'),
                 ],
                 'Fotos' => [
-                    'principal' => $propiedad->getAttribute('foto_principal'),
-                    'secundarias' => $propiedad->getAttribute('fotos_secundarias') ?? [],
+                    'principal' => $this->privateMediaUrl($propiedad->getAttribute('foto_principal')),
+                    'secundarias' => array_values(array_filter(
+                        array_map(fn (mixed $path): ?string => $this->privateMediaUrl(is_string($path) ? $path : null), $fotosSecundarias)
+                    )),
                 ],
             ];
         })->values();
@@ -131,7 +139,7 @@ class PropiedadController extends Controller
 
         $fotoPrincipal = $data['foto_principal'];
         if ($fotoPrincipal instanceof UploadedFile || $request->hasFile('foto_principal')) {
-            $fotoPrincipal = $request->file('foto_principal')->store('propiedades', 'public');
+            $fotoPrincipal = $request->file('foto_principal')->store('propiedades', 'local');
         }
 
         $fotosSecundarias = $data['fotos_secundarias'] ?? [];
@@ -144,7 +152,7 @@ class PropiedadController extends Controller
 
             foreach ($files as $file) {
                 if ($file instanceof UploadedFile) {
-                    $fotosSecundarias[] = $file->store('propiedades', 'public');
+                    $fotosSecundarias[] = $file->store('propiedades', 'local');
                 }
             }
         }
@@ -216,5 +224,24 @@ class PropiedadController extends Controller
         }
 
         $query->where("datos_especificos->{$field}", $value);
+    }
+
+    private function privateMediaUrl(?string $path): ?string
+    {
+        if (! is_string($path) || trim($path) === '') {
+            return null;
+        }
+
+        if (preg_match('/^https?:\/\//i', $path) === 1) {
+            return $path;
+        }
+
+        $ttlMinutes = max((int) config('app.media_url_ttl', 30), 1);
+
+        return URL::temporarySignedRoute(
+            'media.private',
+            now()->addMinutes($ttlMinutes),
+            ['path' => $path]
+        );
     }
 }

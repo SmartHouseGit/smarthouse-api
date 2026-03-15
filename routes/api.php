@@ -5,10 +5,16 @@ use App\Http\Controllers\Api\AgenteController;
 use App\Http\Controllers\Api\CiudadController;
 use App\Http\Controllers\Api\ClienteController;
 use App\Http\Controllers\Api\ContactoController;
+use App\Http\Controllers\Api\MediaController;
 use App\Http\Controllers\Api\PropiedadController;
 use App\Http\Controllers\Api\PublicarInController;
 use App\Http\Controllers\Api\SolicitarInController;
 use App\Http\Controllers\Api\TestimonioController;
+
+Route::get('/media/{path}', [MediaController::class, 'show'])
+    ->where('path', '.*')
+    ->middleware('signed')
+    ->name('media.private');
 
 Route::get('/testimonios', [TestimonioController::class, 'index']);
 Route::post('/contacto', [ContactoController::class, 'store']);

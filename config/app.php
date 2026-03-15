@@ -54,6 +54,8 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    'media_url_ttl' => (int) env('MEDIA_URL_TTL', 30),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

@@ -328,6 +328,7 @@ curl -X POST "http://127.0.0.1:8000/setPropiedades" \
 ## GET /obtPropiedades
 
 Obtiene la lista de propiedades.
+Las fotos se devuelven como URLs privadas firmadas y temporales.
 
 Filtros soportados (query params):
 
@@ -411,6 +412,11 @@ curl -X GET "http://127.0.0.1:8000/obtPropiedades?ciudad_estado=Valencia&tipo_in
   ]
 }
 ```
+
+## GET /media/{path}
+
+Endpoint interno para servir archivos privados.
+No se consume directamente; la URL firmada se obtiene desde `GET /obtPropiedades`.
 
 ## GET /obtAgentes
 
