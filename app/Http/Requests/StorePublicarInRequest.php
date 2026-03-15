@@ -48,7 +48,11 @@ class StorePublicarInRequest extends FormRequest
     protected function failedValidation(Validator $validator): void
     {
         throw new HttpResponseException(
-            response()->json(['status' => 'ERROR'], 422)
+            response()->json([
+                'status' => 'ERROR',
+                'message' => 'Validation failed',
+                'errors' => $validator->errors(),
+            ], 422)
         );
     }
 }

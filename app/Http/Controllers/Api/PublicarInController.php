@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePublicarInRequest;
 use App\Models\PublicarIn;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 class PublicarInController extends Controller
@@ -31,8 +32,19 @@ class PublicarInController extends Controller
                 'status' => 'OK',
             ]);
         } catch (Throwable $exception) {
+            Log::error('Error en POST /publicarIn', [
+                'exception' => get_class($exception),
+                'message' => $exception->getMessage(),
+                'file' => $exception->getFile(),
+                'line' => $exception->getLine(),
+            ]);
+
             return response()->json([
                 'status' => 'ERROR',
+                'message' => $exception->getMessage(),
+                'exception' => get_class($exception),
+                'file' => $exception->getFile(),
+                'line' => $exception->getLine(),
             ], 500);
         }
     }
