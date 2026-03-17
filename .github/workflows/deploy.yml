@@ -17,21 +17,45 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           port: ${{ secrets.VPS_PORT }}
           script: |
-            set -e
+            set -Eeuo pipefail
+            trap 'echo "ERROR en linea $LINENO"; exit 1' ERR
+
+            log() { echo "[DEPLOY] $1"; }
+
             cd /var/www/smarthouse-api
+            log "Repo: $(pwd)"
 
             git config --global --add safe.directory /var/www/smarthouse-api
             if [ -n "$(git status --porcelain)" ]; then
-              echo "Repositorio con cambios locales. Guardando respaldo en /tmp..."
+              log "Repositorio con cambios locales. Guardando respaldo en /tmp..."
               git diff > "/tmp/smarthouse-predeploy-$(date +%F-%H%M%S).patch" || true
             fi
 
+            log "Sincronizando con origin/main"
             git fetch --prune origin main
             git reset --hard origin/main
             rm -f FETCH_HEAD
 
+            PHP_BIN="$(command -v php8.4 || true)"
+            if [ -z "$PHP_BIN" ]; then
+              log "php8.4 no encontrado. Instala PHP 8.4 en el VPS."
+              exit 1
+            fi
+
+            PHP_MM="$($PHP_BIN -r 'echo PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION;')"
+            if [ "$PHP_MM" != "8.4" ]; then
+              log "PHP CLI detectado: $PHP_MM (se requiere 8.4)"
+              exit 1
+            fi
+
+            COMPOSER_BIN="$(command -v composer || true)"
+            if [ -z "$COMPOSER_BIN" ]; then
+              log "composer no encontrado en el VPS."
+              exit 1
+            fi
+
             if [ -s database/deploy/temp.sql ]; then
-              echo "Aplicando dump SQL: database/deploy/temp.sql"
+              log "Aplicando dump SQL: database/deploy/temp.sql"
 
               env_value() {
                 key="$1"
@@ -54,13 +78,13 @@ jobs:
               DB_PASSWORD="$(env_value DB_PASSWORD)"
 
               if [ -z "$DB_DATABASE" ]; then
-                echo "DB_DATABASE vacio en .env. Abortando deploy."
+                log "DB_DATABASE vacio en .env. Abortando deploy."
                 exit 1
               fi
 
               MYSQL_BIN="$(command -v mysql || command -v mariadb || true)"
               if [ -z "$MYSQL_BIN" ]; then
-                echo "No se encontro cliente mysql/mariadb en VPS."
+                log "No se encontro cliente mysql/mariadb en VPS."
                 exit 1
               fi
 
@@ -70,7 +94,7 @@ jobs:
                 "$MYSQL_BIN" -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USERNAME" "$DB_DATABASE" < database/deploy/temp.sql
               fi
             else
-              echo "No existe database/deploy/temp.sql (o esta vacio). Se omite import de BD."
+              log "No existe database/deploy/temp.sql (o esta vacio). Se omite import de BD."
             fi
 
             APP_USER="$(id -un)"
@@ -87,17 +111,25 @@ jobs:
               sudo find storage bootstrap/cache -type d -exec chmod 2775 {} \;
               sudo find storage bootstrap/cache -type f -exec chmod 664 {} \;
             else
-              echo "Sin permisos sudo; se omite chown y se intenta ajustar permisos de grupo."
+              log "Sin permisos sudo; se omite chown y se intenta ajustar permisos de grupo."
               chgrp -R "$APP_GROUP" storage bootstrap/cache 2>/dev/null || true
               chmod -R g+rwX storage bootstrap/cache 2>/dev/null || true
               find storage bootstrap/cache -type d -exec chmod g+s {} \; 2>/dev/null || true
             fi
 
             umask 0002
-            composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
-            php artisan migrate --force
-            php artisan optimize:clear
-            php artisan config:cache
-            php artisan route:cache
-            php artisan view:cache
-            php artisan queue:restart
+            log "Instalando dependencias"
+            "$PHP_BIN" "$COMPOSER_BIN" install --no-dev --prefer-dist --optimize-autoloader --no-interaction
+
+            log "Verificando platform requirements"
+            "$PHP_BIN" "$COMPOSER_BIN" check-platform-reqs --no-dev
+
+            log "Ejecutando tareas Laravel"
+            "$PHP_BIN" artisan migrate --force
+            "$PHP_BIN" artisan optimize:clear
+            "$PHP_BIN" artisan config:cache
+            "$PHP_BIN" artisan route:cache
+            "$PHP_BIN" artisan view:cache
+            "$PHP_BIN" artisan queue:restart
+
+            log "Deploy finalizado"
