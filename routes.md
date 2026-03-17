@@ -667,8 +667,19 @@ curl -X PATCH "http://127.0.0.1:8000/updAgente/1" \
 
 ## GET /obtClientes
 
-Lista clientes. Filtros opcionales:
-Las fotos se devuelven como URLs privadas firmadas y temporales.
+Lista clientes. Las fotos se devuelven como URLs privadas firmadas y temporales.
+
+Autenticacion requerida:
+
+- Bearer token (`Authorization: Bearer <token>`)
+
+Reglas por rol:
+
+- Owner (`rol = 1`): retorna todos los clientes.
+- Admin (`rol = 2`): busca agentes con `parther = id` del usuario admin autenticado y retorna clientes cuyo `agente_res` pertenezca a esos agentes.
+- Agente (`rol = 3`): retorna solo clientes con `agente_res = id` del usuario autenticado.
+
+Filtros opcionales (se aplican dentro del alcance del rol):
 
 - `id_cliente`
 - `nombre`
@@ -684,7 +695,8 @@ Las fotos se devuelven como URLs privadas firmadas y temporales.
 ### Ejemplo request
 
 ```bash
-curl -X GET "http://127.0.0.1:8000/obtClientes?ciudad=Valencia&tipo=Comprador&agente_res=1&cantidad=20"
+curl -X GET "http://127.0.0.1:8000/obtClientes?ciudad=Valencia&tipo=Comprador&cantidad=20" \
+  -H "Authorization: Bearer TU_TOKEN"
 ```
 
 ### Ejemplo response
@@ -717,6 +729,10 @@ curl -X GET "http://127.0.0.1:8000/obtClientes?ciudad=Valencia&tipo=Comprador&ag
 Crea un cliente nuevo.
 Las imágenes deben enviarse como archivos en `multipart/form-data`.
 
+Autenticacion requerida:
+
+- Bearer token (`Authorization: Bearer <token>`)
+
 Campos:
 
 - `foto`
@@ -731,12 +747,17 @@ Campos:
 - `ciudad`
 - `documento_rif`
 - `notas` (opcional)
-- `agente_res` (id del agente responsable)
+
+Notas:
+
+- `agente_res` no se envía en el request.
+- `agente_res` se llena automaticamente con el `id` del usuario autenticado por el Bearer token.
 
 ### Ejemplo request multipart (archivo)
 
 ```bash
 curl -X POST "http://127.0.0.1:8000/setCliente" \
+  -H "Authorization: Bearer TU_TOKEN" \
   -F "foto=@/ruta/local/foto.jpg" \
   -F "portada=@/ruta/local/portada.jpg" \
   -F "nombre=Carlos Rojas" \
@@ -748,8 +769,7 @@ curl -X POST "http://127.0.0.1:8000/setCliente" \
   -F "direccion=Av. Principal, Valencia" \
   -F "ciudad=Valencia" \
   -F "documento_rif=V-12345678" \
-  -F "notas=Prefiere zona norte." \
-  -F "agente_res=1"
+  -F "notas=Prefiere zona norte."
 ```
 
 ### Ejemplo response

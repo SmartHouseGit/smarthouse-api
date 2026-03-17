@@ -33,6 +33,6 @@ Route::patch('/updAdmin/{id_admin}', [AdminController::class, 'update']);
 Route::get('/obtAgentes', [AgenteController::class, 'index']);
 Route::post('/setAgente', [AgenteController::class, 'store'])->middleware('auth:sanctum');
 Route::patch('/updAgente/{id_agente}', [AgenteController::class, 'update']);
-Route::get('/obtClientes', [ClienteController::class, 'index']);
-Route::post('/setCliente', [ClienteController::class, 'store']);
+Route::get('/obtClientes', [ClienteController::class, 'index'])->middleware('auth:sanctum');
+Route::post('/setCliente', [ClienteController::class, 'store'])->middleware('auth:sanctum');
 Route::patch('/updCliente/{id_cliente}', [ClienteController::class, 'update']);

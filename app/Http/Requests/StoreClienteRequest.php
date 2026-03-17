@@ -42,12 +42,6 @@ class StoreClienteRequest extends FormRequest
                 'RIF',
             ]),
             'notas' => $this->firstInput(['notas', 'Notas']),
-            'agente_res' => $this->firstInput([
-                'agente_res',
-                'Agente_Res',
-                'id_agente',
-                'ID Agente',
-            ]),
         ]);
     }
 
@@ -66,7 +60,6 @@ class StoreClienteRequest extends FormRequest
             'ciudad' => ['required', 'string', 'max:120'],
             'documento_rif' => ['required', 'string', 'max:60'],
             'notas' => ['nullable', 'string', 'max:5000'],
-            'agente_res' => ['required', 'integer', 'min:1', 'exists:agentes,id_agente'],
         ];
     }
 

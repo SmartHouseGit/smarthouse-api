@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreClienteRequest;
 use App\Http\Requests\UpdateClienteRequest;
+use App\Models\Agente;
 use App\Models\Cliente;
 use App\Support\PrivateMediaUrl;
 use Illuminate\Http\JsonResponse;
@@ -15,7 +16,56 @@ class ClienteController extends Controller
 {
     public function index(Request $request): JsonResponse
     {
+        $authUser = $request->user();
+        if (! $authUser) {
+            return response()->json([
+                'status' => 'ERROR',
+            ], 401);
+        }
+
+        $ownerRoleId = (int) env('ROLE_OWNER_ID', 1);
+        $adminRoleId = (int) env('ROLE_ADMIN_ID', 2);
+        $agentRoleId = (int) env('ROLE_AGENT_ID', 3);
+        $userRole = (int) ($authUser->rol ?? 0);
+
         $query = Cliente::query();
+
+        if ($userRole === $adminRoleId) {
+            $subordinateAgents = Agente::query()
+                ->where('parther', (int) $authUser->id)
+                ->get(['id_agente', 'userLink']);
+
+            $allowedAgentRes = $subordinateAgents
+                ->flatMap(static function (Agente $agente): array {
+                    $ids = [];
+
+                    $userLink = $agente->getAttribute('userLink');
+                    if ($userLink !== null) {
+                        $ids[] = (int) $userLink;
+                    }
+
+                    $idAgente = $agente->getAttribute('id_agente');
+                    if ($idAgente !== null) {
+                        $ids[] = (int) $idAgente;
+                    }
+
+                    return $ids;
+                })
+                ->unique()
+                ->values();
+
+            if ($allowedAgentRes->isEmpty()) {
+                $query->whereRaw('1 = 0');
+            } else {
+                $query->whereIn('agente_res', $allowedAgentRes->all());
+            }
+        } elseif ($userRole === $agentRoleId) {
+            $query->where('agente_res', (int) $authUser->id);
+        } elseif ($userRole !== $ownerRoleId) {
+            return response()->json([
+                'status' => 'ERROR',
+            ], 403);
+        }
 
         $idCliente = $this->queryValue($request, ['id_cliente']);
         $nombre = $this->queryValue($request, ['nombre', 'Nombre']);
@@ -85,6 +135,13 @@ class ClienteController extends Controller
 
     public function store(StoreClienteRequest $request): JsonResponse
     {
+        $creator = $request->user();
+        if (! $creator) {
+            return response()->json([
+                'status' => 'ERROR',
+            ], 401);
+        }
+
         $data = $request->validated();
 
         try {
@@ -104,7 +161,7 @@ class ClienteController extends Controller
                 'ciudad' => $data['ciudad'],
                 'documento_rif' => $data['documento_rif'],
                 'notas' => $data['notas'] ?? null,
-                'agente_res' => $data['agente_res'],
+                'agente_res' => (int) $creator->id,
             ]);
 
             return response()->json([
