@@ -48,7 +48,11 @@ jobs:
               exit 1
             fi
 
-            COMPOSER_BIN="$(command -v composer || true)"
+            COMPOSER_BIN="/usr/local/bin/composer"
+            if [ ! -x "$COMPOSER_BIN" ]; then
+              COMPOSER_BIN="$(command -v composer || true)"
+            fi
+
             if [ -z "$COMPOSER_BIN" ]; then
               log "composer no encontrado en el VPS."
               exit 1
@@ -129,7 +133,12 @@ jobs:
             "$PHP_BIN" artisan optimize:clear
             "$PHP_BIN" artisan config:cache
             "$PHP_BIN" artisan route:cache
-            "$PHP_BIN" artisan view:cache
-            "$PHP_BIN" artisan queue:restart
 
+            if [ -d resources/views ]; then
+              "$PHP_BIN" artisan view:cache
+            else
+              log "No existe resources/views. Se omite view:cache."
+            fi
+
+            "$PHP_BIN" artisan queue:restart
             log "Deploy finalizado"
