@@ -38,7 +38,8 @@ curl -X POST "http://127.0.0.1:8000/login" \
   "user": {
     "id": 1,
     "name": "Owner",
-    "email": "owner@smarthouse.local"
+    "email": "owner@smarthouse.local",
+    "rol": "1"
   }
 }
 ```
