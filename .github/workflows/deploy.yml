@@ -21,7 +21,14 @@ jobs:
             cd /var/www/smarthouse-api
 
             git config --global --add safe.directory /var/www/smarthouse-api
-            git pull --ff-only origin main
+            if [ -n "$(git status --porcelain)" ]; then
+              echo "Repositorio con cambios locales. Guardando respaldo en /tmp..."
+              git diff > "/tmp/smarthouse-predeploy-$(date +%F-%H%M%S).patch" || true
+            fi
+
+            git fetch --prune origin main
+            git reset --hard origin/main
+            rm -f FETCH_HEAD
 
             if [ -s database/deploy/temp.sql ]; then
               echo "Aplicando dump SQL: database/deploy/temp.sql"
@@ -78,7 +85,7 @@ jobs:
             find storage bootstrap/cache -type d -exec chmod 775 {} \;
             find storage bootstrap/cache -type f -exec chmod 664 {} \;
 
-            composer install --no-dev --optimize-autoloader --no-interaction
+            composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
             php artisan migrate --force
             php artisan optimize:clear
             php artisan config:cache
