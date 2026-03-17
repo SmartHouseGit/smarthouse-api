@@ -6,6 +6,51 @@ Base URL local:
 http://127.0.0.1:8000
 ```
 
+## POST /login
+
+Inicia sesion y devuelve un token Bearer para consumir rutas protegidas.
+
+Campos:
+
+- `usuario` (puede ser email o username)
+- `password`
+- `device_name` (opcional, por defecto `frontend`)
+
+### Ejemplo request
+
+```bash
+curl -X POST "http://127.0.0.1:8000/login" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "usuario": "owner@smarthouse.local",
+    "password": "Admin123*",
+    "device_name": "frontend"
+  }'
+```
+
+### Ejemplo response OK
+
+```json
+{
+  "status": "OK",
+  "token": "1|...",
+  "token_type": "Bearer",
+  "user": {
+    "id": 1,
+    "name": "Owner",
+    "email": "owner@smarthouse.local"
+  }
+}
+```
+
+### Ejemplo response ERROR
+
+```json
+{
+  "status": "ERROR"
+}
+```
+
 ## GET /testimonios
 
 Obtiene testimonios.  
@@ -361,6 +406,124 @@ curl -X GET "http://127.0.0.1:8000/obtPropiedades?ciudad_estado=Valencia&tipo_in
 Endpoint interno para servir archivos privados.
 No se consume directamente; la URL firmada se obtiene desde `GET /obtPropiedades`.
 
+## GET /obtAdmins
+
+Lista admins. Filtros opcionales:
+Las fotos se devuelven como URLs privadas firmadas y temporales.
+
+- `id_admin`
+- `nombre`
+- `apellido`
+- `telefono`
+- `cantidad`
+
+### Ejemplo request
+
+```bash
+curl -X GET "http://127.0.0.1:8000/obtAdmins?apellido=Rojas&cantidad=10"
+```
+
+### Ejemplo response
+
+```json
+{
+  "Admins": [
+    {
+      "id_admin": 1,
+      "Foto_Portada": "https://dominio.com/media/admins/portada-1.jpg?...",
+      "Foto_Perfil": "https://dominio.com/media/admins/perfil-1.jpg?...",
+      "Nombre": "Laura",
+      "Apellido": "Rojas",
+      "Telefono": "+584121234567",
+      "Descripcion_Breve": "Administradora comercial."
+    }
+  ]
+}
+```
+
+## POST /setAdmin
+
+Crea un usuario en `users` y luego un admin en `admins` dentro de una transaccion.
+Si falla cualquiera de los dos pasos, se revierte todo.
+
+Autenticacion requerida:
+
+- Bearer token (`Authorization: Bearer <token>`)
+
+Campos requeridos:
+
+- `usuario` (email; se guarda en `users.email`)
+- `password`
+- `nombre`
+- `apellido`
+- `telefono`
+- `descripcion_breve`
+
+Campos opcionales:
+
+- `foto_portada` (archivo imagen)
+- `foto_perfil` (archivo imagen)
+
+Notas:
+
+- `userLink` se llena automaticamente con el id del usuario creado.
+- `parther` se llena automaticamente con el id del usuario autenticado (quien crea).
+- El usuario se crea con rol de admin (`ROLE_ADMIN_ID`, por defecto `2`).
+
+### Ejemplo request JSON (sin fotos)
+
+```bash
+curl -X POST "http://127.0.0.1:8000/setAdmin" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "usuario": "admin1@smarthouse.local",
+    "password": "Admin123*",
+    "nombre": "Laura",
+    "apellido": "Mendoza",
+    "telefono": "+584121112233",
+    "descripcion_breve": "Administradora comercial."
+  }'
+```
+
+### Ejemplo response OK
+
+```json
+{
+  "status": "OK"
+}
+```
+
+### Ejemplo response ERROR
+
+```json
+{
+  "status": "ERROR"
+}
+```
+
+## PATCH /updAdmin/{id_admin}
+
+Actualiza admin de forma parcial o total.
+
+### Ejemplo request
+
+```bash
+curl -X PATCH "http://127.0.0.1:8000/updAdmin/1" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "telefono": "+584149998877"
+  }'
+```
+
+### Ejemplo response
+
+```json
+{
+  "status": "OK"
+}
+```
+
 ## GET /obtAgentes
 
 Lista agentes. Filtros opcionales:
@@ -398,35 +561,77 @@ curl -X GET "http://127.0.0.1:8000/obtAgentes?apellido=Rojas&cantidad=10"
 
 ## POST /setAgente
 
-Crea un agente nuevo.
-Las imágenes deben enviarse como archivos en `multipart/form-data`.
+Crea un usuario en `users` y luego un agente en `agentes` dentro de una transaccion.
+Si falla cualquiera de los dos pasos, se revierte todo.
 
-Campos:
+Autenticacion requerida:
 
-- `foto_portada`
-- `foto_perfil`
+- Bearer token (`Authorization: Bearer <token>`)
+
+Campos requeridos:
+
+- `usuario` (email; se guarda en `users.email`)
+- `password`
 - `nombre`
 - `apellido`
 - `telefono`
 - `descripcion_breve`
 
-### Ejemplo request multipart (archivo)
+Campos opcionales:
+
+- `foto_portada` (archivo imagen)
+- `foto_perfil` (archivo imagen)
+
+Notas:
+
+- `userLink` se llena automaticamente con el id del usuario creado.
+- `parther` se llena automaticamente con el id del usuario autenticado (quien crea).
+- El usuario se crea con rol de agente (`ROLE_AGENT_ID`, por defecto `3`).
+
+### Ejemplo request JSON (sin fotos)
 
 ```bash
 curl -X POST "http://127.0.0.1:8000/setAgente" \
-  -F "foto_portada=@/ruta/local/portada.jpg" \
-  -F "foto_perfil=@/ruta/local/perfil.jpg" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "usuario": "agente1@smarthouse.local",
+    "password": "Agente123*",
+    "nombre": "Valentina",
+    "apellido": "Rojas",
+    "telefono": "+584121234567",
+    "descripcion_breve": "Asesora comercial con enfoque en inmuebles residenciales."
+  }'
+```
+
+### Ejemplo request multipart (con fotos)
+
+```bash
+curl -X POST "http://127.0.0.1:8000/setAgente" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -F "usuario=agente2@smarthouse.local" \
+  -F "password=Agente123*" \
   -F "nombre=Valentina" \
   -F "apellido=Rojas" \
   -F "telefono=+584121234567" \
-  -F "descripcion_breve=Asesora comercial con enfoque en inmuebles residenciales."
+  -F "descripcion_breve=Asesora comercial con enfoque en inmuebles residenciales." \
+  -F "foto_portada=@/ruta/local/portada.jpg" \
+  -F "foto_perfil=@/ruta/local/perfil.jpg"
 ```
 
-### Ejemplo response
+### Ejemplo response OK
 
 ```json
 {
   "status": "OK"
+}
+```
+
+### Ejemplo response ERROR (duplicado/conflicto)
+
+```json
+{
+  "status": "ERROR"
 }
 ```
 

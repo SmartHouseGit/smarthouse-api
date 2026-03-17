@@ -17,6 +17,45 @@
 /*M!100616 SET @OLD_NOTE_VERBOSITY=@@NOTE_VERBOSITY, NOTE_VERBOSITY=0 */;
 
 --
+-- Table structure for table `admins`
+--
+
+DROP TABLE IF EXISTS `admins`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `admins` (
+  `id_admin` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `userLink` bigint(20) unsigned NOT NULL,
+  `parther` int(10) NOT NULL,
+  `foto_portada` varchar(500) DEFAULT NULL,
+  `foto_perfil` varchar(500) DEFAULT NULL,
+  `nombre` varchar(120) NOT NULL,
+  `apellido` varchar(120) NOT NULL,
+  `telefono` varchar(40) NOT NULL,
+  `descripcion_breve` text NOT NULL,
+  PRIMARY KEY (`id_admin`),
+  UNIQUE KEY `uq_admins_userlink` (`userLink`),
+  KEY `idx_admins_nombre` (`nombre`),
+  KEY `idx_admins_apellido` (`apellido`),
+  KEY `idx_admins_telefono` (`telefono`),
+  CONSTRAINT `fk_admins_users` FOREIGN KEY (`userLink`) REFERENCES `users` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `admins`
+--
+
+LOCK TABLES `admins` WRITE;
+/*!40000 ALTER TABLE `admins` DISABLE KEYS */;
+set autocommit=0;
+INSERT INTO `admins` VALUES
+(1,4,0,NULL,NULL,'Laura','Mendoza','+584149998877','Admin senior de operaciones.');
+/*!40000 ALTER TABLE `admins` ENABLE KEYS */;
+UNLOCK TABLES;
+commit;
+
+--
 -- Table structure for table `agentes`
 --
 
@@ -25,8 +64,10 @@ DROP TABLE IF EXISTS `agentes`;
 /*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `agentes` (
   `id_agente` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `foto_portada` varchar(500) NOT NULL,
-  `foto_perfil` varchar(500) NOT NULL,
+  `userLink` int(10) NOT NULL,
+  `parther` int(10) NOT NULL,
+  `foto_portada` varchar(500) DEFAULT NULL,
+  `foto_perfil` varchar(500) DEFAULT NULL,
   `nombre` varchar(120) NOT NULL,
   `apellido` varchar(120) NOT NULL,
   `telefono` varchar(40) NOT NULL,
@@ -35,7 +76,7 @@ CREATE TABLE `agentes` (
   KEY `idx_agentes_nombre` (`nombre`),
   KEY `idx_agentes_apellido` (`apellido`),
   KEY `idx_agentes_telefono` (`telefono`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,8 +87,10 @@ LOCK TABLES `agentes` WRITE;
 /*!40000 ALTER TABLE `agentes` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `agentes` VALUES
-(1,'https://mi-cdn.com/agentes/portada-1.jpg','https://mi-cdn.com/agentes/perfil-1.jpg','Ramona','Rojas','+584121234567','Asesora comercial con enfoque en inmuebles residenciales.'),
-(2,'https://mi-cdn.com/agentes/portada-2.jpg','https://mi-cdn.com/agentes/perfil-2.jpg','Aup','Mendoza','+584148887766','Especialista en cierre de operaciones y negociacion inmobiliaria.');
+(1,0,0,'https://mi-cdn.com/agentes/portada-1.jpg','https://mi-cdn.com/agentes/perfil-1.jpg','Ramona','Rojas','+584121234567','Asesora comercial con enfoque en inmuebles residenciales.'),
+(2,0,0,'https://mi-cdn.com/agentes/portada-2.jpg','https://mi-cdn.com/agentes/perfil-2.jpg','Aup','Mendoza','+584148887766','Especialista en cierre de operaciones y negociacion inmobiliaria.'),
+(4,2,0,NULL,NULL,'Mis huevos','Redondos','+584121234567','Asesora comercial con enfoque en inmuebles residenciales.'),
+(5,5,4,NULL,NULL,'Luis','Mora','+584149998877','Asesor inmobiliario');
 /*!40000 ALTER TABLE `agentes` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -167,7 +210,7 @@ CREATE TABLE `clientes` (
   KEY `idx_clientes_correo` (`correo`),
   KEY `idx_clientes_agente_res` (`agente_res`),
   CONSTRAINT `fk_clientes_agentes` FOREIGN KEY (`agente_res`) REFERENCES `agentes` (`id_agente`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -177,9 +220,6 @@ CREATE TABLE `clientes` (
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
 set autocommit=0;
-INSERT INTO `clientes` VALUES
-(1,'https://mi-cdn.com/clientes/foto-1.jpg','https://mi-cdn.com/clientes/portada-1.jpg','Carlos Rojas','Cliente interesado en compra de apartamento familiar.','Comprador','Activo','+584141112233','carlos@email.com','Av. Principal, Valencia','Valencia','V-12345678','Prefiere zona norte.',1),
-(2,'https://mi-cdn.com/clientes/foto-2.jpg','https://mi-cdn.com/clientes/portada-2.jpg','Maria Perez','Cliente con interes en venta de casa en Caracas.','Vendedor','Activo','+584122223344','maria@email.com','Urb. El Cafetal, Caracas','Caracas','J-87654321-9','Disponible para visitas en la tarde.',2);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -389,7 +429,7 @@ CREATE TABLE `personal_access_tokens` (
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`),
   KEY `personal_access_tokens_expires_at_index` (`expires_at`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -399,6 +439,9 @@ CREATE TABLE `personal_access_tokens` (
 LOCK TABLES `personal_access_tokens` WRITE;
 /*!40000 ALTER TABLE `personal_access_tokens` DISABLE KEYS */;
 set autocommit=0;
+INSERT INTO `personal_access_tokens` VALUES
+(1,'App\\Models\\User',2,'frontend','35538bd42738d50b60dad6716facfc378c931b981ee18ce6656221e7a92e4bcc','[\"*\"]',NULL,NULL,'2026-03-17 23:27:02','2026-03-17 23:27:02'),
+(2,'App\\Models\\User',4,'frontend','de5a7388ac96e5205157742c4557498cd56a204cfac13f5431681fd24882401a','[\"*\"]','2026-03-17 23:54:48',NULL,'2026-03-17 23:52:35','2026-03-17 23:54:48');
 /*!40000 ALTER TABLE `personal_access_tokens` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -596,13 +639,14 @@ CREATE TABLE `users` (
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
+  `rol` int(10) NOT NULL,
   `password` varchar(255) NOT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -612,6 +656,10 @@ CREATE TABLE `users` (
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 set autocommit=0;
+INSERT INTO `users` VALUES
+(2,'Mis huevos Redondos','agente_test_01@smarthouse.local',NULL,3,'$2y$12$.Xq5bJ7Flzd6fcmESFW69.2kJ.m2Y5VN5Kw48UuDPrqUhDzgrLeyK',NULL,'2026-03-17 23:26:18','2026-03-17 23:26:18'),
+(4,'Laura Mendoza','admin1@smarthouse.local',NULL,2,'$2y$12$jd8CdHgY33NvHxkTl6VE6.dzQ235P2HQeK34IyH3uog0OVZIsB1km',NULL,'2026-03-17 23:43:14','2026-03-17 23:43:14'),
+(5,'Luis Mora','agente9@smarthouse.local',NULL,3,'$2y$12$Ii9N6HD3LtYVp/EtFpM4oO2hOLAr/FzDyDlaQ9rlcdHlojG24KoDS',NULL,'2026-03-17 23:54:13','2026-03-17 23:54:13');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -629,4 +677,4 @@ commit;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*M!100616 SET NOTE_VERBOSITY=@OLD_NOTE_VERBOSITY */;
 
--- Dump completed on 2026-03-15 16:51:52
+-- Dump completed on 2026-03-17 14:00:05

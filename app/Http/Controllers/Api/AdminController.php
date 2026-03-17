@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreAgenteRequest;
-use App\Http\Requests\UpdateAgenteRequest;
-use App\Models\Agente;
+use App\Http\Requests\StoreAdminRequest;
+use App\Http\Requests\UpdateAdminRequest;
+use App\Models\Admin;
 use App\Models\User;
 use App\Support\PrivateMediaUrl;
 use Illuminate\Database\QueryException;
@@ -15,20 +15,20 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Throwable;
 
-class AgenteController extends Controller
+class AdminController extends Controller
 {
     public function index(Request $request): JsonResponse
     {
-        $query = Agente::query();
+        $query = Admin::query();
 
-        $idAgente = $this->queryValue($request, ['id_agente']);
+        $idAdmin = $this->queryValue($request, ['id_admin']);
         $nombre = $this->queryValue($request, ['nombre', 'Nombre']);
         $apellido = $this->queryValue($request, ['apellido', 'Apellido']);
         $telefono = $this->queryValue($request, ['telefono', 'Telefono']);
         $cantidad = $this->queryValue($request, ['cantidad', 'Cantidad']);
 
-        if ($idAgente !== null) {
-            $query->where('id_agente', $idAgente);
+        if ($idAdmin !== null) {
+            $query->where('id_admin', $idAdmin);
         }
         if ($nombre !== null) {
             $query->where('nombre', 'like', '%'.$nombre.'%');
@@ -43,24 +43,24 @@ class AgenteController extends Controller
             $query->limit((int) $cantidad);
         }
 
-        $agentes = $query->get()->map(static function (Agente $agente): array {
+        $admins = $query->get()->map(static function (Admin $admin): array {
             return [
-                'id_agente' => $agente->getAttribute('id_agente'),
-                'Foto_Portada' => PrivateMediaUrl::make($agente->getAttribute('foto_portada')),
-                'Foto_Perfil' => PrivateMediaUrl::make($agente->getAttribute('foto_perfil')),
-                'Nombre' => $agente->getAttribute('nombre'),
-                'Apellido' => $agente->getAttribute('apellido'),
-                'Telefono' => $agente->getAttribute('telefono'),
-                'Descripcion_Breve' => $agente->getAttribute('descripcion_breve'),
+                'id_admin' => $admin->getAttribute('id_admin'),
+                'Foto_Portada' => PrivateMediaUrl::make($admin->getAttribute('foto_portada')),
+                'Foto_Perfil' => PrivateMediaUrl::make($admin->getAttribute('foto_perfil')),
+                'Nombre' => $admin->getAttribute('nombre'),
+                'Apellido' => $admin->getAttribute('apellido'),
+                'Telefono' => $admin->getAttribute('telefono'),
+                'Descripcion_Breve' => $admin->getAttribute('descripcion_breve'),
             ];
         })->values();
 
         return response()->json([
-            'Agentes' => $agentes,
+            'Admins' => $admins,
         ]);
     }
 
-    public function store(StoreAgenteRequest $request): JsonResponse
+    public function store(StoreAdminRequest $request): JsonResponse
     {
         $creator = $request->user();
         if (! $creator) {
@@ -84,22 +84,22 @@ class AgenteController extends Controller
                 'name' => $fullName,
                 'email' => $data['usuario'],
                 'password' => $data['password'],
-                'rol' => (int) env('ROLE_AGENT_ID', 3),
+                'rol' => (int) env('ROLE_ADMIN_ID', 2),
             ]);
 
             $fotoPortada = null;
             if ($request->hasFile('foto_portada')) {
-                $fotoPortada = $request->file('foto_portada')->store('agentes', 'local');
+                $fotoPortada = $request->file('foto_portada')->store('admins', 'local');
                 $storedFiles[] = $fotoPortada;
             }
 
             $fotoPerfil = null;
             if ($request->hasFile('foto_perfil')) {
-                $fotoPerfil = $request->file('foto_perfil')->store('agentes', 'local');
+                $fotoPerfil = $request->file('foto_perfil')->store('admins', 'local');
                 $storedFiles[] = $fotoPerfil;
             }
 
-            Agente::query()->create([
+            Admin::query()->create([
                 'userLink' => $user->id,
                 'parther' => (int) $creator->id,
                 'foto_portada' => $fotoPortada,
@@ -136,11 +136,11 @@ class AgenteController extends Controller
         }
     }
 
-    public function update(UpdateAgenteRequest $request, int $id_agente): JsonResponse
+    public function update(UpdateAdminRequest $request, int $id_admin): JsonResponse
     {
-        $agente = Agente::query()->where('id_agente', $id_agente)->first();
+        $admin = Admin::query()->where('id_admin', $id_admin)->first();
 
-        if (! $agente) {
+        if (! $admin) {
             return response()->json([
                 'status' => 'ERROR',
             ], 404);
@@ -150,16 +150,16 @@ class AgenteController extends Controller
         unset($payload['foto_portada'], $payload['foto_perfil']);
 
         if ($request->hasFile('foto_portada')) {
-            $payload['foto_portada'] = $request->file('foto_portada')->store('agentes', 'local');
+            $payload['foto_portada'] = $request->file('foto_portada')->store('admins', 'local');
         }
 
         if ($request->hasFile('foto_perfil')) {
-            $payload['foto_perfil'] = $request->file('foto_perfil')->store('agentes', 'local');
+            $payload['foto_perfil'] = $request->file('foto_perfil')->store('admins', 'local');
         }
 
         try {
-            $agente->fill($payload);
-            $agente->save();
+            $admin->fill($payload);
+            $admin->save();
 
             return response()->json([
                 'status' => 'OK',

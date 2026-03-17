@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\Api\AgenteController;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CiudadController;
 use App\Http\Controllers\Api\ClienteController;
 use App\Http\Controllers\Api\ContactoController;
@@ -10,6 +12,8 @@ use App\Http\Controllers\Api\PropiedadController;
 use App\Http\Controllers\Api\PublicarInController;
 use App\Http\Controllers\Api\SolicitarInController;
 use App\Http\Controllers\Api\TestimonioController;
+
+Route::post('/login', [AuthController::class, 'login']);
 
 Route::get('/media/{path}', [MediaController::class, 'show'])
     ->where('path', '.*')
@@ -23,8 +27,11 @@ Route::post('/SolicitarIn', [SolicitarInController::class, 'store']);
 Route::get('/ciudades', [CiudadController::class, 'index']);
 Route::get('/obtPropiedades', [PropiedadController::class, 'index']);
 Route::post('/setPropiedades', [PropiedadController::class, 'store']);
+Route::get('/obtAdmins', [AdminController::class, 'index']);
+Route::post('/setAdmin', [AdminController::class, 'store'])->middleware('auth:sanctum');
+Route::patch('/updAdmin/{id_admin}', [AdminController::class, 'update']);
 Route::get('/obtAgentes', [AgenteController::class, 'index']);
-Route::post('/setAgente', [AgenteController::class, 'store']);
+Route::post('/setAgente', [AgenteController::class, 'store'])->middleware('auth:sanctum');
 Route::patch('/updAgente/{id_agente}', [AgenteController::class, 'update']);
 Route::get('/obtClientes', [ClienteController::class, 'index']);
 Route::post('/setCliente', [ClienteController::class, 'store']);
