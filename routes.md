@@ -289,7 +289,6 @@ curl -X POST "http://127.0.0.1:8000/delegarCon" \
   -H "Authorization: Bearer TU_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
-    "tipo": "SolIn",
     "id_registro": 9,
     "id_agente": 5
   }'
@@ -622,8 +621,18 @@ curl -X PATCH "http://127.0.0.1:8000/updAdmin/1" \
 
 ## GET /obtAgentes
 
-Lista agentes. Filtros opcionales:
+Lista agentes subordinados al usuario autenticado.
 Las fotos se devuelven como URLs privadas firmadas y temporales.
+
+Autenticacion requerida:
+
+- Bearer token (`Authorization: Bearer <token>`)
+
+Regla de acceso:
+
+- Solo retorna agentes donde `parther` sea igual al `id` del usuario del token.
+
+Filtros opcionales:
 
 - `id_agente`
 - `nombre`
@@ -634,7 +643,8 @@ Las fotos se devuelven como URLs privadas firmadas y temporales.
 ### Ejemplo request
 
 ```bash
-curl -X GET "http://127.0.0.1:8000/obtAgentes?apellido=Rojas&cantidad=10"
+curl -X GET "http://127.0.0.1:8000/obtAgentes?apellido=Rojas&cantidad=10" \
+  -H "Authorization: Bearer TU_TOKEN"
 ```
 
 ### Ejemplo response

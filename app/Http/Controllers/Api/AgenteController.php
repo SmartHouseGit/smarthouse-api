@@ -19,7 +19,14 @@ class AgenteController extends Controller
 {
     public function index(Request $request): JsonResponse
     {
-        $query = Agente::query();
+        $authUser = $request->user();
+        if (! $authUser) {
+            return response()->json([
+                'status' => 'ERROR',
+            ], 401);
+        }
+
+        $query = Agente::query()->where('parther', (int) $authUser->id);
 
         $idAgente = $this->queryValue($request, ['id_agente']);
         $nombre = $this->queryValue($request, ['nombre', 'Nombre']);

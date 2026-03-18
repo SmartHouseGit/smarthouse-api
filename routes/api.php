@@ -33,7 +33,7 @@ Route::post('/setPropiedades', [PropiedadController::class, 'store']);
 Route::get('/obtAdmins', [AdminController::class, 'index']);
 Route::post('/setAdmin', [AdminController::class, 'store'])->middleware('auth:sanctum');
 Route::patch('/updAdmin/{id_admin}', [AdminController::class, 'update']);
-Route::get('/obtAgentes', [AgenteController::class, 'index']);
+Route::get('/obtAgentes', [AgenteController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/setAgente', [AgenteController::class, 'store'])->middleware('auth:sanctum');
 Route::patch('/updAgente/{id_agente}', [AgenteController::class, 'update']);
 Route::get('/obtClientes', [ClienteController::class, 'index'])->middleware('auth:sanctum');
