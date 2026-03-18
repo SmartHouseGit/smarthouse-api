@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\MediaController;
 use App\Http\Controllers\Api\PropiedadController;
 use App\Http\Controllers\Api\PublicarInController;
 use App\Http\Controllers\Api\SolicitarInController;
+use App\Http\Controllers\Api\SolicitudesController;
 use App\Http\Controllers\Api\TestimonioController;
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -24,6 +25,8 @@ Route::get('/testimonios', [TestimonioController::class, 'index']);
 Route::post('/contacto', [ContactoController::class, 'store']);
 Route::post('/publicarIn', [PublicarInController::class, 'store']);
 Route::post('/SolicitarIn', [SolicitarInController::class, 'store']);
+Route::get('/listSol', [SolicitudesController::class, 'list'])->middleware('auth:sanctum');
+Route::post('/delegarCon', [SolicitudesController::class, 'delegar'])->middleware('auth:sanctum');
 Route::get('/ciudades', [CiudadController::class, 'index']);
 Route::get('/obtPropiedades', [PropiedadController::class, 'index']);
 Route::post('/setPropiedades', [PropiedadController::class, 'store']);

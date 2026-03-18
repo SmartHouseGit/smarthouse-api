@@ -208,6 +208,101 @@ curl -X POST "http://127.0.0.1:8000/SolicitarIn" \
 }
 ```
 
+## GET /listSol
+
+Lista solicitudes de `contactos`, `solicitar_ins` y/o `publicar_ins` segun el parametro `tipo`.
+
+Autenticacion requerida:
+
+- Bearer token (`Authorization: Bearer <token>`)
+
+Query params:
+
+- `tipo` (requerido): `cont`, `SolIn`, `PubIn` o `all`
+- `filter` (opcional): `true` o `false` (por defecto `false`)
+
+Comportamiento de `tipo`:
+
+- `cont`: retorna registros de `contactos`
+- `SolIn`: retorna registros de `solicitar_ins`
+- `PubIn`: retorna registros de `publicar_ins`
+- `all`: retorna registros combinados de las 3 tablas
+
+Comportamiento de `filter=true`:
+
+- Solo considera registros con `ref` no vacio
+- Luego filtra por `ref = id` del usuario autenticado por token
+
+Notas:
+
+- Cada registro retorna su `id`
+- Cada registro retorna `origen` (`cont`, `SolIn`, `PubIn`) para identificar la tabla de origen
+
+### Ejemplo request
+
+```bash
+curl -X GET "http://127.0.0.1:8000/listSol?tipo=all&filter=true" \
+  -H "Authorization: Bearer TU_TOKEN"
+```
+
+### Ejemplo response
+
+```json
+{
+  "status": "OK",
+  "tipo": "all",
+  "Registros": [
+    {
+      "id": 12,
+      "origen": "cont",
+      "nombre": "Juan Perez",
+      "ref": 5
+    },
+    {
+      "id": 9,
+      "origen": "SolIn",
+      "nombre": "Maria Rojas",
+      "ref": 5
+    }
+  ]
+}
+```
+
+## POST /delegarCon
+
+Asigna el campo `ref` de un registro al `id` de un agente.
+
+Autenticacion requerida:
+
+- Bearer token (`Authorization: Bearer <token>`)
+
+Campos:
+
+- `tipo` (requerido): `cont`, `SolIn` o `PubIn`
+- `id_registro` (requerido): id del registro a actualizar
+- `id_agente` (requerido): id del agente que se guardara en `ref`
+
+### Ejemplo request
+
+```bash
+curl -X POST "http://127.0.0.1:8000/delegarCon" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "tipo": "SolIn",
+    "id_registro": 9,
+    "id_agente": 5
+  }'
+```
+
+### Ejemplo response
+
+```json
+{
+  "status": "OK"
+}
+```
+
 ## GET /ciudades
 
 Sin parámetros.
