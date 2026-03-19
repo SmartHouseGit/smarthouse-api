@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\AgenteController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CiudadController;
 use App\Http\Controllers\Api\ClienteController;
+use App\Http\Controllers\Api\CierreController;
 use App\Http\Controllers\Api\ContactoController;
 use App\Http\Controllers\Api\MediaController;
 use App\Http\Controllers\Api\PropiedadController;
@@ -38,4 +39,5 @@ Route::post('/setAgente', [AgenteController::class, 'store'])->middleware('auth:
 Route::patch('/updAgente/{id_agente}', [AgenteController::class, 'update']);
 Route::get('/obtClientes', [ClienteController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/setCliente', [ClienteController::class, 'store'])->middleware('auth:sanctum');
+Route::post('/setCierre', [CierreController::class, 'store'])->middleware('auth:sanctum');
 Route::patch('/updCliente/{id_cliente}', [ClienteController::class, 'update']);

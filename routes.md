@@ -890,6 +890,65 @@ curl -X POST "http://127.0.0.1:8000/setCliente" \
 }
 ```
 
+## POST /setCierre
+
+Crea un cierre y guarda `ref` con el `id_agente` asociado al token.
+Permite adjuntar cero, uno o varios archivos.
+
+Autenticacion requerida:
+
+- Bearer token (`Authorization: Bearer <token>`)
+
+Campos requeridos:
+
+- `fecha` (date)
+- `tipo_cierre` (`Venta`, `Alquiler`, `Remodelacion`, `asesoria`, `negocio`)
+- `estado_cierre` (`Inicial`, `terminado`)
+- `titulo`
+- `precio_base`
+- `monto_cerrado`
+- `ciudad`
+
+Campos opcionales:
+
+- `codigos_propiedades` (JSON array de codigos)
+- `id_cliente`
+- `nota`
+- `archivos[]` (max 10 archivos)
+
+Notas:
+
+- El backend identifica el agente por token (`agentes.userLink = users.id`).
+- Se guarda `ref` con `agentes.id_agente`.
+- Archivos se guardan en almacenamiento local bajo `cierres/`.
+
+### Ejemplo request multipart
+
+```bash
+curl -X POST "http://127.0.0.1:8000/setCierre" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -F "fecha=2026-03-18" \
+  -F "tipo_cierre=Venta" \
+  -F "estado_cierre=Inicial" \
+  -F "codigos_propiedades=[\"PUB-0001\",\"PUB-0002\"]" \
+  -F "titulo=Cierre residencial marzo" \
+  -F "precio_base=125000" \
+  -F "monto_cerrado=119500" \
+  -F "id_cliente=1" \
+  -F "ciudad=Valencia" \
+  -F "nota=Cliente aprobado para firma" \
+  -F "archivos[]=@/ruta/local/contrato.pdf" \
+  -F "archivos[]=@/ruta/local/comprobante.jpg"
+```
+
+### Ejemplo response
+
+```json
+{
+  "status": "OK"
+}
+```
+
 ## PATCH /updCliente/{id_cliente}
 
 Actualiza cliente de forma parcial o total.
