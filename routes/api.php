@@ -42,5 +42,6 @@ Route::get('/obtClientes', [ClienteController::class, 'index'])->middleware('aut
 Route::post('/setCliente', [ClienteController::class, 'store'])->middleware('auth:sanctum');
 Route::get('/obtCierres', [CierreController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/setCierre', [CierreController::class, 'store'])->middleware('auth:sanctum');
+Route::get('/obtReuniones', [ReunionController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/setReunion', [ReunionController::class, 'store'])->middleware('auth:sanctum');
 Route::patch('/updCliente/{id_cliente}', [ClienteController::class, 'update']);

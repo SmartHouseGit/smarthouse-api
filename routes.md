@@ -1009,6 +1009,62 @@ curl -X POST "http://127.0.0.1:8000/setCierre" \
 }
 ```
 
+## GET /obtReuniones
+
+Lista reuniones segun rol y parametro `sel`.
+
+Autenticacion requerida:
+
+- Bearer token (`Authorization: Bearer <token>`)
+
+Parametros query:
+
+- `sel` (opcional): `true` o `false`.
+
+Reglas:
+
+- Agente (`rol = 3`): ignora `sel` y retorna reuniones donde `ref = id` del usuario autenticado.
+- Admin (`rol = 2`) + `sel = true`:
+  - Busca agentes con `parther = id` del admin.
+  - Toma `userLink` de esos agentes.
+  - Retorna reuniones donde `ref` este en esos `userLink`.
+- Admin (`rol = 2`) + `sel = false` (o no enviado): retorna reuniones donde `ref = id` del admin autenticado.
+
+### Ejemplo request (admin, sel=true)
+
+```bash
+curl -X GET "http://127.0.0.1:8000/obtReuniones?sel=true" \
+  -H "Authorization: Bearer TU_TOKEN"
+```
+
+### Ejemplo request (agente, sel ignorado)
+
+```bash
+curl -X GET "http://127.0.0.1:8000/obtReuniones?sel=true" \
+  -H "Authorization: Bearer TU_TOKEN"
+```
+
+### Ejemplo response
+
+```json
+{
+  "Reuniones": [
+    {
+      "id_reunion": 10,
+      "Titulo": "Revision de cierre",
+      "Fecha": "2026-03-20",
+      "Hora": "10:30:00",
+      "Lugar": "Oficina Valencia",
+      "id_cliente": 1,
+      "Notas": "Primera reunion de seguimiento",
+      "ref": 5,
+      "mod": true,
+      "Estado": null
+    }
+  ]
+}
+```
+
 ## POST /setReunion
 
 Crea una reunion.
