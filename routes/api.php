@@ -7,14 +7,17 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CiudadController;
 use App\Http\Controllers\Api\ClienteController;
 use App\Http\Controllers\Api\CierreController;
+use App\Http\Controllers\Api\ConfigController;
 use App\Http\Controllers\Api\ContactoController;
 use App\Http\Controllers\Api\MediaController;
+use App\Http\Controllers\Api\MensajeController;
 use App\Http\Controllers\Api\PropiedadController;
 use App\Http\Controllers\Api\PublicarInController;
 use App\Http\Controllers\Api\SolicitarInController;
 use App\Http\Controllers\Api\SolicitudesController;
 use App\Http\Controllers\Api\TestimonioController;
 use App\Http\Controllers\Api\ReunionController;
+use App\Http\Controllers\Api\RutaController;
 
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -24,6 +27,7 @@ Route::get('/media/{path}', [MediaController::class, 'show'])
     ->name('media.private');
 
 Route::get('/testimonios', [TestimonioController::class, 'index']);
+Route::get('/obtConfig', [ConfigController::class, 'show']);
 Route::post('/contacto', [ContactoController::class, 'store']);
 Route::post('/publicarIn', [PublicarInController::class, 'store']);
 Route::post('/SolicitarIn', [SolicitarInController::class, 'store']);
@@ -42,7 +46,14 @@ Route::get('/obtClientes', [ClienteController::class, 'index'])->middleware('aut
 Route::post('/setCliente', [ClienteController::class, 'store'])->middleware('auth:sanctum');
 Route::get('/obtCierres', [CierreController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/setCierre', [CierreController::class, 'store'])->middleware('auth:sanctum');
+Route::patch('/updCierre', [CierreController::class, 'update'])->middleware('auth:sanctum');
 Route::get('/obtReuniones', [ReunionController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/setReunion', [ReunionController::class, 'store'])->middleware('auth:sanctum');
 Route::patch('/updReunion', [ReunionController::class, 'update'])->middleware('auth:sanctum');
+Route::post('/setRuta', [RutaController::class, 'store'])->middleware('auth:sanctum');
+Route::patch('/updRuta', [RutaController::class, 'update'])->middleware('auth:sanctum');
+Route::get('/obtRutas', [RutaController::class, 'index'])->middleware('auth:sanctum');
+Route::post('/setConfig', [ConfigController::class, 'set'])->middleware('auth:sanctum');
+Route::post('/sendMsm', [MensajeController::class, 'store'])->middleware('auth:sanctum');
+Route::get('/obtMsm', [MensajeController::class, 'index'])->middleware('auth:sanctum');
 Route::patch('/updCliente/{id_cliente}', [ClienteController::class, 'update']);

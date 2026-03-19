@@ -478,7 +478,7 @@ curl -X GET "http://127.0.0.1:8000/obtPropiedades?ciudad_estado=Valencia&tipo_in
         "financiable": true
       },
       "id_agente": 1,
-      "Agente_Encargado": 1,
+      "Agente_Encargado": "Ramona Rojas",
       "Propietario": 101,
       "Coordenadas": {
         "latitud": 10.162,
@@ -1009,6 +1009,55 @@ curl -X POST "http://127.0.0.1:8000/setCierre" \
 }
 ```
 
+## PATCH /updCierre
+
+Actualiza un cierre de forma parcial usando `id_cierre` enviado en el body.
+
+Autenticacion requerida:
+
+- Bearer token (`Authorization: Bearer <token>`)
+
+Campos:
+
+- `id_cierre` (requerido)
+- `fecha` (opcional)
+- `tipo_cierre` (opcional)
+- `estado_cierre` (opcional)
+- `codigos_propiedades` (opcional, JSON array)
+- `titulo` (opcional)
+- `precio_base` (opcional)
+- `monto_cerrado` (opcional)
+- `id_cliente` (opcional)
+- `ciudad` (opcional)
+- `nota` (opcional)
+- `ref` (opcional)
+- `archivos[]` (opcional, reemplaza los archivos actuales si se envia)
+
+Notas:
+
+- Debes enviar al menos un campo adicional a `id_cierre`.
+- Si envias `archivos[]`, el cierre reemplaza la lista actual de archivos por los nuevos.
+- Se mantiene el control por token/rol: owner puede actualizar todos; admin y agente solo cierres dentro de su alcance.
+
+### Ejemplo request multipart
+
+```bash
+curl -X PATCH "http://127.0.0.1:8000/updCierre" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -F "id_cierre=12" \
+  -F "estado_cierre=terminado" \
+  -F "nota=Cierre finalizado y firmado" \
+  -F "archivos[]=@/ruta/local/acta.pdf"
+```
+
+### Ejemplo response
+
+```json
+{
+  "status": "OK"
+}
+```
+
 ## GET /obtReuniones
 
 Lista reuniones segun rol y parametro `sel`.
@@ -1180,6 +1229,398 @@ curl -X PATCH "http://127.0.0.1:8000/updReunion" \
   "status": "OK"
 }
 ```
+
+## POST /setRuta
+
+Crea una ruta operativa.
+
+Autenticacion requerida:
+
+- Bearer token (`Authorization: Bearer <token>`)
+
+Regla de rol:
+
+- Solo Admin (`rol = 2`) puede crear rutas.
+- Si el token no es admin: `403`.
+
+Campos requeridos:
+
+- `zona`
+- `hora_inicio` (formato `HH:MM` o `HH:MM:SS`)
+- `hora_final` (formato `HH:MM` o `HH:MM:SS`)
+- `sectores` (JSON array)
+- `ubicacion_inicial` (JSON con `lat` y `lng`)
+- `recaudos` (JSON array de textos)
+
+Notas:
+
+- `ref` no se envia, se toma del `id` del usuario autenticado por token.
+- Al crear se inicializa en `null`: `agentes`, `resultados`, `notas`.
+
+### Ejemplo request
+
+```bash
+curl -X POST "http://127.0.0.1:8000/setRuta" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "zona": "Zona Norte",
+    "hora_inicio": "08:00",
+    "hora_final": "18:00",
+    "sectores": ["El Bosque", "La Soledad"],
+    "ubicacion_inicial": {
+      "lat": 10.251,
+      "lng": -67.595
+    },
+    "recaudos": ["comentarios", "paquetes_entregados", "fotos"]
+  }'
+```
+
+### Ejemplo response
+
+```json
+{
+  "status": "OK"
+}
+```
+
+## PATCH /updRuta
+
+Actualiza una ruta de forma parcial usando `id_ruta` en el body.
+
+Autenticacion requerida:
+
+- Bearer token (`Authorization: Bearer <token>`)
+
+Campos:
+
+- `id_ruta` (requerido)
+- `resultados` (opcional, JSON anidado)
+- `nota` (opcional)
+
+Reglas por rol:
+
+- Owner (`rol = 1`): puede actualizar cualquier ruta.
+- Admin (`rol = 2`): solo rutas donde `ref = id` del admin autenticado.
+- Agente (`rol = 3`): solo rutas donde `ref = parther` del agente autenticado.
+
+Notas:
+
+- Debes enviar al menos un campo adicional a `id_ruta`.
+- `nota` actualiza el campo `notas` en BD.
+
+### Ejemplo request
+
+```bash
+curl -X PATCH "http://127.0.0.1:8000/updRuta" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "id_ruta": 3,
+    "resultados": [
+      {
+        "id_agente": 6,
+        "requisito": "paquetes_entregados",
+        "resultado": "12"
+      },
+      {
+        "id_agente": 6,
+        "requisito": "comentarios",
+        "resultado": "Cliente no estaba en domicilio"
+      }
+    ],
+    "nota": "Cierre parcial de ruta"
+  }'
+```
+
+### Ejemplo response
+
+```json
+{
+  "status": "OK"
+}
+```
+
+## GET /obtRutas
+
+Lista rutas segun rol del usuario autenticado.
+
+Autenticacion requerida:
+
+- Bearer token (`Authorization: Bearer <token>`)
+
+Reglas por rol:
+
+- Owner (`rol = 1`): retorna todas las rutas.
+- Admin (`rol = 2`): retorna rutas donde `ref = id` del admin autenticado.
+- Agente (`rol = 3`): busca su registro en `agentes` y retorna rutas donde `ref = parther` del agente.
+
+Filtros opcionales:
+
+- `id_ruta`
+- `zona`
+- `ref`
+- `cantidad`
+
+### Ejemplo request
+
+```bash
+curl -X GET "http://127.0.0.1:8000/obtRutas?zona=Norte&cantidad=10" \
+  -H "Authorization: Bearer TU_TOKEN"
+```
+
+### Ejemplo response
+
+```json
+{
+  "Rutas": [
+    {
+      "id_ruta": 3,
+      "ref": 4,
+      "Zona": "Zona Norte",
+      "Hora_Inicio": "08:00:00",
+      "Hora_Final": "18:00:00",
+      "Sectores": ["El Bosque", "La Soledad"],
+      "Ubicacion_Inicial": {
+        "lat": 10.251,
+        "lng": -67.595
+      },
+      "Recaudos": ["comentarios", "paquetes_entregados"],
+      "Agentes": null,
+      "Resultados": null,
+      "Notas": null
+    }
+  ]
+}
+```
+
+## SQL tabla rutas (phpMyAdmin)
+
+Archivo sugerido:
+
+- `database/deploy/rutas.sql`
+
+## POST /setConfig
+
+Crea o actualiza la configuracion global (singleton).
+
+Autenticacion requerida:
+
+- Bearer token (`Authorization: Bearer <token>`)
+
+Campos (todos opcionales en update):
+
+- `hero_frase` (texto del hero)
+- `hero_imagen` (archivo imagen)
+- `micelines` (JSON con pares de informacion)
+- `destacados` (JSON con pares de informacion)
+- `banner[]` (una o varias imagenes)
+- `comentarios` (JSON con varios comentarios)
+
+Notas:
+
+- Si no existe registro en `configs`, crea uno.
+- Si ya existe, actualiza ese mismo registro.
+- Si envias `hero_imagen`, reemplaza la imagen anterior.
+- Si envias `banner[]`, reemplaza el banner anterior completo.
+- Las imagenes se guardan en storage local y se sirven con URLs privadas firmadas en `/obtConfig`.
+
+### Ejemplo request multipart
+
+```bash
+curl -X POST "http://127.0.0.1:8000/setConfig" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -F "hero_frase=Tu hogar ideal, sin complicaciones" \
+  -F "hero_imagen=@/ruta/local/hero.jpg" \
+  -F "micelines=[{\"titulo\":\"Rapidez\",\"valor\":\"48h\"}]" \
+  -F "destacados=[{\"titulo\":\"Propiedades\",\"valor\":120}]" \
+  -F "comentarios=[\"Excelente atencion\",\"Muy buen servicio\"]" \
+  -F "banner[]=@/ruta/local/banner-1.jpg" \
+  -F "banner[]=@/ruta/local/banner-2.jpg"
+```
+
+### Ejemplo response
+
+```json
+{
+  "status": "OK"
+}
+```
+
+## GET /obtConfig
+
+Retorna toda la configuracion publica.
+No requiere token.
+
+Respuesta:
+
+- `Hero` (`Frase`, `Imagen`)
+- `MiCelines` (JSON)
+- `Destacados` (JSON)
+- `Banner` (URLs privadas firmadas)
+- `Comentarios` (JSON)
+
+### Ejemplo request
+
+```bash
+curl -X GET "http://127.0.0.1:8000/obtConfig"
+```
+
+### Ejemplo response
+
+```json
+{
+  "Config": {
+    "Hero": {
+      "Frase": "Tu hogar ideal, sin complicaciones",
+      "Imagen": "https://k7pr2wn9xm4tb6vl1zq8.info/media/config/hero.jpg?expires=1710531000&signature=abc123"
+    },
+    "MiCelines": [
+      {
+        "titulo": "Rapidez",
+        "valor": "48h"
+      }
+    ],
+    "Destacados": [
+      {
+        "titulo": "Propiedades",
+        "valor": 120
+      }
+    ],
+    "Banner": [
+      "https://k7pr2wn9xm4tb6vl1zq8.info/media/config/banner-1.jpg?expires=1710531000&signature=def456"
+    ],
+    "Comentarios": [
+      "Excelente atencion",
+      "Muy buen servicio"
+    ]
+  }
+}
+```
+
+## SQL tabla configs (phpMyAdmin)
+
+Archivo sugerido:
+
+- `database/deploy/configs.sql`
+
+## POST /sendMsm
+
+Envia mensajes a agentes.
+
+Autenticacion requerida:
+
+- Bearer token (`Authorization: Bearer <token>`)
+
+Regla de rol:
+
+- Solo Admin (`rol = 2`) puede enviar.
+
+Campos:
+
+- `sender` (requerido, debe ser el id del admin autenticado)
+- `full` (requerido, `true` o `false`)
+- `agentes` (array ids de agentes; requerido cuando `full=false`)
+- `prioridad` (requerido: `baja`, `media`, `alta`, `urgente`)
+- `titulo` (requerido)
+- `mensaje` (requerido)
+
+Comportamiento de `full`:
+
+- `full=true`: ignora `agentes` y toma todos los agentes con `parther = sender`.
+- `full=false`: usa solo los ids enviados en `agentes`.
+
+### Ejemplo request (full=true)
+
+```bash
+curl -X POST "http://127.0.0.1:8000/sendMsm" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "sender": 4,
+    "full": true,
+    "prioridad": "alta",
+    "titulo": "Reunion general",
+    "mensaje": "Confirmar asistencia antes de las 4 PM"
+  }'
+```
+
+### Ejemplo request (full=false)
+
+```bash
+curl -X POST "http://127.0.0.1:8000/sendMsm" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "sender": 4,
+    "full": false,
+    "agentes": [5, 6],
+    "prioridad": "media",
+    "titulo": "Ruta Zona Norte",
+    "mensaje": "Actualizar resultados al cierre de jornada"
+  }'
+```
+
+### Ejemplo response
+
+```json
+{
+  "status": "OK"
+}
+```
+
+## GET /obtMsm
+
+Lista mensajes segun rol.
+
+Autenticacion requerida:
+
+- Bearer token (`Authorization: Bearer <token>`)
+
+Reglas por rol:
+
+- Owner (`rol = 1`): retorna todos los mensajes.
+- Admin (`rol = 2`): retorna mensajes donde `sender = id` del admin autenticado.
+- Agente (`rol = 3`): retorna mensajes donde su id de agente (o userLink) este incluido en `agentes`.
+
+Filtros opcionales:
+
+- `id_msm`
+- `sender`
+- `prioridad`
+- `cantidad`
+
+### Ejemplo request
+
+```bash
+curl -X GET "http://127.0.0.1:8000/obtMsm?prioridad=alta&cantidad=20" \
+  -H "Authorization: Bearer TU_TOKEN"
+```
+
+### Ejemplo response
+
+```json
+{
+  "Mensajes": [
+    {
+      "id_msm": 9,
+      "Sender": 4,
+      "Full": false,
+      "Agentes": [5, 6],
+      "Prioridad": "media",
+      "Titulo": "Ruta Zona Norte",
+      "Mensaje": "Actualizar resultados al cierre de jornada",
+      "Creado_En": "2026-03-19 10:40:00"
+    }
+  ]
+}
+```
+
+## SQL tabla mensajes (phpMyAdmin)
+
+Archivo sugerido:
+
+- `database/deploy/mensajes.sql`
 
 ## PATCH /updCliente/{id_cliente}
 

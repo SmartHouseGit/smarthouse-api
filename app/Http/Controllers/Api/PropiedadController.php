@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePropiedadRequest;
+use App\Models\Agente;
 use App\Models\Propiedad;
 use App\Support\PrivateMediaUrl;
 use Illuminate\Http\JsonResponse;
@@ -94,10 +95,28 @@ class PropiedadController extends Controller
             $query->limit((int) $cantidad);
         }
 
-        $propiedades = $query->get()->map(function (Propiedad $propiedad): array {
+        $propiedadesResult = $query->get();
+
+        $agentesById = Agente::query()
+            ->whereIn('id_agente', $propiedadesResult->pluck('id_agente')->filter()->unique()->values())
+            ->get(['id_agente', 'nombre', 'apellido'])
+            ->keyBy('id_agente');
+
+        $propiedades = $propiedadesResult->map(function (Propiedad $propiedad) use ($agentesById): array {
             $fotosSecundarias = $propiedad->getAttribute('fotos_secundarias') ?? [];
             if (! is_array($fotosSecundarias)) {
                 $fotosSecundarias = [];
+            }
+
+            $idAgente = $propiedad->getAttribute('id_agente');
+            $agente = $idAgente !== null ? $agentesById->get((int) $idAgente) : null;
+            $agenteEncargado = $idAgente;
+
+            if ($agente instanceof Agente) {
+                $nombreCompleto = trim(($agente->getAttribute('nombre') ?? '').' '.($agente->getAttribute('apellido') ?? ''));
+                if ($nombreCompleto !== '') {
+                    $agenteEncargado = $nombreCompleto;
+                }
             }
 
             return [
@@ -112,8 +131,8 @@ class PropiedadController extends Controller
                 'Estado_Publico' => $propiedad->getAttribute('estado_publico'),
                 'Detalles' => $propiedad->getAttribute('detalles'),
                 'Datos_Especificos' => $propiedad->getAttribute('datos_especificos') ?? [],
-                'id_agente' => $propiedad->getAttribute('id_agente'),
-                'Agente_Encargado' => $propiedad->getAttribute('id_agente'),
+                'id_agente' => $idAgente,
+                'Agente_Encargado' => $agenteEncargado,
                 'Propietario' => $propiedad->getAttribute('propietario'),
                 'Coordenadas' => [
                     'latitud' => $propiedad->getAttribute('latitud'),

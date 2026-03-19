@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCierreRequest;
+use App\Http\Requests\UpdateCierreRequest;
 use App\Models\Agente;
 use App\Models\Cierre;
 use App\Support\PrivateMediaUrl;
@@ -217,6 +218,175 @@ class CierreController extends Controller
             DB::rollBack();
 
             foreach ($storedFiles as $path) {
+                if (is_string($path) && $path !== '') {
+                    Storage::disk('local')->delete($path);
+                }
+            }
+
+            return response()->json([
+                'status' => 'ERROR',
+            ], 500);
+        }
+    }
+
+    public function update(UpdateCierreRequest $request): JsonResponse
+    {
+        $authUser = $request->user();
+        if (! $authUser) {
+            return response()->json([
+                'status' => 'ERROR',
+            ], 401);
+        }
+
+        $ownerRoleId = (int) env('ROLE_OWNER_ID', 1);
+        $adminRoleId = (int) env('ROLE_ADMIN_ID', 2);
+        $agentRoleId = (int) env('ROLE_AGENT_ID', 3);
+        $userRole = (int) ($authUser->rol ?? 0);
+
+        if (! in_array($userRole, [$ownerRoleId, $adminRoleId, $agentRoleId], true)) {
+            return response()->json([
+                'status' => 'ERROR',
+            ], 403);
+        }
+
+        $payload = $request->validated();
+        $idCierre = (int) $payload['id_cierre'];
+        unset($payload['id_cierre']);
+
+        $allowedRefs = collect();
+        if ($userRole === $adminRoleId) {
+            $subordinateAgents = Agente::query()
+                ->where('parther', (int) $authUser->id)
+                ->get(['id_agente', 'userLink']);
+
+            $allowedRefs = $subordinateAgents
+                ->flatMap(static function (Agente $agente): array {
+                    $ids = [];
+
+                    $idAgente = $agente->getAttribute('id_agente');
+                    if ($idAgente !== null) {
+                        $ids[] = (int) $idAgente;
+                    }
+
+                    $userLink = $agente->getAttribute('userLink');
+                    if ($userLink !== null) {
+                        $ids[] = (int) $userLink;
+                    }
+
+                    return $ids;
+                })
+                ->unique()
+                ->values();
+        } elseif ($userRole === $agentRoleId) {
+            $agente = Agente::query()
+                ->where('userLink', (int) $authUser->id)
+                ->orWhere('id_agente', (int) $authUser->id)
+                ->first(['id_agente', 'userLink']);
+
+            $allowedRefs = collect([(int) $authUser->id]);
+            if ($agente) {
+                $idAgente = $agente->getAttribute('id_agente');
+                if ($idAgente !== null) {
+                    $allowedRefs->push((int) $idAgente);
+                }
+
+                $userLink = $agente->getAttribute('userLink');
+                if ($userLink !== null) {
+                    $allowedRefs->push((int) $userLink);
+                }
+            }
+
+            $allowedRefs = $allowedRefs->unique()->values();
+        }
+
+        $query = Cierre::query()->where('id_cierre', $idCierre);
+        if ($userRole === $adminRoleId || $userRole === $agentRoleId) {
+            if ($allowedRefs->isEmpty()) {
+                return response()->json([
+                    'status' => 'ERROR',
+                ], 404);
+            }
+
+            $query->whereIn('ref', $allowedRefs->all());
+        }
+
+        $cierre = $query->first();
+        if (! $cierre) {
+            return response()->json([
+                'status' => 'ERROR',
+            ], 404);
+        }
+
+        if (array_key_exists('ref', $payload) && $payload['ref'] !== null) {
+            $newRef = (int) $payload['ref'];
+            $refExists = Agente::query()
+                ->where('id_agente', $newRef)
+                ->orWhere('userLink', $newRef)
+                ->exists();
+
+            if (! $refExists) {
+                return response()->json([
+                    'status' => 'ERROR',
+                ], 422);
+            }
+
+            if (
+                ($userRole === $adminRoleId || $userRole === $agentRoleId) &&
+                ! $allowedRefs->contains($newRef)
+            ) {
+                return response()->json([
+                    'status' => 'ERROR',
+                ], 403);
+            }
+        }
+
+        $newStoredFiles = [];
+        $oldStoredFiles = [];
+        $replaceFiles = $request->hasFile('archivos');
+
+        try {
+            DB::beginTransaction();
+
+            if ($replaceFiles) {
+                $files = $request->file('archivos');
+                if (! is_array($files)) {
+                    $files = [$files];
+                }
+
+                foreach ($files as $file) {
+                    if ($file instanceof UploadedFile) {
+                        $newStoredFiles[] = $file->store('cierres', 'local');
+                    }
+                }
+
+                $oldArchivos = $cierre->getAttribute('archivos');
+                if (is_array($oldArchivos)) {
+                    $oldStoredFiles = $oldArchivos;
+                }
+
+                $payload['archivos'] = count($newStoredFiles) > 0 ? $newStoredFiles : null;
+            }
+
+            $cierre->fill($payload);
+            $cierre->save();
+
+            DB::commit();
+
+            if ($replaceFiles) {
+                foreach ($oldStoredFiles as $path) {
+                    if (is_string($path) && $path !== '' && ! preg_match('/^https?:\/\//i', $path)) {
+                        Storage::disk('local')->delete($path);
+                    }
+                }
+            }
+
+            return response()->json([
+                'status' => 'OK',
+            ]);
+        } catch (Throwable $exception) {
+            DB::rollBack();
+
+            foreach ($newStoredFiles as $path) {
                 if (is_string($path) && $path !== '') {
                     Storage::disk('local')->delete($path);
                 }
