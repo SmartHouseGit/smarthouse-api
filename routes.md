@@ -640,6 +640,10 @@ Filtros opcionales:
 - `telefono`
 - `cantidad`
 
+Notas:
+
+- Cada agente incluye `Email` tomado de `users.email` usando `agentes.userLink`.
+
 ### Ejemplo request
 
 ```bash
@@ -654,6 +658,7 @@ curl -X GET "http://127.0.0.1:8000/obtAgentes?apellido=Rojas&cantidad=10" \
   "Agentes": [
     {
       "id_agente": 1,
+      "Email": "valentina.rojas@smarthouse.local",
       "Foto_Portada": "https://k7pr2wn9xm4tb6vl1zq8.info/media/agentes/portada-1.jpg?expires=1710531000&signature=abc123",
       "Foto_Perfil": "https://k7pr2wn9xm4tb6vl1zq8.info/media/agentes/perfil-1.jpg?expires=1710531000&signature=def456",
       "Nombre": "Valentina",

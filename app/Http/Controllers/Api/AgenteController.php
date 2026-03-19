@@ -50,9 +50,26 @@ class AgenteController extends Controller
             $query->limit((int) $cantidad);
         }
 
-        $agentes = $query->get()->map(static function (Agente $agente): array {
+        $agentesCollection = $query->get();
+
+        $userIds = $agentesCollection->pluck('userLink')
+            ->filter(static fn (mixed $id): bool => $id !== null && $id !== '')
+            ->map(static fn (mixed $id): int => (int) $id)
+            ->unique()
+            ->values();
+
+        $emailsByUserId = $userIds->isEmpty()
+            ? collect()
+            : User::query()
+                ->whereIn('id', $userIds->all())
+                ->pluck('email', 'id');
+
+        $agentes = $agentesCollection->map(static function (Agente $agente) use ($emailsByUserId): array {
+            $userLink = (int) $agente->getAttribute('userLink');
+
             return [
                 'id_agente' => $agente->getAttribute('id_agente'),
+                'Email' => $emailsByUserId->get($userLink),
                 'Foto_Portada' => PrivateMediaUrl::make($agente->getAttribute('foto_portada')),
                 'Foto_Perfil' => PrivateMediaUrl::make($agente->getAttribute('foto_perfil')),
                 'Nombre' => $agente->getAttribute('nombre'),
