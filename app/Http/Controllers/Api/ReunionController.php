@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreReunionRequest;
+use App\Http\Requests\UpdateReunionRequest;
 use App\Models\Agente;
 use App\Models\Reunion;
 use Illuminate\Http\JsonResponse;
@@ -113,6 +114,40 @@ class ReunionController extends Controller
                 'mod' => $mod,
                 'estado' => null,
             ]);
+
+            return response()->json([
+                'status' => 'OK',
+            ]);
+        } catch (Throwable $exception) {
+            return response()->json([
+                'status' => 'ERROR',
+            ], 500);
+        }
+    }
+
+    public function update(UpdateReunionRequest $request): JsonResponse
+    {
+        $authUser = $request->user();
+        if (! $authUser) {
+            return response()->json([
+                'status' => 'ERROR',
+            ], 401);
+        }
+
+        $payload = $request->validated();
+        $idReunion = (int) $payload['id_reunion'];
+        unset($payload['id_reunion']);
+
+        $reunion = Reunion::query()->where('id_reunion', $idReunion)->first();
+        if (! $reunion) {
+            return response()->json([
+                'status' => 'ERROR',
+            ], 404);
+        }
+
+        try {
+            $reunion->fill($payload);
+            $reunion->save();
 
             return response()->json([
                 'status' => 'OK',

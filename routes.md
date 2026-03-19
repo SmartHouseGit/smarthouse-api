@@ -1134,6 +1134,53 @@ curl -X POST "http://127.0.0.1:8000/setReunion" \
 }
 ```
 
+## PATCH /updReunion
+
+Actualiza reunion de forma parcial usando `id_reunion` enviado en el body.
+
+Autenticacion requerida:
+
+- Bearer token (`Authorization: Bearer <token>`)
+
+Campos:
+
+- `id_reunion` (requerido)
+- `titulo` (opcional)
+- `fecha` (opcional)
+- `hora` (opcional)
+- `lugar` (opcional)
+- `id_cliente` (opcional)
+- `notas` (opcional)
+- `ref` (opcional)
+- `mod` (opcional)
+- `estado` (opcional)
+
+Notas:
+
+- Debes enviar al menos un campo adicional a `id_reunion` para actualizar.
+- No hay regla especial de `mod` en update.
+
+### Ejemplo request
+
+```bash
+curl -X PATCH "http://127.0.0.1:8000/updReunion" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "id_reunion": 10,
+    "notas": "Reprogramada para la tarde",
+    "estado": "confirmada"
+  }'
+```
+
+### Ejemplo response
+
+```json
+{
+  "status": "OK"
+}
+```
+
 ## PATCH /updCliente/{id_cliente}
 
 Actualiza cliente de forma parcial o total.
