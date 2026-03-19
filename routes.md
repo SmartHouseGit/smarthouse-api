@@ -890,6 +890,66 @@ curl -X POST "http://127.0.0.1:8000/setCliente" \
 }
 ```
 
+## GET /obtCierres
+
+Lista cierres segun rol del usuario autenticado.
+`Archivos` se devuelve como URLs privadas, firmadas y temporales.
+
+Autenticacion requerida:
+
+- Bearer token (`Authorization: Bearer <token>`)
+
+Reglas por rol:
+
+- Owner (`rol = 1`): retorna todos los cierres.
+- Admin (`rol = 2`): busca agentes con `parther = id` del usuario admin autenticado y retorna cierres cuyo `ref` pertenezca a esos agentes.
+- Agente (`rol = 3`): retorna cierres cuyo `ref` coincida con su alcance de agente.
+
+Filtros opcionales:
+
+- `id_cierre`
+- `fecha`
+- `tipo_cierre`
+- `estado_cierre`
+- `id_cliente`
+- `ciudad`
+- `ref`
+- `cantidad`
+
+### Ejemplo request
+
+```bash
+curl -X GET "http://127.0.0.1:8000/obtCierres?ciudad=Valencia&estado_cierre=Inicial&cantidad=20" \
+  -H "Authorization: Bearer TU_TOKEN"
+```
+
+### Ejemplo response
+
+```json
+{
+  "Cierres": [
+    {
+      "id_cierre": 1,
+      "ref": 5,
+      "Fecha": "2026-03-18",
+      "Tipo_Cierre": "Venta",
+      "Estado_Cierre": "Inicial",
+      "Codigos_Propiedades": ["PUB-0001", "PUB-0002"],
+      "Titulo": "Cierre residencial marzo",
+      "Precio_Base": "125000.00",
+      "Monto_Cerrado": "119500.00",
+      "id_cliente": 1,
+      "Ciudad": "Valencia",
+      "Archivos": [
+        "https://k7pr2wn9xm4tb6vl1zq8.info/media/cierres/contrato.pdf?expires=1710531000&signature=abc123",
+        "https://k7pr2wn9xm4tb6vl1zq8.info/media/cierres/comprobante.jpg?expires=1710531000&signature=def456"
+      ],
+      "Nota": "Cliente aprobado para firma"
+    }
+  ]
+}
+```
+
 ## POST /setCierre
 
 Crea un cierre y guarda `ref` con el `id_agente` asociado al token.
