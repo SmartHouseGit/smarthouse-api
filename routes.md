@@ -1009,6 +1009,75 @@ curl -X POST "http://127.0.0.1:8000/setCierre" \
 }
 ```
 
+## POST /setReunion
+
+Crea una reunion.
+
+Autenticacion requerida:
+
+- Bearer token (`Authorization: Bearer <token>`)
+
+Campos requeridos:
+
+- `titulo`
+- `fecha`
+- `hora` (formato `HH:MM` o `HH:MM:SS`)
+- `lugar`
+- `mod` (`true` o `false`)
+
+Campos opcionales:
+
+- `id_cliente` (cliente asociado)
+- `notas`
+- `ref`
+- `estado` (se ignora en creacion; inicia en `null`)
+
+Regla de `mod`:
+
+- Si `mod = true`, el backend rellena `ref` automaticamente con el `id` del usuario autenticado por token.
+- Si `mod = false`, debes enviar `ref` manualmente.
+
+### Ejemplo request (mod true)
+
+```bash
+curl -X POST "http://127.0.0.1:8000/setReunion" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "titulo": "Revision de cierre",
+    "fecha": "2026-03-20",
+    "hora": "10:30",
+    "lugar": "Oficina Valencia",
+    "id_cliente": 1,
+    "notas": "Primera reunion de seguimiento",
+    "mod": true
+  }'
+```
+
+### Ejemplo request (mod false)
+
+```bash
+curl -X POST "http://127.0.0.1:8000/setReunion" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "titulo": "Reunion comercial",
+    "fecha": "2026-03-21",
+    "hora": "14:00",
+    "lugar": "Zoom",
+    "ref": 5,
+    "mod": false
+  }'
+```
+
+### Ejemplo response
+
+```json
+{
+  "status": "OK"
+}
+```
+
 ## PATCH /updCliente/{id_cliente}
 
 Actualiza cliente de forma parcial o total.

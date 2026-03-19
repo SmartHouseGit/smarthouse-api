@@ -626,6 +626,44 @@ UNLOCK TABLES;
 commit;
 
 --
+-- Table structure for table `reuniones`
+--
+
+DROP TABLE IF EXISTS `reuniones`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `reuniones` (
+  `id_reunion` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(200) NOT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL,
+  `lugar` varchar(255) NOT NULL,
+  `id_cliente` bigint(20) unsigned DEFAULT NULL,
+  `notas` text DEFAULT NULL,
+  `ref` bigint(20) unsigned DEFAULT NULL,
+  `mod` tinyint(1) NOT NULL DEFAULT 0,
+  `estado` varchar(120) DEFAULT NULL,
+  PRIMARY KEY (`id_reunion`),
+  KEY `idx_reuniones_fecha` (`fecha`),
+  KEY `idx_reuniones_ref` (`ref`),
+  KEY `idx_reuniones_cliente` (`id_cliente`),
+  CONSTRAINT `fk_reuniones_clientes` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `chk_reuniones_mod` CHECK (`mod` in (0,1))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reuniones`
+--
+
+LOCK TABLES `reuniones` WRITE;
+/*!40000 ALTER TABLE `reuniones` DISABLE KEYS */;
+set autocommit=0;
+/*!40000 ALTER TABLE `reuniones` ENABLE KEYS */;
+UNLOCK TABLES;
+commit;
+
+--
 -- Table structure for table `sessions`
 --
 
@@ -779,4 +817,4 @@ commit;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*M!100616 SET NOTE_VERBOSITY=@OLD_NOTE_VERBOSITY */;
 
--- Dump completed on 2026-03-18 20:52:29
+-- Dump completed on 2026-03-18 22:19:19
