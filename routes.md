@@ -1741,3 +1741,179 @@ Variables `.env` requeridas:
 - `WEB_PUSH_VAPID_PRIVATE_KEY`
 - `WEB_PUSH_VAPID_SUBJECT`
 - `PUSH_TEST_TOKEN`
+
+## POST /loans
+
+Crea un prestamo y genera automaticamente sus cortes.
+
+Body JSON:
+
+- `fullName` (requerido)
+- `documentId` (requerido)
+- `principalUnit` (requerido)
+- `cutFrequency` (requerido: `mensual`, `quincenal`, `semanal`)
+- `termValue` (requerido)
+- `ratePerCut` (requerido)
+- `startDate` (requerido, formato `Y-m-d`)
+
+### Ejemplo request
+
+```bash
+curl -X POST "http://127.0.0.1:8000/loans" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "fullName": "Andrea Soto",
+    "documentId": "V-18299311",
+    "principalUnit": 1000,
+    "cutFrequency": "mensual",
+    "termValue": 3,
+    "ratePerCut": 10,
+    "startDate": "2026-03-21"
+  }'
+```
+
+### Ejemplo response
+
+```json
+{
+  "ok": true,
+  "data": {
+    "id": 15,
+    "fullName": "Andrea Soto",
+    "documentId": "V-18299311",
+    "principalUnit": 1000,
+    "cutFrequency": "mensual",
+    "termValue": 3,
+    "ratePerCut": 10,
+    "perCutAmount": 100,
+    "finalCutAmount": 1100,
+    "totalGain": 300,
+    "totalToCollect": 1300,
+    "startDate": "2026-03-21",
+    "endDate": "2026-06-21",
+    "status": "active",
+    "cuts": []
+  }
+}
+```
+
+## GET /loans
+
+Lista prestamos (incluye cortes).
+
+Query params opcionales:
+
+- `search`
+- `status`
+
+### Ejemplo request
+
+```bash
+curl -X GET "http://127.0.0.1:8000/loans?search=soto"
+```
+
+### Ejemplo response
+
+```json
+{
+  "ok": true,
+  "data": [
+    {
+      "id": 15,
+      "fullName": "Andrea Soto",
+      "documentId": "V-18299311",
+      "principalUnit": 1000,
+      "cutFrequency": "mensual",
+      "termValue": 3,
+      "ratePerCut": 10,
+      "perCutAmount": 100,
+      "finalCutAmount": 1100,
+      "totalGain": 300,
+      "totalToCollect": 1300,
+      "startDate": "2026-03-21",
+      "endDate": "2026-06-21",
+      "status": "active",
+      "cuts": []
+    }
+  ]
+}
+```
+
+## PATCH /loans/{id}
+
+Aplica acciones sobre el prestamo con campo `action`.
+
+Acciones:
+
+- `update_loan`
+- `pay_cut`
+- `extend_cut`
+- `penalize_cut`
+
+### update_loan
+
+```bash
+curl -X PATCH "http://127.0.0.1:8000/loans/15" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "action": "update_loan",
+    "fullName": "Andrea Soto",
+    "documentId": "V-18299311"
+  }'
+```
+
+### pay_cut (multipart)
+
+```bash
+curl -X PATCH "http://127.0.0.1:8000/loans/15" \
+  -F "action=pay_cut" \
+  -F "cutId=44" \
+  -F "note=Pago confirmado" \
+  -F "proof=@/ruta/local/comprobante.jpg"
+```
+
+### extend_cut
+
+```bash
+curl -X PATCH "http://127.0.0.1:8000/loans/15" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "action": "extend_cut",
+    "cutId": 44,
+    "days": 3
+  }'
+```
+
+### penalize_cut
+
+```bash
+curl -X PATCH "http://127.0.0.1:8000/loans/15" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "action": "penalize_cut",
+    "cutId": 44,
+    "penaltyPercent": 10
+  }'
+```
+
+### Ejemplo response
+
+```json
+{
+  "ok": true,
+  "message": "Corte pagado",
+  "data": {
+    "loan": {
+      "id": 15,
+      "status": "active",
+      "cuts": []
+    }
+  }
+}
+```
+
+## SQL tablas loans / loan_cuts (phpMyAdmin)
+
+Archivo sugerido:
+
+- `database/deploy/loans.sql`

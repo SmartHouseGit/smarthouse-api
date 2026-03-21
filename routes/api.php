@@ -19,10 +19,15 @@ use App\Http\Controllers\Api\TestimonioController;
 use App\Http\Controllers\Api\ReunionController;
 use App\Http\Controllers\Api\RutaController;
 use App\Http\Controllers\Api\PushController;
+use App\Http\Controllers\Api\LoanController;
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/push/subscribe', [PushController::class, 'subscribe']);
 Route::post('/push/send-test', [PushController::class, 'sendTest']);
+
+Route::post('/loans', [LoanController::class, 'store']);
+Route::get('/loans', [LoanController::class, 'index']);
+Route::patch('/loans/{id}', [LoanController::class, 'update']);
 
 Route::get('/media/{path}', [MediaController::class, 'show'])
     ->where('path', '.*')
@@ -60,3 +65,8 @@ Route::post('/setConfig', [ConfigController::class, 'set'])->middleware('auth:sa
 Route::post('/sendMsm', [MensajeController::class, 'store'])->middleware('auth:sanctum');
 Route::get('/obtMsm', [MensajeController::class, 'index'])->middleware('auth:sanctum');
 Route::patch('/updCliente/{id_cliente}', [ClienteController::class, 'update']);
+
+// Alias opcional para consumir como /api/loans
+Route::post('/api/loans', [LoanController::class, 'store']);
+Route::get('/api/loans', [LoanController::class, 'index']);
+Route::patch('/api/loans/{id}', [LoanController::class, 'update']);
