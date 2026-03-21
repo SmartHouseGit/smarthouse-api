@@ -143,12 +143,6 @@ CREATE TABLE `cache` (
 LOCK TABLES `cache` WRITE;
 /*!40000 ALTER TABLE `cache` DISABLE KEYS */;
 set autocommit=0;
-INSERT INTO `cache` VALUES
-('laravel-cache-illuminate:queue:restart','i:1773895913;',2089255913),
-('laravel-cache-login|luis2@sm.com|162.158.154.174','i:1;',1773923355),
-('laravel-cache-login|luis2@sm.com|162.158.154.174:timer','i:1773923355;',1773923355),
-('laravel-cache-login|luisz@sm.com|162.158.154.175','i:1;',1773923363),
-('laravel-cache-login|luisz@sm.com|162.158.154.175:timer','i:1773923363;',1773923363);
 /*!40000 ALTER TABLE `cache` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -930,4 +924,4 @@ commit;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*M!100616 SET NOTE_VERBOSITY=@OLD_NOTE_VERBOSITY */;
 
--- Dump completed on 2026-03-19  9:44:53
+-- Dump completed on 2026-03-21 12:56:31

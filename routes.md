@@ -1650,3 +1650,94 @@ curl -X PATCH "http://127.0.0.1:8000/updCliente/1" \
   "status": "OK"
 }
 ```
+
+## POST /push/subscribe
+
+Guarda o actualiza la suscripcion Web Push de un dispositivo.
+
+No requiere token.
+
+Campos:
+
+- `deviceId` (requerido)
+- `subscription.endpoint` (requerido)
+- `subscription.keys.p256dh` (requerido)
+- `subscription.keys.auth` (requerido)
+
+### Ejemplo request
+
+```bash
+curl -X POST "https://tu-dominio.com/push/subscribe" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "deviceId": "ios-17-prueba-1",
+    "subscription": {
+      "endpoint": "https://web.push.apple.com/...",
+      "keys": {
+        "p256dh": "BASE64URL_P256DH",
+        "auth": "BASE64URL_AUTH"
+      }
+    }
+  }'
+```
+
+### Ejemplo response
+
+```json
+{
+  "status": "OK"
+}
+```
+
+## POST /push/send-test
+
+Envia una notificacion de prueba al `deviceId` enviado.
+
+No requiere Bearer; se protege con header:
+
+- `X-Push-Token: <PUSH_TEST_TOKEN>`
+
+Campos:
+
+- `deviceId` (requerido)
+- `title` (requerido)
+- `body` (requerido)
+- `url` (opcional)
+
+### Ejemplo request
+
+```bash
+curl -X POST "https://tu-dominio.com/push/send-test" \
+  -H "Content-Type: application/json" \
+  -H "X-Push-Token: TU_TOKEN_SECRETO" \
+  -d '{
+    "deviceId":"ios-17-prueba-1",
+    "title":"Prueba iOS 17",
+    "body":"Hola desde Laravel",
+    "url":"/"
+  }'
+```
+
+### Ejemplo response
+
+```json
+{
+  "status": "OK",
+  "sent_to": 1,
+  "success": 1,
+  "failed": 0
+}
+```
+
+## SQL tabla push_subscriptions (phpMyAdmin)
+
+Archivo sugerido:
+
+- `database/deploy/push_subscriptions.sql`
+
+Variables `.env` requeridas:
+
+- `WEB_PUSH_VAPID_PUBLIC_KEY`
+- `WEB_PUSH_VAPID_PRIVATE_KEY`
+- `WEB_PUSH_VAPID_SUBJECT`
+- `PUSH_TEST_TOKEN`

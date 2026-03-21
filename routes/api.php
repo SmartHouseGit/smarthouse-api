@@ -18,8 +18,11 @@ use App\Http\Controllers\Api\SolicitudesController;
 use App\Http\Controllers\Api\TestimonioController;
 use App\Http\Controllers\Api\ReunionController;
 use App\Http\Controllers\Api\RutaController;
+use App\Http\Controllers\Api\PushController;
 
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/push/subscribe', [PushController::class, 'subscribe']);
+Route::post('/push/send-test', [PushController::class, 'sendTest']);
 
 Route::get('/media/{path}', [MediaController::class, 'show'])
     ->where('path', '.*')
