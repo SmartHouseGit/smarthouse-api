@@ -24,6 +24,9 @@ use App\Http\Controllers\Api\LoanController;
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/push/subscribe', [PushController::class, 'subscribe']);
 Route::post('/push/send-test', [PushController::class, 'sendTest']);
+Route::post('/setPushConfig', [PushController::class, 'setConfig']);
+Route::get('/obtPushConfig', [PushController::class, 'getConfig']);
+Route::get('/obtPushMonitor', [PushController::class, 'monitor']);
 
 Route::post('/loans', [LoanController::class, 'store']);
 Route::get('/loans', [LoanController::class, 'index']);

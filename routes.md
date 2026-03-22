@@ -1917,3 +1917,146 @@ curl -X PATCH "http://127.0.0.1:8000/loans/15" \
 Archivo sugerido:
 
 - `database/deploy/loans.sql`
+
+## POST /setPushConfig
+
+Configura o pausa la automatizacion de notificaciones push de prestamos.
+
+Autenticacion:
+
+- No requiere token.
+
+Campos (todos opcionales, pero debe venir al menos 1):
+
+- `enabled` (`true|false`): activa/desactiva el sistema automatico
+- `paused` (`true|false`): pausa/reanuda
+- `pauseUntil` (fecha/hora): pausa hasta esta fecha
+- `pauseMinutes` (entero): pausa por N minutos (atajo)
+- `preDueDays` (json array): dias previos para avisar (ej: `[3,2,1]`)
+- `preDueHour` (0-23): hora para generar avisos 3/2/1
+- `dueMorningStartHour`, `dueMorningEndHour`
+- `dueAfternoonStartHour`, `dueAfternoonEndHour`
+- `spreadSeconds`: separacion entre notificaciones en cola
+- `dispatchBatchSize`: tamano de lote por minuto
+- `retryDelayMinutes`: minutos de reintento
+- `maxAttempts`: maximo de reintentos
+
+### Ejemplo request
+
+```bash
+curl -X POST "https://tu-dominio.com/setPushConfig" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "enabled": true,
+    "paused": false,
+    "preDueDays": [3,2,1],
+    "preDueHour": 9,
+    "spreadSeconds": 25,
+    "dispatchBatchSize": 100
+  }'
+```
+
+### Ejemplo response
+
+```json
+{
+  "status": "OK",
+  "Config": {
+    "enabled": true,
+    "paused": false,
+    "pauseUntil": null,
+    "preDueDays": [3,2,1],
+    "preDueHour": 9,
+    "dueMorningStartHour": 7,
+    "dueMorningEndHour": 11,
+    "dueAfternoonStartHour": 14,
+    "dueAfternoonEndHour": 18,
+    "spreadSeconds": 20,
+    "dispatchBatchSize": 100,
+    "retryDelayMinutes": 5,
+    "maxAttempts": 3,
+    "dispatchEnabledNow": true
+  }
+}
+```
+
+## GET /obtPushConfig
+
+Devuelve la configuracion actual del sistema de push automatico.
+
+Autenticacion:
+
+- No requiere token.
+
+### Ejemplo request
+
+```bash
+curl -X GET "https://tu-dominio.com/obtPushConfig"
+```
+
+## GET /obtPushMonitor
+
+Monitoreo en texto plano (sin UI), util para validar cola/envio/errores.
+
+Autenticacion:
+
+- No requiere token.
+
+Query params opcional:
+
+- `limit` (1-200) cantidad de filas en secciones de monitoreo
+
+### Ejemplo request
+
+```bash
+curl -X GET "https://tu-dominio.com/obtPushMonitor?limit=30"
+```
+
+### Ejemplo response (texto)
+
+```text
+PUSH MONITOR
+generated_at: 2026-03-21 20:15:00
+enabled: true
+paused: false
+...
+NEXT PENDING (max 30)
+#12 | pre_due_3 | loan:5 cut:18 | at:2026-03-21 20:15:20 | attempts:0 | Recordatorio de corte
+...
+```
+
+## Automatizacion Push (Prestamos)
+
+Comportamiento automatico implementado:
+
+- Avisa cuando faltan `3`, `2` y `1` dias para el corte (a la hora `preDueHour`).
+- El dia de cobro envia recordatorio cada hora en ventanas:
+- `07:00 - 11:00`
+- `14:00 - 18:00`
+- Distribuye envios con `spreadSeconds` para evitar burst al mismo segundo.
+- Reintenta fallos segun `retryDelayMinutes` y `maxAttempts`.
+
+Comandos manuales utiles:
+
+```bash
+php artisan push:auto-plan
+php artisan push:auto-dispatch
+php artisan push:auto-cycle
+```
+
+Scheduler Laravel (automatico):
+
+- `push:auto-plan` corre cada hora
+- `push:auto-dispatch` corre cada minuto
+
+Importante en servidor (cron):
+
+```bash
+* * * * * cd /var/www/smarthouse-api && php artisan schedule:run >> /dev/null 2>&1
+```
+
+## SQL tablas push automation
+
+Archivo sugerido:
+
+- `database/deploy/push_automation.sql`

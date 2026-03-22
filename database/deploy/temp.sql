@@ -143,6 +143,8 @@ CREATE TABLE `cache` (
 LOCK TABLES `cache` WRITE;
 /*!40000 ALTER TABLE `cache` DISABLE KEYS */;
 set autocommit=0;
+INSERT INTO `cache` VALUES
+('laravel-cache-illuminate:queue:restart','i:1774135592;',2089495592);
 /*!40000 ALTER TABLE `cache` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -307,6 +309,38 @@ UNLOCK TABLES;
 commit;
 
 --
+-- Table structure for table `configs`
+--
+
+DROP TABLE IF EXISTS `configs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `configs` (
+  `id_config` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `hero_frase` text DEFAULT NULL,
+  `hero_imagen` varchar(500) DEFAULT NULL,
+  `micelines` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (`micelines` is null or json_valid(`micelines`)),
+  `destacados` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (`destacados` is null or json_valid(`destacados`)),
+  `banner` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (`banner` is null or json_valid(`banner`)),
+  `comentarios` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (`comentarios` is null or json_valid(`comentarios`)),
+  PRIMARY KEY (`id_config`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `configs`
+--
+
+LOCK TABLES `configs` WRITE;
+/*!40000 ALTER TABLE `configs` DISABLE KEYS */;
+set autocommit=0;
+INSERT INTO `configs` VALUES
+(1,'Tu hogar ideal en un solo lugar','config/YSoo4OTV7uxaaMnL1WZjO1RuTZT4tEfPEweOCua6.jpg','[{\"titulo\":\"Holas a todos\",\"valor\":\"Hello mundo\"}]','[{\"titulo\":\"Casa espectacular\",\"valor\":\"1200\"}]','[\"config\\/AIJwYWurkE24d9uBfIQhbhT7Bn2CpVsW3SiUPBZR.jpg\"]','[{\"nombre\":\"Se\\u00f1or Jos\\u00e9\",\"subtitulo\":\"Lider\",\"comentario\":\"Casa espectacular, trato incre\\u00edble\"}]');
+/*!40000 ALTER TABLE `configs` ENABLE KEYS */;
+UNLOCK TABLES;
+commit;
+
+--
 -- Table structure for table `contactos`
 --
 
@@ -431,6 +465,116 @@ LOCK TABLES `jobs` WRITE;
 /*!40000 ALTER TABLE `jobs` DISABLE KEYS */;
 set autocommit=0;
 /*!40000 ALTER TABLE `jobs` ENABLE KEYS */;
+UNLOCK TABLES;
+commit;
+
+--
+-- Table structure for table `loan_cuts`
+--
+
+DROP TABLE IF EXISTS `loan_cuts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `loan_cuts` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `loan_id` bigint(20) unsigned NOT NULL,
+  `cut_number` int(10) unsigned NOT NULL,
+  `original_due_date` date NOT NULL,
+  `due_date` date NOT NULL,
+  `base_amount` decimal(14,2) NOT NULL,
+  `penalty_percent` decimal(8,2) NOT NULL DEFAULT 0.00,
+  `amount` decimal(14,2) NOT NULL,
+  `status` varchar(20) NOT NULL DEFAULT 'pending',
+  `note` text DEFAULT NULL,
+  `proof_path` varchar(500) DEFAULT NULL,
+  `paid_at` datetime DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_loan_cuts_loan_cut_number` (`loan_id`,`cut_number`),
+  KEY `idx_loan_cuts_loan_id` (`loan_id`),
+  KEY `idx_loan_cuts_status` (`status`),
+  KEY `idx_loan_cuts_due_date` (`due_date`),
+  CONSTRAINT `fk_loan_cuts_loans` FOREIGN KEY (`loan_id`) REFERENCES `loans` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `loan_cuts`
+--
+
+LOCK TABLES `loan_cuts` WRITE;
+/*!40000 ALTER TABLE `loan_cuts` DISABLE KEYS */;
+set autocommit=0;
+INSERT INTO `loan_cuts` VALUES
+(1,1,1,'2026-04-21','2026-04-21',100.00,0.00,100.00,'pending',NULL,NULL,NULL,'2026-03-21 23:12:30','2026-03-21 23:12:30'),
+(2,2,1,'2026-04-21','2026-04-21',100.00,0.00,100.00,'pending',NULL,NULL,NULL,'2026-03-21 23:12:30','2026-03-21 23:12:30'),
+(3,1,2,'2026-05-21','2026-05-21',100.00,0.00,100.00,'pending',NULL,NULL,NULL,'2026-03-21 23:12:30','2026-03-21 23:12:30'),
+(4,2,2,'2026-05-21','2026-05-21',100.00,0.00,100.00,'pending',NULL,NULL,NULL,'2026-03-21 23:12:30','2026-03-21 23:12:30'),
+(5,1,3,'2026-06-21','2026-06-21',1100.00,0.00,1100.00,'pending',NULL,NULL,NULL,'2026-03-21 23:12:30','2026-03-21 23:12:30'),
+(6,2,3,'2026-06-21','2026-06-21',1100.00,0.00,1100.00,'pending',NULL,NULL,NULL,'2026-03-21 23:12:30','2026-03-21 23:12:30'),
+(7,3,1,'2026-04-21','2026-04-21',200.00,0.00,200.00,'paid',NULL,'loans/proofs/V3ydsIoJwCLGRlH3i9Zn7y6zhtaMrKqok1MJ6K8z.jpg','2026-03-21 23:27:30','2026-03-21 23:18:54','2026-03-21 23:27:30'),
+(8,3,2,'2026-05-21','2026-05-28',200.00,5.00,210.00,'pending',NULL,NULL,NULL,'2026-03-21 23:18:54','2026-03-21 23:28:16'),
+(9,3,3,'2026-06-21','2026-06-21',200.00,0.00,200.00,'pending',NULL,NULL,NULL,'2026-03-21 23:18:54','2026-03-21 23:18:54'),
+(10,3,4,'2026-07-21','2026-07-21',200.00,0.00,200.00,'pending',NULL,NULL,NULL,'2026-03-21 23:18:54','2026-03-21 23:18:54'),
+(11,3,5,'2026-08-21','2026-08-21',2200.00,0.00,2200.00,'pending',NULL,NULL,NULL,'2026-03-21 23:18:54','2026-03-21 23:18:54'),
+(12,4,1,'2026-04-21','2026-04-21',250.00,0.00,250.00,'pending',NULL,NULL,NULL,'2026-03-21 23:31:58','2026-03-21 23:31:58'),
+(13,4,2,'2026-05-21','2026-05-21',250.00,0.00,250.00,'pending',NULL,NULL,NULL,'2026-03-21 23:31:58','2026-03-21 23:31:58'),
+(14,4,3,'2026-06-21','2026-06-21',250.00,0.00,250.00,'pending',NULL,NULL,NULL,'2026-03-21 23:31:58','2026-03-21 23:31:58'),
+(15,4,4,'2026-07-21','2026-07-21',250.00,0.00,250.00,'pending',NULL,NULL,NULL,'2026-03-21 23:31:58','2026-03-21 23:31:58'),
+(16,4,5,'2026-08-21','2026-08-21',250.00,0.00,250.00,'pending',NULL,NULL,NULL,'2026-03-21 23:31:58','2026-03-21 23:31:58'),
+(17,4,6,'2026-09-21','2026-09-21',5250.00,0.00,5250.00,'pending',NULL,NULL,NULL,'2026-03-21 23:31:58','2026-03-21 23:31:58');
+/*!40000 ALTER TABLE `loan_cuts` ENABLE KEYS */;
+UNLOCK TABLES;
+commit;
+
+--
+-- Table structure for table `loans`
+--
+
+DROP TABLE IF EXISTS `loans`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `loans` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `full_name` varchar(180) NOT NULL,
+  `document_id` varchar(80) NOT NULL,
+  `principal_amount` decimal(14,2) NOT NULL,
+  `cut_frequency` varchar(20) NOT NULL,
+  `term_cuts` int(10) unsigned NOT NULL,
+  `rate_per_cut` decimal(8,4) NOT NULL,
+  `per_cut_amount` decimal(14,2) NOT NULL,
+  `final_cut_amount` decimal(14,2) NOT NULL,
+  `total_gain` decimal(14,2) NOT NULL,
+  `total_to_collect` decimal(14,2) NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `status` varchar(20) NOT NULL DEFAULT 'active',
+  `created_by_user_id` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `idx_loans_document_id` (`document_id`),
+  KEY `idx_loans_status` (`status`),
+  KEY `idx_loans_full_name` (`full_name`),
+  KEY `idx_loans_created_by` (`created_by_user_id`),
+  CONSTRAINT `fk_loans_users_created_by` FOREIGN KEY (`created_by_user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `loans`
+--
+
+LOCK TABLES `loans` WRITE;
+/*!40000 ALTER TABLE `loans` DISABLE KEYS */;
+set autocommit=0;
+INSERT INTO `loans` VALUES
+(1,'Yon licon','29659564',1000.00,'mensual',3,10.0000,100.00,1100.00,300.00,1300.00,'2026-03-21','2026-06-21','active',NULL,'2026-03-21 23:12:30','2026-03-21 23:12:30'),
+(2,'Yon licon','29659564',1000.00,'mensual',3,10.0000,100.00,1100.00,300.00,1300.00,'2026-03-21','2026-06-21','active',NULL,'2026-03-21 23:12:30','2026-03-21 23:12:30'),
+(3,'Juan','14522451',2000.00,'mensual',5,10.0000,200.00,2200.00,1000.00,3000.00,'2026-03-21','2026-08-21','active',NULL,'2026-03-21 23:18:54','2026-03-21 23:18:54'),
+(4,'Juana Alvarez','15478996',5000.00,'mensual',6,5.0000,250.00,5250.00,1500.00,6500.00,'2026-03-21','2026-09-21','active',NULL,'2026-03-21 23:31:58','2026-03-21 23:31:58');
+/*!40000 ALTER TABLE `loans` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
 
@@ -686,6 +830,131 @@ UNLOCK TABLES;
 commit;
 
 --
+-- Table structure for table `push_configs`
+--
+
+DROP TABLE IF EXISTS `push_configs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `push_configs` (
+  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `enabled` tinyint(1) NOT NULL DEFAULT 1,
+  `paused` tinyint(1) NOT NULL DEFAULT 0,
+  `pause_until` datetime DEFAULT NULL,
+  `pre_due_days` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`pre_due_days`)),
+  `pre_due_hour` tinyint(3) unsigned NOT NULL DEFAULT 9,
+  `due_morning_start_hour` tinyint(3) unsigned NOT NULL DEFAULT 7,
+  `due_morning_end_hour` tinyint(3) unsigned NOT NULL DEFAULT 11,
+  `due_afternoon_start_hour` tinyint(3) unsigned NOT NULL DEFAULT 14,
+  `due_afternoon_end_hour` tinyint(3) unsigned NOT NULL DEFAULT 18,
+  `spread_seconds` int(10) unsigned NOT NULL DEFAULT 20,
+  `dispatch_batch_size` int(10) unsigned NOT NULL DEFAULT 100,
+  `retry_delay_minutes` int(10) unsigned NOT NULL DEFAULT 5,
+  `max_attempts` int(10) unsigned NOT NULL DEFAULT 3,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `push_configs`
+--
+
+LOCK TABLES `push_configs` WRITE;
+/*!40000 ALTER TABLE `push_configs` DISABLE KEYS */;
+set autocommit=0;
+INSERT INTO `push_configs` VALUES
+(1,1,0,NULL,'[3,2,1]',9,7,11,14,18,20,100,5,3,'2026-03-22 00:21:37','2026-03-22 00:21:37');
+/*!40000 ALTER TABLE `push_configs` ENABLE KEYS */;
+UNLOCK TABLES;
+commit;
+
+--
+-- Table structure for table `push_notifications`
+--
+
+DROP TABLE IF EXISTS `push_notifications`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `push_notifications` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `loan_id` bigint(20) DEFAULT NULL,
+  `loan_cut_id` bigint(20) DEFAULT NULL,
+  `event_type` varchar(60) NOT NULL,
+  `event_date` date NOT NULL,
+  `event_hour` tinyint(3) unsigned DEFAULT NULL,
+  `dedupe_key` varchar(191) NOT NULL,
+  `title` varchar(180) NOT NULL,
+  `body` text NOT NULL,
+  `url` varchar(2000) DEFAULT NULL,
+  `tag` varchar(120) DEFAULT NULL,
+  `scheduled_at` datetime NOT NULL,
+  `status` enum('pending','sent','failed') NOT NULL DEFAULT 'pending',
+  `attempts` int(10) unsigned NOT NULL DEFAULT 0,
+  `recipients` int(10) unsigned NOT NULL DEFAULT 0,
+  `success_count` int(10) unsigned NOT NULL DEFAULT 0,
+  `failed_count` int(10) unsigned NOT NULL DEFAULT 0,
+  `sent_at` datetime DEFAULT NULL,
+  `last_error` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_push_notifications_dedupe` (`dedupe_key`),
+  KEY `idx_push_notifications_status_scheduled` (`status`,`scheduled_at`),
+  KEY `idx_push_notifications_created` (`created_at`),
+  KEY `idx_push_notifications_loan_cut` (`loan_cut_id`),
+  KEY `idx_push_notifications_loan` (`loan_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `push_notifications`
+--
+
+LOCK TABLES `push_notifications` WRITE;
+/*!40000 ALTER TABLE `push_notifications` DISABLE KEYS */;
+set autocommit=0;
+/*!40000 ALTER TABLE `push_notifications` ENABLE KEYS */;
+UNLOCK TABLES;
+commit;
+
+--
+-- Table structure for table `push_subscriptions`
+--
+
+DROP TABLE IF EXISTS `push_subscriptions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `push_subscriptions` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `device_id` varchar(120) NOT NULL,
+  `endpoint` varchar(700) NOT NULL,
+  `p256dh` text NOT NULL,
+  `auth` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_push_endpoint` (`endpoint`),
+  KEY `idx_push_device_id` (`device_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `push_subscriptions`
+--
+
+LOCK TABLES `push_subscriptions` WRITE;
+/*!40000 ALTER TABLE `push_subscriptions` DISABLE KEYS */;
+set autocommit=0;
+INSERT INTO `push_subscriptions` VALUES
+(6,'99f62037-0886-4789-aed1-b0b13599f394','https://fcm.googleapis.com/fcm/send/cYjl27Z3604:APA91bH5u9aUfTv6IY8ettGokmuem3dbI2roetFikd_hirtI1cPwDySEsayPUAhJG_fAa9W_3AOqcaEYBDHoKeJieHv_qR0Yg21aBwq9GWG6qKtIzmhlICqMOl17lS7F_CiweppdvSuK','BEFfCc66y1Ok9Q2Gv9j0oED5ypI4AjbUrjlxKrUWPaqv-26ydZ2Y8gaXkbnJSkIyNx3vX0pcRah7MxJ288g_YaI','HfRvXfujuFsTJnfjowbd-g','2026-03-22 00:17:42','2026-03-22 00:17:42'),
+(7,'a33af6b8-5c44-4b39-ba7b-c1541987addc','https://fcm.googleapis.com/fcm/send/cyCQA62vCQI:APA91bGXCW7_9Pgyvf0ZKxU1ckShFCVToiJhwxERAhUb0iKiUy-xZlKDRDLGOQTbPZG-5g8iQY_-ygMG0d20BPjza2ZOrMIgdJXRdFe2IILN4K2niN1JjBQaFmDbS0cdcM-UaTXutcwu','BJKrFXHlRv_81FPsFIeKvvCMDsu3tYEgNEBAGrg1jwm7zpfU9IMV5Kc4JKxQvYSmPr1hvD2hY5o_Z_df6MAYkeI','H8oEM75-DdKI96OSJc2eew','2026-03-22 00:18:46','2026-03-22 00:18:46');
+/*!40000 ALTER TABLE `push_subscriptions` ENABLE KEYS */;
+UNLOCK TABLES;
+commit;
+
+--
 -- Table structure for table `reuniones`
 --
 
@@ -793,7 +1062,13 @@ LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `sessions` VALUES
-('S4nEfYPHJ8eHM151SWQFcUxmqk1JCZMxsuQ64NhD',NULL,'104.23.254.235','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiNmhvc0YzTzlLamtaWEJQM09ENzNPbE50bXdDNVRkM3hIc3JxZ0VnSiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp6Vk9KeUVQU3R3eEZMT3g2Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1773929851);
+('1HiQVDnpAb9Ij7knAmeYFfU1IcAbztJ10kbVATmX',NULL,'104.23.170.80','Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoiY0VTREpiUGhCTWRaeFR6aVRBME1Vc0hLYXhKS1VrWWs5aHU0cUw2ZCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjo4U0lPb2kxTEpkTVhqc08yIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774136714),
+('bF2giHlO79nSeXz8Ffk2T7kuhX9Np8j5O2vtSU5T',NULL,'104.23.170.80','Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) Mobile/14D27 MicroMessenger/6.7.3(0x16070321) NetType/4G Language/zh_CN','YTozOntzOjY6Il90b2tlbiI7czo0MDoiTGNOSWowcTZVQjVKWWo3NUJSeGV2QW1nY2d5anpna09rYUZKTDJSUyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjo4U0lPb2kxTEpkTVhqc08yIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774135943),
+('bfuYkGS03X81iBd9FIQ8ftF2IVpp12e5T6ceg1vr',NULL,'172.71.155.10','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoidzE2Z3NwU2ZraUxIQXZ1VzVHQXhiR0xaVnoxMEtYdjNFalJiRTJQSCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjo4U0lPb2kxTEpkTVhqc08yIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774136360),
+('S4nEfYPHJ8eHM151SWQFcUxmqk1JCZMxsuQ64NhD',NULL,'104.23.254.235','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiNmhvc0YzTzlLamtaWEJQM09ENzNPbE50bXdDNVRkM3hIc3JxZ0VnSiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp6Vk9KeUVQU3R3eEZMT3g2Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1773929851),
+('UgueTR0jmxYC4XVzunbQDdNmqyT9vdtm8oLsDqRH',NULL,'141.101.76.74','Dalvik/2.1.0 (Linux; U; Android 9.0; ZTE BA520 Build/MRA58K)','YTozOntzOjY6Il90b2tlbiI7czo0MDoicEJrVVM4V3pFQW4yOEc3andNY1k0MGNUNVlGMU1nTmd6RXYxcmQ3SyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjo4U0lPb2kxTEpkTVhqc08yIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774136645),
+('uzB1SSZwH6Aj0mfqjNrBi1ZRMP2ommLdsfSrTNEV',NULL,'104.22.20.159','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiZHhmUFRUQURBSUtaMTNONE9xOUlJUEJvalNXVXZsbXljYkNnTVpVVyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjo4U0lPb2kxTEpkTVhqc08yIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774137343),
+('zRcRDBMVOoag5sKlVM8rD9V1WhKZxLJoFoCxGvHs',NULL,'172.71.98.88','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiWjVHc3hpdnJqMEttMDNUTWNDQ2JtSnl0YU5FVUVNYldjY2VsYUpTQiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjo4U0lPb2kxTEpkTVhqc08yIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774136439);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -924,4 +1199,4 @@ commit;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*M!100616 SET NOTE_VERBOSITY=@OLD_NOTE_VERBOSITY */;
 
--- Dump completed on 2026-03-21 18:26:17
+-- Dump completed on 2026-03-21 19:22:32

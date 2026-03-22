@@ -1,0 +1,82 @@
+CREATE TABLE IF NOT EXISTS `push_configs` (
+  `id` TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `enabled` TINYINT(1) NOT NULL DEFAULT 1,
+  `paused` TINYINT(1) NOT NULL DEFAULT 0,
+  `pause_until` DATETIME NULL,
+  `pre_due_days` JSON NOT NULL,
+  `pre_due_hour` TINYINT UNSIGNED NOT NULL DEFAULT 9,
+  `due_morning_start_hour` TINYINT UNSIGNED NOT NULL DEFAULT 7,
+  `due_morning_end_hour` TINYINT UNSIGNED NOT NULL DEFAULT 11,
+  `due_afternoon_start_hour` TINYINT UNSIGNED NOT NULL DEFAULT 14,
+  `due_afternoon_end_hour` TINYINT UNSIGNED NOT NULL DEFAULT 18,
+  `spread_seconds` INT UNSIGNED NOT NULL DEFAULT 20,
+  `dispatch_batch_size` INT UNSIGNED NOT NULL DEFAULT 100,
+  `retry_delay_minutes` INT UNSIGNED NOT NULL DEFAULT 5,
+  `max_attempts` INT UNSIGNED NOT NULL DEFAULT 3,
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `push_configs` (
+  `id`,
+  `enabled`,
+  `paused`,
+  `pause_until`,
+  `pre_due_days`,
+  `pre_due_hour`,
+  `due_morning_start_hour`,
+  `due_morning_end_hour`,
+  `due_afternoon_start_hour`,
+  `due_afternoon_end_hour`,
+  `spread_seconds`,
+  `dispatch_batch_size`,
+  `retry_delay_minutes`,
+  `max_attempts`
+)
+VALUES
+  (1, 1, 0, NULL, '[3,2,1]', 9, 7, 11, 14, 18, 20, 100, 5, 3)
+ON DUPLICATE KEY UPDATE
+  `enabled` = VALUES(`enabled`),
+  `paused` = VALUES(`paused`),
+  `pause_until` = VALUES(`pause_until`),
+  `pre_due_days` = VALUES(`pre_due_days`),
+  `pre_due_hour` = VALUES(`pre_due_hour`),
+  `due_morning_start_hour` = VALUES(`due_morning_start_hour`),
+  `due_morning_end_hour` = VALUES(`due_morning_end_hour`),
+  `due_afternoon_start_hour` = VALUES(`due_afternoon_start_hour`),
+  `due_afternoon_end_hour` = VALUES(`due_afternoon_end_hour`),
+  `spread_seconds` = VALUES(`spread_seconds`),
+  `dispatch_batch_size` = VALUES(`dispatch_batch_size`),
+  `retry_delay_minutes` = VALUES(`retry_delay_minutes`),
+  `max_attempts` = VALUES(`max_attempts`);
+
+CREATE TABLE IF NOT EXISTS `push_notifications` (
+  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `loan_id` BIGINT NULL,
+  `loan_cut_id` BIGINT NULL,
+  `event_type` VARCHAR(60) NOT NULL,
+  `event_date` DATE NOT NULL,
+  `event_hour` TINYINT UNSIGNED NULL,
+  `dedupe_key` VARCHAR(191) NOT NULL,
+  `title` VARCHAR(180) NOT NULL,
+  `body` TEXT NOT NULL,
+  `url` VARCHAR(2000) NULL,
+  `tag` VARCHAR(120) NULL,
+  `scheduled_at` DATETIME NOT NULL,
+  `status` ENUM('pending','sent','failed') NOT NULL DEFAULT 'pending',
+  `attempts` INT UNSIGNED NOT NULL DEFAULT 0,
+  `recipients` INT UNSIGNED NOT NULL DEFAULT 0,
+  `success_count` INT UNSIGNED NOT NULL DEFAULT 0,
+  `failed_count` INT UNSIGNED NOT NULL DEFAULT 0,
+  `sent_at` DATETIME NULL,
+  `last_error` TEXT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_push_notifications_dedupe` (`dedupe_key`),
+  KEY `idx_push_notifications_status_scheduled` (`status`,`scheduled_at`),
+  KEY `idx_push_notifications_created` (`created_at`),
+  KEY `idx_push_notifications_loan_cut` (`loan_cut_id`),
+  KEY `idx_push_notifications_loan` (`loan_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
