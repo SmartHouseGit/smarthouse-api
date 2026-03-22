@@ -74,7 +74,7 @@ class PushAutomationService
                     'dedupe_key' => sprintf('cut:%d:pre_due:%d:%s', (int) $cut->getAttribute('id'), $daysLeft, $today),
                     'title' => 'Recordatorio de corte',
                     'body' => $customer.': tu corte de '.$amount.' vence en '.$dayText.'.',
-                    'url' => $this->buildLoanUrl((int) $cut->getAttribute('loan_id')),
+                    'url' => $this->buildLoanUrl((int) $cut->getAttribute('loan_id'), (int) $cut->getAttribute('id')),
                     'tag' => sprintf(
                         'loan-pre-due-cut-%d-d%d',
                         (int) $cut->getAttribute('id'),
@@ -112,7 +112,7 @@ class PushAutomationService
                     'dedupe_key' => sprintf('cut:%d:due_hourly:%s:%02d', (int) $cut->getAttribute('id'), $today, (int) $now->hour),
                     'title' => 'Corte con vencimiento hoy',
                     'body' => $customer.': hoy vence tu corte de '.$amount.'.',
-                    'url' => $this->buildLoanUrl((int) $cut->getAttribute('loan_id')),
+                    'url' => $this->buildLoanUrl((int) $cut->getAttribute('loan_id'), (int) $cut->getAttribute('id')),
                     'tag' => sprintf(
                         'loan-due-today-cut-%d-h%02d',
                         (int) $cut->getAttribute('id'),
@@ -300,15 +300,23 @@ class PushAutomationService
         ];
     }
 
-    private function buildLoanUrl(int $loanId): string
+    private function buildLoanUrl(int $loanId, ?int $cutId = null): string
     {
-        $base = rtrim(self::LOAN_NOTIFICATION_URL_BASE, '/');
+        $base = rtrim(self::LOAN_NOTIFICATION_URL_BASE, '/').'/';
 
-        if ($loanId <= 0) {
-            return $base;
+        $params = [
+            'view' => 'history',
+        ];
+
+        if ($loanId > 0) {
+            $params['loanId'] = $loanId;
         }
 
-        return $base.'/'.$loanId;
+        if ($cutId !== null && $cutId > 0) {
+            $params['cutId'] = $cutId;
+        }
+
+        return $base.'?' . http_build_query($params);
     }
 
     private function isDispatchEnabled(array $config, Carbon $now): bool
