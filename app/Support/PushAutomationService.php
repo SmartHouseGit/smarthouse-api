@@ -10,6 +10,7 @@ use Throwable;
 
 class PushAutomationService
 {
+    private const LOAN_NOTIFICATION_URL_BASE = 'https://smarthouse-ve.com/V6dsVt232541';
     public function __construct(private readonly PushDeliveryService $delivery)
     {
     }
@@ -73,8 +74,12 @@ class PushAutomationService
                     'dedupe_key' => sprintf('cut:%d:pre_due:%d:%s', (int) $cut->getAttribute('id'), $daysLeft, $today),
                     'title' => 'Recordatorio de corte',
                     'body' => $customer.': tu corte de '.$amount.' vence en '.$dayText.'.',
-                    'url' => '/',
-                    'tag' => 'loan-pre-due',
+                    'url' => $this->buildLoanUrl((int) $cut->getAttribute('loan_id')),
+                    'tag' => sprintf(
+                        'loan-pre-due-cut-%d-d%d',
+                        (int) $cut->getAttribute('id'),
+                        $daysLeft
+                    ),
                     'status' => 'pending',
                     'attempts' => 0,
                     'recipients' => 0,
@@ -107,8 +112,12 @@ class PushAutomationService
                     'dedupe_key' => sprintf('cut:%d:due_hourly:%s:%02d', (int) $cut->getAttribute('id'), $today, (int) $now->hour),
                     'title' => 'Corte con vencimiento hoy',
                     'body' => $customer.': hoy vence tu corte de '.$amount.'.',
-                    'url' => '/',
-                    'tag' => 'loan-due-today',
+                    'url' => $this->buildLoanUrl((int) $cut->getAttribute('loan_id')),
+                    'tag' => sprintf(
+                        'loan-due-today-cut-%d-h%02d',
+                        (int) $cut->getAttribute('id'),
+                        (int) $now->hour
+                    ),
                     'status' => 'pending',
                     'attempts' => 0,
                     'recipients' => 0,
@@ -175,6 +184,7 @@ class PushAutomationService
         $batchSize = max((int) $config['dispatch_batch_size'], 1);
         $retryDelay = max((int) $config['retry_delay_minutes'], 1);
         $maxAttempts = max((int) $config['max_attempts'], 1);
+        $interMessageDelaySeconds = 15;
 
         $queue = PushNotification::query()
             ->where('status', 'pending')
@@ -186,8 +196,9 @@ class PushAutomationService
         $processed = 0;
         $sent = 0;
         $failed = 0;
+        $totalRows = $queue->count();
 
-        foreach ($queue as $row) {
+        foreach ($queue->values() as $index => $row) {
             $processed++;
 
             try {
@@ -228,6 +239,10 @@ class PushAutomationService
                 }
 
                 $row->save();
+            }
+
+            if ($index < ($totalRows - 1)) {
+                sleep($interMessageDelaySeconds);
             }
         }
 
@@ -283,6 +298,17 @@ class PushAutomationService
             'retry_delay_minutes' => max((int) $dbConfig->getAttribute('retry_delay_minutes'), 1),
             'max_attempts' => max((int) $dbConfig->getAttribute('max_attempts'), 1),
         ];
+    }
+
+    private function buildLoanUrl(int $loanId): string
+    {
+        $base = rtrim(self::LOAN_NOTIFICATION_URL_BASE, '/');
+
+        if ($loanId <= 0) {
+            return $base;
+        }
+
+        return $base.'/'.$loanId;
     }
 
     private function isDispatchEnabled(array $config, Carbon $now): bool
