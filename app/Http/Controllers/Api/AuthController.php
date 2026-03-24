@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -55,6 +56,41 @@ class AuthController extends Controller
                 'email' => $user->email,
                 'rol' => $user->rol,
             ],
+        ]);
+    }
+
+    public function changePassword(ChangePasswordRequest $request): JsonResponse
+    {
+        $user = $request->user();
+
+        if (! $user) {
+            return response()->json([
+                'status' => 'ERROR',
+                'message' => 'No autorizado.',
+            ], 401);
+        }
+
+        if ((int) ($user->rol ?? 0) !== 8) {
+            return response()->json([
+                'status' => 'ERROR',
+                'message' => 'Forbidden. Requiere rol 8.',
+            ], 403);
+        }
+
+        $data = $request->validated();
+
+        if (! Hash::check((string) $data['currentPassword'], (string) $user->password)) {
+            return response()->json([
+                'status' => 'ERROR',
+                'message' => 'La contrasena actual no coincide.',
+            ], 422);
+        }
+
+        $user->password = (string) $data['newPassword'];
+        $user->save();
+
+        return response()->json([
+            'status' => 'OK',
         ]);
     }
 }

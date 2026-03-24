@@ -52,6 +52,41 @@ curl -X POST "http://127.0.0.1:8000/login" \
 }
 ```
 
+## PATCH /changePassword
+
+Cambia la contraseña del usuario autenticado.
+
+Autenticacion y permisos:
+
+- Requiere Bearer token (`Authorization: Bearer <token>`)
+- Solo usuarios con `rol = 8`
+
+Campos:
+
+- `currentPassword` (requerido)
+- `newPassword` (requerido, min 8)
+- `newPasswordConfirmation` (requerido, debe coincidir)
+
+### Ejemplo request
+
+```bash
+curl -X PATCH "http://127.0.0.1:8000/changePassword" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "currentPassword": "ClaveActual123",
+    "newPassword": "NuevaClave456",
+    "newPasswordConfirmation": "NuevaClave456"
+  }'
+```
+
+### Ejemplo response OK
+
+```json
+{
+  "status": "OK"
+}
+```
 ## GET /testimonios
 
 Obtiene testimonios.  
