@@ -25,6 +25,7 @@ class Loan extends Model
         'start_date',
         'end_date',
         'status',
+        'id_owner',
         'created_by_user_id',
     ];
 
@@ -36,6 +37,7 @@ class Loan extends Model
         'total_gain' => 'float',
         'total_to_collect' => 'float',
         'term_cuts' => 'integer',
+        'id_owner' => 'integer',
         'created_by_user_id' => 'integer',
         'start_date' => 'date:Y-m-d',
         'end_date' => 'date:Y-m-d',

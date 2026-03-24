@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreLoanRequest;
+use App\Http\Requests\UpdateLoanDataRequest;
 use App\Http\Requests\UpdateLoanRequest;
 use App\Models\Loan;
 use App\Models\LoanCut;
+use App\Models\PushNotification;
 use App\Support\PrivateMediaUrl;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
@@ -19,6 +21,10 @@ class LoanController extends Controller
 {
     public function store(StoreLoanRequest $request): JsonResponse
     {
+        if ($authError = $this->authorizeRoleEight($request)) {
+            return $authError;
+        }
+
         $data = $request->validated();
 
         try {
@@ -49,7 +55,8 @@ class LoanController extends Controller
                     'start_date' => $startDate->toDateString(),
                     'end_date' => $endDate->toDateString(),
                     'status' => 'active',
-                    'created_by_user_id' => $request->user()?->id,
+                    'id_owner' => (int) $request->user()->id,
+                    'created_by_user_id' => (int) $request->user()->id,
                 ]);
 
                 for ($cutNumber = 1; $cutNumber <= $termCuts; $cutNumber++) {
@@ -77,7 +84,7 @@ class LoanController extends Controller
                 'ok' => true,
                 'data' => $this->formatLoan($loan),
             ]);
-        } catch (Throwable $exception) {
+        } catch (Throwable) {
             return response()->json([
                 'ok' => false,
                 'message' => 'No se pudo crear el prestamo.',
@@ -87,7 +94,16 @@ class LoanController extends Controller
 
     public function index(Request $request): JsonResponse
     {
-        $query = Loan::query()->with(['cuts' => fn ($q) => $q->orderBy('cut_number')])->orderByDesc('id');
+        if ($authError = $this->authorizeRoleEight($request)) {
+            return $authError;
+        }
+
+        $ownerId = (int) $request->user()->id;
+
+        $query = Loan::query()
+            ->with(['cuts' => fn ($q) => $q->orderBy('cut_number')])
+            ->where('id_owner', $ownerId)
+            ->orderByDesc('id');
 
         $search = $request->query('search');
         $status = $request->query('status');
@@ -114,7 +130,17 @@ class LoanController extends Controller
 
     public function update(UpdateLoanRequest $request, int $id): JsonResponse
     {
-        $loan = Loan::query()->with(['cuts' => fn ($q) => $q->orderBy('cut_number')])->find($id);
+        if ($authError = $this->authorizeRoleEight($request)) {
+            return $authError;
+        }
+
+        $ownerId = (int) $request->user()->id;
+
+        $loan = Loan::query()
+            ->with(['cuts' => fn ($q) => $q->orderBy('cut_number')])
+            ->where('id', $id)
+            ->where('id_owner', $ownerId)
+            ->first();
 
         if (! $loan) {
             return response()->json([
@@ -238,6 +264,113 @@ class LoanController extends Controller
         }
     }
 
+    public function updateData(UpdateLoanDataRequest $request, int $id): JsonResponse
+    {
+        if ($authError = $this->authorizeRoleEight($request)) {
+            return $authError;
+        }
+
+        $ownerId = (int) $request->user()->id;
+
+        $loan = Loan::query()
+            ->with(['cuts' => fn ($q) => $q->orderBy('cut_number')])
+            ->where('id', $id)
+            ->where('id_owner', $ownerId)
+            ->first();
+
+        if (! $loan) {
+            return response()->json([
+                'ok' => false,
+                'message' => 'Prestamo no encontrado.',
+            ], 404);
+        }
+
+        $data = $request->validated();
+
+        try {
+            DB::transaction(function () use ($loan, $data): void {
+                $updates = [];
+
+                if (array_key_exists('fullName', $data)) {
+                    $updates['full_name'] = $data['fullName'];
+                }
+
+                if (array_key_exists('documentId', $data)) {
+                    $updates['document_id'] = $data['documentId'];
+                }
+
+                if (array_key_exists('status', $data)) {
+                    $updates['status'] = $data['status'];
+                }
+
+                $loan->fill($updates);
+                $loan->save();
+            });
+
+            $loan->refresh()->load(['cuts' => fn ($query) => $query->orderBy('cut_number')]);
+
+            return response()->json([
+                'ok' => true,
+                'message' => 'Datos del prestamo actualizados.',
+                'data' => [
+                    'loan' => $this->formatLoan($loan),
+                ],
+            ]);
+        } catch (Throwable) {
+            return response()->json([
+                'ok' => false,
+                'message' => 'No se pudo actualizar el prestamo.',
+            ], 500);
+        }
+    }
+
+    public function destroy(Request $request, int $id): JsonResponse
+    {
+        if ($authError = $this->authorizeRoleEight($request)) {
+            return $authError;
+        }
+
+        $ownerId = (int) $request->user()->id;
+
+        $loan = Loan::query()
+            ->where('id', $id)
+            ->where('id_owner', $ownerId)
+            ->first();
+
+        if (! $loan) {
+            return response()->json([
+                'ok' => false,
+                'message' => 'Prestamo no encontrado.',
+            ], 404);
+        }
+
+        try {
+            DB::transaction(function () use ($loan): void {
+                $cutIds = LoanCut::query()
+                    ->where('loan_id', $loan->id)
+                    ->pluck('id')
+                    ->all();
+
+                PushNotification::query()
+                    ->where('loan_id', $loan->id)
+                    ->when($cutIds !== [], fn ($query) => $query->orWhereIn('loan_cut_id', $cutIds))
+                    ->delete();
+
+                $loan->delete();
+            });
+
+            return response()->json([
+                'ok' => true,
+                'message' => 'Prestamo eliminado.',
+            ]);
+        } catch (Throwable) {
+            return response()->json([
+                'ok' => false,
+                'message' => 'No se pudo eliminar el prestamo.',
+            ], 500);
+        }
+    }
+
     private function nextDateByFrequency(Carbon $base, string $frequency, int $steps): Carbon
     {
         $date = $base->copy();
@@ -291,6 +424,7 @@ class LoanController extends Controller
             'startDate' => $startDate,
             'endDate' => $endDate,
             'status' => $loan->getAttribute('status'),
+            'idOwner' => (int) ($loan->getAttribute('id_owner') ?? 0),
             'cuts' => $cuts->map(function (LoanCut $cut): array {
                 $dueDate = $cut->getAttribute('due_date');
                 if ($dueDate instanceof \DateTimeInterface) {
@@ -316,5 +450,26 @@ class LoanController extends Controller
                 ];
             })->values(),
         ];
+    }
+
+    private function authorizeRoleEight(Request $request): ?JsonResponse
+    {
+        $user = $request->user();
+
+        if (! $user) {
+            return response()->json([
+                'ok' => false,
+                'message' => 'No autorizado.',
+            ], 401);
+        }
+
+        if ((int) ($user->rol ?? 0) !== 8) {
+            return response()->json([
+                'ok' => false,
+                'message' => 'Forbidden. Requiere rol 8.',
+            ], 403);
+        }
+
+        return null;
     }
 }

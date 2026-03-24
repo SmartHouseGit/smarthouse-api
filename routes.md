@@ -1746,6 +1746,13 @@ Variables `.env` requeridas:
 
 Crea un prestamo y genera automaticamente sus cortes.
 
+Autenticacion requerida para todos los endpoints de prestamos:
+
+- Bearer token (`Authorization: Bearer <token>`)
+- Usuario con `rol = 8` (si no, responde `403`)
+- Al crear se guarda `id_owner` con el `id` del usuario del token
+- Listar/actualizar/eliminar solo opera sobre prestamos con `id_owner = id` del token
+
 Body JSON:
 
 - `fullName` (requerido)
@@ -1760,6 +1767,7 @@ Body JSON:
 
 ```bash
 curl -X POST "http://127.0.0.1:8000/loans" \
+  -H "Authorization: Bearer TU_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "fullName": "Andrea Soto",
@@ -1770,31 +1778,6 @@ curl -X POST "http://127.0.0.1:8000/loans" \
     "ratePerCut": 10,
     "startDate": "2026-03-21"
   }'
-```
-
-### Ejemplo response
-
-```json
-{
-  "ok": true,
-  "data": {
-    "id": 15,
-    "fullName": "Andrea Soto",
-    "documentId": "V-18299311",
-    "principalUnit": 1000,
-    "cutFrequency": "mensual",
-    "termValue": 3,
-    "ratePerCut": 10,
-    "perCutAmount": 100,
-    "finalCutAmount": 1100,
-    "totalGain": 300,
-    "totalToCollect": 1300,
-    "startDate": "2026-03-21",
-    "endDate": "2026-06-21",
-    "status": "active",
-    "cuts": []
-  }
-}
 ```
 
 ## GET /loans
@@ -1809,34 +1792,8 @@ Query params opcionales:
 ### Ejemplo request
 
 ```bash
-curl -X GET "http://127.0.0.1:8000/loans?search=soto"
-```
-
-### Ejemplo response
-
-```json
-{
-  "ok": true,
-  "data": [
-    {
-      "id": 15,
-      "fullName": "Andrea Soto",
-      "documentId": "V-18299311",
-      "principalUnit": 1000,
-      "cutFrequency": "mensual",
-      "termValue": 3,
-      "ratePerCut": 10,
-      "perCutAmount": 100,
-      "finalCutAmount": 1100,
-      "totalGain": 300,
-      "totalToCollect": 1300,
-      "startDate": "2026-03-21",
-      "endDate": "2026-06-21",
-      "status": "active",
-      "cuts": []
-    }
-  ]
-}
+curl -X GET "http://127.0.0.1:8000/loans?search=soto" \
+  -H "Authorization: Bearer TU_TOKEN"
 ```
 
 ## PATCH /loans/{id}
@@ -1845,78 +1802,70 @@ Aplica acciones sobre el prestamo con campo `action`.
 
 Acciones:
 
-- `update_loan`
+- `update_loan` (legacy)
 - `pay_cut`
 - `extend_cut`
 - `penalize_cut`
 
-### update_loan
+### Ejemplo pay_cut (multipart)
 
 ```bash
 curl -X PATCH "http://127.0.0.1:8000/loans/15" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "action": "update_loan",
-    "fullName": "Andrea Soto",
-    "documentId": "V-18299311"
-  }'
-```
-
-### pay_cut (multipart)
-
-```bash
-curl -X PATCH "http://127.0.0.1:8000/loans/15" \
+  -H "Authorization: Bearer TU_TOKEN" \
   -F "action=pay_cut" \
   -F "cutId=44" \
   -F "note=Pago confirmado" \
   -F "proof=@/ruta/local/comprobante.jpg"
 ```
 
-### extend_cut
+## PATCH /loans/{id}/data
+
+Actualiza solo datos del prestamo (no cortes).
+
+Campos (al menos uno):
+
+- `fullName` (opcional)
+- `documentId` (opcional)
+- `status` (opcional: `active`, `completed`, `cancelled`)
+
+### Ejemplo request
 
 ```bash
-curl -X PATCH "http://127.0.0.1:8000/loans/15" \
+curl -X PATCH "http://127.0.0.1:8000/loans/15/data" \
+  -H "Authorization: Bearer TU_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
-    "action": "extend_cut",
-    "cutId": 44,
-    "days": 3
+    "fullName": "Andrea Soto Actualizada",
+    "documentId": "V-18299311"
   }'
 ```
 
-### penalize_cut
+## DELETE /loans/{id}
+
+Elimina el prestamo completo (prestamo + cortes). Tambien limpia notificaciones push asociadas a ese prestamo/cortes.
+
+### Ejemplo request
 
 ```bash
-curl -X PATCH "http://127.0.0.1:8000/loans/15" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "action": "penalize_cut",
-    "cutId": 44,
-    "penaltyPercent": 10
-  }'
+curl -X DELETE "http://127.0.0.1:8000/loans/15" \
+  -H "Authorization: Bearer TU_TOKEN"
 ```
 
-### Ejemplo response
+Notas:
 
-```json
-{
-  "ok": true,
-  "message": "Corte pagado",
-  "data": {
-    "loan": {
-      "id": 15,
-      "status": "active",
-      "cuts": []
-    }
-  }
-}
-```
+- Existen alias equivalentes bajo `/api/loans`:
+  - `POST /api/loans`
+  - `GET /api/loans`
+  - `PATCH /api/loans/{id}`
+  - `PATCH /api/loans/{id}/data`
+  - `DELETE /api/loans/{id}`
 
 ## SQL tablas loans / loan_cuts (phpMyAdmin)
 
 Archivo sugerido:
 
 - `database/deploy/loans.sql`
+- `database/deploy/loan_owner_patch.sql` (patch para BD existente)
 
 ## POST /setPushConfig
 

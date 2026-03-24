@@ -1,25 +1,25 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\Api\AgenteController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CierreController;
 use App\Http\Controllers\Api\CiudadController;
 use App\Http\Controllers\Api\ClienteController;
-use App\Http\Controllers\Api\CierreController;
 use App\Http\Controllers\Api\ConfigController;
 use App\Http\Controllers\Api\ContactoController;
+use App\Http\Controllers\Api\LoanController;
 use App\Http\Controllers\Api\MediaController;
 use App\Http\Controllers\Api\MensajeController;
 use App\Http\Controllers\Api\PropiedadController;
 use App\Http\Controllers\Api\PublicarInController;
+use App\Http\Controllers\Api\PushController;
+use App\Http\Controllers\Api\ReunionController;
+use App\Http\Controllers\Api\RutaController;
 use App\Http\Controllers\Api\SolicitarInController;
 use App\Http\Controllers\Api\SolicitudesController;
 use App\Http\Controllers\Api\TestimonioController;
-use App\Http\Controllers\Api\ReunionController;
-use App\Http\Controllers\Api\RutaController;
-use App\Http\Controllers\Api\PushController;
-use App\Http\Controllers\Api\LoanController;
+use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/push/subscribe', [PushController::class, 'subscribe']);
@@ -28,9 +28,11 @@ Route::post('/setPushConfig', [PushController::class, 'setConfig']);
 Route::get('/obtPushConfig', [PushController::class, 'getConfig']);
 Route::get('/obtPushMonitor', [PushController::class, 'monitor']);
 
-Route::post('/loans', [LoanController::class, 'store']);
-Route::get('/loans', [LoanController::class, 'index']);
-Route::patch('/loans/{id}', [LoanController::class, 'update']);
+Route::post('/loans', [LoanController::class, 'store'])->middleware('auth:sanctum');
+Route::get('/loans', [LoanController::class, 'index'])->middleware('auth:sanctum');
+Route::patch('/loans/{id}', [LoanController::class, 'update'])->middleware('auth:sanctum');
+Route::patch('/loans/{id}/data', [LoanController::class, 'updateData'])->middleware('auth:sanctum');
+Route::delete('/loans/{id}', [LoanController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::get('/media/{path}', [MediaController::class, 'show'])
     ->where('path', '.*')
@@ -70,6 +72,8 @@ Route::get('/obtMsm', [MensajeController::class, 'index'])->middleware('auth:san
 Route::patch('/updCliente/{id_cliente}', [ClienteController::class, 'update']);
 
 // Alias opcional para consumir como /api/loans
-Route::post('/api/loans', [LoanController::class, 'store']);
-Route::get('/api/loans', [LoanController::class, 'index']);
-Route::patch('/api/loans/{id}', [LoanController::class, 'update']);
+Route::post('/api/loans', [LoanController::class, 'store'])->middleware('auth:sanctum');
+Route::get('/api/loans', [LoanController::class, 'index'])->middleware('auth:sanctum');
+Route::patch('/api/loans/{id}', [LoanController::class, 'update'])->middleware('auth:sanctum');
+Route::patch('/api/loans/{id}/data', [LoanController::class, 'updateData'])->middleware('auth:sanctum');
+Route::delete('/api/loans/{id}', [LoanController::class, 'destroy'])->middleware('auth:sanctum');

@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS `loans` (
   `start_date` DATE NOT NULL,
   `end_date` DATE NOT NULL,
   `status` VARCHAR(20) NOT NULL DEFAULT 'active',
+  `id_owner` BIGINT UNSIGNED NULL,
   `created_by_user_id` BIGINT UNSIGNED NULL,
   `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -21,7 +22,9 @@ CREATE TABLE IF NOT EXISTS `loans` (
   KEY `idx_loans_document_id` (`document_id`),
   KEY `idx_loans_status` (`status`),
   KEY `idx_loans_full_name` (`full_name`),
+  KEY `idx_loans_owner` (`id_owner`),
   KEY `idx_loans_created_by` (`created_by_user_id`),
+  CONSTRAINT `fk_loans_users_owner` FOREIGN KEY (`id_owner`) REFERENCES `users` (`id`) ON UPDATE CASCADE ON DELETE SET NULL,
   CONSTRAINT `fk_loans_users_created_by` FOREIGN KEY (`created_by_user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
