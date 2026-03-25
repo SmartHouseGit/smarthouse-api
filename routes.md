@@ -1690,7 +1690,9 @@ curl -X PATCH "http://127.0.0.1:8000/updCliente/1" \
 
 Guarda o actualiza la suscripcion Web Push de un dispositivo.
 
-No requiere token.
+Requiere Bearer token (`Authorization: Bearer <token>`).
+
+El servidor toma el usuario del token y lo guarda en `push_subscriptions.user_id`.
 
 Campos:
 
@@ -1704,6 +1706,7 @@ Campos:
 ```bash
 curl -X POST "https://tu-dominio.com/push/subscribe" \
   -H "Content-Type: application/json" \
+  -H "Authorization: Bearer TU_TOKEN" \
   -d '{
     "deviceId": "ios-17-prueba-1",
     "subscription": {
@@ -2005,7 +2008,7 @@ enabled: true
 paused: false
 ...
 NEXT PENDING (max 30)
-#12 | pre_due_3 | loan:5 cut:18 | at:2026-03-21 20:15:20 | attempts:0 | Recordatorio de corte
+#12 | user:8 | pre_due_3 | loan:5 cut:18 | at:2026-03-21 20:15:20 | attempts:0 | Recordatorio de corte
 ...
 ```
 
@@ -2013,6 +2016,8 @@ NEXT PENDING (max 30)
 
 Comportamiento automatico implementado:
 
+- Cada notificacion se asocia al usuario dueno del prestamo (`loans.id_owner`) y solo se envia a sus suscripciones (`push_subscriptions.user_id`).
+- La URL se construye usando `users.url` del dueno del prestamo como base.
 - Avisa cuando faltan `3`, `2` y `1` dias para el corte (a la hora `preDueHour`).
 - El dia de cobro envia recordatorio cada hora en ventanas:
 - `07:00 - 11:00`
@@ -2041,6 +2046,8 @@ Importante en servidor (cron):
 
 ## SQL tablas push automation
 
-Archivo sugerido:
+Archivos sugeridos:
 
-- `database/deploy/push_automation.sql`
+- `database/deploy/push_automation.sql` (instalacion nueva)
+- `database/deploy/push_notifications_user_patch.sql` (BD existente: agrega `user_id` + FK en `push_notifications`)
+- `database/deploy/push_subscriptions_user_patch.sql` (BD existente: agrega `user_id` + FK en `push_subscriptions`)

@@ -53,6 +53,7 @@ ON DUPLICATE KEY UPDATE
 
 CREATE TABLE IF NOT EXISTS `push_notifications` (
   `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` BIGINT UNSIGNED NULL,
   `loan_id` BIGINT NULL,
   `loan_cut_id` BIGINT NULL,
   `event_type` VARCHAR(60) NOT NULL,
@@ -77,6 +78,10 @@ CREATE TABLE IF NOT EXISTS `push_notifications` (
   UNIQUE KEY `uq_push_notifications_dedupe` (`dedupe_key`),
   KEY `idx_push_notifications_status_scheduled` (`status`,`scheduled_at`),
   KEY `idx_push_notifications_created` (`created_at`),
+  KEY `idx_push_notifications_user` (`user_id`),
   KEY `idx_push_notifications_loan_cut` (`loan_cut_id`),
-  KEY `idx_push_notifications_loan` (`loan_id`)
+  KEY `idx_push_notifications_loan` (`loan_id`),
+  CONSTRAINT `fk_push_notifications_user`
+    FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+    ON UPDATE CASCADE ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

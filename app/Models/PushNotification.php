@@ -13,6 +13,7 @@ class PushNotification extends Model
     public $timestamps = true;
 
     protected $fillable = [
+        'user_id',
         'loan_id',
         'loan_cut_id',
         'event_type',
@@ -34,6 +35,7 @@ class PushNotification extends Model
     ];
 
     protected $casts = [
+        'user_id' => 'integer',
         'loan_id' => 'integer',
         'loan_cut_id' => 'integer',
         'event_date' => 'date:Y-m-d',

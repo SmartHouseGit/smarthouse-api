@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::patch('/changePassword', [AuthController::class, 'changePassword'])->middleware('auth:sanctum');
-Route::post('/push/subscribe', [PushController::class, 'subscribe']);
+Route::post('/push/subscribe', [PushController::class, 'subscribe'])->middleware('auth:sanctum');
 Route::post('/push/send-test', [PushController::class, 'sendTest']);
 Route::post('/setPushConfig', [PushController::class, 'setConfig']);
 Route::get('/obtPushConfig', [PushController::class, 'getConfig']);

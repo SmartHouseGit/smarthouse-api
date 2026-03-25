@@ -27,6 +27,14 @@ class PushController extends Controller
 
     public function subscribe(StorePushSubscriptionRequest $request): JsonResponse
     {
+        $user = $request->user();
+
+        if (! $user) {
+            return response()->json([
+                'status' => 'ERROR',
+            ], 401);
+        }
+
         $data = $request->validated();
         $subscription = $data['subscription'];
 
@@ -34,6 +42,7 @@ class PushController extends Controller
             PushSubscription::query()->updateOrCreate(
                 ['endpoint' => $subscription['endpoint']],
                 [
+                    'user_id' => (int) $user->id,
                     'device_id' => $data['deviceId'],
                     'p256dh' => $subscription['keys']['p256dh'],
                     'auth' => $subscription['keys']['auth'],
@@ -236,6 +245,7 @@ class PushController extends Controller
             ->limit($limit)
             ->get([
                 'id',
+                'user_id',
                 'event_type',
                 'loan_id',
                 'loan_cut_id',
@@ -249,6 +259,7 @@ class PushController extends Controller
             ->limit($limit)
             ->get([
                 'id',
+                'user_id',
                 'status',
                 'event_type',
                 'loan_id',
@@ -285,14 +296,15 @@ class PushController extends Controller
 
         foreach ($nextPending as $row) {
             $lines[] = sprintf(
-                '#%d | %s | loan:%s cut:%s | at:%s | attempts:%d | %s',
-                (int) $row->getAttribute('id'),
-                (string) $row->getAttribute('event_type'),
-                (string) ($row->getAttribute('loan_id') ?? '-'),
-                (string) ($row->getAttribute('loan_cut_id') ?? '-'),
-                (string) $row->getAttribute('scheduled_at'),
-                (int) $row->getAttribute('attempts'),
-                $this->oneLine((string) ($row->getAttribute('title') ?? ''))
+                "#%d | user:%s | %s | loan:%s cut:%s | at:%s | attempts:%d | %s",
+                (int) $row->getAttribute("id"),
+                (string) ($row->getAttribute("user_id") ?? "-"),
+                (string) $row->getAttribute("event_type"),
+                (string) ($row->getAttribute("loan_id") ?? "-"),
+                (string) ($row->getAttribute("loan_cut_id") ?? "-"),
+                (string) $row->getAttribute("scheduled_at"),
+                (int) $row->getAttribute("attempts"),
+                $this->oneLine((string) ($row->getAttribute("title") ?? ""))
             );
         }
 
@@ -300,22 +312,23 @@ class PushController extends Controller
         $lines[] = 'RECENT ACTIVITY (max '.$limit.')';
 
         foreach ($recent as $row) {
-            $lastError = $row->getAttribute('last_error');
-            $errorText = $lastError ? ' error: '.$this->oneLine((string) $lastError) : '';
+            $lastError = $row->getAttribute("last_error");
+            $errorText = $lastError ? " error: ".$this->oneLine((string) $lastError) : "";
 
             $lines[] = sprintf(
-                '#%d | %s | %s | loan:%s cut:%s | sched:%s | sent:%s | rec:%d ok:%d fail:%d attempts:%d%s',
-                (int) $row->getAttribute('id'),
-                (string) $row->getAttribute('status'),
-                (string) $row->getAttribute('event_type'),
-                (string) ($row->getAttribute('loan_id') ?? '-'),
-                (string) ($row->getAttribute('loan_cut_id') ?? '-'),
-                (string) $row->getAttribute('scheduled_at'),
-                (string) ($row->getAttribute('sent_at') ?? '-'),
-                (int) $row->getAttribute('recipients'),
-                (int) $row->getAttribute('success_count'),
-                (int) $row->getAttribute('failed_count'),
-                (int) $row->getAttribute('attempts'),
+                "#%d | user:%s | %s | %s | loan:%s cut:%s | sched:%s | sent:%s | rec:%d ok:%d fail:%d attempts:%d%s",
+                (int) $row->getAttribute("id"),
+                (string) ($row->getAttribute("user_id") ?? "-"),
+                (string) $row->getAttribute("status"),
+                (string) $row->getAttribute("event_type"),
+                (string) ($row->getAttribute("loan_id") ?? "-"),
+                (string) ($row->getAttribute("loan_cut_id") ?? "-"),
+                (string) $row->getAttribute("scheduled_at"),
+                (string) ($row->getAttribute("sent_at") ?? "-"),
+                (int) $row->getAttribute("recipients"),
+                (int) $row->getAttribute("success_count"),
+                (int) $row->getAttribute("failed_count"),
+                (int) $row->getAttribute("attempts"),
                 $errorText
             );
         }

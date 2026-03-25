@@ -5,12 +5,16 @@ namespace App\Support;
 use App\Models\LoanCut;
 use App\Models\PushConfig;
 use App\Models\PushNotification;
+use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
+use RuntimeException;
 use Throwable;
 
 class PushAutomationService
 {
     private const LOAN_NOTIFICATION_URL_BASE = 'https://smarthouse-ve.com/V6dsVt232541';
+
     public function __construct(private readonly PushDeliveryService $delivery)
     {
     }
@@ -47,12 +51,19 @@ class PushAutomationService
                 ->all();
 
             $cuts = LoanCut::query()
-                ->with(['loan:id,full_name'])
+                ->with(['loan:id,full_name,id_owner'])
                 ->where('status', 'pending')
                 ->whereIn('due_date', $targetDates)
                 ->get();
 
+            $ownerUrls = $this->ownerUrlMap($cuts);
+
             foreach ($cuts as $cut) {
+                $ownerId = (int) optional($cut->loan)->getAttribute('id_owner');
+                if ($ownerId <= 0) {
+                    continue;
+                }
+
                 $dueDate = Carbon::parse($cut->getAttribute('due_date'))->startOfDay();
                 $daysLeft = $now->copy()->startOfDay()->diffInDays($dueDate, false);
 
@@ -64,17 +75,19 @@ class PushAutomationService
                 $amount = number_format((float) $cut->getAttribute('amount'), 2, '.', '');
                 $dayText = $daysLeft === 1 ? '1 dia' : $daysLeft.' dias';
                 $customer = $fullName !== '' ? $fullName : 'Cliente';
+                $baseUrl = (string) ($ownerUrls[$ownerId] ?? '');
 
                 $candidates[] = [
+                    'user_id' => $ownerId,
                     'loan_id' => $cut->getAttribute('loan_id'),
                     'loan_cut_id' => $cut->getAttribute('id'),
                     'event_type' => 'pre_due_'.$daysLeft,
                     'event_date' => $today,
                     'event_hour' => null,
-                    'dedupe_key' => sprintf('cut:%d:pre_due:%d:%s', (int) $cut->getAttribute('id'), $daysLeft, $today),
+                    'dedupe_key' => sprintf('user:%d:cut:%d:pre_due:%d:%s', $ownerId, (int) $cut->getAttribute('id'), $daysLeft, $today),
                     'title' => 'Recordatorio de corte',
                     'body' => $customer.': tu corte de '.$amount.' vence en '.$dayText.'.',
-                    'url' => $this->buildLoanUrl((int) $cut->getAttribute('loan_id'), (int) $cut->getAttribute('id')),
+                    'url' => $this->buildLoanUrl($baseUrl, (int) $cut->getAttribute('loan_id'), (int) $cut->getAttribute('id')),
                     'tag' => sprintf(
                         'loan-pre-due-cut-%d-d%d',
                         (int) $cut->getAttribute('id'),
@@ -93,26 +106,35 @@ class PushAutomationService
 
         if ($this->isDueHour($config, (int) $now->hour)) {
             $cutsDueToday = LoanCut::query()
-                ->with(['loan:id,full_name'])
+                ->with(['loan:id,full_name,id_owner'])
                 ->where('status', 'pending')
                 ->whereDate('due_date', $today)
                 ->get();
 
+            $ownerUrls = $this->ownerUrlMap($cutsDueToday);
+
             foreach ($cutsDueToday as $cut) {
+                $ownerId = (int) optional($cut->loan)->getAttribute('id_owner');
+                if ($ownerId <= 0) {
+                    continue;
+                }
+
                 $fullName = trim((string) optional($cut->loan)->getAttribute('full_name'));
                 $amount = number_format((float) $cut->getAttribute('amount'), 2, '.', '');
                 $customer = $fullName !== '' ? $fullName : 'Cliente';
+                $baseUrl = (string) ($ownerUrls[$ownerId] ?? '');
 
                 $candidates[] = [
+                    'user_id' => $ownerId,
                     'loan_id' => $cut->getAttribute('loan_id'),
                     'loan_cut_id' => $cut->getAttribute('id'),
                     'event_type' => 'due_hourly',
                     'event_date' => $today,
                     'event_hour' => (int) $now->hour,
-                    'dedupe_key' => sprintf('cut:%d:due_hourly:%s:%02d', (int) $cut->getAttribute('id'), $today, (int) $now->hour),
+                    'dedupe_key' => sprintf('user:%d:cut:%d:due_hourly:%s:%02d', $ownerId, (int) $cut->getAttribute('id'), $today, (int) $now->hour),
                     'title' => 'Corte con vencimiento hoy',
                     'body' => $customer.': hoy vence tu corte de '.$amount.'.',
-                    'url' => $this->buildLoanUrl((int) $cut->getAttribute('loan_id'), (int) $cut->getAttribute('id')),
+                    'url' => $this->buildLoanUrl($baseUrl, (int) $cut->getAttribute('loan_id'), (int) $cut->getAttribute('id')),
                     'tag' => sprintf(
                         'loan-due-today-cut-%d-h%02d',
                         (int) $cut->getAttribute('id'),
@@ -202,7 +224,12 @@ class PushAutomationService
             $processed++;
 
             try {
-                $result = $this->delivery->sendToAll([
+                $targetUserId = (int) $row->getAttribute('user_id');
+                if ($targetUserId <= 0) {
+                    throw new RuntimeException('Notificacion sin user_id asociado.');
+                }
+
+                $result = $this->delivery->sendToUserId($targetUserId, [
                     'title' => $row->getAttribute('title'),
                     'body' => $row->getAttribute('body'),
                     'url' => $row->getAttribute('url') ?? '/',
@@ -300,9 +327,14 @@ class PushAutomationService
         ];
     }
 
-    private function buildLoanUrl(int $loanId, ?int $cutId = null): string
+    private function buildLoanUrl(string $userBaseUrl, int $loanId, ?int $cutId = null): string
     {
-        $base = rtrim(self::LOAN_NOTIFICATION_URL_BASE, '/').'/';
+        $baseSource = trim($userBaseUrl);
+        if ($baseSource === '') {
+            $baseSource = self::LOAN_NOTIFICATION_URL_BASE;
+        }
+
+        $base = rtrim($baseSource, '/').'/';
 
         $params = [
             'view' => 'history',
@@ -316,7 +348,27 @@ class PushAutomationService
             $params['cutId'] = $cutId;
         }
 
-        return $base.'?' . http_build_query($params);
+        return $base.'?'.http_build_query($params);
+    }
+
+    private function ownerUrlMap(Collection $cuts): array
+    {
+        $ownerIds = $cuts
+            ->map(static fn (LoanCut $cut): int => (int) optional($cut->loan)->getAttribute('id_owner'))
+            ->filter(static fn (int $id): bool => $id > 0)
+            ->unique()
+            ->values()
+            ->all();
+
+        if ($ownerIds === []) {
+            return [];
+        }
+
+        return User::query()
+            ->whereIn('id', $ownerIds)
+            ->pluck('url', 'id')
+            ->map(static fn (mixed $url): string => is_string($url) ? $url : '')
+            ->toArray();
     }
 
     private function isDispatchEnabled(array $config, Carbon $now): bool

@@ -78,7 +78,7 @@ CREATE TABLE `agentes` (
   KEY `idx_agentes_apellido` (`apellido`),
   KEY `idx_agentes_telefono` (`telefono`),
   KEY `idx_agentes_userLink` (`userLink`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -89,7 +89,7 @@ LOCK TABLES `agentes` WRITE;
 /*!40000 ALTER TABLE `agentes` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `agentes` VALUES
-(1,0,0,'https://mi-cdn.com/agentes/portada-1.jpg','https://mi-cdn.com/agentes/perfil-1.jpg','Ramona','Rojas','+584121234567','Asesora comercial con enfoque en inmuebles residenciales.'),
+(1,0,0,'https://mi-cdn.com/agentes/portada-1.jpg','https://mi-cdn.com/agentes/perfil-1.jpg','Ramona','Mendoza','+584121234567','Asesora comercial con enfoque en inmuebles residenciales.'),
 (2,0,0,'https://mi-cdn.com/agentes/portada-2.jpg','https://mi-cdn.com/agentes/perfil-2.jpg','Aup','Mendoza','+584148887766','Especialista en cierre de operaciones y negociacion inmobiliaria.'),
 (4,2,0,NULL,NULL,'Mis huevos','Redondos','+584121234567','Asesora comercial con enfoque en inmuebles residenciales.'),
 (5,5,4,NULL,NULL,'Luis','Mora','+584149998877','Asesor inmobiliario'),
@@ -100,7 +100,8 @@ INSERT INTO `agentes` VALUES
 (11,11,10,NULL,NULL,'Sara','Damasco','+584243073815','Buen Agente'),
 (12,12,10,NULL,NULL,'Pepe','Alcaravan','+584243073956','Mejor Agenmte'),
 (13,13,10,NULL,NULL,'Maria','Oropeza','+5755656584547','Sin notas add'),
-(16,16,14,NULL,NULL,'Rafa','Pedromo','+58424665845','prueba');
+(16,16,14,NULL,NULL,'Rafa','Pedromo','+58424665845','prueba'),
+(19,19,4,NULL,NULL,'Yonnel','Licon','041238238213','Vendedor informal');
 /*!40000 ALTER TABLE `agentes` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -144,17 +145,59 @@ LOCK TABLES `cache` WRITE;
 /*!40000 ALTER TABLE `cache` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `cache` VALUES
-('laravel-cache-illuminate:queue:restart','i:1774143070;',2089503070),
-('laravel-cache-login|admin@sm.com|172.68.12.51','i:1;',1774280229),
-('laravel-cache-login|admin@sm.com|172.68.12.51:timer','i:1774280229;',1774280229),
-('laravel-cache-login|owner@sm.com|172.68.12.50','i:1;',1774280207),
-('laravel-cache-login|owner@sm.com|172.68.12.50:timer','i:1774280207;',1774280207),
-('laravel-cache-login|owner@sm.com|172.70.55.195','i:2;',1774280126),
-('laravel-cache-login|owner@sm.com|172.70.55.195:timer','i:1774280126;',1774280126),
-('laravel-cache-login|owner@sm.com|172.70.55.196','i:1;',1774280136),
-('laravel-cache-login|owner@sm.com|172.70.55.196:timer','i:1774280136;',1774280136),
-('laravel-cache-login|raul@sm.com|104.23.248.25','i:1;',1774280384),
-('laravel-cache-login|raul@sm.com|104.23.248.25:timer','i:1774280384;',1774280384);
+('laravel-cache-illuminate:queue:restart','i:1774315216;',2089675216),
+('laravel-cache-login|admin@a.a|104.23.245.6','i:1;',1774456516),
+('laravel-cache-login|admin@a.a|104.23.245.6:timer','i:1774456516;',1774456516),
+('laravel-cache-login|admin@a.a|172.68.7.154','i:1;',1774440115),
+('laravel-cache-login|admin@a.a|172.68.7.154:timer','i:1774440115;',1774440115),
+('laravel-cache-login|admin|172.64.222.53','i:3;',1774317250),
+('laravel-cache-login|admin|172.64.222.53:timer','i:1774317250;',1774317250),
+('laravel-cache-login|admin|172.70.111.163','i:1;',1774315437),
+('laravel-cache-login|admin|172.70.111.163:timer','i:1774315437;',1774315437),
+('laravel-cache-login|admin|172.70.111.164','i:1;',1774315427),
+('laravel-cache-login|admin|172.70.111.164:timer','i:1774315427;',1774315427),
+('laravel-cache-login|jose@control.com|172.68.12.50','i:5;',1774315358),
+('laravel-cache-login|jose@control.com|172.68.12.50:timer','i:1774315358;',1774315358),
+('laravel-cache-login|jose@control.com|172.68.12.51','i:1;',1774315422),
+('laravel-cache-login|jose@control.com|172.68.12.51:timer','i:1774315422;',1774315422),
+('laravel-cache-login|jose@control.com|172.70.111.164','i:2;',1774315448),
+('laravel-cache-login|jose@control.com|172.70.111.164:timer','i:1774315448;',1774315448),
+('laravel-cache-login|owner@a.com|172.70.83.153','i:1;',1774440068),
+('laravel-cache-login|owner@a.com|172.70.83.153:timer','i:1774440068;',1774440068),
+('laravel-cache-login|owner@sm.com|108.162.212.123','i:1;',1774440075),
+('laravel-cache-login|owner@sm.com|108.162.212.123:timer','i:1774440075;',1774440075),
+('laravel-cache-login|owner@sm.com|172.70.55.196','i:1;',1774440051),
+('laravel-cache-login|owner@sm.com|172.70.55.196:timer','i:1774440051;',1774440051),
+('laravel-cache-login|owner@smarthouse.local|162.158.62.206','i:1;',1774398978),
+('laravel-cache-login|owner@smarthouse.local|162.158.62.206:timer','i:1774398978;',1774398978),
+('laravel-cache-login|owner@smarthouse.local|172.70.111.163','i:1;',1774398978),
+('laravel-cache-login|owner@smarthouse.local|172.70.111.163:timer','i:1774398978;',1774398978),
+('laravel-cache-login|raulsm@a.a|172.68.7.135','i:1;',1774410619),
+('laravel-cache-login|raulsm@a.a|172.68.7.135:timer','i:1774410619;',1774410619),
+('laravel-cache-login|user@control.com|104.23.248.25','i:1;',1774365657),
+('laravel-cache-login|user@control.com|104.23.248.25:timer','i:1774365657;',1774365657),
+('laravel-cache-login|user@control.com|172.68.12.50','i:1;',1774456900),
+('laravel-cache-login|user@control.com|172.68.12.50:timer','i:1774456900;',1774456900),
+('laravel-cache-login|yon@a.a|172.68.12.50','i:2;',1774410647),
+('laravel-cache-login|yon@a.a|172.68.12.50:timer','i:1774410647;',1774410647),
+('laravel-cache-login|yon@a.a|172.68.7.134','i:1;',1774410649),
+('laravel-cache-login|yon@a.a|172.68.7.134:timer','i:1774410649;',1774410649),
+('laravel-cache-login|yon@a.a|172.68.7.135','i:1;',1774410661),
+('laravel-cache-login|yon@a.a|172.68.7.135:timer','i:1774410661;',1774410661),
+('laravel-cache-login|yon@a.a|172.70.255.67','i:2;',1774410659),
+('laravel-cache-login|yon@a.a|172.70.255.67:timer','i:1774410659;',1774410659),
+('laravel-cache-login|yon@a.a|172.70.255.68','i:1;',1774410601),
+('laravel-cache-login|yon@a.a|172.70.255.68:timer','i:1774410601;',1774410601),
+('laravel-cache-login|yon@a.a|172.70.55.195','i:1;',1774410594),
+('laravel-cache-login|yon@a.a|172.70.55.195:timer','i:1774410594;',1774410594),
+('laravel-cache-login|yon@a.a|172.70.83.153','i:1;',1774410651),
+('laravel-cache-login|yon@a.a|172.70.83.153:timer','i:1774410651;',1774410651),
+('laravel-cache-login|yon@sm.com|104.23.248.25','i:1;',1774443921),
+('laravel-cache-login|yon@sm.com|104.23.248.25:timer','i:1774443921;',1774443921),
+('laravel-cache-login|yon@sm.com|172.68.12.51','i:1;',1774440142),
+('laravel-cache-login|yon@sm.com|172.68.12.51:timer','i:1774440142;',1774440142),
+('laravel-cache-login|yonsm@a.a|104.23.248.25','i:1;',1774410610),
+('laravel-cache-login|yonsm@a.a|104.23.248.25:timer','i:1774410610;',1774410610);
 /*!40000 ALTER TABLE `cache` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -295,7 +338,7 @@ CREATE TABLE `clientes` (
   KEY `idx_clientes_correo` (`correo`),
   KEY `idx_clientes_agente_res` (`agente_res`),
   CONSTRAINT `fk_clientes_agentes_userLink` FOREIGN KEY (`agente_res`) REFERENCES `agentes` (`userLink`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -313,7 +356,9 @@ INSERT INTO `clientes` VALUES
 (5,'clientes/vq5DdZRqCtUR296qBxFloXczZLlTSgJPMwEHwt3Q.png','clientes/x06BZoPyiDswJY0j1PXzSbVVuBTb5eTGce9fOsdl.jpg','nose','nose','Corporativo','Activo','04123503289','nose@gmail.com','nose','Caracas','83839393','nose',6),
 (6,'clientes/vDLKe6IyeYOOruZaXYThrR0WQnFDSrKIRr1sqjv6.jpg','clientes/EyzJ8NcnjiERwBFkNiGFDEwJa4Ts8f7hE449guC2.jpg','Cliente 1','prueba cliente natural','Comprador','Activo','+584246956685','cliente1@sm.com','maracay','Maracay','12456865','Sin nota ocupable',11),
 (7,'clientes/B9fXXHDejS0vETbZMLIEF8D2eRBycNVldyQT5unk.jpg','clientes/Ci9UHZCqDhRVbG0OZO32SDxyXQBuxQ7aaVTNIIhF.jpg','Corp 1','perfilde prueba corp','Corporativo','Activo','+575132454474','corp1@sm.com','bogota','bogota','457598158415','prueba corp 1',11),
-(11,'clientes/LNrXGTaa2psJWJX5z14vvrCpleulHawrCipkw3sc.jpg','clientes/QdSSEsAUI6ermDCvmJEzoev0cV755VUm9tKEnpJ8.jpg','CLiente 6','prueba','Comprador','Activo','654984864646','cliente6@sm.com','sffefwe','Valencia','4816498','sin nota',12);
+(11,'clientes/LNrXGTaa2psJWJX5z14vvrCpleulHawrCipkw3sc.jpg','clientes/QdSSEsAUI6ermDCvmJEzoev0cV755VUm9tKEnpJ8.jpg','CLiente 6','prueba','Comprador','Activo','654984864646','cliente6@sm.com','sffefwe','Valencia','4816498','sin nota',12),
+(12,'clientes/TIgvn3MQNJqVQ4jxL7jbiZrnJ00ULXpCduFiOu38.png','clientes/kf3hWKsiP00lQUga9X7UDsYPiozupxhePwUxjePN.png','Ranso','Comprador premium','Comprador','Nuevo','041223823993','rank@1.com','Altamira','Caracas','373782829','Comprador',6),
+(13,'clientes/aTYwqiAiUU1Ogh8HSeRezqDx7vi8QaQgwRr0tdR5.jpg','clientes/5yoGk14RQtbjyb2dk6yMUaeqRVXxy13UwvuSchnZ.png','Reis','Comprador inversionista','Corporativo','Nuevo','0412482948','yonn@a.com','Su casa','Villa de cura','38213812','Casita',6);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -506,7 +551,7 @@ CREATE TABLE `loan_cuts` (
   KEY `idx_loan_cuts_status` (`status`),
   KEY `idx_loan_cuts_due_date` (`due_date`),
   CONSTRAINT `fk_loan_cuts_loans` FOREIGN KEY (`loan_id`) REFERENCES `loans` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=163 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -549,7 +594,81 @@ INSERT INTO `loan_cuts` VALUES
 (47,10,3,'2026-06-23','2026-06-23',1020.00,0.00,1020.00,'pending',NULL,NULL,NULL,'2026-03-23 20:17:54','2026-03-23 20:17:54'),
 (48,11,1,'2026-04-23','2026-04-23',1000.00,0.00,1000.00,'paid',NULL,'loans/proofs/Kr0bOYjngE9RbhNQk8YMITkckS0fPnwsFMbGnI84.png','2026-03-23 21:01:43','2026-03-23 21:01:32','2026-03-23 21:01:43'),
 (49,11,2,'2026-05-23','2026-05-23',1000.00,0.00,1000.00,'paid',NULL,'loans/proofs/oifA71iJJ1SpfBp1PD3EKpiT8pPrcO2hiDKDRU1G.png','2026-03-23 21:01:48','2026-03-23 21:01:32','2026-03-23 21:01:48'),
-(50,11,3,'2026-06-23','2026-06-23',11000.00,0.00,11000.00,'paid',NULL,'loans/proofs/2QgPsP3kfdH4jld2jJjZAPc8cLzxOL2KQaoTTvoZ.png','2026-03-23 21:01:52','2026-03-23 21:01:32','2026-03-23 21:01:52');
+(50,11,3,'2026-06-23','2026-06-23',11000.00,0.00,11000.00,'paid',NULL,'loans/proofs/2QgPsP3kfdH4jld2jJjZAPc8cLzxOL2KQaoTTvoZ.png','2026-03-23 21:01:52','2026-03-23 21:01:32','2026-03-23 21:01:52'),
+(89,23,1,'2026-04-03','2026-04-03',1000.00,0.00,1000.00,'pending',NULL,NULL,NULL,'2026-03-24 02:32:52','2026-03-24 02:32:52'),
+(90,23,2,'2026-05-03','2026-05-03',51000.00,0.00,51000.00,'pending',NULL,NULL,NULL,'2026-03-24 02:32:52','2026-03-24 02:32:52'),
+(91,24,1,'2026-02-01','2026-02-01',500.00,0.00,500.00,'paid','Pago móvil','loans/proofs/ZmTJBoS42RORpGRifaPtL1B0AkQCk8t4lH8aoEoG.png','2026-03-24 02:38:46','2026-03-24 02:36:59','2026-03-24 02:38:46'),
+(92,24,2,'2026-03-01','2026-03-01',500.00,0.00,500.00,'paid','Pago móvil','loans/proofs/VB3pL8eEDRIQ5cnpIe2nP2agcGvIZbP0QFzj5rXF.png','2026-03-24 02:39:25','2026-03-24 02:36:59','2026-03-24 02:39:25'),
+(93,24,3,'2026-04-01','2026-04-01',500.00,0.00,500.00,'pending',NULL,NULL,NULL,'2026-03-24 02:36:59','2026-03-24 02:36:59'),
+(94,24,4,'2026-05-01','2026-05-01',500.00,0.00,500.00,'pending',NULL,NULL,NULL,'2026-03-24 02:36:59','2026-03-24 02:36:59'),
+(95,24,5,'2026-06-01','2026-06-01',500.00,0.00,500.00,'pending',NULL,NULL,NULL,'2026-03-24 02:36:59','2026-03-24 02:36:59'),
+(96,24,6,'2026-07-01','2026-07-01',500.00,0.00,500.00,'pending',NULL,NULL,NULL,'2026-03-24 02:36:59','2026-03-24 02:36:59'),
+(97,24,7,'2026-08-01','2026-08-01',500.00,0.00,500.00,'pending',NULL,NULL,NULL,'2026-03-24 02:36:59','2026-03-24 02:36:59'),
+(98,24,8,'2026-09-01','2026-09-01',500.00,0.00,500.00,'pending',NULL,NULL,NULL,'2026-03-24 02:36:59','2026-03-24 02:36:59'),
+(99,24,9,'2026-10-01','2026-10-01',500.00,0.00,500.00,'pending',NULL,NULL,NULL,'2026-03-24 02:36:59','2026-03-24 02:36:59'),
+(100,24,10,'2026-11-01','2026-11-01',500.00,0.00,500.00,'pending',NULL,NULL,NULL,'2026-03-24 02:36:59','2026-03-24 02:36:59'),
+(101,24,11,'2026-12-01','2026-12-01',500.00,0.00,500.00,'pending',NULL,NULL,NULL,'2026-03-24 02:36:59','2026-03-24 02:36:59'),
+(102,24,12,'2027-01-01','2027-01-01',10500.00,0.00,10500.00,'pending',NULL,NULL,NULL,'2026-03-24 02:36:59','2026-03-24 02:36:59'),
+(103,25,1,'2025-02-07','2025-02-07',15.00,0.00,15.00,'paid','Pago usdt','loans/proofs/teQylN9dcmzs2g5sn8HEHGEQPlGyHqf0vuGKiIEu.jpg','2026-03-24 03:19:12','2026-03-24 03:18:11','2026-03-24 03:19:12'),
+(104,25,2,'2025-03-07','2025-03-07',15.00,0.00,15.00,'paid','Usdt','loans/proofs/CmQZHw4m3aX3kmnE09I3oGHJZTbnpB5JuzOiYyxL.jpg','2026-03-24 03:19:43','2026-03-24 03:18:11','2026-03-24 03:19:43'),
+(105,25,3,'2025-04-07','2025-04-07',15.00,0.00,15.00,'paid','Usdt','loans/proofs/rmi5o1XNDxuqbnoAsSUfFbyfzxxZqcAOyKeJjj4H.jpg','2026-03-24 03:20:06','2026-03-24 03:18:11','2026-03-24 03:20:06'),
+(106,25,4,'2025-05-07','2025-05-07',15.00,0.00,15.00,'paid','Pago','loans/proofs/SDUVKCn5trM4x3Fg5C38jYQx1oljl0cqcCFC59ZC.jpg','2026-03-24 03:20:27','2026-03-24 03:18:11','2026-03-24 03:20:27'),
+(107,25,5,'2025-06-07','2025-06-07',15.00,0.00,15.00,'paid',NULL,'loans/proofs/0BuwygVAvEy6ywx5UfcfgUnhrmTMSH6QsWUmZoXN.jpg','2026-03-24 03:20:39','2026-03-24 03:18:11','2026-03-24 03:20:39'),
+(108,25,6,'2025-07-07','2025-07-07',15.00,0.00,15.00,'paid','Usdt','loans/proofs/GOOldBKommtJd55XEVZXelQW8MPEzjzfXTGL1EQ3.jpg','2026-03-24 03:20:53','2026-03-24 03:18:11','2026-03-24 03:20:53'),
+(109,25,7,'2025-08-07','2025-08-07',15.00,0.00,15.00,'paid',NULL,'loans/proofs/eL6bHJ8BAesKPrDMRtMAx4CLzsH5WdsBJSyfOpTz.jpg','2026-03-24 03:21:09','2026-03-24 03:18:11','2026-03-24 03:21:09'),
+(110,25,8,'2025-09-07','2025-09-07',15.00,0.00,15.00,'paid','Usdt','loans/proofs/7aVaAPgtRHm6wdbdYgr1ZbRZgtAKtpdK92gY8bTS.jpg','2026-03-24 03:21:46','2026-03-24 03:18:11','2026-03-24 03:21:46'),
+(111,25,9,'2025-10-07','2025-10-07',15.00,0.00,15.00,'paid','Usdt','loans/proofs/8RDCTMtvAdMwYwNB7y3SgEDczvqs4ac7DS4OUn1i.jpg','2026-03-24 03:22:24','2026-03-24 03:18:11','2026-03-24 03:22:24'),
+(112,25,10,'2025-11-07','2025-11-07',15.00,0.00,15.00,'paid','Usdt','loans/proofs/NeddDw8ANYy4ZkXWe5Pld7jL3Wx2x20iqzlmxk83.jpg','2026-03-24 03:22:40','2026-03-24 03:18:11','2026-03-24 03:22:40'),
+(113,25,11,'2025-12-07','2025-12-07',15.00,0.00,15.00,'paid','Usdt','loans/proofs/Nf8CdfsHGaLYeICTjZiukns8SWY7wP6LUgnTZesE.jpg','2026-03-24 03:23:06','2026-03-24 03:18:11','2026-03-24 03:23:06'),
+(114,25,12,'2026-01-07','2026-01-07',15.00,0.00,15.00,'paid','Usdt','loans/proofs/XEeupJKXMI1qs4hLYsVu4vEqmJ11fLCpAAsqjQdo.jpg','2026-03-24 03:23:22','2026-03-24 03:18:11','2026-03-24 03:23:22'),
+(115,25,13,'2026-02-07','2026-02-07',15.00,0.00,15.00,'paid','Usdt','loans/proofs/BVCJb8DZbjpu0bBFr9b1lpAcEvVs51m2QTZM0h1X.jpg','2026-03-24 03:24:20','2026-03-24 03:18:11','2026-03-24 03:24:20'),
+(116,25,14,'2026-03-07','2026-03-07',15.00,0.00,15.00,'paid','Usdt','loans/proofs/dzSPBIrPFtQ3rsBzQnLhCsYs3vLXXmAyNWMXBKwy.jpg','2026-03-24 03:24:37','2026-03-24 03:18:11','2026-03-24 03:24:37'),
+(117,25,15,'2026-04-07','2026-04-07',15.00,0.00,15.00,'pending',NULL,NULL,NULL,'2026-03-24 03:18:11','2026-03-24 03:18:11'),
+(118,25,16,'2026-05-07','2026-05-07',15.00,0.00,15.00,'pending',NULL,NULL,NULL,'2026-03-24 03:18:11','2026-03-24 03:18:11'),
+(119,25,17,'2026-06-07','2026-06-07',15.00,0.00,15.00,'pending',NULL,NULL,NULL,'2026-03-24 03:18:11','2026-03-24 03:18:11'),
+(120,25,18,'2026-07-07','2026-07-07',15.00,0.00,15.00,'pending',NULL,NULL,NULL,'2026-03-24 03:18:11','2026-03-24 03:18:11'),
+(121,25,19,'2026-08-07','2026-08-07',15.00,0.00,15.00,'pending',NULL,NULL,NULL,'2026-03-24 03:18:11','2026-03-24 03:18:11'),
+(122,25,20,'2026-09-07','2026-09-07',15.00,0.00,15.00,'pending',NULL,NULL,NULL,'2026-03-24 03:18:11','2026-03-24 03:18:11'),
+(123,25,21,'2026-10-07','2026-10-07',15.00,0.00,15.00,'pending',NULL,NULL,NULL,'2026-03-24 03:18:11','2026-03-24 03:18:11'),
+(124,25,22,'2026-11-07','2026-11-07',15.00,0.00,15.00,'pending',NULL,NULL,NULL,'2026-03-24 03:18:11','2026-03-24 03:18:11'),
+(125,25,23,'2026-12-07','2026-12-07',15.00,0.00,15.00,'pending',NULL,NULL,NULL,'2026-03-24 03:18:11','2026-03-24 03:18:11'),
+(126,25,24,'2027-01-07','2027-01-07',15.00,0.00,15.00,'pending',NULL,NULL,NULL,'2026-03-24 03:18:11','2026-03-24 03:18:11'),
+(127,25,25,'2027-02-07','2027-02-07',15.00,0.00,15.00,'pending',NULL,NULL,NULL,'2026-03-24 03:18:11','2026-03-24 03:18:11'),
+(128,25,26,'2027-03-07','2027-03-07',15.00,0.00,15.00,'pending',NULL,NULL,NULL,'2026-03-24 03:18:11','2026-03-24 03:18:11'),
+(129,25,27,'2027-04-07','2027-04-07',15.00,0.00,15.00,'pending',NULL,NULL,NULL,'2026-03-24 03:18:11','2026-03-24 03:18:11'),
+(130,25,28,'2027-05-07','2027-05-07',15.00,0.00,15.00,'pending',NULL,NULL,NULL,'2026-03-24 03:18:11','2026-03-24 03:18:11'),
+(131,25,29,'2027-06-07','2027-06-07',15.00,0.00,15.00,'pending',NULL,NULL,NULL,'2026-03-24 03:18:11','2026-03-24 03:18:11'),
+(132,25,30,'2027-07-07','2027-07-07',15.00,0.00,15.00,'pending',NULL,NULL,NULL,'2026-03-24 03:18:11','2026-03-24 03:18:11'),
+(133,25,31,'2027-08-07','2027-08-07',15.00,0.00,15.00,'pending',NULL,NULL,NULL,'2026-03-24 03:18:11','2026-03-24 03:18:11'),
+(134,25,32,'2027-09-07','2027-09-07',15.00,0.00,15.00,'pending',NULL,NULL,NULL,'2026-03-24 03:18:11','2026-03-24 03:18:11'),
+(135,25,33,'2027-10-07','2027-10-07',15.00,0.00,15.00,'pending',NULL,NULL,NULL,'2026-03-24 03:18:11','2026-03-24 03:18:11'),
+(136,25,34,'2027-11-07','2027-11-07',15.00,0.00,15.00,'pending',NULL,NULL,NULL,'2026-03-24 03:18:11','2026-03-24 03:18:11'),
+(137,25,35,'2027-12-07','2027-12-07',15.00,0.00,15.00,'pending',NULL,NULL,NULL,'2026-03-24 03:18:11','2026-03-24 03:18:11'),
+(138,25,36,'2028-01-07','2028-01-07',1515.00,0.00,1515.00,'pending',NULL,NULL,NULL,'2026-03-24 03:18:11','2026-03-24 03:18:11'),
+(139,26,1,'2026-04-07','2026-04-07',5600.00,0.00,5600.00,'pending',NULL,NULL,NULL,'2026-03-24 10:32:40','2026-03-24 10:32:40'),
+(140,26,2,'2026-05-07','2026-05-07',5600.00,0.00,5600.00,'pending',NULL,NULL,NULL,'2026-03-24 10:32:40','2026-03-24 10:32:40'),
+(141,26,3,'2026-06-07','2026-06-07',5600.00,0.00,5600.00,'pending',NULL,NULL,NULL,'2026-03-24 10:32:40','2026-03-24 10:32:40'),
+(142,26,4,'2026-07-07','2026-07-07',5600.00,0.00,5600.00,'pending',NULL,NULL,NULL,'2026-03-24 10:32:40','2026-03-24 10:32:40'),
+(143,26,5,'2026-08-07','2026-08-07',5600.00,0.00,5600.00,'pending',NULL,NULL,NULL,'2026-03-24 10:32:40','2026-03-24 10:32:40'),
+(144,26,6,'2026-09-07','2026-09-07',5600.00,0.00,5600.00,'pending',NULL,NULL,NULL,'2026-03-24 10:32:40','2026-03-24 10:32:40'),
+(145,26,7,'2026-10-07','2026-10-07',5600.00,0.00,5600.00,'pending',NULL,NULL,NULL,'2026-03-24 10:32:40','2026-03-24 10:32:40'),
+(146,26,8,'2026-11-07','2026-11-07',5600.00,0.00,5600.00,'pending',NULL,NULL,NULL,'2026-03-24 10:32:40','2026-03-24 10:32:40'),
+(147,26,9,'2026-12-07','2026-12-07',85600.00,0.00,85600.00,'pending',NULL,NULL,NULL,'2026-03-24 10:32:40','2026-03-24 10:32:40'),
+(148,27,1,'2026-04-07','2026-04-07',3000.00,0.00,3000.00,'pending',NULL,NULL,NULL,'2026-03-24 10:36:08','2026-03-24 10:36:08'),
+(149,27,2,'2026-05-07','2026-05-07',3000.00,0.00,3000.00,'pending',NULL,NULL,NULL,'2026-03-24 10:36:08','2026-03-24 10:36:08'),
+(150,27,3,'2026-06-07','2026-06-07',33000.00,0.00,33000.00,'pending',NULL,NULL,NULL,'2026-03-24 10:36:08','2026-03-24 10:36:08'),
+(151,28,1,'2026-05-01','2026-05-01',60.00,0.00,60.00,'pending',NULL,NULL,NULL,'2026-03-24 21:36:21','2026-03-24 21:36:21'),
+(152,28,2,'2026-06-01','2026-06-01',60.00,0.00,60.00,'pending',NULL,NULL,NULL,'2026-03-24 21:36:21','2026-03-24 21:36:21'),
+(153,28,3,'2026-07-01','2026-07-01',60.00,0.00,60.00,'pending',NULL,NULL,NULL,'2026-03-24 21:36:21','2026-03-24 21:36:21'),
+(154,28,4,'2026-08-01','2026-08-01',60.00,0.00,60.00,'pending',NULL,NULL,NULL,'2026-03-24 21:36:21','2026-03-24 21:36:21'),
+(155,28,5,'2026-09-01','2026-09-01',60.00,0.00,60.00,'pending',NULL,NULL,NULL,'2026-03-24 21:36:21','2026-03-24 21:36:21'),
+(156,28,6,'2026-10-01','2026-10-01',60.00,0.00,60.00,'pending',NULL,NULL,NULL,'2026-03-24 21:36:21','2026-03-24 21:36:21'),
+(157,28,7,'2026-11-01','2026-11-01',60.00,0.00,60.00,'pending',NULL,NULL,NULL,'2026-03-24 21:36:21','2026-03-24 21:36:21'),
+(158,28,8,'2026-12-01','2026-12-01',60.00,0.00,60.00,'pending',NULL,NULL,NULL,'2026-03-24 21:36:21','2026-03-24 21:36:21'),
+(159,28,9,'2027-01-01','2027-01-01',60.00,0.00,60.00,'pending',NULL,NULL,NULL,'2026-03-24 21:36:21','2026-03-24 21:36:21'),
+(160,28,10,'2027-02-01','2027-02-01',60.00,0.00,60.00,'pending',NULL,NULL,NULL,'2026-03-24 21:36:21','2026-03-24 21:36:21'),
+(161,28,11,'2027-03-01','2027-03-01',60.00,0.00,60.00,'pending',NULL,NULL,NULL,'2026-03-24 21:36:21','2026-03-24 21:36:21'),
+(162,28,12,'2027-04-01','2027-04-01',6060.00,0.00,6060.00,'pending',NULL,NULL,NULL,'2026-03-24 21:36:21','2026-03-24 21:36:21');
 /*!40000 ALTER TABLE `loan_cuts` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -588,7 +707,7 @@ CREATE TABLE `loans` (
   KEY `idx_loans_owner` (`id_owner`),
   CONSTRAINT `fk_loans_users_created_by` FOREIGN KEY (`created_by_user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_loans_users_owner` FOREIGN KEY (`id_owner`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -605,7 +724,13 @@ INSERT INTO `loans` VALUES
 (8,'prueba scroll','123456789',1000.00,'mensual',5,10.0000,100.00,1100.00,500.00,1500.00,'2026-03-23','2026-08-23','active',NULL,NULL,'2026-03-23 20:13:11','2026-03-23 20:13:11'),
 (9,'prueba scroll 2','1234567489',5000.00,'mensual',3,10.0000,500.00,5500.00,1500.00,6500.00,'2026-03-23','2026-06-23','active',NULL,NULL,'2026-03-23 20:13:25','2026-03-23 20:13:25'),
 (10,'prueba 3','123456',1000.00,'mensual',3,2.0000,20.00,1020.00,60.00,1060.00,'2026-03-23','2026-06-23','active',NULL,NULL,'2026-03-23 20:17:54','2026-03-23 20:17:54'),
-(11,'kkjhkhkhkj','kjhkkjhkhk',10000.00,'mensual',3,10.0000,1000.00,11000.00,3000.00,13000.00,'2026-03-23','2026-06-23','completed',NULL,NULL,'2026-03-23 21:01:32','2026-03-23 21:01:52');
+(11,'kkjhkhkhkj','kjhkkjhkhk',10000.00,'mensual',3,10.0000,1000.00,11000.00,3000.00,13000.00,'2026-03-23','2026-06-23','completed',NULL,NULL,'2026-03-23 21:01:32','2026-03-23 21:01:52'),
+(23,'Gaby Kalach','15609471',50000.00,'mensual',2,2.0000,1000.00,51000.00,2000.00,52000.00,'2026-03-03','2026-05-03','active',17,17,'2026-03-24 02:32:52','2026-03-24 02:32:52'),
+(24,'Adrián Proautos','11922250',10000.00,'mensual',12,5.0000,500.00,10500.00,6000.00,16000.00,'2026-01-01','2027-01-01','active',17,17,'2026-03-24 02:36:59','2026-03-24 02:36:59'),
+(25,'Juan Carlos','13345777',1500.00,'mensual',36,1.0000,15.00,1515.00,540.00,2040.00,'2025-01-07','2028-01-07','active',17,17,'2026-03-24 03:18:11','2026-03-24 03:18:11'),
+(26,'Jeiver Victora','25662184',80000.00,'mensual',9,7.0000,5600.00,85600.00,50400.00,130400.00,'2026-03-07','2026-12-07','active',17,17,'2026-03-24 10:32:40','2026-03-24 10:32:40'),
+(27,'Carlos Gaviria','19531106',30000.00,'mensual',3,10.0000,3000.00,33000.00,9000.00,39000.00,'2026-03-07','2026-06-07','active',17,17,'2026-03-24 10:36:08','2026-03-24 19:56:10'),
+(28,'Freddy Arguello','18230702',6000.00,'mensual',12,1.0000,60.00,6060.00,720.00,6720.00,'2026-04-01','2027-04-01','active',17,17,'2026-03-24 21:36:21','2026-03-24 21:36:21');
 /*!40000 ALTER TABLE `loans` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -723,7 +848,7 @@ CREATE TABLE `personal_access_tokens` (
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`),
   KEY `personal_access_tokens_expires_at_index` (`expires_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -770,7 +895,54 @@ INSERT INTO `personal_access_tokens` VALUES
 (34,'App\\Models\\User',14,'frontend','a0702c6c9bc004ef27800959b1248b8767d30c741ea3c0dff0ee3a925b55c598','[\"*\"]','2026-03-19 12:34:12',NULL,'2026-03-19 12:28:33','2026-03-19 12:34:12'),
 (35,'App\\Models\\User',10,'frontend','9190b06cf5a44f78eaae094facdae0e2d5caaae69a061eae8c0c112b80a794de','[\"*\"]','2026-03-19 14:34:35',NULL,'2026-03-19 12:48:56','2026-03-19 14:34:35'),
 (36,'App\\Models\\User',6,'frontend','7c085eb20ed43abc18d433632e4fd60eb624991fac565ee72f5f2dc8976fbcb8','[\"*\"]','2026-03-23 11:27:52',NULL,'2026-03-23 11:14:33','2026-03-23 11:27:52'),
-(37,'App\\Models\\User',4,'frontend','93b468716735f8eb9a889180ad76c2b54f2c9c9f8ff7d4e76523be17c0426f39','[\"*\"]','2026-03-23 11:28:05',NULL,'2026-03-23 11:24:57','2026-03-23 11:28:05');
+(37,'App\\Models\\User',4,'frontend','93b468716735f8eb9a889180ad76c2b54f2c9c9f8ff7d4e76523be17c0426f39','[\"*\"]','2026-03-23 11:28:05',NULL,'2026-03-23 11:24:57','2026-03-23 11:28:05'),
+(38,'App\\Models\\User',17,'frontend','360b615819cd5f4ab7ccba89bff6ff19e4dfb425969a0f3429746ea95a937100','[\"*\"]','2026-03-24 01:26:28',NULL,'2026-03-24 01:24:58','2026-03-24 01:26:28'),
+(39,'App\\Models\\User',18,'frontend','37dadb7ad309846cc95688967cf439a72a297edfe857ffa189cdf60a5f320440','[\"*\"]','2026-03-24 01:28:30',NULL,'2026-03-24 01:26:28','2026-03-24 01:28:30'),
+(40,'App\\Models\\User',17,'frontend','2b771121f9d3ca62645a6705c2f0302586d26f6177e235fc864ba377afc8d120','[\"*\"]','2026-03-24 01:39:41',NULL,'2026-03-24 01:26:53','2026-03-24 01:39:41'),
+(41,'App\\Models\\User',18,'frontend','64676c0f2bc6508c9e50abc86ee23830163f66e87df7a89e017c17dc8b2b9328','[\"*\"]','2026-03-24 01:32:39',NULL,'2026-03-24 01:28:47','2026-03-24 01:32:39'),
+(42,'App\\Models\\User',18,'frontend','528842d3059f90606d856998b5f286c65ca49665ff4f8bba5e856deb5b3f2cbf','[\"*\"]','2026-03-24 01:41:02',NULL,'2026-03-24 01:39:56','2026-03-24 01:41:02'),
+(43,'App\\Models\\User',18,'frontend','3f8c52196d7698c331ca9736ec31cbe06fd0f9cee2330bc06c64a04b75187aa7','[\"*\"]','2026-03-24 01:41:11',NULL,'2026-03-24 01:41:10','2026-03-24 01:41:11'),
+(44,'App\\Models\\User',17,'frontend','40e4146bc24dc027410d8d9efc7468e8c555786b0d4ab5b70b7a2ec1ce99bec3','[\"*\"]','2026-03-25 17:54:53',NULL,'2026-03-24 01:54:24','2026-03-25 17:54:53'),
+(45,'App\\Models\\User',18,'frontend','ab341ea52ac394af25d8e0b265a4f902b05b9cdbf03b6053ebfd509f24d6caaf','[\"*\"]','2026-03-25 20:40:11',NULL,'2026-03-24 14:29:56','2026-03-25 20:40:11'),
+(46,'App\\Models\\User',18,'frontend','75876de5881f456e4a4bbe49e8b13dba0c781b449d1635d4a44835f42081080d','[\"*\"]','2026-03-24 15:15:12',NULL,'2026-03-24 15:15:12','2026-03-24 15:15:12'),
+(47,'App\\Models\\User',18,'frontend','91dbbb09c1b33ab147a633265a3c087e31df98d59789f15c145632ad129d3395','[\"*\"]','2026-03-24 17:06:39',NULL,'2026-03-24 15:20:18','2026-03-24 17:06:39'),
+(48,'App\\Models\\User',18,'frontend','d63e7986cbf9fa0323c08bd464aacb87940c853d861e7ccafa6bd5d7d5254139','[\"*\"]','2026-03-24 17:07:04',NULL,'2026-03-24 17:07:04','2026-03-24 17:07:04'),
+(49,'App\\Models\\User',4,'frontend','419759ab5badfd4a9a86a698c2006e1ed63a495d57baa4dd97fa474322371fe8','[\"*\"]','2026-03-25 03:48:22',NULL,'2026-03-25 00:40:30','2026-03-25 03:48:22'),
+(50,'App\\Models\\User',6,'frontend','239bcfc727a5b7b36aed78bbf25b225b6683a0842669a6befa4ba26633e9004e','[\"*\"]','2026-03-25 15:57:31',NULL,'2026-03-25 03:51:21','2026-03-25 15:57:31'),
+(51,'App\\Models\\User',4,'frontend','f78e2aa09ab6066f82c346d4ad51eaa4b9b172bfa8404c2e9eb7bbe30c89b890','[\"*\"]','2026-03-25 15:58:53',NULL,'2026-03-25 15:58:20','2026-03-25 15:58:53'),
+(52,'App\\Models\\User',4,'frontend','0573d1e2c7c0198993e3b038faeef207156dcf404515a3852a39c348a71d85d0','[\"*\"]','2026-03-25 16:00:38',NULL,'2026-03-25 16:00:27','2026-03-25 16:00:38'),
+(53,'App\\Models\\User',4,'frontend','803a0ea11cd696d151d6a8a334fba88df22317199eff70ec23be45cf7a503b93','[\"*\"]','2026-03-25 16:00:59',NULL,'2026-03-25 16:00:57','2026-03-25 16:00:59'),
+(54,'App\\Models\\User',6,'frontend','b0495678f40192c1be50aa273c09f0b60f7c35587fe5da966662b9e07ae18159','[\"*\"]','2026-03-25 16:01:28',NULL,'2026-03-25 16:01:28','2026-03-25 16:01:28'),
+(55,'App\\Models\\User',6,'frontend','e482c84ce04ddb26b2ee26a4c5b0c74800224fefb4bfd2241e8f6db8ba700e73','[\"*\"]','2026-03-25 16:29:41',NULL,'2026-03-25 16:02:13','2026-03-25 16:29:41'),
+(56,'App\\Models\\User',4,'frontend','7fafe263565c5cb27460fc8dbd31771f67036d260d70fdc44c36880d621a2338','[\"*\"]','2026-03-25 16:37:01',NULL,'2026-03-25 16:36:02','2026-03-25 16:37:01'),
+(57,'App\\Models\\User',19,'frontend','c3a0862821a3b42a7d2b2369a1894230a6486a7189faa88d5730680eed02eca5','[\"*\"]','2026-03-25 16:37:34',NULL,'2026-03-25 16:37:33','2026-03-25 16:37:34'),
+(58,'App\\Models\\User',4,'frontend','c1538c7a8d9ae8bd73a1a1f4558209ed913b16b7310b16f5ab887f5d84e676c4','[\"*\"]','2026-03-25 16:51:57',NULL,'2026-03-25 16:39:07','2026-03-25 16:51:57'),
+(59,'App\\Models\\User',4,'frontend','194fdc3590011d981943386c8ff995c62475ff307770435de020a7578c666db3','[\"*\"]','2026-03-25 16:52:53',NULL,'2026-03-25 16:52:13','2026-03-25 16:52:53'),
+(60,'App\\Models\\User',19,'frontend','c5b905260973f964e1e23d8b3db2e85b67c76e53c8fd2b94a7015a1d7463e9e1','[\"*\"]','2026-03-25 16:54:31',NULL,'2026-03-25 16:54:31','2026-03-25 16:54:31'),
+(61,'App\\Models\\User',19,'frontend','87df2d06b07f7bc2143dc22aef5aff42365bcbc2813c34ebd92452cdfeac7b4d','[\"*\"]','2026-03-25 16:57:23',NULL,'2026-03-25 16:57:23','2026-03-25 16:57:23'),
+(62,'App\\Models\\User',4,'frontend','8c09be13e7338e63afc5392e9f5c73deb8f1167b0120ac0a712a33aa6fc219d8','[\"*\"]','2026-03-25 16:59:22',NULL,'2026-03-25 16:58:08','2026-03-25 16:59:22'),
+(63,'App\\Models\\User',6,'frontend','ea9d52d627347c5f5ba5e2b75aa0ed69e83c0e0a6df9e156b7306b0625697b19','[\"*\"]','2026-03-25 17:01:06',NULL,'2026-03-25 16:59:45','2026-03-25 17:01:06'),
+(64,'App\\Models\\User',6,'frontend','99b1edf182a718302f57c218db506dbca3b06bd1eae6abe7dcb90d9a1ad7d463','[\"*\"]','2026-03-25 17:05:05',NULL,'2026-03-25 17:01:40','2026-03-25 17:05:05'),
+(65,'App\\Models\\User',4,'frontend','4d173175909fae440d615180d9267705e86dc8a5b7b953924bbe4aa5d4b8b2ed','[\"*\"]','2026-03-25 17:03:23',NULL,'2026-03-25 17:02:31','2026-03-25 17:03:23'),
+(66,'App\\Models\\User',6,'frontend','cbf81e9aaa9c6f5934ca2fbba6197eb918c022eb44bc93f0c7a38850e4706517','[\"*\"]','2026-03-25 17:03:57',NULL,'2026-03-25 17:03:56','2026-03-25 17:03:57'),
+(67,'App\\Models\\User',19,'frontend','e21e40452faddb71f4da59583d591a22de295ce00e57beeb771251e044898cb0','[\"*\"]','2026-03-25 17:04:44',NULL,'2026-03-25 17:04:29','2026-03-25 17:04:44'),
+(68,'App\\Models\\User',19,'frontend','d1de2dbbef4b059cbcb7f194f6187053e39a69bf0024f1e101b85afaa4051165','[\"*\"]','2026-03-25 17:05:36',NULL,'2026-03-25 17:05:35','2026-03-25 17:05:36'),
+(69,'App\\Models\\User',4,'frontend','a78daa4671262f26d729f656b11e5956bfd6af4b671ba0a64e8f96a9b2070180','[\"*\"]','2026-03-25 17:22:14',NULL,'2026-03-25 17:06:14','2026-03-25 17:22:14'),
+(70,'App\\Models\\User',9,'frontend','1edbdb9a9a7ccb7d57ea96c383b6e4cad853d6da7eb978e259fa81e23b83f8de','[\"*\"]','2026-03-25 17:07:34',NULL,'2026-03-25 17:07:33','2026-03-25 17:07:34'),
+(71,'App\\Models\\User',19,'frontend','0639fdc945a23aef337d89376730aa9291b4de9124265a9d7ec2ab799f8ea7ad','[\"*\"]','2026-03-25 17:22:41',NULL,'2026-03-25 17:22:41','2026-03-25 17:22:41'),
+(72,'App\\Models\\User',4,'frontend','1dc0cb2b87dc14dd0f4d006afbafc5fff028d592df0bb38484c577e51b06589d','[\"*\"]','2026-03-25 17:26:18',NULL,'2026-03-25 17:23:08','2026-03-25 17:26:18'),
+(73,'App\\Models\\User',19,'frontend','17d350a97b97dfdcf97089c15386b6c7afd0bc8d26197e83a798678ed51dc863','[\"*\"]','2026-03-25 17:49:55',NULL,'2026-03-25 17:49:54','2026-03-25 17:49:55'),
+(74,'App\\Models\\User',4,'frontend','688b7c4b2b42c206208830cc7d83d63e28ff08be9ed6d553791637d50f0216a0','[\"*\"]','2026-03-25 17:54:27',NULL,'2026-03-25 17:54:27','2026-03-25 17:54:27'),
+(75,'App\\Models\\User',4,'frontend','6b160d0eec637f15e756ee93f2e7aa8613ba351a4a4338184a0a89b21c028e57','[\"*\"]','2026-03-25 19:56:54',NULL,'2026-03-25 19:27:08','2026-03-25 19:56:54'),
+(76,'App\\Models\\User',19,'frontend','4f573efec7628445182ba57b73d3adc28eba34ab7468e2bdd2116e0b57481ab4','[\"*\"]','2026-03-25 19:57:49',NULL,'2026-03-25 19:57:20','2026-03-25 19:57:49'),
+(77,'App\\Models\\User',19,'frontend','09cfc141682a5a7b830b613ebf31aca2458abe51057137212c85e74dcaf3e1ca','[\"*\"]','2026-03-25 19:59:04',NULL,'2026-03-25 19:58:32','2026-03-25 19:59:04'),
+(78,'App\\Models\\User',6,'frontend','529c6c64e5a761ffa64ef3e92eba900d0750e888d19eabc6f0d7140e508df1db','[\"*\"]','2026-03-25 20:00:03',NULL,'2026-03-25 19:59:35','2026-03-25 20:00:03'),
+(79,'App\\Models\\User',4,'frontend','6699ddc661055cb56199c02174afdaec65ca580d44161ddde553029426966667','[\"*\"]','2026-03-25 20:01:34',NULL,'2026-03-25 20:00:32','2026-03-25 20:01:34'),
+(80,'App\\Models\\User',19,'frontend','a9ab4799254d418b778165723c5651c77fdb304e80dc3c52b3fd0f9993fb9408','[\"*\"]','2026-03-25 20:02:46',NULL,'2026-03-25 20:02:45','2026-03-25 20:02:46'),
+(81,'App\\Models\\User',19,'frontend','7a8559e7d6bf8273e9a6178602e7c46b1c31cbf5388d63ce7eef8fba9b92f62c','[\"*\"]','2026-03-25 20:03:48',NULL,'2026-03-25 20:03:18','2026-03-25 20:03:48'),
+(82,'App\\Models\\User',19,'frontend','085d745819de51401fbe5801f3831edd31e6b4f821470a76183e2b1cbfed4274','[\"*\"]','2026-03-25 20:33:38',NULL,'2026-03-25 20:04:35','2026-03-25 20:33:38'),
+(83,'App\\Models\\User',19,'frontend','45480576ac5b90fe51abe3bfecf06474f69dd07a8fa20fd3d89b986db55b6b20','[\"*\"]','2026-03-25 20:33:56',NULL,'2026-03-25 20:33:56','2026-03-25 20:33:56'),
+(84,'App\\Models\\User',4,'frontend','5d5b6fec74e4423a48bf0c6b1dadfc7e7cf6bb5c6ad7bf5b312783a82274a5db','[\"*\"]','2026-03-25 20:38:30',NULL,'2026-03-25 20:34:22','2026-03-25 20:38:30');
 /*!40000 ALTER TABLE `personal_access_tokens` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -811,7 +983,7 @@ CREATE TABLE `propiedades` (
   KEY `idx_propiedades_id_agente` (`id_agente`),
   KEY `idx_propiedades_propietario` (`propietario`),
   CONSTRAINT `fk_propiedades_agentes` FOREIGN KEY (`id_agente`) REFERENCES `agentes` (`id_agente`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -823,7 +995,10 @@ LOCK TABLES `propiedades` WRITE;
 set autocommit=0;
 INSERT INTO `propiedades` VALUES
 (1,'PUB-0001','Residencias El Bosque','Residencias El Bosque','Valencia, Carabobo','Apartamento',125000.00,'disponible','publicado','Apartamento en excelente zona, cerca de centros comerciales.','{\"dormitorios\":3,\"banos\":2,\"area_m2\":110,\"estacionamientos\":2,\"con_piscina\":true,\"pet_friendly\":true,\"ano_construccion\":2018,\"amoblada\":false,\"balcon\":true,\"seguridad_privada\":true,\"financiable\":true}',11,6,10.1620000,-68.0077000,'https://mi-cdn.com/propiedades/p-1-main.jpg','[\"https://mi-cdn.com/propiedades/p-1-2.jpg\",\"https://mi-cdn.com/propiedades/p-1-3.jpg\"]'),
-(2,'PUB-0002','Casa Los Naranjos','Casa Los Naranjos','Caracas, Distrito Capital','Casa',185000.00,'disponible','publicado','Casa de dos niveles, remodelada, con buena ventilacion.','{\"dormitorios\":4,\"banos\":3,\"area_m2\":220,\"estacionamientos\":2,\"con_piscina\":false,\"pet_friendly\":true,\"ano_construccion\":2012,\"amoblada\":false,\"balcon\":true,\"seguridad_privada\":true,\"financiable\":true}',11,7,10.4806000,-66.9036000,'https://mi-cdn.com/propiedades/p-2-main.jpg','[\"https://mi-cdn.com/propiedades/p-2-2.jpg\",\"https://mi-cdn.com/propiedades/p-2-3.jpg\"]');
+(2,'PUB-0002','Casa Los Naranjos','Casa Los Naranjos','Caracas, Distrito Capital','Casa',185000.00,'disponible','publicado','Casa de dos niveles, remodelada, con buena ventilacion.','{\"dormitorios\":4,\"banos\":3,\"area_m2\":220,\"estacionamientos\":2,\"con_piscina\":false,\"pet_friendly\":true,\"ano_construccion\":2012,\"amoblada\":false,\"balcon\":true,\"seguridad_privada\":true,\"financiable\":true}',11,7,10.4806000,-66.9036000,'https://mi-cdn.com/propiedades/p-2-main.jpg','[\"https://mi-cdn.com/propiedades/p-2-2.jpg\",\"https://mi-cdn.com/propiedades/p-2-3.jpg\"]'),
+(3,'PUB-0003','Yonaj','En venta','Caracas','Apartamento',12500.00,'disponible','publicado','Holas','{\"dormitorios\":0,\"banos\":0,\"area_m2\":0,\"estacionamientos\":0,\"con_piscina\":false,\"pet_friendly\":false,\"ano_construccion\":2026,\"amoblada\":false,\"balcon\":false,\"seguridad_privada\":true,\"financiable\":false}',6,4,10.5060930,-66.9146010,'propiedades/r1CDmlebBjkaYed0wo5e0T3wjvCLzNGSW5AZAbim.png','[\"propiedades\\/cZ9FmtlTvtA9ZgWqTkdF5c1l7jqYISda4NJdueKc.jpg\"]'),
+(4,'PUB-0004','Casa prueba','En venta','Carabobo','Apartamento',13000.00,'disponible','publicado','Casa moderna','{\"dormitorios\":3,\"banos\":3,\"area_m2\":200,\"estacionamientos\":2,\"con_piscina\":false,\"pet_friendly\":false,\"ano_construccion\":2026,\"amoblada\":false,\"balcon\":false,\"seguridad_privada\":true,\"financiable\":false}',6,NULL,10.1700260,-68.0003990,'propiedades/Tnwn6JDAajJTNKlgMsEVV08YxQKnmnNkjXKbaray.png','[\"propiedades\\/EbcpgCJUrSHsyH6Owq9SCkRpIOijlTJwrCkIqw1T.jpg\"]'),
+(5,'PUB-0005','Casssa','En venta','Cagua','Casa',12000.00,'disponible','publicado','Casa preciosa','{\"dormitorios\":2,\"banos\":2,\"area_m2\":200,\"estacionamientos\":2,\"con_piscina\":false,\"pet_friendly\":false,\"ano_construccion\":2026,\"amoblada\":false,\"balcon\":false,\"seguridad_privada\":true,\"financiable\":false}',19,NULL,10.1796630,-67.4606770,'propiedades/flcuWQUcm8F8YcF0tPKFQfRtqtAa36TtVN2KjX3l.jpg','[\"propiedades\\/26X4ABjOGHxvf22qDrdCDcrkkpT2GccvkoMZUs3H.png\"]');
 /*!40000 ALTER TABLE `propiedades` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -913,6 +1088,7 @@ DROP TABLE IF EXISTS `push_notifications`;
 /*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `push_notifications` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) unsigned DEFAULT NULL,
   `loan_id` bigint(20) DEFAULT NULL,
   `loan_cut_id` bigint(20) DEFAULT NULL,
   `event_type` varchar(60) NOT NULL,
@@ -938,8 +1114,10 @@ CREATE TABLE `push_notifications` (
   KEY `idx_push_notifications_status_scheduled` (`status`,`scheduled_at`),
   KEY `idx_push_notifications_created` (`created_at`),
   KEY `idx_push_notifications_loan_cut` (`loan_cut_id`),
-  KEY `idx_push_notifications_loan` (`loan_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  KEY `idx_push_notifications_loan` (`loan_id`),
+  KEY `idx_push_notifications_user` (`user_id`),
+  CONSTRAINT `fk_push_notifications_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -950,55 +1128,9 @@ LOCK TABLES `push_notifications` WRITE;
 /*!40000 ALTER TABLE `push_notifications` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `push_notifications` VALUES
-(4,5,18,'due_hourly','2026-03-21',9,'cut:18:due_hourly:2026-03-21:09','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=18','loan-due-today-cut-18-h09','2026-03-21 09:00:00','sent',1,2,2,0,'2026-03-21 09:10:00',NULL,'2026-03-21 21:58:56','2026-03-21 21:58:56'),
-(5,5,18,'due_hourly','2026-03-21',22,'cut:18:due_hourly:2026-03-21:22','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=18','loan-due-today-cut-18-h22','2026-03-21 22:00:00','sent',1,2,2,0,'2026-03-21 22:00:01',NULL,'2026-03-21 22:00:01','2026-03-21 22:00:01'),
-(6,5,18,'due_hourly','2026-03-21',23,'cut:18:due_hourly:2026-03-21:23','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=18','loan-due-today-cut-18-h23','2026-03-21 23:00:00','sent',1,2,2,0,'2026-03-21 23:00:01',NULL,'2026-03-21 23:00:01','2026-03-21 23:00:02'),
-(7,5,19,'due_hourly','2026-03-22',0,'cut:19:due_hourly:2026-03-22:00','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=19','loan-due-today-cut-19-h00','2026-03-22 00:00:00','sent',1,2,2,0,'2026-03-22 00:00:01',NULL,'2026-03-22 00:00:01','2026-03-22 00:00:01'),
-(8,5,19,'due_hourly','2026-03-22',1,'cut:19:due_hourly:2026-03-22:01','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=19','loan-due-today-cut-19-h01','2026-03-22 01:00:00','sent',1,2,2,0,'2026-03-22 01:00:01',NULL,'2026-03-22 01:00:01','2026-03-22 01:00:01'),
-(9,5,19,'due_hourly','2026-03-22',2,'cut:19:due_hourly:2026-03-22:02','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=19','loan-due-today-cut-19-h02','2026-03-22 02:00:00','sent',1,2,2,0,'2026-03-22 02:00:01',NULL,'2026-03-22 02:00:01','2026-03-22 02:00:02'),
-(10,5,19,'due_hourly','2026-03-22',3,'cut:19:due_hourly:2026-03-22:03','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=19','loan-due-today-cut-19-h03','2026-03-22 03:00:00','sent',1,2,2,0,'2026-03-22 03:00:02',NULL,'2026-03-22 03:00:02','2026-03-22 03:00:02'),
-(11,5,19,'due_hourly','2026-03-22',4,'cut:19:due_hourly:2026-03-22:04','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=19','loan-due-today-cut-19-h04','2026-03-22 04:00:00','sent',1,2,2,0,'2026-03-22 04:00:02',NULL,'2026-03-22 04:00:02','2026-03-22 04:00:02'),
-(12,5,19,'due_hourly','2026-03-22',5,'cut:19:due_hourly:2026-03-22:05','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=19','loan-due-today-cut-19-h05','2026-03-22 05:00:00','sent',1,2,2,0,'2026-03-22 05:00:01',NULL,'2026-03-22 05:00:01','2026-03-22 05:00:01'),
-(13,5,19,'due_hourly','2026-03-22',6,'cut:19:due_hourly:2026-03-22:06','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=19','loan-due-today-cut-19-h06','2026-03-22 06:00:00','sent',1,2,2,0,'2026-03-22 06:00:01',NULL,'2026-03-22 06:00:01','2026-03-22 06:00:02'),
-(14,5,19,'due_hourly','2026-03-22',7,'cut:19:due_hourly:2026-03-22:07','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=19','loan-due-today-cut-19-h07','2026-03-22 07:00:00','sent',1,2,2,0,'2026-03-22 07:00:01',NULL,'2026-03-22 07:00:01','2026-03-22 07:00:01'),
-(15,5,19,'due_hourly','2026-03-22',8,'cut:19:due_hourly:2026-03-22:08','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=19','loan-due-today-cut-19-h08','2026-03-22 08:00:00','sent',1,2,2,0,'2026-03-22 08:00:01',NULL,'2026-03-22 08:00:01','2026-03-22 08:00:01'),
-(16,5,19,'due_hourly','2026-03-22',9,'cut:19:due_hourly:2026-03-22:09','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=19','loan-due-today-cut-19-h09','2026-03-22 09:00:00','sent',1,2,2,0,'2026-03-22 09:00:01',NULL,'2026-03-22 09:00:01','2026-03-22 09:00:01'),
-(17,5,19,'due_hourly','2026-03-22',10,'cut:19:due_hourly:2026-03-22:10','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=19','loan-due-today-cut-19-h10','2026-03-22 10:00:00','sent',1,2,2,0,'2026-03-22 10:00:01',NULL,'2026-03-22 10:00:01','2026-03-22 10:00:02'),
-(18,5,19,'due_hourly','2026-03-22',11,'cut:19:due_hourly:2026-03-22:11','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=19','loan-due-today-cut-19-h11','2026-03-22 11:00:00','sent',1,2,2,0,'2026-03-22 11:00:02',NULL,'2026-03-22 11:00:01','2026-03-22 11:00:02'),
-(19,5,19,'due_hourly','2026-03-22',12,'cut:19:due_hourly:2026-03-22:12','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=19','loan-due-today-cut-19-h12','2026-03-22 12:00:00','sent',1,2,2,0,'2026-03-22 12:00:01',NULL,'2026-03-22 12:00:01','2026-03-22 12:00:01'),
-(20,5,19,'due_hourly','2026-03-22',13,'cut:19:due_hourly:2026-03-22:13','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=19','loan-due-today-cut-19-h13','2026-03-22 13:00:00','sent',1,2,2,0,'2026-03-22 13:00:02',NULL,'2026-03-22 13:00:02','2026-03-22 13:00:02'),
-(21,5,19,'due_hourly','2026-03-22',14,'cut:19:due_hourly:2026-03-22:14','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=19','loan-due-today-cut-19-h14','2026-03-22 14:00:00','sent',1,2,2,0,'2026-03-22 14:00:02',NULL,'2026-03-22 14:00:02','2026-03-22 14:00:02'),
-(22,5,19,'due_hourly','2026-03-22',15,'cut:19:due_hourly:2026-03-22:15','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=19','loan-due-today-cut-19-h15','2026-03-22 15:00:00','sent',1,2,2,0,'2026-03-22 15:00:01',NULL,'2026-03-22 15:00:01','2026-03-22 15:00:02'),
-(23,5,19,'due_hourly','2026-03-22',16,'cut:19:due_hourly:2026-03-22:16','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=19','loan-due-today-cut-19-h16','2026-03-22 16:00:00','sent',1,2,2,0,'2026-03-22 16:00:02',NULL,'2026-03-22 16:00:01','2026-03-22 16:00:02'),
-(24,5,19,'due_hourly','2026-03-22',17,'cut:19:due_hourly:2026-03-22:17','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=19','loan-due-today-cut-19-h17','2026-03-22 17:00:00','sent',1,2,2,0,'2026-03-22 17:00:02',NULL,'2026-03-22 17:00:02','2026-03-22 17:00:02'),
-(25,5,19,'due_hourly','2026-03-22',18,'cut:19:due_hourly:2026-03-22:18','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=19','loan-due-today-cut-19-h18','2026-03-22 18:00:00','sent',1,2,2,0,'2026-03-22 18:00:02',NULL,'2026-03-22 18:00:02','2026-03-22 18:00:02'),
-(26,5,19,'due_hourly','2026-03-22',19,'cut:19:due_hourly:2026-03-22:19','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=19','loan-due-today-cut-19-h19','2026-03-22 19:00:00','sent',1,2,2,0,'2026-03-22 19:00:02',NULL,'2026-03-22 19:00:02','2026-03-22 19:00:02'),
-(27,5,19,'due_hourly','2026-03-22',20,'cut:19:due_hourly:2026-03-22:20','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=19','loan-due-today-cut-19-h20','2026-03-22 20:00:00','sent',1,2,2,0,'2026-03-22 20:00:02',NULL,'2026-03-22 20:00:02','2026-03-22 20:00:02'),
-(28,5,19,'due_hourly','2026-03-22',21,'cut:19:due_hourly:2026-03-22:21','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=19','loan-due-today-cut-19-h21','2026-03-22 21:00:00','sent',1,2,2,0,'2026-03-22 21:00:01',NULL,'2026-03-22 21:00:01','2026-03-22 21:00:02'),
-(29,5,19,'due_hourly','2026-03-22',22,'cut:19:due_hourly:2026-03-22:22','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=19','loan-due-today-cut-19-h22','2026-03-22 22:00:00','sent',1,2,2,0,'2026-03-22 22:00:01',NULL,'2026-03-22 22:00:01','2026-03-22 22:00:02'),
-(30,5,19,'due_hourly','2026-03-22',23,'cut:19:due_hourly:2026-03-22:23','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=19','loan-due-today-cut-19-h23','2026-03-22 23:00:00','sent',1,2,2,0,'2026-03-22 23:00:02',NULL,'2026-03-22 23:00:02','2026-03-22 23:00:02'),
-(31,5,20,'due_hourly','2026-03-23',0,'cut:20:due_hourly:2026-03-23:00','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=20','loan-due-today-cut-20-h00','2026-03-23 00:00:00','sent',1,2,2,0,'2026-03-23 00:00:01',NULL,'2026-03-23 00:00:01','2026-03-23 00:00:02'),
-(32,5,20,'due_hourly','2026-03-23',1,'cut:20:due_hourly:2026-03-23:01','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=20','loan-due-today-cut-20-h01','2026-03-23 01:00:00','sent',1,2,2,0,'2026-03-23 01:00:02',NULL,'2026-03-23 01:00:02','2026-03-23 01:00:02'),
-(33,5,20,'due_hourly','2026-03-23',2,'cut:20:due_hourly:2026-03-23:02','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=20','loan-due-today-cut-20-h02','2026-03-23 02:00:00','sent',1,2,2,0,'2026-03-23 02:00:01',NULL,'2026-03-23 02:00:01','2026-03-23 02:00:01'),
-(34,5,20,'due_hourly','2026-03-23',3,'cut:20:due_hourly:2026-03-23:03','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=20','loan-due-today-cut-20-h03','2026-03-23 03:00:00','sent',1,2,2,0,'2026-03-23 03:00:01',NULL,'2026-03-23 03:00:01','2026-03-23 03:00:01'),
-(35,5,20,'due_hourly','2026-03-23',4,'cut:20:due_hourly:2026-03-23:04','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=20','loan-due-today-cut-20-h04','2026-03-23 04:00:00','sent',1,2,2,0,'2026-03-23 04:00:01',NULL,'2026-03-23 04:00:01','2026-03-23 04:00:02'),
-(36,5,20,'due_hourly','2026-03-23',5,'cut:20:due_hourly:2026-03-23:05','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=20','loan-due-today-cut-20-h05','2026-03-23 05:00:00','sent',1,2,2,0,'2026-03-23 05:00:01',NULL,'2026-03-23 05:00:01','2026-03-23 05:00:02'),
-(37,5,20,'due_hourly','2026-03-23',6,'cut:20:due_hourly:2026-03-23:06','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=20','loan-due-today-cut-20-h06','2026-03-23 06:00:00','sent',1,2,2,0,'2026-03-23 06:00:02',NULL,'2026-03-23 06:00:02','2026-03-23 06:00:02'),
-(38,5,20,'due_hourly','2026-03-23',7,'cut:20:due_hourly:2026-03-23:07','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=20','loan-due-today-cut-20-h07','2026-03-23 07:00:00','sent',1,2,2,0,'2026-03-23 07:00:01',NULL,'2026-03-23 07:00:01','2026-03-23 07:00:01'),
-(39,5,20,'due_hourly','2026-03-23',8,'cut:20:due_hourly:2026-03-23:08','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=20','loan-due-today-cut-20-h08','2026-03-23 08:00:00','sent',1,2,2,0,'2026-03-23 08:00:02',NULL,'2026-03-23 08:00:02','2026-03-23 08:00:02'),
-(40,5,20,'due_hourly','2026-03-23',9,'cut:20:due_hourly:2026-03-23:09','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=20','loan-due-today-cut-20-h09','2026-03-23 09:00:00','sent',1,2,2,0,'2026-03-23 09:00:01',NULL,'2026-03-23 09:00:01','2026-03-23 09:00:01'),
-(41,5,20,'due_hourly','2026-03-23',10,'cut:20:due_hourly:2026-03-23:10','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=20','loan-due-today-cut-20-h10','2026-03-23 10:00:00','sent',1,2,2,0,'2026-03-23 10:00:02',NULL,'2026-03-23 10:00:02','2026-03-23 10:00:02'),
-(42,5,20,'due_hourly','2026-03-23',11,'cut:20:due_hourly:2026-03-23:11','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=20','loan-due-today-cut-20-h11','2026-03-23 11:00:00','sent',1,2,2,0,'2026-03-23 11:00:01',NULL,'2026-03-23 11:00:01','2026-03-23 11:00:02'),
-(43,5,20,'due_hourly','2026-03-23',12,'cut:20:due_hourly:2026-03-23:12','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=20','loan-due-today-cut-20-h12','2026-03-23 12:00:00','sent',1,2,2,0,'2026-03-23 12:00:01',NULL,'2026-03-23 12:00:01','2026-03-23 12:00:02'),
-(44,5,20,'due_hourly','2026-03-23',13,'cut:20:due_hourly:2026-03-23:13','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=20','loan-due-today-cut-20-h13','2026-03-23 13:00:00','sent',1,2,2,0,'2026-03-23 13:00:01',NULL,'2026-03-23 13:00:01','2026-03-23 13:00:01'),
-(45,5,20,'due_hourly','2026-03-23',14,'cut:20:due_hourly:2026-03-23:14','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=20','loan-due-today-cut-20-h14','2026-03-23 14:00:00','sent',1,2,2,0,'2026-03-23 14:00:02',NULL,'2026-03-23 14:00:02','2026-03-23 14:00:02'),
-(46,5,20,'due_hourly','2026-03-23',15,'cut:20:due_hourly:2026-03-23:15','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=20','loan-due-today-cut-20-h15','2026-03-23 15:00:00','sent',1,2,2,0,'2026-03-23 15:00:02',NULL,'2026-03-23 15:00:02','2026-03-23 15:00:02'),
-(47,5,20,'due_hourly','2026-03-23',16,'cut:20:due_hourly:2026-03-23:16','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=20','loan-due-today-cut-20-h16','2026-03-23 16:00:00','sent',1,2,2,0,'2026-03-23 16:00:01',NULL,'2026-03-23 16:00:01','2026-03-23 16:00:02'),
-(48,5,20,'due_hourly','2026-03-23',17,'cut:20:due_hourly:2026-03-23:17','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=20','loan-due-today-cut-20-h17','2026-03-23 17:00:00','sent',1,2,2,0,'2026-03-23 17:00:01',NULL,'2026-03-23 17:00:01','2026-03-23 17:00:02'),
-(49,5,20,'due_hourly','2026-03-23',18,'cut:20:due_hourly:2026-03-23:18','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=20','loan-due-today-cut-20-h18','2026-03-23 18:00:00','sent',1,2,2,0,'2026-03-23 18:00:01',NULL,'2026-03-23 18:00:01','2026-03-23 18:00:01'),
-(50,5,20,'due_hourly','2026-03-23',19,'cut:20:due_hourly:2026-03-23:19','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=20','loan-due-today-cut-20-h19','2026-03-23 19:00:00','sent',1,2,2,0,'2026-03-23 19:00:01',NULL,'2026-03-23 19:00:01','2026-03-23 19:00:02'),
-(51,5,20,'due_hourly','2026-03-23',20,'cut:20:due_hourly:2026-03-23:20','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=20','loan-due-today-cut-20-h20','2026-03-23 20:00:00','sent',1,2,2,0,'2026-03-23 20:00:02',NULL,'2026-03-23 20:00:01','2026-03-23 20:00:02'),
-(52,5,20,'due_hourly','2026-03-23',21,'cut:20:due_hourly:2026-03-23:21','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=20','loan-due-today-cut-20-h21','2026-03-23 21:00:00','sent',1,3,3,0,'2026-03-23 21:00:01',NULL,'2026-03-23 21:00:01','2026-03-23 21:00:01');
+(72,NULL,5,21,'due_hourly','2026-03-24',21,'cut:21:due_hourly:2026-03-24:21','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=21','loan-due-today-cut-21-h21','2026-03-24 21:00:00','sent',1,0,0,0,'2026-03-24 21:00:02',NULL,'2026-03-24 21:00:02','2026-03-24 21:00:02'),
+(73,NULL,5,21,'due_hourly','2026-03-24',22,'cut:21:due_hourly:2026-03-24:22','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=21','loan-due-today-cut-21-h22','2026-03-24 22:00:00','sent',1,0,0,0,'2026-03-24 22:00:02',NULL,'2026-03-24 22:00:02','2026-03-24 22:00:02'),
+(74,NULL,5,21,'due_hourly','2026-03-24',23,'cut:21:due_hourly:2026-03-24:23','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=21','loan-due-today-cut-21-h23','2026-03-24 23:00:00','sent',1,0,0,0,'2026-03-24 23:00:01',NULL,'2026-03-24 23:00:01','2026-03-24 23:00:01');
 /*!40000 ALTER TABLE `push_notifications` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -1012,6 +1144,7 @@ DROP TABLE IF EXISTS `push_subscriptions`;
 /*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `push_subscriptions` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) unsigned DEFAULT NULL,
   `device_id` varchar(120) NOT NULL,
   `endpoint` varchar(700) NOT NULL,
   `p256dh` text NOT NULL,
@@ -1020,7 +1153,9 @@ CREATE TABLE `push_subscriptions` (
   `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `uq_push_endpoint` (`endpoint`),
-  KEY `idx_push_device_id` (`device_id`)
+  KEY `idx_push_device_id` (`device_id`),
+  KEY `idx_push_user_id` (`user_id`),
+  CONSTRAINT `fk_push_subscriptions_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1031,12 +1166,6 @@ CREATE TABLE `push_subscriptions` (
 LOCK TABLES `push_subscriptions` WRITE;
 /*!40000 ALTER TABLE `push_subscriptions` DISABLE KEYS */;
 set autocommit=0;
-INSERT INTO `push_subscriptions` VALUES
-(6,'99f62037-0886-4789-aed1-b0b13599f394','https://fcm.googleapis.com/fcm/send/cYjl27Z3604:APA91bH5u9aUfTv6IY8ettGokmuem3dbI2roetFikd_hirtI1cPwDySEsayPUAhJG_fAa9W_3AOqcaEYBDHoKeJieHv_qR0Yg21aBwq9GWG6qKtIzmhlICqMOl17lS7F_CiweppdvSuK','BEFfCc66y1Ok9Q2Gv9j0oED5ypI4AjbUrjlxKrUWPaqv-26ydZ2Y8gaXkbnJSkIyNx3vX0pcRah7MxJ288g_YaI','HfRvXfujuFsTJnfjowbd-g','2026-03-22 00:17:42','2026-03-22 00:17:42'),
-(7,'a33af6b8-5c44-4b39-ba7b-c1541987addc','https://fcm.googleapis.com/fcm/send/cyCQA62vCQI:APA91bGXCW7_9Pgyvf0ZKxU1ckShFCVToiJhwxERAhUb0iKiUy-xZlKDRDLGOQTbPZG-5g8iQY_-ygMG0d20BPjza2ZOrMIgdJXRdFe2IILN4K2niN1JjBQaFmDbS0cdcM-UaTXutcwu','BJKrFXHlRv_81FPsFIeKvvCMDsu3tYEgNEBAGrg1jwm7zpfU9IMV5Kc4JKxQvYSmPr1hvD2hY5o_Z_df6MAYkeI','H8oEM75-DdKI96OSJc2eew','2026-03-22 00:18:46','2026-03-22 00:18:46'),
-(8,'4b1d5357-d61c-4292-a0f7-f58c788c0614','https://fcm.googleapis.com/fcm/send/c-bM7YhUoh0:APA91bHHTWO7vM81UKWQl7wQtoyMEso51pI9B6c6uc-tTDVohqYDkwzEvfrcilpIs6fUqn7VQ8aja5ceQoGmHABNAg_Z46qEhel6o0-FpOBTX6eybx0yhAajOhscSQwtsQvzcc7UvT5_','BCy41QUm2DWFyDQ2tVRi8nZGMFSGt4t2qOZZlflxnMPLVhheksxziMWUpGpJWPmGjB230aKDv77dFHvvnqrjhqA','MFLwU-3-5bpFZ_Vb9ndEMg','2026-03-23 20:33:11','2026-03-23 20:33:11'),
-(9,'4b1d5357-d61c-4292-a0f7-f58c788c0614','https://fcm.googleapis.com/fcm/send/cgDjm3tkUDA:APA91bGk27PwB76HtlqqDV5nDIDwAnAwUJs8Uns6lEVU6lK6_AE-DdXVNeMPNfKH7yJdUqGeGqBj9acfIFsGq2tz-H2lPvbdSOyda5zFNwyp7SRKJ8RgPOpf3e5uxD6DtKg_ASXGes4u','BDvo1X5htr8kfRluTSwI9-3unPJRCqKC0XShm-s4JQ4AqBOI8LcghhI8YMWi70LjKHyZ_KFN0Mw0t8ZSa-Lm-SE','ObIkUwsoj65X7LgUHNHROw','2026-03-23 21:00:14','2026-03-23 21:00:14'),
-(10,'4b1d5357-d61c-4292-a0f7-f58c788c0614','https://fcm.googleapis.com/fcm/send/eOpR7N5cwOY:APA91bE7zxvu8o7RiaePix4YRbzshtr7_5YU_lq6Y4jmHUcZ-fwgORTCN7euIXrOXKLYVo0tysOlgWFam-tnvCcUfSB83WFtuxkG2YAEMzMvT0oTTjXCQG6hzTGTkNIkBkYCPe_1W-TU','BB8DsCzhfjI3CD0GNM8yvSmIYg271Xk6X3sHsS090xc_ZsSpNui0gOdTpWRfWk6gTBuil6KlAt8rjrbPMgaKi4U','22QY091-SdGvzcySJnFhtw','2026-03-23 21:00:42','2026-03-23 21:00:42');
 /*!40000 ALTER TABLE `push_subscriptions` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -1064,7 +1193,7 @@ CREATE TABLE `reuniones` (
   KEY `idx_reuniones_ref` (`ref`),
   KEY `idx_reuniones_cliente` (`id_cliente`),
   CONSTRAINT `fk_reuniones_clientes` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1080,7 +1209,15 @@ INSERT INTO `reuniones` VALUES
 (3,'prueba sara 1','2026-03-24','02:04:00','mi casa',NULL,'fdfbbdfb',11,1,NULL),
 (4,'pepe reu prueba','2026-03-11','09:00:00','dadada',11,'todo ok',12,1,'completada'),
 (5,'prueba 3ro sara','2026-03-29','09:00:00','dsddadsa',11,'dadadssdaa',11,0,NULL),
-(6,'prueba reunion','2026-03-25','09:00:00','Maracay',4,'todo bien',6,1,'completada');
+(6,'prueba reunion','2026-03-25','09:00:00','Maracay',4,'todo bien',6,1,'completada'),
+(7,'Jola','2026-03-26','09:00:00','oficina',NULL,'Hola',19,0,NULL),
+(8,'preu','2026-03-26','09:00:00','oficina',NULL,'Reunion',6,0,NULL),
+(9,'todos','2026-03-27','09:00:00','oficina',NULL,'todos',6,0,NULL),
+(10,'todos','2026-03-27','09:00:00','oficina',NULL,'todos',156,0,NULL),
+(11,'todos','2026-03-27','09:00:00','oficina',NULL,'todos',5,0,NULL),
+(12,'todos','2026-03-27','09:00:00','oficina',NULL,'todos',7,0,NULL),
+(13,'todos','2026-03-30','09:00:00','oficina',NULL,'todos\nReprogramada: Necesario',19,0,'reprogramada'),
+(14,'todos','2026-03-27','09:00:00','oficina',NULL,'todos',9,0,NULL);
 /*!40000 ALTER TABLE `reuniones` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -1108,7 +1245,7 @@ CREATE TABLE `rutas` (
   KEY `idx_rutas_ref` (`ref`),
   KEY `idx_rutas_zona` (`zona`),
   CONSTRAINT `fk_rutas_users_ref` FOREIGN KEY (`ref`) REFERENCES `users` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1119,7 +1256,8 @@ LOCK TABLES `rutas` WRITE;
 /*!40000 ALTER TABLE `rutas` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `rutas` VALUES
-(1,4,'Test','08:30:00','12:30:00','[\"la arboleda\",\"el valle\",\"cualquier cosa\"]','{\"lat\":10.187529,\"lng\":-64.634298}','[\"volantes entregados\",\"Visitas\",\"Muestras\"]',NULL,'[{\"requisito\":\"volantes entregados\",\"resultado\":\"50\"},{\"requisito\":\"Visitas\",\"resultado\":\"15\"},{\"requisito\":\"Muestras\",\"resultado\":\"10\"}]','todo bien');
+(1,4,'Test','08:30:00','12:30:00','[\"la arboleda\",\"el valle\",\"cualquier cosa\"]','{\"lat\":10.187529,\"lng\":-64.634298}','[\"volantes entregados\",\"Visitas\",\"Muestras\"]',NULL,'[{\"id_agente\":19,\"requisito\":\"volantes entregados\",\"resultado\":\"10\"},{\"id_agente\":19,\"requisito\":\"Visitas\",\"resultado\":\"12\"},{\"id_agente\":19,\"requisito\":\"Muestras\",\"resultado\":\"5\"}]','todo bien'),
+(2,4,'Maracay','08:30:00','12:30:00','[\"Maracay\",\"Urbanizaci\\u00f3n el centro\"]','{\"lat\":10.236058,\"lng\":-67.59797}','[\"Casas\",\"apartamentos\"]',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `rutas` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -1152,44 +1290,14 @@ LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `sessions` VALUES
-('1BBTNVZC4z0DpFoffH9TWqvarTgzjcb4foMQaoc7',NULL,'104.23.166.155','Dalvik/2.1.0 (Linux; U; Android 9.0; ZTE BA520 Build/MRA58K)','YTozOntzOjY6Il90b2tlbiI7czo0MDoiZ2R3NnlVc3M1bzd2YW1PUDBwSjladkZyY3pzbjZYZmladmwxOFlTZCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774220944),
-('5dyCmRRAfW9HaZjINTsxLDYnYv4isbrF08ghgzdt',NULL,'172.69.222.97','curl/8.7.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiWmY5elVaNFd0OWprWHJlQW82QWdpaGdadTNOWVJNWWZGV1NuTXBxSiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDc6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mby8/cGhwaW5mby5waHA9IjtzOjU6InJvdXRlIjtzOjI3OiJnZW5lcmF0ZWQ6Okh0cWZzdWJ4cm5qNmg3WFQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19',1774302772),
-('5tZKb36yu3FtYHMgfLUKInrvPrYrAB4EnDEWFRKN',NULL,'172.70.108.240','Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiUjN0MlMzd2lwcmhZRVZnakdlQ2wxc3ppSVlrYUJ6RWxrcFlPTXFtMCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774305297),
-('7fXyjVmbLYajIUkjBMfbYdsbrmSWEk1Da24hWW4F',NULL,'172.69.222.97','curl/8.7.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoidUM1THhCWUVheXhpc3BZaEZKelpoUDYycWlqZDlmOGJIanZLRVdkMiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDQ6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mby8/cGhwaW5mbz0xIjtzOjU6InJvdXRlIjtzOjI3OiJnZW5lcmF0ZWQ6Okh0cWZzdWJ4cm5qNmg3WFQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19',1774302772),
-('8cDs53YDzIOtXAmM4l8ja9G0NQv1W3XGBAhedeA4',NULL,'104.23.213.116','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoielp5OGU2SUJRNUw2WUJPRVU4alBibjNFakF4SmlzYnpsckJBUGdncyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774245369),
-('8oZ0knjRfKiCcUStbzeXvVAUiHEoVKRnq5KwGO5h',NULL,'172.69.130.99','req/v3 (https://github.com/imroc/req)','YTozOntzOjY6Il90b2tlbiI7czo0MDoiMjJvU2prdVdpWW9zTUg4MW1FUGtqWnhsYjJCQW9WZ1JQR01iZ2lFTCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774309024),
-('anAA6IAD2TvZ5geQQULBhTVatX7lGIdrPHrXamia',NULL,'172.71.155.10','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoibjVhQVdIUDYzT1FvdFRuQUdyVzNTTjl1WnVRVWtDcW5Uc1ZTeHNBSyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774230921),
-('APvVy0Vh6bVg4hqbMBx2UjuyH0pt4RPD4awR3xGO',NULL,'172.69.222.97','curl/8.7.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoianNuMlk2dDVZNEJpMDVKdW1jdkV6MDJ4UWVOVzN5SjZING12NGRKaiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDE6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mby8/cT1pbmZvIjtzOjU6InJvdXRlIjtzOjI3OiJnZW5lcmF0ZWQ6Okh0cWZzdWJ4cm5qNmg3WFQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19',1774302772),
-('bRoiU3XON15gR0EJjrFKJO4ZXm2mPTptKshYZ2Pr',NULL,'104.23.168.38','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11) AppleWebKit/601.1.27 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/601.1.27','YTozOntzOjY6Il90b2tlbiI7czo0MDoiMkZJNTB3UllWdUtkUlRITVFxZ1JxUEhKa1ZSMzBWeWcwNE5TR3ZUZSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774308618),
-('ByYi0bsJ87pT9pSCkspAKDpAfSI1px7G5qD73Lqn',NULL,'104.23.221.108','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123','YTozOntzOjY6Il90b2tlbiI7czo0MDoiTUpoamRER25ZcjJsSUVZTFVKZEp4YTY2YjNoWmJnYk14cWtDTUVQZCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774228959),
-('DardK2pOJLyhZYZpDtZoDYe6csUlwotUw4G0m1sp',NULL,'104.22.20.158','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoibkEybmpyamRjOXpXZ0pSeGFaSWhMRTUwaVZ1YWhGczEzVXJucXpESyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774293842),
-('E7ZFND5BcflDn5pTzjFm5x2oUXk9y4ivBaDoTQN5',NULL,'172.71.98.88','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiYzFvQlBFNEpmU3ZZbndyczRRcFFQZ2pFQ1pxSFpzemFvVVA5M0s2YSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774309016),
-('eC7BvOnbYxWSlTNEn4FO7Ivzr2BD9W8uxwrqWJj9',NULL,'172.70.142.77','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoidUJ3Wm42OGlqQVBmSzBTZ21IRUt5M3VqQUZGeWJ2dlJYVDVlVkFwMiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774247539),
-('F1eml6YySpSl6cva08amsjNLNPXktu6EFUsXKUBo',NULL,'104.23.170.80','Mozilla/5.0 (Windows; U; Windows NT 6.0; de; rv:1.9.1.2) Gecko/20090729 Firefox/3.5.2','YTozOntzOjY6Il90b2tlbiI7czo0MDoiSW8wTkt5clBXZmI0UmJHSnNKckdwSHM5ejJ1M1ZEQWswT0lWR0dPTSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774220739),
-('gnVPwhvY2Gz397JJ1Zm9U1RwIXowAFzW1yg9U9Sw',NULL,'104.22.23.16','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoib0hmNTA2aFhkRjJuQ2NtUmlXYlByMEljY1lndTd6cXYzSkE2SlgyQyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774247540),
-('GSHGTo5WvA6Aa37sUnk7zX8zhs8XPpU3NIpgyUc8',NULL,'172.64.215.176','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiUEFVc3dUZmNUbEk5Sm1Ydk9OSzgxZDV4MmU5MjY5eHhUMWx2WVRKeiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774281287),
-('HX69T25DYgPi84gPHdncPh15oUfMxWYu5z32h9if',NULL,'172.70.215.30','Mozilla/5.082584686 Mozilla/5.0 (iPhone; CPU iPhone OS 11_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.0 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoieFZMa0l5Z0pBOFdQTEdPOXo0Nk5IVzRuQU1vcDFXTVduUENYYXM1aCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774221171),
-('KDA16wqBuH7cjOxsOsz4jhycD74hgm33fIJSEaUA',NULL,'162.159.106.95','Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiR1hEQXRHM3N3NFRMNXVuTDA4UE9zRk1qSFJHc0dKMmVZNFEzREtmWSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774237225),
-('M8DZYP4lOewbL15ihgYJbbmS5f1mqqMnJhcXCLn5',NULL,'104.23.211.51','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiSHRqdFQ4RTM0RGQ5TVRaUTc0ckcyWnZGSkhBbnd0SW9ycjE4WVVnRiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774227881),
-('MH5JGn3Yb4hV2DHaQl3zz1vwGrYCMlfI2NCVHJ2t',NULL,'104.22.17.195','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiQWhDN2lQZTVPbVBUNW1yUmt5eHJHQlB4ZDZWV21oV0NvN0QzWEdNMSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774314219),
-('mIS6ErWsPJFWWvymy3YuuwqsfAxz6aQYeVM0VCLM',NULL,'172.71.159.121','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiMWFpdTZvWG1GUWtWSXNmc0VkczlXSmNyQVFhZEFYdkhIRzhobTB2OCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774252120),
-('noBjPaDNyWZmKTO42Ge21PMeNMuInWIUZv4tjmmM',NULL,'172.69.222.96','curl/8.7.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiQXZiSnl1Snl3NmJBQ3d1S21XZFZMODhCZUQxZTRuUTB5MzNUbzZhcSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mby9pbmRleC5waHAiO3M6NToicm91dGUiO3M6Mjc6ImdlbmVyYXRlZDo6SHRxZnN1Ynhybmo2aDdYVCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=',1774302832),
-('o6TASV5ad3z6rbCPIPaWpR4Kh4HnBPnjJkvEHEwT',NULL,'104.23.172.107','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11) AppleWebKit/601.1.27 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/601.1.27','YTozOntzOjY6Il90b2tlbiI7czo0MDoiYU5BSG90Rmx2eEp2UXVHQXAyWml2VWdxRTY4T0k3dGU1QXd0Y3VOWiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774221134),
-('oJVMJ9c7cFg2oLxYICc5EroQAImsB8vCrFHrAGZr',NULL,'172.71.95.89','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.3','YTozOntzOjY6Il90b2tlbiI7czo0MDoiQTZsTXN2OGlxb2szeng5OVowdHdpZnl0ZUl5N0k5RGJiQjhsaHdJNyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774242833),
-('ro6tomAqYRcPQj5QaavlFdjPCJ16MzbKqRijpEg7',NULL,'172.69.39.82','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiVjJLdUpVRXhNWHVYSFY4V3VwQ1BNdHlIWmFMampnbVF1bkprMFQ3UiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774272573),
-('rqaLzAQmqexDn7lo1KUWG9cSnMWBwhAVtErK2glu',NULL,'172.71.184.50','Python/3.11 aiohttp/3.11.11','YTozOntzOjY6Il90b2tlbiI7czo0MDoianpOalROdklwVGFwZ2N1YVJMZzJLMUo0UDZ2UTA5MHRnU1F4eW9lciI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774299145),
-('rrCHtkMxoYrdeMzqMJ5FwzFA32kI2zHePiTLmsB7',NULL,'104.23.243.180','visionheight.com/scan Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) Chrome/126.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiY0VOaWZ0VnhoaTJFY2dvanA1Wm9Ia3dFTG02Vmtndzlockhhb1draiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774299604),
-('s6iavu61x0cLD1nK8ZJaqMFEis1a0WodjVeYH61W',NULL,'104.23.229.3','curl/8.7.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiMjFUV3prQTNkSDFCZHBzZkF2eEVmamJBSnFqZDU1amljb2F5Vk9HbCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774302722),
-('sNETpPqqZKzO2iBrvZBengk6QlHTPOiA3HVwoTIT',NULL,'172.69.222.97','curl/8.7.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiREdlMDZRbFlZNHZZVFUyZjJzcEZUczRQeDhCd1ZLV2JreFRrejRZbiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDA6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mby8/cD1waHAiO3M6NToicm91dGUiO3M6Mjc6ImdlbmVyYXRlZDo6SHRxZnN1Ynhybmo2aDdYVCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=',1774302772),
-('t5JVsdFCe5pOS6zXoaXBdZepnuosiTqg0EknKzXe',NULL,'172.68.151.70','Hello from Palo Alto Networks, find out more about our scans in https://docs-cortex.paloaltonetworks.com/r/1/Cortex-Xpanse/Scanning-activity','YTozOntzOjY6Il90b2tlbiI7czo0MDoibUh0WThpcE1jaGxBbGFHUWhkZVNmNHdRbm1FbzJmS3dxNDhBeTM4OCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774298588),
-('TrwQFQewyd9zfbrZmIXDNhnnI2YVrAO5e8G0xpSW',NULL,'104.23.254.156','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiZXI3cmdiSzlOQk1rc1NDT0k5VU14MFZBOFFHMThxZlY3eFhublZyViI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774265125),
-('tsagyHEoegr9mKQRImAbL7vezW5Q7dSWGmp1b5Np',NULL,'172.70.111.164','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiUlBIZDhySVFRMDNaTEM5RGZIVGRRS2ZRVUJkQk1TU1hMSWtFR2JaOSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774270461),
-('UV1fck9O1OoozX101h1XeR8v7rs5iXATTzoI7Ho3',NULL,'162.158.120.166','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiRGxZYmhRajF2NHdEbHVET1pKRTBKZnJ2YUZCcGJIYUNiUHF5QnBkUCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774237508),
-('vUpOZZydq6QsLLnLyihCsLQt0L8B8tOymgn8JIq8',NULL,'104.23.170.80','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiUXN0ZlV2N3RiRk40eHVRanJWbVdUUkZZcDNYNGt1Z2ZMY21OS1JBbyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774267725),
-('vVMd2xdFuL1ZcrOkx5OgCjnfacbZALzQ66ujPVUt',NULL,'172.69.222.97','curl/8.7.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiNnpacUJ3dkVhQWp2R0MwQ1doUWdOTlpUQm55eUlndG9KT0J3QVQ2MCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDE6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mby8/cD1pbmZvIjtzOjU6InJvdXRlIjtzOjI3OiJnZW5lcmF0ZWQ6Okh0cWZzdWJ4cm5qNmg3WFQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19',1774302771),
-('W3b7VDNxFY64cYjiFchsEuqMgWNF0N38MdKMjxTy',NULL,'172.71.184.50','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 Edg/121.0.0.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoiWE5JcXc0UXVXd3RjNlR2T0c2SWtHaVl2UFhZNllWUmVZMW5tMGtIeCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774311447),
-('W7XP9ZgPrAnPr5SrEhu1EtTYPsYUXubTOSSqX3NS',NULL,'104.22.62.114','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiMXRKR3hSS1FCVlFicG5KOTVseDNCRE94N1ZGNTRKSXFsZHZ1VDZSQyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIdHFmc3VieHJuajZoN1hUIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774243990),
-('YwPd65qspmZpd5IaeR2fFcAHkZ0QzIOnqgBeugOP',NULL,'172.69.222.97','curl/8.7.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoidHZMbDBrR1RTaVVGRHVpQXd2V2VpT2s0MnIzVEIxZHF3aUpZZkhNQSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mby8/cGhwaW5mbz0iO3M6NToicm91dGUiO3M6Mjc6ImdlbmVyYXRlZDo6SHRxZnN1Ynhybmo2aDdYVCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=',1774302772);
+('8Lda2d2x8XmAAALhLLISR5pYpmXSAu2yvhVYa7pw',NULL,'104.23.221.109','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123','YTozOntzOjY6Il90b2tlbiI7czo0MDoiQU5wV0g3S2ZMSE53bHlLWWh2bHFWU2RXNDJqNVVrZmFYRnFNdDBPaSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjozZXBoOUtweFlTNTdlSGhxIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774452796),
+('ElcTIhQBu6qOLKO34JmYNgpNNMGbYoOJpEkigGxX',NULL,'172.69.86.240','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoicjdEaFJzZDhsRDF4dUE3TG1JaUlrOWg1WDNmWkdjZXc3eHV0bXdHOCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjozZXBoOUtweFlTNTdlSGhxIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774447245),
+('grcr84HJDe3uF3YAPyjB3VSFlrUWLjNdTFn02WPO',NULL,'172.71.95.90','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoieWl1cFU3VGNLcHc2SEhvNko4SU5mM2FDbndmVVdjSnlzNW5tVDJRcyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjozZXBoOUtweFlTNTdlSGhxIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774453917),
+('i4Vqpds5iUm5sv2wyuaWv7m5tMg8h32S2ElsqJuO',NULL,'172.69.176.123','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiV2lzZWlrVnlXRXBNR3pGeDY5WlB0emQwSFRaVzlIdnlSd0lvRGljUyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjozZXBoOUtweFlTNTdlSGhxIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774443411),
+('KpPUu4e5zOIEK4m27P99LV6bFrvY8ZrJPgT0s08i',NULL,'162.158.178.161','Mozilla/5.0 (Android 11; Mobile; rv:128.4.0) Gecko/128.4.0 Firefox/128.4.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoiMU80REJjU0NXUnVhS24zRWZMTkU5SkZyOUswU25MVjVvV1haTjM5SiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjozZXBoOUtweFlTNTdlSGhxIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774440417),
+('PVwkkxV2p8ZN4znMm3GYhmu361WrA3g2XDTxRZqT',NULL,'172.70.127.148','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiVlNHSjc4Tm5iQ3RQaXRpaFQ3R1pYd1FNcVFuazc2WldnSkI0TlF4MiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjozZXBoOUtweFlTNTdlSGhxIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774447338),
+('yGbZtAqC0oVTFF37bxnUSFTCV60VZt45gXzWSraz',NULL,'172.71.103.171','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiR0tTNHdzTU9oYTJPdHNKeDNHdGpyNTRQMFQzV0RMb1dKSjREbk5jRiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjozZXBoOUtweFlTNTdlSGhxIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774441235),
+('ZUs7AciTn5JZZOPjvlm6sNXcIbKxN6LAc4Dbwxnn',NULL,'172.69.214.41','Mozilla/5.0 (compatible; AhrefsBot/7.0; +http://ahrefs.com/robot/)','YTozOntzOjY6Il90b2tlbiI7czo0MDoiNEsxN1V0bk5xZWtSd3VMN000VzB2aFc3aFh4QnBtOW5QTHF2blpCWiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjozZXBoOUtweFlTNTdlSGhxIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774456622);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -1277,9 +1385,10 @@ CREATE TABLE `users` (
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `url` varchar(254) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1290,19 +1399,22 @@ LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `users` VALUES
-(2,'Mis huevos Redondos','agente_test_01@smarthouse.local',NULL,3,'$2y$12$.Xq5bJ7Flzd6fcmESFW69.2kJ.m2Y5VN5Kw48UuDPrqUhDzgrLeyK',NULL,'2026-03-17 23:26:18','2026-03-17 23:26:18'),
-(4,'Laura Mendoza','admin@a.a',NULL,2,'$2y$12$jd8CdHgY33NvHxkTl6VE6.dzQ235P2HQeK34IyH3uog0OVZIsB1km',NULL,'2026-03-17 23:43:14','2026-03-17 23:43:14'),
-(5,'Luis Mora','mora@fm.com',NULL,3,'$2y$12$Ii9N6HD3LtYVp/EtFpM4oO2hOLAr/FzDyDlaQ9rlcdHlojG24KoDS',NULL,'2026-03-17 23:54:13','2026-03-17 23:54:13'),
-(6,'Raul de Cervantes','raul@sm.com',NULL,3,'$2y$12$SiBf9hAOVb57l8iTElY7i.ulP2OHSImH3Z52lWGc55aaTSiQ0HKoi',NULL,'2026-03-19 00:19:52','2026-03-19 00:19:52'),
-(7,'pedro casanova','pedro@sm.c',NULL,3,'$2y$12$FVdueLXWGXL54GcPBKmU2ugBhO/AJuy2BsOOpGerBHmjUydy5EXzK',NULL,'2026-03-19 01:19:20','2026-03-19 01:19:20'),
-(8,'Yonnel Licon','yon@yon123.com',NULL,3,'$2y$12$aEUG8hThseNtgBbP5WC3..ykDOUg.LvdG66SYMj1aFuIcdQMwSRKG',NULL,'2026-03-19 06:21:12','2026-03-19 06:21:12'),
-(9,'Yonnel12 Licon','yon1@gmail.com',NULL,3,'$2y$12$xZpz3XcIu4SprBrdtWhrD.KnZssuC7oqGyG3ClhzWV8MNUedpgFFu',NULL,'2026-03-19 06:35:22','2026-03-19 06:35:22'),
-(10,'Luis Bolivar','luis@sm.com',NULL,2,'$2y$12$jd8CdHgY33NvHxkTl6VE6.dzQ235P2HQeK34IyH3uog0OVZIsB1km',NULL,'2026-03-17 23:43:14','2026-03-17 23:43:14'),
-(11,'Sara Damasco','sara@sm.com',NULL,3,'$2y$12$7tTyYSPrarwyvTFjw30C.eD5nRPY4BzZnv6Mgr989pE6DYybelL7.',NULL,'2026-03-19 11:08:39','2026-03-19 11:08:39'),
-(12,'Pepe Alcaravan','pepe@sm.com',NULL,3,'$2y$12$/dosHsreofOestcn6tGbIuU3X7ZI1pqymfb/WY7KWNlTc8F1Tiv8u',NULL,'2026-03-19 11:09:35','2026-03-19 11:09:35'),
-(13,'Maria Oropeza','maria@sm.com',NULL,3,'$2y$12$Kiku5sey8eJljB07NAyXiuHGZ27pn1SRrm644SjSTmPL1dAuH.4L.',NULL,'2026-03-19 12:26:57','2026-03-19 12:26:57'),
-(14,'Luis Zerpa','luisz@sm.com',NULL,2,'$2y$12$jd8CdHgY33NvHxkTl6VE6.dzQ235P2HQeK34IyH3uog0OVZIsB1km',NULL,'2026-03-17 23:43:14','2026-03-17 23:43:14'),
-(16,'Rafa Pedromo','rafa@sm.com',NULL,3,'$2y$12$wndBId.ep9pEpD2YKDq3c.rP5iep2Fq.cmEDWtp72N9kjq7a3lSFK',NULL,'2026-03-19 12:34:11','2026-03-19 12:34:11');
+(2,'Mis huevos Redondos','agente_test_01@smarthouse.local',NULL,3,'$2y$12$.Xq5bJ7Flzd6fcmESFW69.2kJ.m2Y5VN5Kw48UuDPrqUhDzgrLeyK',NULL,'2026-03-17 23:26:18','2026-03-17 23:26:18',NULL),
+(4,'Laura Mendoza','admin@a.a',NULL,2,'$2y$12$jd8CdHgY33NvHxkTl6VE6.dzQ235P2HQeK34IyH3uog0OVZIsB1km',NULL,'2026-03-17 23:43:14','2026-03-17 23:43:14',NULL),
+(5,'Luis Mora','mora@fm.com',NULL,3,'$2y$12$Ii9N6HD3LtYVp/EtFpM4oO2hOLAr/FzDyDlaQ9rlcdHlojG24KoDS',NULL,'2026-03-17 23:54:13','2026-03-17 23:54:13',NULL),
+(6,'Raul de Cervantes','raul@sm.com',NULL,3,'$2y$12$SiBf9hAOVb57l8iTElY7i.ulP2OHSImH3Z52lWGc55aaTSiQ0HKoi',NULL,'2026-03-19 00:19:52','2026-03-19 00:19:52',NULL),
+(7,'pedro casanova','pedro@sm.c',NULL,3,'$2y$12$FVdueLXWGXL54GcPBKmU2ugBhO/AJuy2BsOOpGerBHmjUydy5EXzK',NULL,'2026-03-19 01:19:20','2026-03-19 01:19:20',NULL),
+(8,'Yonnel Licon','yon@yon123.com',NULL,3,'$2y$12$aEUG8hThseNtgBbP5WC3..ykDOUg.LvdG66SYMj1aFuIcdQMwSRKG',NULL,'2026-03-19 06:21:12','2026-03-19 06:21:12',NULL),
+(9,'Yonnel12 Licon','yon1@gmail.com',NULL,3,'$2y$12$xZpz3XcIu4SprBrdtWhrD.KnZssuC7oqGyG3ClhzWV8MNUedpgFFu',NULL,'2026-03-19 06:35:22','2026-03-19 06:35:22',NULL),
+(10,'Luis Bolivar','luis@sm.com',NULL,2,'$2y$12$jd8CdHgY33NvHxkTl6VE6.dzQ235P2HQeK34IyH3uog0OVZIsB1km',NULL,'2026-03-17 23:43:14','2026-03-17 23:43:14',NULL),
+(11,'Sara Damasco','sara@sm.com',NULL,3,'$2y$12$7tTyYSPrarwyvTFjw30C.eD5nRPY4BzZnv6Mgr989pE6DYybelL7.',NULL,'2026-03-19 11:08:39','2026-03-19 11:08:39',NULL),
+(12,'Pepe Alcaravan','pepe@sm.com',NULL,3,'$2y$12$/dosHsreofOestcn6tGbIuU3X7ZI1pqymfb/WY7KWNlTc8F1Tiv8u',NULL,'2026-03-19 11:09:35','2026-03-19 11:09:35',NULL),
+(13,'Maria Oropeza','maria@sm.com',NULL,3,'$2y$12$Kiku5sey8eJljB07NAyXiuHGZ27pn1SRrm644SjSTmPL1dAuH.4L.',NULL,'2026-03-19 12:26:57','2026-03-19 12:26:57',NULL),
+(14,'Luis Zerpa','luisz@sm.com',NULL,2,'$2y$12$jd8CdHgY33NvHxkTl6VE6.dzQ235P2HQeK34IyH3uog0OVZIsB1km',NULL,'2026-03-17 23:43:14','2026-03-17 23:43:14',NULL),
+(16,'Rafa Pedromo','rafa@sm.com',NULL,3,'$2y$12$wndBId.ep9pEpD2YKDq3c.rP5iep2Fq.cmEDWtp72N9kjq7a3lSFK',NULL,'2026-03-19 12:34:11','2026-03-19 12:34:11',NULL),
+(17,'Jose Luis','jose@control.com',NULL,8,'$2y$12$QN5XiICt82oNRPmztbrkIOVCnqU3ta/15w3VmnNEsjuLShDfs3AM.',NULL,'2026-03-17 23:43:14','2026-03-24 02:21:45',NULL),
+(18,'Prueba user','user@control.com',NULL,8,'$2y$12$FqvaCbj.dLxG4jajFMHAueXGpsbr/.T3Q4GRCMW2H2RKj6DFEmLvi',NULL,'2026-03-17 23:43:14','2026-03-24 17:06:30',NULL),
+(19,'Yonnel Licon','yonnel@sm.com',NULL,3,'$2y$12$EkghVsJx6UVHZm1u/lq8Tu4tXLfHmXKhlk1qG0nbvlPfwdBx3rGbm',NULL,'2026-03-25 16:37:01','2026-03-25 16:37:01',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -1320,4 +1432,4 @@ commit;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*M!100616 SET NOTE_VERBOSITY=@OLD_NOTE_VERBOSITY */;
 
--- Dump completed on 2026-03-23 20:19:56
+-- Dump completed on 2026-03-25 11:43:32

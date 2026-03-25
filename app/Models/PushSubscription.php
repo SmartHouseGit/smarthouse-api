@@ -13,6 +13,7 @@ class PushSubscription extends Model
     public $timestamps = true;
 
     protected $fillable = [
+        'user_id',
         'device_id',
         'endpoint',
         'p256dh',

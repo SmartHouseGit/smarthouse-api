@@ -20,6 +20,23 @@ class PushDeliveryService
         return $this->sendToSubscriptions($subscriptions, $payload);
     }
 
+    public function sendToUserId(int $userId, array $payload): array
+    {
+        if ($userId <= 0) {
+            return [
+                'sent_to' => 0,
+                'success' => 0,
+                'failed' => 0,
+            ];
+        }
+
+        $subscriptions = PushSubscription::query()
+            ->where('user_id', $userId)
+            ->get(['endpoint', 'p256dh', 'auth']);
+
+        return $this->sendToSubscriptions($subscriptions, $payload);
+    }
+
     public function sendToAll(array $payload): array
     {
         $subscriptions = PushSubscription::query()->get(['endpoint', 'p256dh', 'auth']);
