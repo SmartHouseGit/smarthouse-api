@@ -135,6 +135,7 @@ class PropiedadController extends Controller
                 'Tagline' => $propiedad->getAttribute('tagline'),
                 'Ciudad_Estado' => $propiedad->getAttribute('ciudad_estado'),
                 'Zona' => $propiedad->getAttribute('zona'),
+                'zona' => $propiedad->getAttribute('zona'),
                 'Tipo_Inmueble' => $propiedad->getAttribute('tipo_inmueble'),
                 'Precio' => (float) $propiedad->getAttribute('precio'),
                 'Estado_Interno' => $propiedad->getAttribute('estado_interno'),

@@ -401,6 +401,7 @@ Campos principales:
 - `nombre`
 - `tagline`
 - `ciudad_estado`
+- `zona`
 - `tipo_inmueble`
 - `precio`
 - `estado_interno`
@@ -421,6 +422,7 @@ curl -X POST "http://127.0.0.1:8000/setPropiedades" \
   -F "nombre=Casa Los Naranjos" \
   -F "tagline=Casa familiar en zona exclusiva" \
   -F "ciudad_estado=Caracas, Distrito Capital" \
+  -F "zona=Los Naranjos" \
   -F "tipo_inmueble=Casa" \
   -F "precio=185000" \
   -F "estado_interno=disponible" \
@@ -455,6 +457,7 @@ Filtros soportados (query params):
 - `nombre`
 - `tagline`
 - `ciudad_estado`
+- `zona`
 - `tipo_inmueble`
 - `estado_interno`
 - `estado_publico`
@@ -480,7 +483,7 @@ Filtros soportados (query params):
 ### Ejemplo request
 
 ```bash
-curl -X GET "http://127.0.0.1:8000/obtPropiedades?ciudad_estado=Valencia&tipo_inmueble=Apartamento&id_agente=1&tagline=retorno&precio_min=100000&precio_max=180000&dormitorios=3&con_piscina=true&cantidad=20"
+curl -X GET "http://127.0.0.1:8000/obtPropiedades?ciudad_estado=Valencia&zona=Centro&tipo_inmueble=Apartamento&id_agente=1&tagline=retorno&precio_min=100000&precio_max=180000&dormitorios=3&con_piscina=true&cantidad=20"
 ```
 
 ### Ejemplo response
@@ -494,6 +497,7 @@ curl -X GET "http://127.0.0.1:8000/obtPropiedades?ciudad_estado=Valencia&tipo_in
       "Nombre": "Residencias El Bosque",
       "Tagline": "Ubicacion premium y excelente retorno",
       "Ciudad_Estado": "Valencia, Carabobo",
+      "Zona": "Zona Referencial",
       "Tipo_Inmueble": "Apartamento",
       "Precio": 125000,
       "Estado_Interno": "disponible",
