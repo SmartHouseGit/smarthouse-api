@@ -145,59 +145,17 @@ LOCK TABLES `cache` WRITE;
 /*!40000 ALTER TABLE `cache` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `cache` VALUES
-('laravel-cache-illuminate:queue:restart','i:1774315216;',2089675216),
-('laravel-cache-login|admin@a.a|104.23.245.6','i:1;',1774456516),
-('laravel-cache-login|admin@a.a|104.23.245.6:timer','i:1774456516;',1774456516),
-('laravel-cache-login|admin@a.a|172.68.7.154','i:1;',1774440115),
-('laravel-cache-login|admin@a.a|172.68.7.154:timer','i:1774440115;',1774440115),
-('laravel-cache-login|admin|172.64.222.53','i:3;',1774317250),
-('laravel-cache-login|admin|172.64.222.53:timer','i:1774317250;',1774317250),
-('laravel-cache-login|admin|172.70.111.163','i:1;',1774315437),
-('laravel-cache-login|admin|172.70.111.163:timer','i:1774315437;',1774315437),
-('laravel-cache-login|admin|172.70.111.164','i:1;',1774315427),
-('laravel-cache-login|admin|172.70.111.164:timer','i:1774315427;',1774315427),
-('laravel-cache-login|jose@control.com|172.68.12.50','i:5;',1774315358),
-('laravel-cache-login|jose@control.com|172.68.12.50:timer','i:1774315358;',1774315358),
-('laravel-cache-login|jose@control.com|172.68.12.51','i:1;',1774315422),
-('laravel-cache-login|jose@control.com|172.68.12.51:timer','i:1774315422;',1774315422),
-('laravel-cache-login|jose@control.com|172.70.111.164','i:2;',1774315448),
-('laravel-cache-login|jose@control.com|172.70.111.164:timer','i:1774315448;',1774315448),
-('laravel-cache-login|owner@a.com|172.70.83.153','i:1;',1774440068),
-('laravel-cache-login|owner@a.com|172.70.83.153:timer','i:1774440068;',1774440068),
-('laravel-cache-login|owner@sm.com|108.162.212.123','i:1;',1774440075),
-('laravel-cache-login|owner@sm.com|108.162.212.123:timer','i:1774440075;',1774440075),
-('laravel-cache-login|owner@sm.com|172.70.55.196','i:1;',1774440051),
-('laravel-cache-login|owner@sm.com|172.70.55.196:timer','i:1774440051;',1774440051),
-('laravel-cache-login|owner@smarthouse.local|162.158.62.206','i:1;',1774398978),
-('laravel-cache-login|owner@smarthouse.local|162.158.62.206:timer','i:1774398978;',1774398978),
-('laravel-cache-login|owner@smarthouse.local|172.70.111.163','i:1;',1774398978),
-('laravel-cache-login|owner@smarthouse.local|172.70.111.163:timer','i:1774398978;',1774398978),
-('laravel-cache-login|raulsm@a.a|172.68.7.135','i:1;',1774410619),
-('laravel-cache-login|raulsm@a.a|172.68.7.135:timer','i:1774410619;',1774410619),
-('laravel-cache-login|user@control.com|104.23.248.25','i:1;',1774365657),
-('laravel-cache-login|user@control.com|104.23.248.25:timer','i:1774365657;',1774365657),
-('laravel-cache-login|user@control.com|172.68.12.50','i:1;',1774456900),
-('laravel-cache-login|user@control.com|172.68.12.50:timer','i:1774456900;',1774456900),
-('laravel-cache-login|yon@a.a|172.68.12.50','i:2;',1774410647),
-('laravel-cache-login|yon@a.a|172.68.12.50:timer','i:1774410647;',1774410647),
-('laravel-cache-login|yon@a.a|172.68.7.134','i:1;',1774410649),
-('laravel-cache-login|yon@a.a|172.68.7.134:timer','i:1774410649;',1774410649),
-('laravel-cache-login|yon@a.a|172.68.7.135','i:1;',1774410661),
-('laravel-cache-login|yon@a.a|172.68.7.135:timer','i:1774410661;',1774410661),
-('laravel-cache-login|yon@a.a|172.70.255.67','i:2;',1774410659),
-('laravel-cache-login|yon@a.a|172.70.255.67:timer','i:1774410659;',1774410659),
-('laravel-cache-login|yon@a.a|172.70.255.68','i:1;',1774410601),
-('laravel-cache-login|yon@a.a|172.70.255.68:timer','i:1774410601;',1774410601),
-('laravel-cache-login|yon@a.a|172.70.55.195','i:1;',1774410594),
-('laravel-cache-login|yon@a.a|172.70.55.195:timer','i:1774410594;',1774410594),
-('laravel-cache-login|yon@a.a|172.70.83.153','i:1;',1774410651),
-('laravel-cache-login|yon@a.a|172.70.83.153:timer','i:1774410651;',1774410651),
-('laravel-cache-login|yon@sm.com|104.23.248.25','i:1;',1774443921),
-('laravel-cache-login|yon@sm.com|104.23.248.25:timer','i:1774443921;',1774443921),
-('laravel-cache-login|yon@sm.com|172.68.12.51','i:1;',1774440142),
-('laravel-cache-login|yon@sm.com|172.68.12.51:timer','i:1774440142;',1774440142),
-('laravel-cache-login|yonsm@a.a|104.23.248.25','i:1;',1774410610),
-('laravel-cache-login|yonsm@a.a|104.23.248.25:timer','i:1774410610;',1774410610);
+('laravel-cache-illuminate:queue:restart','i:1774457038;',2089817038),
+('laravel-cache-login|admin@sm.com|104.22.1.32','i:1;',1774474862),
+('laravel-cache-login|admin@sm.com|104.22.1.32:timer','i:1774474862;',1774474862),
+('laravel-cache-login|admin@sm.com|104.22.24.234','i:1;',1774482476),
+('laravel-cache-login|admin@sm.com|104.22.24.234:timer','i:1774482476;',1774482476),
+('laravel-cache-login|admin@sm.com|172.71.31.11','i:1;',1774474867),
+('laravel-cache-login|admin@sm.com|172.71.31.11:timer','i:1774474867;',1774474867),
+('laravel-cache-login|raul@sm.com|108.162.238.115','i:1;',1774474910),
+('laravel-cache-login|raul@sm.com|108.162.238.115:timer','i:1774474910;',1774474910),
+('laravel-cache-login|yonnel@sm.com|104.22.1.32','i:1;',1774590486),
+('laravel-cache-login|yonnel@sm.com|104.22.1.32:timer','i:1774590486;',1774590486);
 /*!40000 ALTER TABLE `cache` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -259,7 +217,7 @@ CREATE TABLE `cierres` (
   KEY `idx_cierres_cliente` (`id_cliente`),
   CONSTRAINT `fk_cierres_agentes_ref` FOREIGN KEY (`ref`) REFERENCES `agentes` (`id_agente`) ON UPDATE CASCADE,
   CONSTRAINT `fk_cierres_clientes` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -272,7 +230,8 @@ set autocommit=0;
 INSERT INTO `cierres` VALUES
 (1,6,'2026-03-19','Venta','Inicial',NULL,'Holas',2000.00,20000.00,4,'Maracay','[\"cierres\\/lvOEqbMHGSNFypdjlIGpafOcPKMEj4ecXuHBTA0C.pdf\"]','sjdsad'),
 (2,12,'2026-03-19','Alquiler','Inicial',NULL,'prueba cierre',15000.00,20000.00,11,'Maracay',NULL,'prueba'),
-(3,11,'2026-03-19','asesoria','Inicial',NULL,'prueba 2',15680.00,170000.00,7,'Caracas',NULL,'prueba');
+(3,11,'2026-03-19','asesoria','Inicial',NULL,'prueba 2',15680.00,170000.00,7,'Caracas',NULL,'prueba'),
+(4,19,'2026-03-26','Venta','terminado',NULL,'Cierre cerrado',20000.00,20000.00,14,'Cagua',NULL,'holas');
 /*!40000 ALTER TABLE `cierres` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -338,7 +297,7 @@ CREATE TABLE `clientes` (
   KEY `idx_clientes_correo` (`correo`),
   KEY `idx_clientes_agente_res` (`agente_res`),
   CONSTRAINT `fk_clientes_agentes_userLink` FOREIGN KEY (`agente_res`) REFERENCES `agentes` (`userLink`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -358,7 +317,9 @@ INSERT INTO `clientes` VALUES
 (7,'clientes/B9fXXHDejS0vETbZMLIEF8D2eRBycNVldyQT5unk.jpg','clientes/Ci9UHZCqDhRVbG0OZO32SDxyXQBuxQ7aaVTNIIhF.jpg','Corp 1','perfilde prueba corp','Corporativo','Activo','+575132454474','corp1@sm.com','bogota','bogota','457598158415','prueba corp 1',11),
 (11,'clientes/LNrXGTaa2psJWJX5z14vvrCpleulHawrCipkw3sc.jpg','clientes/QdSSEsAUI6ermDCvmJEzoev0cV755VUm9tKEnpJ8.jpg','CLiente 6','prueba','Comprador','Activo','654984864646','cliente6@sm.com','sffefwe','Valencia','4816498','sin nota',12),
 (12,'clientes/TIgvn3MQNJqVQ4jxL7jbiZrnJ00ULXpCduFiOu38.png','clientes/kf3hWKsiP00lQUga9X7UDsYPiozupxhePwUxjePN.png','Ranso','Comprador premium','Comprador','Nuevo','041223823993','rank@1.com','Altamira','Caracas','373782829','Comprador',6),
-(13,'clientes/aTYwqiAiUU1Ogh8HSeRezqDx7vi8QaQgwRr0tdR5.jpg','clientes/5yoGk14RQtbjyb2dk6yMUaeqRVXxy13UwvuSchnZ.png','Reis','Comprador inversionista','Corporativo','Nuevo','0412482948','yonn@a.com','Su casa','Villa de cura','38213812','Casita',6);
+(13,'clientes/aTYwqiAiUU1Ogh8HSeRezqDx7vi8QaQgwRr0tdR5.jpg','clientes/5yoGk14RQtbjyb2dk6yMUaeqRVXxy13UwvuSchnZ.png','Reis','Comprador inversionista','Corporativo','Nuevo','0412482948','yonn@a.com','Su casa','Villa de cura','38213812','Casita',6),
+(14,'clientes/xflgCO0glNu2X6M0asBAcTSdGOyQM2xVbReFERD0.jpg','clientes/E09RWz3IzkT1JNluxCqt8g9Eb4ifzHWRB338CPrG.png','dasdsa','hdsdhsdh','Comprador','Nuevo','312312312','sdjasd@gmail.com','sjsj','Maracay','2312312','jsadjkasdksajdasdj',19),
+(15,'clientes/5kj4alP1wyesbLKzvYn8HZ9f0HWiBV5rBvjuqVd7.png','clientes/pv7uVVMaqMJw5ri7IS1UkRa8QHq4seayqiqS4z8l.png','hsdh','jkjkk','Corporativo','Nuevo','0123213123','hasdjasd@a.com','ksdjkasd','Maracay','2831287','lkl',19);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -390,7 +351,7 @@ LOCK TABLES `configs` WRITE;
 /*!40000 ALTER TABLE `configs` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `configs` VALUES
-(1,'Tu hogar ideal en un solo lugar','config/YSoo4OTV7uxaaMnL1WZjO1RuTZT4tEfPEweOCua6.jpg','[{\"titulo\":\"Holas a todos\",\"valor\":\"Hello mundo\"}]','[{\"titulo\":\"Casa espectacular\",\"valor\":\"1200\"}]','[\"config\\/AIJwYWurkE24d9uBfIQhbhT7Bn2CpVsW3SiUPBZR.jpg\"]','[{\"nombre\":\"Se\\u00f1or Jos\\u00e9\",\"subtitulo\":\"Lider\",\"comentario\":\"Casa espectacular, trato incre\\u00edble\"}]');
+(1,'Tu hogar ideal, sin complicaciones','config/LVLSL4E1AQz9yudpv8cvWTuwOyrCudCbWpqwPp56.png','[{\"titulo\":\"Holas a todos\",\"valor\":\"Hello mundo\"}]','[{\"titulo\":\"Casa preciosa en Cagua\",\"valor\":\"5\"},{\"titulo\":\"Residencias en casa\",\"valor\":\"1\"},{\"titulo\":\"Mejor\",\"valor\":\"3\"}]','[\"config\\/AIJwYWurkE24d9uBfIQhbhT7Bn2CpVsW3SiUPBZR.jpg\"]','[{\"nombre\":\"Se\\u00f1or Jos\\u00e9\",\"subtitulo\":\"Lider\",\"comentario\":\"Casa espectacular, trato incre\\u00edble\"}]');
 /*!40000 ALTER TABLE `configs` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -409,7 +370,7 @@ CREATE TABLE `contactos` (
   `email` varchar(150) NOT NULL,
   `objetivo` varchar(255) NOT NULL,
   `mensaje` text NOT NULL,
-  `ref` int(11) NOT NULL,
+  `ref` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_contactos_email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -551,7 +512,7 @@ CREATE TABLE `loan_cuts` (
   KEY `idx_loan_cuts_status` (`status`),
   KEY `idx_loan_cuts_due_date` (`due_date`),
   CONSTRAINT `fk_loan_cuts_loans` FOREIGN KEY (`loan_id`) REFERENCES `loans` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=163 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -562,39 +523,6 @@ LOCK TABLES `loan_cuts` WRITE;
 /*!40000 ALTER TABLE `loan_cuts` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `loan_cuts` VALUES
-(18,5,1,'2026-03-18','2026-03-21',350.00,0.00,350.00,'pending',NULL,NULL,NULL,'2026-03-22 01:32:51','2026-03-22 01:52:25'),
-(19,5,2,'2026-05-21','2026-03-22',350.00,0.00,350.00,'pending',NULL,NULL,NULL,'2026-03-22 01:32:51','2026-03-22 01:56:03'),
-(20,5,3,'2026-06-21','2026-03-23',350.00,0.00,350.00,'pending',NULL,NULL,NULL,'2026-03-22 01:32:51','2026-03-22 01:56:13'),
-(21,5,4,'2026-07-21','2026-03-24',350.00,0.00,350.00,'pending',NULL,NULL,NULL,'2026-03-22 01:32:51','2026-03-22 01:56:24'),
-(22,5,5,'2026-08-21','2026-03-25',10350.00,0.00,10350.00,'paid',NULL,'loans/proofs/BvEdf3DzwJXavfC3bQgy8IO8kCZcAFxIFgGgivBL.jpg','2026-03-21 22:10:53','2026-03-22 01:32:51','2026-03-21 22:10:53'),
-(23,6,1,'2026-04-23','2026-04-23',5390.00,0.00,5390.00,'paid','Cancelo en efectivo en mi oficina','loans/proofs/Rc7ogdoUkYVl4f5Gkqgei9UaQFjxuZqUYvHuNdVQ.jpg','2026-03-23 12:11:11','2026-03-23 12:08:17','2026-03-23 12:11:11'),
-(24,6,2,'2026-05-23','2026-05-23',5390.00,0.00,5390.00,'paid',NULL,'loans/proofs/jjDvg0I6BXWA2rTc545kPuYc6agAOUjyqXlO9wte.png','2026-03-23 21:01:10','2026-03-23 12:08:17','2026-03-23 21:01:10'),
-(25,6,3,'2026-06-23','2026-06-23',5390.00,0.00,5390.00,'pending',NULL,NULL,NULL,'2026-03-23 12:08:17','2026-03-23 12:08:17'),
-(26,6,4,'2026-07-23','2026-07-23',5390.00,0.00,5390.00,'pending',NULL,NULL,NULL,'2026-03-23 12:08:17','2026-03-23 12:08:17'),
-(27,6,5,'2026-08-23','2026-08-23',82390.00,0.00,82390.00,'pending',NULL,NULL,NULL,'2026-03-23 12:08:17','2026-03-23 12:08:17'),
-(28,7,1,'2026-05-01','2026-05-01',500.00,0.00,500.00,'pending',NULL,NULL,NULL,'2026-03-23 16:24:44','2026-03-23 16:24:44'),
-(29,7,2,'2026-06-01','2026-06-01',500.00,0.00,500.00,'pending',NULL,NULL,NULL,'2026-03-23 16:24:44','2026-03-23 16:24:44'),
-(30,7,3,'2026-07-01','2026-07-01',500.00,0.00,500.00,'pending',NULL,NULL,NULL,'2026-03-23 16:24:44','2026-03-23 16:24:44'),
-(31,7,4,'2026-08-01','2026-08-01',500.00,0.00,500.00,'pending',NULL,NULL,NULL,'2026-03-23 16:24:44','2026-03-23 16:24:44'),
-(32,7,5,'2026-09-01','2026-09-01',500.00,0.00,500.00,'pending',NULL,NULL,NULL,'2026-03-23 16:24:44','2026-03-23 16:24:44'),
-(33,7,6,'2026-10-01','2026-10-01',500.00,0.00,500.00,'pending',NULL,NULL,NULL,'2026-03-23 16:24:44','2026-03-23 16:24:44'),
-(34,7,7,'2026-11-01','2026-11-01',500.00,0.00,500.00,'pending',NULL,NULL,NULL,'2026-03-23 16:24:44','2026-03-23 16:24:44'),
-(35,7,8,'2026-12-01','2026-12-01',500.00,0.00,500.00,'pending',NULL,NULL,NULL,'2026-03-23 16:24:44','2026-03-23 16:24:44'),
-(36,7,9,'2027-01-01','2027-01-01',10500.00,0.00,10500.00,'pending',NULL,NULL,NULL,'2026-03-23 16:24:44','2026-03-23 16:24:44'),
-(37,8,1,'2026-04-23','2026-04-23',100.00,0.00,100.00,'pending',NULL,NULL,NULL,'2026-03-23 20:13:11','2026-03-23 20:13:11'),
-(38,8,2,'2026-05-23','2026-05-23',100.00,0.00,100.00,'pending',NULL,NULL,NULL,'2026-03-23 20:13:11','2026-03-23 20:13:11'),
-(39,8,3,'2026-06-23','2026-06-23',100.00,0.00,100.00,'pending',NULL,NULL,NULL,'2026-03-23 20:13:11','2026-03-23 20:13:11'),
-(40,8,4,'2026-07-23','2026-07-23',100.00,0.00,100.00,'pending',NULL,NULL,NULL,'2026-03-23 20:13:11','2026-03-23 20:13:11'),
-(41,8,5,'2026-08-23','2026-08-23',1100.00,0.00,1100.00,'pending',NULL,NULL,NULL,'2026-03-23 20:13:11','2026-03-23 20:13:11'),
-(42,9,1,'2026-04-23','2026-04-23',500.00,0.00,500.00,'pending',NULL,NULL,NULL,'2026-03-23 20:13:25','2026-03-23 20:13:25'),
-(43,9,2,'2026-05-23','2026-05-23',500.00,0.00,500.00,'pending',NULL,NULL,NULL,'2026-03-23 20:13:25','2026-03-23 20:13:25'),
-(44,9,3,'2026-06-23','2026-06-23',5500.00,0.00,5500.00,'pending',NULL,NULL,NULL,'2026-03-23 20:13:25','2026-03-23 20:13:25'),
-(45,10,1,'2026-04-23','2026-04-23',20.00,0.00,20.00,'pending',NULL,NULL,NULL,'2026-03-23 20:17:54','2026-03-23 20:17:54'),
-(46,10,2,'2026-05-23','2026-05-23',20.00,0.00,20.00,'pending',NULL,NULL,NULL,'2026-03-23 20:17:54','2026-03-23 20:17:54'),
-(47,10,3,'2026-06-23','2026-06-23',1020.00,0.00,1020.00,'pending',NULL,NULL,NULL,'2026-03-23 20:17:54','2026-03-23 20:17:54'),
-(48,11,1,'2026-04-23','2026-04-23',1000.00,0.00,1000.00,'paid',NULL,'loans/proofs/Kr0bOYjngE9RbhNQk8YMITkckS0fPnwsFMbGnI84.png','2026-03-23 21:01:43','2026-03-23 21:01:32','2026-03-23 21:01:43'),
-(49,11,2,'2026-05-23','2026-05-23',1000.00,0.00,1000.00,'paid',NULL,'loans/proofs/oifA71iJJ1SpfBp1PD3EKpiT8pPrcO2hiDKDRU1G.png','2026-03-23 21:01:48','2026-03-23 21:01:32','2026-03-23 21:01:48'),
-(50,11,3,'2026-06-23','2026-06-23',11000.00,0.00,11000.00,'paid',NULL,'loans/proofs/2QgPsP3kfdH4jld2jJjZAPc8cLzxOL2KQaoTTvoZ.png','2026-03-23 21:01:52','2026-03-23 21:01:32','2026-03-23 21:01:52'),
 (89,23,1,'2026-04-03','2026-04-03',1000.00,0.00,1000.00,'pending',NULL,NULL,NULL,'2026-03-24 02:32:52','2026-03-24 02:32:52'),
 (90,23,2,'2026-05-03','2026-05-03',51000.00,0.00,51000.00,'pending',NULL,NULL,NULL,'2026-03-24 02:32:52','2026-03-24 02:32:52'),
 (91,24,1,'2026-02-01','2026-02-01',500.00,0.00,500.00,'paid','Pago móvil','loans/proofs/ZmTJBoS42RORpGRifaPtL1B0AkQCk8t4lH8aoEoG.png','2026-03-24 02:38:46','2026-03-24 02:36:59','2026-03-24 02:38:46'),
@@ -668,7 +596,13 @@ INSERT INTO `loan_cuts` VALUES
 (159,28,9,'2027-01-01','2027-01-01',60.00,0.00,60.00,'pending',NULL,NULL,NULL,'2026-03-24 21:36:21','2026-03-24 21:36:21'),
 (160,28,10,'2027-02-01','2027-02-01',60.00,0.00,60.00,'pending',NULL,NULL,NULL,'2026-03-24 21:36:21','2026-03-24 21:36:21'),
 (161,28,11,'2027-03-01','2027-03-01',60.00,0.00,60.00,'pending',NULL,NULL,NULL,'2026-03-24 21:36:21','2026-03-24 21:36:21'),
-(162,28,12,'2027-04-01','2027-04-01',6060.00,0.00,6060.00,'pending',NULL,NULL,NULL,'2026-03-24 21:36:21','2026-03-24 21:36:21');
+(162,28,12,'2027-04-01','2027-04-01',6060.00,0.00,6060.00,'pending',NULL,NULL,NULL,'2026-03-24 21:36:21','2026-03-24 21:36:21'),
+(163,29,1,'2026-03-25','2026-03-25',1200.00,0.00,1200.00,'pending',NULL,NULL,NULL,'2026-03-25 21:31:22','2026-03-25 17:33:46'),
+(164,29,2,'2026-05-25','2026-05-25',1200.00,0.00,1200.00,'pending',NULL,NULL,NULL,'2026-03-25 21:31:22','2026-03-25 21:31:22'),
+(165,29,3,'2026-06-25','2026-06-25',13200.00,0.00,13200.00,'pending',NULL,NULL,NULL,'2026-03-25 21:31:22','2026-03-25 21:31:22'),
+(166,30,1,'2026-03-25','2026-03-25',200.00,0.00,200.00,'pending',NULL,NULL,NULL,'2026-03-25 21:34:04','2026-03-25 17:34:49'),
+(167,30,2,'2026-05-25','2026-05-25',200.00,0.00,200.00,'pending',NULL,NULL,NULL,'2026-03-25 21:34:04','2026-03-25 21:34:04'),
+(168,30,3,'2026-06-25','2026-06-25',2200.00,0.00,2200.00,'pending',NULL,NULL,NULL,'2026-03-25 21:34:04','2026-03-25 21:34:04');
 /*!40000 ALTER TABLE `loan_cuts` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -707,7 +641,7 @@ CREATE TABLE `loans` (
   KEY `idx_loans_owner` (`id_owner`),
   CONSTRAINT `fk_loans_users_created_by` FOREIGN KEY (`created_by_user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_loans_users_owner` FOREIGN KEY (`id_owner`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -718,19 +652,14 @@ LOCK TABLES `loans` WRITE;
 /*!40000 ALTER TABLE `loans` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `loans` VALUES
-(5,'Prueba','12345678',10000.00,'mensual',5,3.5000,350.00,10350.00,1750.00,11750.00,'2026-03-21','2026-08-21','active',NULL,NULL,'2026-03-22 01:32:51','2026-03-22 01:32:51'),
-(6,'Yeiber','11922250',77000.00,'mensual',5,7.0000,5390.00,82390.00,26950.00,103950.00,'2026-03-23','2026-08-23','active',NULL,NULL,'2026-03-23 12:08:17','2026-03-23 12:08:17'),
-(7,'Raul','11922250',10000.00,'mensual',9,5.0000,500.00,10500.00,4500.00,14500.00,'2026-04-01','2027-01-01','active',NULL,NULL,'2026-03-23 16:24:44','2026-03-23 20:19:19'),
-(8,'prueba scroll','123456789',1000.00,'mensual',5,10.0000,100.00,1100.00,500.00,1500.00,'2026-03-23','2026-08-23','active',NULL,NULL,'2026-03-23 20:13:11','2026-03-23 20:13:11'),
-(9,'prueba scroll 2','1234567489',5000.00,'mensual',3,10.0000,500.00,5500.00,1500.00,6500.00,'2026-03-23','2026-06-23','active',NULL,NULL,'2026-03-23 20:13:25','2026-03-23 20:13:25'),
-(10,'prueba 3','123456',1000.00,'mensual',3,2.0000,20.00,1020.00,60.00,1060.00,'2026-03-23','2026-06-23','active',NULL,NULL,'2026-03-23 20:17:54','2026-03-23 20:17:54'),
-(11,'kkjhkhkhkj','kjhkkjhkhk',10000.00,'mensual',3,10.0000,1000.00,11000.00,3000.00,13000.00,'2026-03-23','2026-06-23','completed',NULL,NULL,'2026-03-23 21:01:32','2026-03-23 21:01:52'),
 (23,'Gaby Kalach','15609471',50000.00,'mensual',2,2.0000,1000.00,51000.00,2000.00,52000.00,'2026-03-03','2026-05-03','active',17,17,'2026-03-24 02:32:52','2026-03-24 02:32:52'),
 (24,'Adrián Proautos','11922250',10000.00,'mensual',12,5.0000,500.00,10500.00,6000.00,16000.00,'2026-01-01','2027-01-01','active',17,17,'2026-03-24 02:36:59','2026-03-24 02:36:59'),
 (25,'Juan Carlos','13345777',1500.00,'mensual',36,1.0000,15.00,1515.00,540.00,2040.00,'2025-01-07','2028-01-07','active',17,17,'2026-03-24 03:18:11','2026-03-24 03:18:11'),
 (26,'Jeiver Victora','25662184',80000.00,'mensual',9,7.0000,5600.00,85600.00,50400.00,130400.00,'2026-03-07','2026-12-07','active',17,17,'2026-03-24 10:32:40','2026-03-24 10:32:40'),
 (27,'Carlos Gaviria','19531106',30000.00,'mensual',3,10.0000,3000.00,33000.00,9000.00,39000.00,'2026-03-07','2026-06-07','active',17,17,'2026-03-24 10:36:08','2026-03-24 19:56:10'),
-(28,'Freddy Arguello','18230702',6000.00,'mensual',12,1.0000,60.00,6060.00,720.00,6720.00,'2026-04-01','2027-04-01','active',17,17,'2026-03-24 21:36:21','2026-03-24 21:36:21');
+(28,'Freddy Arguello','18230702',6000.00,'mensual',12,1.0000,60.00,6060.00,720.00,6720.00,'2026-04-01','2027-04-01','active',17,17,'2026-03-24 21:36:21','2026-03-24 21:36:21'),
+(29,'prueba','15245411',12000.00,'mensual',3,10.0000,1200.00,13200.00,3600.00,15600.00,'2026-03-25','2026-06-25','active',20,20,'2026-03-25 21:31:22','2026-03-25 21:31:22'),
+(30,'Muffin','42542542',2000.00,'mensual',3,10.0000,200.00,2200.00,600.00,2600.00,'2026-03-25','2026-06-25','active',NULL,NULL,'2026-03-25 21:34:04','2026-03-25 21:34:04');
 /*!40000 ALTER TABLE `loans` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -755,7 +684,7 @@ CREATE TABLE `mensajes` (
   KEY `idx_mensajes_sender` (`sender`),
   KEY `idx_mensajes_prioridad` (`prioridad`),
   CONSTRAINT `fk_mensajes_users_sender` FOREIGN KEY (`sender`) REFERENCES `users` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -765,6 +694,10 @@ CREATE TABLE `mensajes` (
 LOCK TABLES `mensajes` WRITE;
 /*!40000 ALTER TABLE `mensajes` DISABLE KEYS */;
 set autocommit=0;
+INSERT INTO `mensajes` VALUES
+(1,4,0,'[8]','alta','charla','debemos charlar','2026-03-25 21:57:05'),
+(2,4,0,'[5,6,7,8,9,19]','media','Hola','Holaa','2026-03-26 01:15:41'),
+(3,4,0,'[6]','media','Hola','Prueba 2','2026-03-26 01:40:33');
 /*!40000 ALTER TABLE `mensajes` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -848,7 +781,7 @@ CREATE TABLE `personal_access_tokens` (
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`),
   KEY `personal_access_tokens_expires_at_index` (`expires_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -899,10 +832,10 @@ INSERT INTO `personal_access_tokens` VALUES
 (38,'App\\Models\\User',17,'frontend','360b615819cd5f4ab7ccba89bff6ff19e4dfb425969a0f3429746ea95a937100','[\"*\"]','2026-03-24 01:26:28',NULL,'2026-03-24 01:24:58','2026-03-24 01:26:28'),
 (39,'App\\Models\\User',18,'frontend','37dadb7ad309846cc95688967cf439a72a297edfe857ffa189cdf60a5f320440','[\"*\"]','2026-03-24 01:28:30',NULL,'2026-03-24 01:26:28','2026-03-24 01:28:30'),
 (40,'App\\Models\\User',17,'frontend','2b771121f9d3ca62645a6705c2f0302586d26f6177e235fc864ba377afc8d120','[\"*\"]','2026-03-24 01:39:41',NULL,'2026-03-24 01:26:53','2026-03-24 01:39:41'),
-(41,'App\\Models\\User',18,'frontend','64676c0f2bc6508c9e50abc86ee23830163f66e87df7a89e017c17dc8b2b9328','[\"*\"]','2026-03-24 01:32:39',NULL,'2026-03-24 01:28:47','2026-03-24 01:32:39'),
+(41,'App\\Models\\User',18,'frontend','64676c0f2bc6508c9e50abc86ee23830163f66e87df7a89e017c17dc8b2b9328','[\"*\"]','2026-03-25 20:47:14',NULL,'2026-03-24 01:28:47','2026-03-25 20:47:14'),
 (42,'App\\Models\\User',18,'frontend','528842d3059f90606d856998b5f286c65ca49665ff4f8bba5e856deb5b3f2cbf','[\"*\"]','2026-03-24 01:41:02',NULL,'2026-03-24 01:39:56','2026-03-24 01:41:02'),
-(43,'App\\Models\\User',18,'frontend','3f8c52196d7698c331ca9736ec31cbe06fd0f9cee2330bc06c64a04b75187aa7','[\"*\"]','2026-03-24 01:41:11',NULL,'2026-03-24 01:41:10','2026-03-24 01:41:11'),
-(44,'App\\Models\\User',17,'frontend','40e4146bc24dc027410d8d9efc7468e8c555786b0d4ab5b70b7a2ec1ce99bec3','[\"*\"]','2026-03-25 17:54:53',NULL,'2026-03-24 01:54:24','2026-03-25 17:54:53'),
+(43,'App\\Models\\User',18,'frontend','3f8c52196d7698c331ca9736ec31cbe06fd0f9cee2330bc06c64a04b75187aa7','[\"*\"]','2026-03-25 21:09:17',NULL,'2026-03-24 01:41:10','2026-03-25 21:09:17'),
+(44,'App\\Models\\User',17,'frontend','40e4146bc24dc027410d8d9efc7468e8c555786b0d4ab5b70b7a2ec1ce99bec3','[\"*\"]','2026-03-27 02:52:13',NULL,'2026-03-24 01:54:24','2026-03-27 02:52:13'),
 (45,'App\\Models\\User',18,'frontend','ab341ea52ac394af25d8e0b265a4f902b05b9cdbf03b6053ebfd509f24d6caaf','[\"*\"]','2026-03-25 20:40:11',NULL,'2026-03-24 14:29:56','2026-03-25 20:40:11'),
 (46,'App\\Models\\User',18,'frontend','75876de5881f456e4a4bbe49e8b13dba0c781b449d1635d4a44835f42081080d','[\"*\"]','2026-03-24 15:15:12',NULL,'2026-03-24 15:15:12','2026-03-24 15:15:12'),
 (47,'App\\Models\\User',18,'frontend','91dbbb09c1b33ab147a633265a3c087e31df98d59789f15c145632ad129d3395','[\"*\"]','2026-03-24 17:06:39',NULL,'2026-03-24 15:20:18','2026-03-24 17:06:39'),
@@ -942,7 +875,56 @@ INSERT INTO `personal_access_tokens` VALUES
 (81,'App\\Models\\User',19,'frontend','7a8559e7d6bf8273e9a6178602e7c46b1c31cbf5388d63ce7eef8fba9b92f62c','[\"*\"]','2026-03-25 20:03:48',NULL,'2026-03-25 20:03:18','2026-03-25 20:03:48'),
 (82,'App\\Models\\User',19,'frontend','085d745819de51401fbe5801f3831edd31e6b4f821470a76183e2b1cbfed4274','[\"*\"]','2026-03-25 20:33:38',NULL,'2026-03-25 20:04:35','2026-03-25 20:33:38'),
 (83,'App\\Models\\User',19,'frontend','45480576ac5b90fe51abe3bfecf06474f69dd07a8fa20fd3d89b986db55b6b20','[\"*\"]','2026-03-25 20:33:56',NULL,'2026-03-25 20:33:56','2026-03-25 20:33:56'),
-(84,'App\\Models\\User',4,'frontend','5d5b6fec74e4423a48bf0c6b1dadfc7e7cf6bb5c6ad7bf5b312783a82274a5db','[\"*\"]','2026-03-25 20:38:30',NULL,'2026-03-25 20:34:22','2026-03-25 20:38:30');
+(84,'App\\Models\\User',4,'frontend','5d5b6fec74e4423a48bf0c6b1dadfc7e7cf6bb5c6ad7bf5b312783a82274a5db','[\"*\"]','2026-03-25 21:11:00',NULL,'2026-03-25 20:34:22','2026-03-25 21:11:00'),
+(85,'App\\Models\\User',20,'frontend','2db0568a41a94b8692ea516940416df97fa3d82517810740df914eeffecae08a','[\"*\"]','2026-03-25 20:52:17',NULL,'2026-03-25 20:45:44','2026-03-25 20:52:17'),
+(86,'App\\Models\\User',21,'frontend','f608908b6c18ede8794da779affa946760487a243a47b1f702360d97d8325ac7','[\"*\"]','2026-03-25 21:44:22',NULL,'2026-03-25 20:48:41','2026-03-25 21:44:22'),
+(87,'App\\Models\\User',20,'frontend','4e08e00b1f44dfdae80ca963b425ec299eb8333a4c3174fd7bb3e6cae6dccc81','[\"*\"]','2026-03-25 20:54:01',NULL,'2026-03-25 20:53:10','2026-03-25 20:54:01'),
+(88,'App\\Models\\User',20,'frontend','c941aa52dd3ad0287352006c4bfb44581ea92acc70b125999d751c326a7f8404','[\"*\"]','2026-03-25 22:39:53',NULL,'2026-03-25 20:55:22','2026-03-25 22:39:53'),
+(89,'App\\Models\\User',20,'frontend','ec8ca6f0a6e441ec1da5ca25ee813d4f1edbc3fd1f8ae34fe4eebbb4d303bc8c','[\"*\"]','2026-03-25 20:59:51',NULL,'2026-03-25 20:59:11','2026-03-25 20:59:51'),
+(90,'App\\Models\\User',20,'frontend','3ec0bb54b9f4d9e1053e96c38e803f43274472939ab11ef9d9186dcf96affe45','[\"*\"]','2026-03-25 21:03:12',NULL,'2026-03-25 21:03:11','2026-03-25 21:03:12'),
+(91,'App\\Models\\User',20,'frontend','44a724024d6b4917ebbeb28c51520d18179bf62919bf55749c8fec7193a00d4f','[\"*\"]','2026-03-25 21:06:13',NULL,'2026-03-25 21:06:13','2026-03-25 21:06:13'),
+(92,'App\\Models\\User',20,'frontend','6981edd9219d404ac0967412853b4642e63f5b47ce8405a34a7f98f7856eae22','[\"*\"]','2026-03-25 21:08:55',NULL,'2026-03-25 21:08:17','2026-03-25 21:08:55'),
+(93,'App\\Models\\User',20,'frontend','fe99e7579466c0751e1a39e9134e157f7381a1abae504f818d717511acdf92a5','[\"*\"]','2026-03-25 21:14:29',NULL,'2026-03-25 21:09:33','2026-03-25 21:14:29'),
+(94,'App\\Models\\User',20,'frontend','6fdbd9a2dea44373fc8b8a2f4cf8a9bb11ddc1183f692a56adcc923fa6926dba','[\"*\"]','2026-03-25 21:10:35',NULL,'2026-03-25 21:10:35','2026-03-25 21:10:35'),
+(95,'App\\Models\\User',6,'frontend','664e69dee9682c0754b12a309857a9791c5e8866948e4484c2836208c849f1ba','[\"*\"]','2026-03-25 21:13:22',NULL,'2026-03-25 21:12:31','2026-03-25 21:13:22'),
+(96,'App\\Models\\User',19,'frontend','ec472b34877447628d7a6fbd5c3a50476d14bf8a863db5725139e02f7b543790','[\"*\"]','2026-03-25 21:14:13',NULL,'2026-03-25 21:13:47','2026-03-25 21:14:13'),
+(97,'App\\Models\\User',20,'frontend','525f49887286084ae41ddc5510655d05a095d02ef60b3844990abe18c0286b94','[\"*\"]','2026-03-25 22:53:07',NULL,'2026-03-25 21:14:55','2026-03-25 22:53:07'),
+(98,'App\\Models\\User',19,'frontend','040aeb8b7cb674866b61a2a139509fcfbe328f2b2f0802a11dfefd76119e87a7','[\"*\"]','2026-03-25 21:15:57',NULL,'2026-03-25 21:15:44','2026-03-25 21:15:57'),
+(99,'App\\Models\\User',19,'frontend','9bf6758b1fef5c8782b92b9d6037289e74affd988f75d94c77d834cc627dd660','[\"*\"]','2026-03-25 21:16:28',NULL,'2026-03-25 21:16:20','2026-03-25 21:16:28'),
+(100,'App\\Models\\User',4,'frontend','bf763ab1913ffe23cbf36d883fe4e1b4b7d8983e83f709737c2941d2232fb1c9','[\"*\"]','2026-03-25 21:24:55',NULL,'2026-03-25 21:17:06','2026-03-25 21:24:55'),
+(101,'App\\Models\\User',20,'frontend','5d520f065bb274d1e10d460212666e4922eb7fd5cb0e8895af52510664f39563','[\"*\"]','2026-03-25 21:25:51',NULL,'2026-03-25 21:24:23','2026-03-25 21:25:51'),
+(102,'App\\Models\\User',19,'frontend','ff54ceb7f6e007440e98cb806381ae34564978378eee93fb9cd0fecc83a5016b','[\"*\"]','2026-03-25 21:26:33',NULL,'2026-03-25 21:26:33','2026-03-25 21:26:33'),
+(103,'App\\Models\\User',19,'frontend','32226bc41b8d125e2067445533e2a00b49435ecc34a748f707365d823c78d92b','[\"*\"]','2026-03-25 21:27:32',NULL,'2026-03-25 21:27:00','2026-03-25 21:27:32'),
+(104,'App\\Models\\User',4,'frontend','b414a7bc5650c3d50977b012036d8b9ace5ca85b5a59f1730ac5b7fa3b023750','[\"*\"]','2026-03-25 21:27:50',NULL,'2026-03-25 21:27:50','2026-03-25 21:27:50'),
+(105,'App\\Models\\User',20,'frontend','a777ec8b4a98ce3f87044b1ac132482952e439981c5ced8de9eca31dfce7977a','[\"*\"]','2026-03-25 22:16:46',NULL,'2026-03-25 21:27:52','2026-03-25 22:16:46'),
+(106,'App\\Models\\User',6,'frontend','fba40d55621b8099c7c242593370dc2b7a569b3f74566b1a299d976ca60488f0','[\"*\"]','2026-03-25 21:28:48',NULL,'2026-03-25 21:28:17','2026-03-25 21:28:48'),
+(107,'App\\Models\\User',4,'frontend','d58f059240434582ab08e9bb5b29084ae9f0f396699270bc9f115f1b5db64a81','[\"*\"]','2026-03-25 21:35:39',NULL,'2026-03-25 21:29:01','2026-03-25 21:35:39'),
+(108,'App\\Models\\User',4,'frontend','8f076c356fa199f00be0d45d3e7c898cd62faaa6011a4c700d9d8ba3ec66cdc9','[\"*\"]','2026-03-25 22:23:08',NULL,'2026-03-25 21:45:16','2026-03-25 22:23:08'),
+(109,'App\\Models\\User',20,'frontend','d4727b19bdda9607939b71dae2bc9aea9b9606d40b0b42c5c2ef3402af34a889','[\"*\"]','2026-03-25 22:12:39',NULL,'2026-03-25 22:12:20','2026-03-25 22:12:39'),
+(110,'App\\Models\\User',20,'frontend','495b312528bac9b5e3833cad650139d5374b393e099209b976e26fd22d42feba','[\"*\"]','2026-03-26 06:47:12',NULL,'2026-03-25 22:12:54','2026-03-26 06:47:12'),
+(111,'App\\Models\\User',20,'frontend','1c79497c87312b1676117d59de843f5014ff673d192023b3984760df40d6ebbe','[\"*\"]','2026-03-25 22:19:05',NULL,'2026-03-25 22:19:04','2026-03-25 22:19:05'),
+(112,'App\\Models\\User',20,'frontend','c559cdb1d1a5452ad901d549550b4d6cacf20c454379a77e8a382490512b1dea','[\"*\"]','2026-03-25 23:02:55',NULL,'2026-03-25 22:40:37','2026-03-25 23:02:55'),
+(113,'App\\Models\\User',20,'frontend','f399aec18b01e78582925d00c2ee578ebb547f127a0160743d33d668d2fd0d39','[\"*\"]','2026-03-25 22:57:30',NULL,'2026-03-25 22:55:22','2026-03-25 22:57:30'),
+(114,'App\\Models\\User',20,'frontend','58a198e85489cdb17f3a02b832b7ff24929d10eab1b6456dc1931688e238a730','[\"*\"]','2026-03-25 22:58:04',NULL,'2026-03-25 22:57:57','2026-03-25 22:58:04'),
+(115,'App\\Models\\User',20,'frontend','0997a1ac99bddc31eda83d2e36dbdb17eb7a5a94f717a29db20c46ab7c4296ea','[\"*\"]','2026-03-26 01:23:40',NULL,'2026-03-25 23:01:58','2026-03-26 01:23:40'),
+(116,'App\\Models\\User',20,'frontend','c03fdf63628d693022689929b95e8d7ba23fa2825ea6ddeb13e492d3285ed394','[\"*\"]','2026-03-25 23:03:52',NULL,'2026-03-25 23:03:41','2026-03-25 23:03:52'),
+(117,'App\\Models\\User',20,'frontend','1c8e44218dcbad47faf11de9c219b3236b68475023c95e3b1a25058eca90a3ed','[\"*\"]','2026-03-25 23:08:42',NULL,'2026-03-25 23:08:35','2026-03-25 23:08:42'),
+(118,'App\\Models\\User',4,'frontend','2ba06047ab05dfeda0b8c6ae38578e3ea45c5beb2848c7976292eebed064a051','[\"*\"]','2026-03-26 01:39:23',NULL,'2026-03-25 23:15:55','2026-03-26 01:39:23'),
+(119,'App\\Models\\User',19,'frontend','74aa30a4e0954f09d4cdf9fc3b8f5826cf881852ed5cf3e02dbc3ae5bfd119d5','[\"*\"]','2026-03-26 01:39:44',NULL,'2026-03-26 01:39:42','2026-03-26 01:39:44'),
+(120,'App\\Models\\User',4,'frontend','a5629d99f90bad701bbd324dacabc045e5410df230a1a78fd2a4523d7e6c7904','[\"*\"]','2026-03-26 01:40:33',NULL,'2026-03-26 01:40:14','2026-03-26 01:40:33'),
+(121,'App\\Models\\User',6,'frontend','b69d22d57ffc80658b9bd780ad7de0085a12b3ec3a0ed42b5536a17e194fdf54','[\"*\"]','2026-03-26 01:51:19',NULL,'2026-03-26 01:40:58','2026-03-26 01:51:19'),
+(122,'App\\Models\\User',4,'frontend','36c95e63fb8e80f39ad89ec88a439b9c452fa8a1d88a19544c980601c9c54aac','[\"*\"]','2026-03-26 03:05:42',NULL,'2026-03-26 03:05:38','2026-03-26 03:05:42'),
+(123,'App\\Models\\User',19,'frontend','526d26cd4845cd8c00bfe208a97646160f823534d670f13da5e615f3782654cb','[\"*\"]','2026-03-26 03:37:21',NULL,'2026-03-26 03:34:19','2026-03-26 03:37:21'),
+(124,'App\\Models\\User',4,'frontend','51f955794c917e035d0d99b76483e74b51339e20dc522369bd43326b82955921','[\"*\"]','2026-03-26 07:48:28',NULL,'2026-03-26 03:47:11','2026-03-26 07:48:28'),
+(125,'App\\Models\\User',19,'frontend','6bea271f3bf51eb8a0fff6cf5fbe18c891ea5161641e73687dbfe47271a10e46','[\"*\"]','2026-03-26 08:41:31',NULL,'2026-03-26 08:40:29','2026-03-26 08:41:31'),
+(126,'App\\Models\\User',19,'frontend','4ec7b6a857a1fbf842ada5aa64e28545bb647a97410bdca1818eea96a4e114f8','[\"*\"]','2026-03-26 08:42:15',NULL,'2026-03-26 08:42:13','2026-03-26 08:42:15'),
+(127,'App\\Models\\User',4,'frontend','e5b7dbf2b8f6a40a17d427a9494756e88234ab67992e15cfd52b53b4be583661','[\"*\"]','2026-03-26 09:16:15',NULL,'2026-03-26 08:44:46','2026-03-26 09:16:15'),
+(128,'App\\Models\\User',4,'frontend','5de3eeeecebdb46e2c5d28d96b9eebc6354ef0e1b480394e454498fed9578921','[\"*\"]','2026-03-26 09:32:10',NULL,'2026-03-26 09:16:34','2026-03-26 09:32:10'),
+(129,'App\\Models\\User',4,'frontend','3b83c295f540b8ae93052161376774f23b0ea6a103d40e562431ee9e51050499','[\"*\"]','2026-03-26 09:32:28',NULL,'2026-03-26 09:32:27','2026-03-26 09:32:28'),
+(130,'App\\Models\\User',4,'frontend','4e43caab18a4b2b191fbc39e2565123b759ea8b56c8d3aba6c1f3649e71ce230','[\"*\"]','2026-03-26 09:41:13',NULL,'2026-03-26 09:34:00','2026-03-26 09:41:13'),
+(131,'App\\Models\\User',4,'frontend','676a30bc0a5a4b9015c2eb30f0e659528ca08dbc130bf557ff06762a7f7c6327','[\"*\"]','2026-03-26 19:52:27',NULL,'2026-03-26 19:36:34','2026-03-26 19:52:27'),
+(132,'App\\Models\\User',4,'frontend','1026d3a65b43c89ca50c84428cf13313e2aa21f4af801b1e8c5341bee1bf9a65','[\"*\"]','2026-03-27 09:46:38',NULL,'2026-03-27 09:34:10','2026-03-27 09:46:38'),
+(133,'App\\Models\\User',19,'frontend','f03b03b18a85112f334b646fe9b2126defe68f870dead0f43489dc673b3ab807','[\"*\"]','2026-03-27 10:08:54',NULL,'2026-03-27 09:47:12','2026-03-27 10:08:54');
 /*!40000 ALTER TABLE `personal_access_tokens` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -960,6 +942,7 @@ CREATE TABLE `propiedades` (
   `nombre` varchar(180) NOT NULL,
   `tagline` varchar(255) NOT NULL,
   `ciudad_estado` varchar(180) NOT NULL,
+  `zona` varchar(25) NOT NULL,
   `tipo_inmueble` varchar(120) NOT NULL,
   `precio` decimal(14,2) NOT NULL,
   `estado_interno` varchar(120) NOT NULL,
@@ -983,7 +966,7 @@ CREATE TABLE `propiedades` (
   KEY `idx_propiedades_id_agente` (`id_agente`),
   KEY `idx_propiedades_propietario` (`propietario`),
   CONSTRAINT `fk_propiedades_agentes` FOREIGN KEY (`id_agente`) REFERENCES `agentes` (`id_agente`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -994,11 +977,16 @@ LOCK TABLES `propiedades` WRITE;
 /*!40000 ALTER TABLE `propiedades` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `propiedades` VALUES
-(1,'PUB-0001','Residencias El Bosque','Residencias El Bosque','Valencia, Carabobo','Apartamento',125000.00,'disponible','publicado','Apartamento en excelente zona, cerca de centros comerciales.','{\"dormitorios\":3,\"banos\":2,\"area_m2\":110,\"estacionamientos\":2,\"con_piscina\":true,\"pet_friendly\":true,\"ano_construccion\":2018,\"amoblada\":false,\"balcon\":true,\"seguridad_privada\":true,\"financiable\":true}',11,6,10.1620000,-68.0077000,'https://mi-cdn.com/propiedades/p-1-main.jpg','[\"https://mi-cdn.com/propiedades/p-1-2.jpg\",\"https://mi-cdn.com/propiedades/p-1-3.jpg\"]'),
-(2,'PUB-0002','Casa Los Naranjos','Casa Los Naranjos','Caracas, Distrito Capital','Casa',185000.00,'disponible','publicado','Casa de dos niveles, remodelada, con buena ventilacion.','{\"dormitorios\":4,\"banos\":3,\"area_m2\":220,\"estacionamientos\":2,\"con_piscina\":false,\"pet_friendly\":true,\"ano_construccion\":2012,\"amoblada\":false,\"balcon\":true,\"seguridad_privada\":true,\"financiable\":true}',11,7,10.4806000,-66.9036000,'https://mi-cdn.com/propiedades/p-2-main.jpg','[\"https://mi-cdn.com/propiedades/p-2-2.jpg\",\"https://mi-cdn.com/propiedades/p-2-3.jpg\"]'),
-(3,'PUB-0003','Yonaj','En venta','Caracas','Apartamento',12500.00,'disponible','publicado','Holas','{\"dormitorios\":0,\"banos\":0,\"area_m2\":0,\"estacionamientos\":0,\"con_piscina\":false,\"pet_friendly\":false,\"ano_construccion\":2026,\"amoblada\":false,\"balcon\":false,\"seguridad_privada\":true,\"financiable\":false}',6,4,10.5060930,-66.9146010,'propiedades/r1CDmlebBjkaYed0wo5e0T3wjvCLzNGSW5AZAbim.png','[\"propiedades\\/cZ9FmtlTvtA9ZgWqTkdF5c1l7jqYISda4NJdueKc.jpg\"]'),
-(4,'PUB-0004','Casa prueba','En venta','Carabobo','Apartamento',13000.00,'disponible','publicado','Casa moderna','{\"dormitorios\":3,\"banos\":3,\"area_m2\":200,\"estacionamientos\":2,\"con_piscina\":false,\"pet_friendly\":false,\"ano_construccion\":2026,\"amoblada\":false,\"balcon\":false,\"seguridad_privada\":true,\"financiable\":false}',6,NULL,10.1700260,-68.0003990,'propiedades/Tnwn6JDAajJTNKlgMsEVV08YxQKnmnNkjXKbaray.png','[\"propiedades\\/EbcpgCJUrSHsyH6Owq9SCkRpIOijlTJwrCkIqw1T.jpg\"]'),
-(5,'PUB-0005','Casssa','En venta','Cagua','Casa',12000.00,'disponible','publicado','Casa preciosa','{\"dormitorios\":2,\"banos\":2,\"area_m2\":200,\"estacionamientos\":2,\"con_piscina\":false,\"pet_friendly\":false,\"ano_construccion\":2026,\"amoblada\":false,\"balcon\":false,\"seguridad_privada\":true,\"financiable\":false}',19,NULL,10.1796630,-67.4606770,'propiedades/flcuWQUcm8F8YcF0tPKFQfRtqtAa36TtVN2KjX3l.jpg','[\"propiedades\\/26X4ABjOGHxvf22qDrdCDcrkkpT2GccvkoMZUs3H.png\"]');
+(1,'PUB-0001','Residencias El Bosque','Residencias El Bosque','Valencia, Carabobo','','Apartamento',125000.00,'disponible','publicado','Apartamento en excelente zona, cerca de centros comerciales.','{\"dormitorios\":3,\"banos\":2,\"area_m2\":110,\"estacionamientos\":2,\"con_piscina\":true,\"pet_friendly\":true,\"ano_construccion\":2018,\"amoblada\":false,\"balcon\":true,\"seguridad_privada\":true,\"financiable\":true}',11,6,10.1620000,-68.0077000,'https://mi-cdn.com/propiedades/p-1-main.jpg','[\"https://mi-cdn.com/propiedades/p-1-2.jpg\",\"https://mi-cdn.com/propiedades/p-1-3.jpg\"]'),
+(2,'PUB-0002','Casa Los Naranjos','Casa Los Naranjos','Caracas, Distrito Capital','','Casa',185000.00,'disponible','publicado','Casa de dos niveles, remodelada, con buena ventilacion.','{\"dormitorios\":4,\"banos\":3,\"area_m2\":220,\"estacionamientos\":2,\"con_piscina\":false,\"pet_friendly\":true,\"ano_construccion\":2012,\"amoblada\":false,\"balcon\":true,\"seguridad_privada\":true,\"financiable\":true}',11,7,10.4806000,-66.9036000,'https://mi-cdn.com/propiedades/p-2-main.jpg','[\"https://mi-cdn.com/propiedades/p-2-2.jpg\",\"https://mi-cdn.com/propiedades/p-2-3.jpg\"]'),
+(3,'PUB-0003','Yonaj','En venta','Caracas','','Apartamento',12500.00,'disponible','publicado','Holas','{\"dormitorios\":0,\"banos\":0,\"area_m2\":0,\"estacionamientos\":0,\"con_piscina\":false,\"pet_friendly\":false,\"ano_construccion\":2026,\"amoblada\":false,\"balcon\":false,\"seguridad_privada\":true,\"financiable\":false}',6,4,10.5060930,-66.9146010,'propiedades/r1CDmlebBjkaYed0wo5e0T3wjvCLzNGSW5AZAbim.png','[\"propiedades\\/cZ9FmtlTvtA9ZgWqTkdF5c1l7jqYISda4NJdueKc.jpg\"]'),
+(4,'PUB-0004','Casa prueba','En venta','Carabobo','','Apartamento',13000.00,'disponible','publicado','Casa moderna','{\"dormitorios\":3,\"banos\":3,\"area_m2\":200,\"estacionamientos\":2,\"con_piscina\":false,\"pet_friendly\":false,\"ano_construccion\":2026,\"amoblada\":false,\"balcon\":false,\"seguridad_privada\":true,\"financiable\":false}',6,NULL,10.1700260,-68.0003990,'propiedades/Tnwn6JDAajJTNKlgMsEVV08YxQKnmnNkjXKbaray.png','[\"propiedades\\/EbcpgCJUrSHsyH6Owq9SCkRpIOijlTJwrCkIqw1T.jpg\"]'),
+(5,'PUB-0005','Casssa','En venta','Cagua','','Casa',12000.00,'disponible','publicado','Casa preciosa','{\"dormitorios\":2,\"banos\":2,\"area_m2\":200,\"estacionamientos\":2,\"con_piscina\":false,\"pet_friendly\":false,\"ano_construccion\":2026,\"amoblada\":false,\"balcon\":false,\"seguridad_privada\":true,\"financiable\":false}',19,NULL,10.1796630,-67.4606770,'propiedades/flcuWQUcm8F8YcF0tPKFQfRtqtAa36TtVN2KjX3l.jpg','[\"propiedades\\/26X4ABjOGHxvf22qDrdCDcrkkpT2GccvkoMZUs3H.png\"]'),
+(6,'PUB-0006','Casa preciosa','En venta','Maracay','','Apartamento',20000.00,'disponible','publicado','Casa en venta','{\"dormitorios\":5,\"banos\":2,\"area_m2\":300,\"estacionamientos\":2,\"con_piscina\":false,\"pet_friendly\":false,\"ano_construccion\":2026,\"amoblada\":false,\"balcon\":false,\"seguridad_privada\":true,\"financiable\":false}',19,14,10.2624930,-67.5914280,'propiedades/N6pfCDaNsRNJQc6B6gxvoRET7rzFkJW9mO06us0J.jpg','[\"propiedades\\/f2ePAC0w7Fa60uDZlgJWe8Up6yEXEcTtDXZvCED0.jpg\"]'),
+(7,'PUB-0007','Casa 2','En venta','Maracay','','Apartamento',30000.00,'disponible','publicado','Casa en Maracay','{\"dormitorios\":2,\"banos\":2,\"area_m2\":200,\"estacionamientos\":1,\"con_piscina\":false,\"pet_friendly\":false,\"ano_construccion\":2026,\"amoblada\":false,\"balcon\":false,\"seguridad_privada\":true,\"financiable\":false}',19,NULL,10.2398190,-67.5920240,'propiedades/pXXCpugzxQ15ImalluvRklzkAA1VLjVAR2ZQUx12.jpg','[\"propiedades\\/JXQyUjHM9hlAUkD31QroY2N0xGzPqegyB0VfnGHX.jpg\"]'),
+(8,'PUB-0008','casa 3','En venta','Maracay','','Apartamento',300000.00,'disponible','publicado','Casa 3','{\"dormitorios\":0,\"banos\":0,\"area_m2\":0,\"estacionamientos\":0,\"con_piscina\":false,\"pet_friendly\":false,\"ano_construccion\":2026,\"amoblada\":false,\"balcon\":false,\"seguridad_privada\":true,\"financiable\":false}',19,NULL,10.2547220,-67.5673770,'propiedades/QcTCwFzNMrVf65ryXLObvptZAsu9UiPCeYs6zA8p.jpg','[]'),
+(9,'PUB-0009','Linda casa 5','En venta','Maracay','','Apartamento',300000.00,'disponible','publicado','Casa prueba 4','{\"dormitorios\":2,\"banos\":2,\"area_m2\":300,\"estacionamientos\":2,\"con_piscina\":false,\"pet_friendly\":false,\"ano_construccion\":2026,\"amoblada\":false,\"balcon\":false,\"seguridad_privada\":true,\"financiable\":false}',19,NULL,10.2708050,-67.6300010,'propiedades/kaIWbOxelRX6f0yYMrmo32cmvH5iAbpaTzlFWA0e.jpg','[\"propiedades\\/7iUj3pNEztNc2Gnu6gL5veC9hXPzkXauzcPHrlcW.jpg\"]'),
+(10,'PUB-0010','Casa 5','En venta','Maracay','','Apartamento',2000.00,'disponible','publicado','Casa linda en Maracay','{\"dormitorios\":2,\"banos\":2,\"area_m2\":200,\"estacionamientos\":2,\"con_piscina\":false,\"pet_friendly\":false,\"ano_construccion\":2026,\"amoblada\":false,\"balcon\":false,\"seguridad_privada\":true,\"financiable\":false}',19,14,10.2422210,-67.5699970,'propiedades/1jF2CKhRs1cesMHo33WKtf6YyxrkLuezPlWOeF8O.jpg','[\"propiedades\\/ps9pYKE1vGmBMWzmEIdtRNT9fvEqLepXlkrF3XnQ.jpg\"]');
 /*!40000 ALTER TABLE `propiedades` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -1019,7 +1007,7 @@ CREATE TABLE `publicar_ins` (
   `tipo_inmueble` varchar(150) NOT NULL,
   `imagen_referencial` varchar(500) NOT NULL,
   `mensaje` text NOT NULL,
-  `ref` int(11) NOT NULL,
+  `ref` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_publicar_ciudad_zona` (`ciudad`,`zona`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1117,7 +1105,7 @@ CREATE TABLE `push_notifications` (
   KEY `idx_push_notifications_loan` (`loan_id`),
   KEY `idx_push_notifications_user` (`user_id`),
   CONSTRAINT `fk_push_notifications_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1128,9 +1116,11 @@ LOCK TABLES `push_notifications` WRITE;
 /*!40000 ALTER TABLE `push_notifications` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `push_notifications` VALUES
-(72,NULL,5,21,'due_hourly','2026-03-24',21,'cut:21:due_hourly:2026-03-24:21','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=21','loan-due-today-cut-21-h21','2026-03-24 21:00:00','sent',1,0,0,0,'2026-03-24 21:00:02',NULL,'2026-03-24 21:00:02','2026-03-24 21:00:02'),
-(73,NULL,5,21,'due_hourly','2026-03-24',22,'cut:21:due_hourly:2026-03-24:22','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=21','loan-due-today-cut-21-h22','2026-03-24 22:00:00','sent',1,0,0,0,'2026-03-24 22:00:02',NULL,'2026-03-24 22:00:02','2026-03-24 22:00:02'),
-(74,NULL,5,21,'due_hourly','2026-03-24',23,'cut:21:due_hourly:2026-03-24:23','Corte con vencimiento hoy','Prueba: hoy vence tu corte de 350.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=5&cutId=21','loan-due-today-cut-21-h23','2026-03-24 23:00:00','sent',1,0,0,0,'2026-03-24 23:00:01',NULL,'2026-03-24 23:00:01','2026-03-24 23:00:01');
+(83,20,29,163,'due_hourly','2026-03-25',19,'user:20:cut:163:due_hourly:2026-03-25:19','Corte con vencimiento hoy','prueba: hoy vence tu corte de 1200.00.','https://smarthouse-ve.com/jrplks/?view=history&loanId=29&cutId=163','loan-due-today-cut-163-h19','2026-03-25 19:00:00','sent',1,0,0,0,'2026-03-25 19:00:01',NULL,'2026-03-25 23:00:01','2026-03-25 23:00:01'),
+(84,20,29,163,'due_hourly','2026-03-25',20,'user:20:cut:163:due_hourly:2026-03-25:20','Corte con vencimiento hoy','prueba: hoy vence tu corte de 1200.00.','https://smarthouse-ve.com/jrplks/?view=history&loanId=29&cutId=163','loan-due-today-cut-163-h20','2026-03-25 20:00:00','sent',1,3,2,1,'2026-03-25 20:00:01',NULL,'2026-03-26 00:00:01','2026-03-26 00:00:01'),
+(85,20,29,163,'due_hourly','2026-03-25',21,'user:20:cut:163:due_hourly:2026-03-25:21','Corte con vencimiento hoy','prueba: hoy vence tu corte de 1200.00.','https://smarthouse-ve.com/jrplks/?view=history&loanId=29&cutId=163','loan-due-today-cut-163-h21','2026-03-25 21:00:00','sent',1,2,2,0,'2026-03-25 21:00:01',NULL,'2026-03-26 01:00:01','2026-03-26 01:00:02'),
+(86,20,29,163,'due_hourly','2026-03-25',22,'user:20:cut:163:due_hourly:2026-03-25:22','Corte con vencimiento hoy','prueba: hoy vence tu corte de 1200.00.','https://smarthouse-ve.com/jrplks/?view=history&loanId=29&cutId=163','loan-due-today-cut-163-h22','2026-03-25 22:00:00','sent',1,2,2,0,'2026-03-25 22:00:02',NULL,'2026-03-26 02:00:02','2026-03-26 02:00:02'),
+(87,20,29,163,'due_hourly','2026-03-25',23,'user:20:cut:163:due_hourly:2026-03-25:23','Corte con vencimiento hoy','prueba: hoy vence tu corte de 1200.00.','https://smarthouse-ve.com/jrplks/?view=history&loanId=29&cutId=163','loan-due-today-cut-163-h23','2026-03-25 23:00:00','sent',1,2,2,0,'2026-03-25 23:00:02',NULL,'2026-03-26 03:00:02','2026-03-26 03:00:02');
 /*!40000 ALTER TABLE `push_notifications` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -1156,7 +1146,7 @@ CREATE TABLE `push_subscriptions` (
   KEY `idx_push_device_id` (`device_id`),
   KEY `idx_push_user_id` (`user_id`),
   CONSTRAINT `fk_push_subscriptions_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1166,6 +1156,10 @@ CREATE TABLE `push_subscriptions` (
 LOCK TABLES `push_subscriptions` WRITE;
 /*!40000 ALTER TABLE `push_subscriptions` DISABLE KEYS */;
 set autocommit=0;
+INSERT INTO `push_subscriptions` VALUES
+(19,20,'d14f4631-d972-49f1-970a-53df763b3df8','https://fcm.googleapis.com/fcm/send/dtx5fNkedCw:APA91bH01NtZWdit-R5F22yXumuAnnBKe0qh7DOSdGfSNLZLq_M2FhgZ44d06613KtwZbZhft_Icko8jSImWmWeYv9XPwgL-06EzVESPMcb4W9P2btT_J6gn2lbRQRmf3IDlEzHm__st','BOozOjdG40k_UlN9DLqODrgNCdsYZ3FWElh1Ue_9HzrE4TbgiU9SbRj17gf-uTA0zudT_KGB5VDgb2aab1kkKFE','wy6-9jvOXelAM2P0ft9f4Q','2026-03-25 23:08:35','2026-03-25 23:08:35'),
+(20,20,'588a28a4-8541-4fb9-960c-a4aab48372fb','https://web.push.apple.com/QDg6wgX9GtiaBOStW_LSA6Ln9Vaztuxvr-MWpvFYdVHf9kj5nmLcnPjFtSoGjwKjSvxPHB_QG-6THDOtqc5ZBu_p2gzKJcCxYy8JnmhqcRCYn25Pq0mf0g2Jt2neK2I0ITGlqWc6ZaMXGwdBOsMZ1xsxQk1KNRGWJig_bpd4sUI','BO9FHzl1o35rXJJhrDsbuRZNbYsSE63lYrXUy6Xl0GtV40WVZZ-MiFmwTCmWv-h3Rf4vGBEQ4iqEeMOu_x37Chc','Qks11iQZw5-dtvTeTkOySA','2026-03-25 23:08:42','2026-03-25 23:08:42'),
+(21,17,'d62144f0-9f54-470d-b928-566cd5cfe0e5','https://web.push.apple.com/QA-OuxEpKDCn_OmyTgXcO407468qcZNAqrWE9EmH0oBh5NLkw8yK5IhGRPfQ-KsTZZNyPeWa9O6JBcBd0olnE9oHb11n95koxpwHnwGaI4DWET2pJOs3qgJxyDAHlZvt7Nt8RmeSyY2EuhWwG8K0blivn3qZrw_4PzveI1HOtVY','BPiNSDp9VtKpRbkN8H7zMilUcrpYjLjm5Hi0mBzjKDuZ5JTCsr6n6MAYKtL2zFm2_b2aVK10ReowtxfkJDErxHQ','ltbhwsaGljzdgWc4ao-oTw','2026-03-25 23:13:46','2026-03-25 23:13:46');
 /*!40000 ALTER TABLE `push_subscriptions` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -1256,7 +1250,7 @@ LOCK TABLES `rutas` WRITE;
 /*!40000 ALTER TABLE `rutas` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `rutas` VALUES
-(1,4,'Test','08:30:00','12:30:00','[\"la arboleda\",\"el valle\",\"cualquier cosa\"]','{\"lat\":10.187529,\"lng\":-64.634298}','[\"volantes entregados\",\"Visitas\",\"Muestras\"]',NULL,'[{\"id_agente\":19,\"requisito\":\"volantes entregados\",\"resultado\":\"10\"},{\"id_agente\":19,\"requisito\":\"Visitas\",\"resultado\":\"12\"},{\"id_agente\":19,\"requisito\":\"Muestras\",\"resultado\":\"5\"}]','todo bien'),
+(1,4,'Test','08:30:00','12:30:00','[\"la arboleda\",\"el valle\",\"cualquier cosa\"]','{\"lat\":10.187529,\"lng\":-64.634298}','[\"volantes entregados\",\"Visitas\",\"Muestras\"]',NULL,'[{\"id_agente\":6,\"requisito\":\"volantes entregados\",\"resultado\":\"29\"},{\"id_agente\":6,\"requisito\":\"Visitas\",\"resultado\":\"13\"},{\"id_agente\":6,\"requisito\":\"Muestras\",\"resultado\":\"5\"}]','interesante'),
 (2,4,'Maracay','08:30:00','12:30:00','[\"Maracay\",\"Urbanizaci\\u00f3n el centro\"]','{\"lat\":10.236058,\"lng\":-67.59797}','[\"Casas\",\"apartamentos\"]',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `rutas` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1290,14 +1284,60 @@ LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `sessions` VALUES
+('1WF1VEQI0bZuT4hvDBwKSdBY6EqS2Gyyw4JSQa4D',NULL,'172.70.94.97','Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiRTEzdDY1cGp2cUlnNjRzMWJ6ODg1b2VFeE0ybGJhVEk0c0dJRXRxSiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774512434),
+('1WJZwUpGOPZr7AmglMpjO9rEvKhIozdysQmLygT4',NULL,'172.69.11.7','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiWmJSOGFFQWZibkNhOHozZHdtQklydVQxVFpoQm5Ga2lzVkV6amw5RSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774467638),
+('2DCTZUjrLotb8Xl7lf8HJ3muutQzb1at2fc6lLzT',NULL,'172.71.98.89','Mozilla/5.0 (Linux; U; Android 8.0.0; zh-cn; BKL-AL20 Build/HUAWEIBKL-AL20) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/8.4 Mobile Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiQTFtYjFwZVd1MXhZcXRvR1VlTHZkTWI0OFZkYXBmajA5S05mVEdrYiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774477305),
+('5CdTttyw7RwzS2ZSdNv945MGgJEgfMF47dUdorap',NULL,'162.159.113.83','Opera/9.80 (Windows NT 5.1; U;) Presto/2.7.62 Version/11.01','YTozOntzOjY6Il90b2tlbiI7czo0MDoiTVdrcE9xS2ZkZTRzdEprUDdSOTdvNVptY3BNUVBSR2JwUXVHbnl3UCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774567967),
+('5CeLAZinYpSvRoDX4rKQXnsmNpvWmJkl66EAkgUW',NULL,'104.23.229.3','curl/8.7.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiRlJONEg5bXMzRjYzTXZQNlJ4eUx3UFBwRTRSaWRvVkcxblY2Z0VZcCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774594648),
+('6pKccD3SAaLz0J4dFgpKkcPtXmLpmKVrcYgTsunG',NULL,'172.70.127.138','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiYkpxRkw4TWZlU2NVeTgzRGlWQXhNUXlGZXY4UUlIdG9DdEJ1bGpuWCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774503193),
+('75bet2VMgQWNrsiTFWDPY8dR0YY4pA35NAF8k5EY',NULL,'162.158.178.161','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiRUJQTU91R0tWM2JzM3ZXVWZlNEZHMDZ1VlMxcG9Qd1czR0ZYYzAxSyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774513345),
+('7SBlGtwpx5z8JJsZpMlP6ImkiH6lkNs07y5MLcnb',NULL,'172.69.130.99','Mozilla/5.0 (compatible; AhrefsBot/7.0; +http://ahrefs.com/robot/)','YTozOntzOjY6Il90b2tlbiI7czo0MDoid3B5NnlPNVlLVjFYWkloNjU0d0tEZVlLdDRZajlGU2xSdnRlMGdHMyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774545819),
+('8e1v0uSpPaGSOumsdVze65ODqtiLEORq7D6bameH',NULL,'104.23.166.155','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiNEg0ME9ITEFUdlV6bUlKOXJSSXkyb3NmM0djZjJhZ0QwOFZtdlhwUyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774533270),
 ('8Lda2d2x8XmAAALhLLISR5pYpmXSAu2yvhVYa7pw',NULL,'104.23.221.109','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123','YTozOntzOjY6Il90b2tlbiI7czo0MDoiQU5wV0g3S2ZMSE53bHlLWWh2bHFWU2RXNDJqNVVrZmFYRnFNdDBPaSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjozZXBoOUtweFlTNTdlSGhxIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774452796),
+('B484nzKIG4ZdrE68DsEGPqWtF5tirwa2RkYkwK2F',NULL,'104.22.20.158','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiSEZtWFVmZFYzTW1ZdkhkZkF6MU1GNWVEMHJiT0hIRVh2YnZQa3lsUiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774573819),
+('BhZdH7sxJrIq1cV2I18orEs2CdIc7efz1dh3Fo3Y',NULL,'162.158.123.67','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiUWN4RVIxZzdCZk9YUXI0bmxxNkF4VWFSbzJRVzBIZ0JnUHlJeEJVWCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774585120),
+('bMKPlFOjsHeBsEvNcGctiLcBjCetHClf8Aok6ocg',NULL,'172.71.172.123','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiWHBRN3Bnb2VWbzQzYjNOSFdzd25KS3BHTjMyTXc2cTJwU0N4c0lWOSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774534141),
+('bo6FsbCT4Bz6ux4GK1vjpbZDEDt5JXjB49RJcB4P',NULL,'172.71.194.253','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; BuiltWith/1.4; rb.gy/xprgqj) Chrome/124.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiQ2syVURSWW5oNHdXZEVhckg3YjVEbEJ1cEVOeFczejQ5MW01TUlkZSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774468430),
+('BU2P0Qlj3sy8nE6FZZmoiFkiflkc0003JvH1UN6V',NULL,'162.158.230.166','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36','YToyOntzOjY6Il90b2tlbiI7czo0MDoiRnBuQWlNeEoxa0tKN2EyZXdWcndUMVVxT1Zqam1vSnI2eENDc2xpZiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774592045),
+('CHf96umjzjPfpyI3bz4v9FBZat5Hc30bVCXewNUS',NULL,'172.69.6.105','Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)','YTozOntzOjY6Il90b2tlbiI7czo0MDoiOFlxdlpjUlkwc0NkRXU0QldmcWVTV1oxNHZvbVJVU2hCRWNkRG9BMyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774571759),
+('CKnoP2GziQv8WkyoSJoDTiLvO4AzR1XbvYC0gkbV',NULL,'108.162.245.126','Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)','YTozOntzOjY6Il90b2tlbiI7czo0MDoiR05zODJ0OG5IeVVFUkk5Z1haSEMzamhiVlhoZjc4RWZHWlJaMHRoYiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774477797),
+('DGazaPU4rTbmVZutlzu3u8w4mXQ9inayjjn39NHw',NULL,'172.70.43.141','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.79','YTozOntzOjY6Il90b2tlbiI7czo0MDoiV0JhRjBrRVRmUkRyblFwMGhxRTdmcnNIbTdGM3VmR0loQXk2MnZPbSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774473289),
+('DMkymt7jrmuIfUT8zWzeH40OFXQo7sarKypMut8O',NULL,'104.22.23.17','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiMHhkbWhzVFJkdEVZeU5HS2dGQnRxWmRYRnduaEZ6WVhKTjdEcTVHMCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774532768),
 ('ElcTIhQBu6qOLKO34JmYNgpNNMGbYoOJpEkigGxX',NULL,'172.69.86.240','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoicjdEaFJzZDhsRDF4dUE3TG1JaUlrOWg1WDNmWkdjZXc3eHV0bXdHOCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjozZXBoOUtweFlTNTdlSGhxIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774447245),
+('EZHQEQFIXe4bms2TuAWJi2ga8oAPcXMVLNGT4CKL',NULL,'104.22.20.158','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiZnNsR1YybTh5YjdrTUhaTHlzMFNkMXpJbjlOTXVZaE8zYlVNdnV4UyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774491517),
+('FFBZ3BJGJpOOm56SE2XrzpsuA2dqIrgyqhFbhvCL',NULL,'104.23.172.107','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiRHk2SjJTMTdwQWg3c3pTazE5ME9Wa0xxRkRlRE1NNWNCSHlyc0p4VyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774506178),
+('ffKuyucIBAJIkjQCG1EkoGPnxsx6cxxVsdP7I4hL',NULL,'172.71.202.145','Mozilla/5.0 (X11; Linux x86_64; rv:142.0) Gecko/20100101 Firefox/142.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoiclh4cEhwSzZuOEwzMVdBeDRIMEVDTjZkZnFTVmtlSTlyUkJIRUZoVyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774622362),
+('FvaLU29z0Xbos75KFdWReuNsWzZQVAxsiEYNOULs',NULL,'172.68.134.45','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiZVFOSjBSTUFFaER2T0gyS2JDN0gwYmZQVFRCZTNtbkwyTzVyYm5EciI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774506733),
 ('grcr84HJDe3uF3YAPyjB3VSFlrUWLjNdTFn02WPO',NULL,'172.71.95.90','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoieWl1cFU3VGNLcHc2SEhvNko4SU5mM2FDbndmVVdjSnlzNW5tVDJRcyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjozZXBoOUtweFlTNTdlSGhxIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774453917),
 ('i4Vqpds5iUm5sv2wyuaWv7m5tMg8h32S2ElsqJuO',NULL,'172.69.176.123','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiV2lzZWlrVnlXRXBNR3pGeDY5WlB0emQwSFRaVzlIdnlSd0lvRGljUyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjozZXBoOUtweFlTNTdlSGhxIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774443411),
+('iTZ1fr3XD5cf9nqmsNS8tigvz3ayZmTCmqSKt1jN',NULL,'104.23.223.3','Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:109.0) Gecko/20100101 Firefox/115','YTozOntzOjY6Il90b2tlbiI7czo0MDoiazYwQmM5RjNYamtNRUN1NDRCdnNZTDFYWEM3YlN2TTZFU3AwYkUySSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774510183),
+('KBV9QIPFLZ1QaI1uHgpecxpjhF5XD0Ol4QB4zWmg',NULL,'104.23.229.2','Hello from Palo Alto Networks, find out more about our scans in https://docs-cortex.paloaltonetworks.com/r/1/Cortex-Xpanse/Scanning-activity','YTozOntzOjY6Il90b2tlbiI7czo0MDoiWkpMWVh3cEVObk02Skd1UmtYMlk5NU40VHRsNWR2R2pWRG1JZUdwUCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774496574),
 ('KpPUu4e5zOIEK4m27P99LV6bFrvY8ZrJPgT0s08i',NULL,'162.158.178.161','Mozilla/5.0 (Android 11; Mobile; rv:128.4.0) Gecko/128.4.0 Firefox/128.4.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoiMU80REJjU0NXUnVhS24zRWZMTkU5SkZyOUswU25MVjVvV1haTjM5SiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjozZXBoOUtweFlTNTdlSGhxIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774440417),
+('LChd74C7KBreH4bxXVvMVH5H3CQGLeDYf835gbGy',NULL,'198.41.227.71','Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiVzYwbDBDWE9wOGlWa0YxSjNLUkUwcVg3VElDd0FNT0xlSVpVQU1RQiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774601958),
+('N21xENXH6O3z0CCLC5F80eYqqgYoioCAQfyInZz3',NULL,'104.23.253.24','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoicDNaVUJ5V1hFUEFRbks0R1R2UUlrclU1d1dlVFpyam5ZdEJ2cnNZViI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774545026),
+('nqPc8vvPpeb8DzotEXog1PHbYY2UgvJQkGIWnHxh',NULL,'162.158.41.95','Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)','YTozOntzOjY6Il90b2tlbiI7czo0MDoiRnA3UVNNbG40YkVzN1NXQkZTVldSVDJtZ2kyZXpuYndVRVNPVGFUZyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774577046),
+('nyTkMvgwPLva5tVjlUsEVAawOfo7VrOJZQrUaSNt',NULL,'104.22.62.114','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiRmRvT1dyWHNNWmphQzlkR1dNTVhmcjhtSU9JbnpTSWlvSDhhbkJrTyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774589607),
+('o07McEsCUyix3OHE1ejuzhDNPOzXKkK4bElgp0uE',NULL,'104.22.17.195','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoieW9WOHVGTHRaVDExMjRHY1VnMWlQSGtaUVkwSXVVc3ZTSndxTGE3eSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774487416),
+('OaqbZsijEUpn6JmYxfrI6wK6E7k2Jq9QcPdTmuHV',NULL,'172.71.183.106','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11) AppleWebKit/601.1.27 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/601.1.27','YTozOntzOjY6Il90b2tlbiI7czo0MDoiQUsyWFpqTHA3N0IxMXhFdTNLTTd2b0gyV0tucDFxVk9GOHJtNlpoOCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774477243),
+('oQPEPCmz0TJwaIWx1YRtJJAeursNMoJh2Kf3WU9G',NULL,'172.71.24.158','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiZFo4bXg5ajFSNkczblM1ZDcxRnBCUm44b04xeDRwS2xTNUxYZGxyeiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774557567),
+('PejZWYFef45FCl0C09koK66LFhLgVcIZJry99qSh',NULL,'172.68.103.45','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiM0thVFpsSEVyYmt3VE1vSXExeEM1TTM0cllBbXFxZmNyWUdJVkU4bCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774593292),
+('Pv9jM6zYnTBnLsHsJza5dEoVIsXxdMKJPIC4dGzO',NULL,'172.71.98.88','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiWnlGYU03S2Z5VUdpS2JwR1lZSFJCdENaS3o0U0xqR3RaNVhFRUxKcSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774560702),
 ('PVwkkxV2p8ZN4znMm3GYhmu361WrA3g2XDTxRZqT',NULL,'172.70.127.148','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiVlNHSjc4Tm5iQ3RQaXRpaFQ3R1pYd1FNcVFuazc2WldnSkI0TlF4MiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjozZXBoOUtweFlTNTdlSGhxIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774447338),
+('QJCHLE6tzbpzmZVQTkH7yS7BU2YfCOOpXVVV8b7E',NULL,'172.70.240.85','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoibFV0VDR5Zzh6VGF5MFhnWWdiRzJrMjZJaURkaDczQ1RjZjQzMXE4MyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774608318),
+('S2gzgxiekxleGqAXjaVOxR0LAx6dEAqWWY0EQOnu',NULL,'172.71.103.171','Dalvik/2.1.0 (Linux; U; Android 9.0; ZTE BA520 Build/MRA58K)','YTozOntzOjY6Il90b2tlbiI7czo0MDoidUxMdmRGZFRPd2tEVm14OURGNXFidWlZM21CeEE3MjlhbUFnWlRJRSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774568061),
+('SDmThadNAHLpirtbCQcG5R2Ily07fHKDDWjaPSuS',NULL,'162.158.91.73','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiN3liczc4OFBTMUNRWjl5aXQ4ZXBHeG9lUDRkQmZDa3lyc0wyWWFHNCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774588199),
+('sKpj0Rz9ZYd8g7mnVldQP5zWBiBor2lBjdhCA7m9',NULL,'104.23.172.107','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiZ2I1Q3lsamhaRXAycGFmTThTd2RwdXdVc2w4OGw0YzZPdUhybUVXSSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774533274),
+('ud6tiS47WHy7AbSQMzGX8mjmldBJxYa8N0um0Om7',NULL,'172.71.150.89','Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)','YTozOntzOjY6Il90b2tlbiI7czo0MDoicXo4U2lmSDFiQWpkaDlISjkyM3p5UXFncExFRmJtYlJ4UlBLT1h3RyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774477796),
+('UeGHMr7m9vzNq4B7zHUCd129HmL3K9zkFStcdPD4',NULL,'162.158.230.165','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36','YToyOntzOjY6Il90b2tlbiI7czo0MDoiUnMxUTBnSFY1SU5mMHFWZW9LaEduRGROUHZzUG1sRFdoYkR5cTlSZSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774592044),
+('UhA37hx2ug3C21rX6ODjlPLL2YioAS4HFtnsse3b',NULL,'162.158.238.200','python-requests/2.32.4','YTozOntzOjY6Il90b2tlbiI7czo0MDoiTHp0Mmx3U0hGYVM4U1VFcVFuYXNRTzlzeTFLYmo3cWFDYzVUNFVoaCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774573991),
+('UIMWo0jYbh9p8L5HL4E06uCAvoh7QliQ2Hee5GCb',NULL,'104.23.253.25','Mozilla/5.0 (X11; Linux i686; rv:109.0) Gecko/20100101 Firefox/120.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoiY2drQWpsVExmT29QMUg4UGZIaU85Rmh3YUtEcGM4TFkzdGtPQmd5MyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774510259),
+('vnWCwhlpqiO26Oo0byu1DVjTDkSBElbZwi4aC033',NULL,'172.68.103.45','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiQXJyZ3psUEVMN2RaODllbmhUOUppMU1xbTlDd0dOTGp1dVlaODlGUSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774506734),
+('Xe0lFI8qn09BMGbtC3lhJJ61kiJgDnsrmjToyH8d',NULL,'162.158.114.67','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiTUVzYzQ1RzFwU3F0TjJXMFpralpFTVdNRFF5bVZRUjNvQUR1Z05wbSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774581348),
+('xYtnebybV7KNFSBcQNCpkkY8En0YDhm5AlchYUpy',NULL,'162.158.23.44','Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoieXpLbUptbnpGREV2c0VsV2k4MEtBczBjaFdqZVZ5YkNkR1ppUjlXNCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774619460),
+('Y2XI2rUDkh7CPfDJhLiAzwSarqKoW3mZfRNryd9F',NULL,'104.23.223.2','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiNDhLNGF4RXFBbUlEWEFrMlgwZU5GWDlEdmliQnJHTk5MTmMzMldnYiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774518758),
 ('yGbZtAqC0oVTFF37bxnUSFTCV60VZt45gXzWSraz',NULL,'172.71.103.171','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiR0tTNHdzTU9oYTJPdHNKeDNHdGpyNTRQMFQzV0RMb1dKSjREbk5jRiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjozZXBoOUtweFlTNTdlSGhxIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774441235),
-('ZUs7AciTn5JZZOPjvlm6sNXcIbKxN6LAc4Dbwxnn',NULL,'172.69.214.41','Mozilla/5.0 (compatible; AhrefsBot/7.0; +http://ahrefs.com/robot/)','YTozOntzOjY6Il90b2tlbiI7czo0MDoiNEsxN1V0bk5xZWtSd3VMN000VzB2aFc3aFh4QnBtOW5QTHF2blpCWiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjozZXBoOUtweFlTNTdlSGhxIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774456622);
+('ZUs7AciTn5JZZOPjvlm6sNXcIbKxN6LAc4Dbwxnn',NULL,'172.69.214.41','Mozilla/5.0 (compatible; AhrefsBot/7.0; +http://ahrefs.com/robot/)','YTozOntzOjY6Il90b2tlbiI7czo0MDoiNEsxN1V0bk5xZWtSd3VMN000VzB2aFc3aFh4QnBtOW5QTHF2blpCWiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjozZXBoOUtweFlTNTdlSGhxIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774456622),
+('zZqTQjwwDtOGU2OnLmfOam8PtP58AlYFefCkCprV',NULL,'162.158.217.144','Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoicmJrR0lLb2FCaXBiZzh6MHdrWFJmbGlpWjNFS3ZMVVl4NDkzMmtWbiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774504439);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -1319,7 +1359,7 @@ CREATE TABLE `solicitar_ins` (
   `presupuesto` decimal(14,2) NOT NULL,
   `mensaje` text NOT NULL,
   `datos_especificos` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`datos_especificos`)),
-  `ref` int(11) NOT NULL,
+  `ref` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_solicitar_ciudad_zona` (`ciudad`,`zona`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1388,7 +1428,7 @@ CREATE TABLE `users` (
   `url` varchar(254) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1412,9 +1452,11 @@ INSERT INTO `users` VALUES
 (13,'Maria Oropeza','maria@sm.com',NULL,3,'$2y$12$Kiku5sey8eJljB07NAyXiuHGZ27pn1SRrm644SjSTmPL1dAuH.4L.',NULL,'2026-03-19 12:26:57','2026-03-19 12:26:57',NULL),
 (14,'Luis Zerpa','luisz@sm.com',NULL,2,'$2y$12$jd8CdHgY33NvHxkTl6VE6.dzQ235P2HQeK34IyH3uog0OVZIsB1km',NULL,'2026-03-17 23:43:14','2026-03-17 23:43:14',NULL),
 (16,'Rafa Pedromo','rafa@sm.com',NULL,3,'$2y$12$wndBId.ep9pEpD2YKDq3c.rP5iep2Fq.cmEDWtp72N9kjq7a3lSFK',NULL,'2026-03-19 12:34:11','2026-03-19 12:34:11',NULL),
-(17,'Jose Luis','jose@control.com',NULL,8,'$2y$12$QN5XiICt82oNRPmztbrkIOVCnqU3ta/15w3VmnNEsjuLShDfs3AM.',NULL,'2026-03-17 23:43:14','2026-03-24 02:21:45',NULL),
-(18,'Prueba user','user@control.com',NULL,8,'$2y$12$FqvaCbj.dLxG4jajFMHAueXGpsbr/.T3Q4GRCMW2H2RKj6DFEmLvi',NULL,'2026-03-17 23:43:14','2026-03-24 17:06:30',NULL),
-(19,'Yonnel Licon','yonnel@sm.com',NULL,3,'$2y$12$EkghVsJx6UVHZm1u/lq8Tu4tXLfHmXKhlk1qG0nbvlPfwdBx3rGbm',NULL,'2026-03-25 16:37:01','2026-03-25 16:37:01',NULL);
+(17,'Jose Luis','jose@control.com',NULL,8,'$2y$12$QN5XiICt82oNRPmztbrkIOVCnqU3ta/15w3VmnNEsjuLShDfs3AM.',NULL,'2026-03-17 23:43:14','2026-03-24 02:21:45','https://smarthouse-ve.com/V6dsVt232541/'),
+(18,'Prueba user','user@control.com',NULL,8,'$2y$12$FqvaCbj.dLxG4jajFMHAueXGpsbr/.T3Q4GRCMW2H2RKj6DFEmLvi',NULL,'2026-03-17 23:43:14','2026-03-24 17:06:30','https://smarthouse-ve.com/Z4rwKp771903/'),
+(19,'Yonnel Licon','yonnel@sm.com',NULL,3,'$2y$12$EkghVsJx6UVHZm1u/lq8Tu4tXLfHmXKhlk1qG0nbvlPfwdBx3rGbm',NULL,'2026-03-25 16:37:01','2026-03-25 16:37:01',NULL),
+(20,'Prueba1','uno@a.a',NULL,8,'$2y$12$ru1InYpFqva8v3rJmZwgbOwKbBiZddNXYvKN.dYTHWcCafd047ibi',NULL,'2026-03-17 23:43:14','2026-03-25 20:46:04','https://smarthouse-ve.com/jrplks/'),
+(22,'Pedro Rasova','owner@a.a',NULL,1,'$2y$12$jd8CdHgY33NvHxkTl6VE6.dzQ235P2HQeK34IyH3uog0OVZIsB1km',NULL,'2026-03-17 23:43:14','2026-03-17 23:43:14',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -1432,4 +1474,4 @@ commit;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*M!100616 SET NOTE_VERBOSITY=@OLD_NOTE_VERBOSITY */;
 
--- Dump completed on 2026-03-25 11:43:32
+-- Dump completed on 2026-03-27 10:26:29

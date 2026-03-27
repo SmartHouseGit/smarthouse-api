@@ -119,6 +119,7 @@ class StorePropiedadRequest extends FormRequest
                 'ciudad, estado',
                 'Ciudad Estado',
             ]),
+            'zona' => $this->firstInput(['zona', 'Zona']),
             'tipo_inmueble' => $this->firstInput([
                 'tipo_inmueble',
                 'Tipo de inmueble',
@@ -171,6 +172,7 @@ class StorePropiedadRequest extends FormRequest
             'nombre' => ['required', 'string', 'max:180'],
             'tagline' => ['required', 'string', 'max:255'],
             'ciudad_estado' => ['required', 'string', 'max:180'],
+            'zona' => ['required', 'string', 'max:180'],
             'tipo_inmueble' => ['required', 'string', 'max:120'],
             'precio' => ['required', 'numeric', 'min:0'],
             'estado_interno' => ['required', 'string', 'max:120'],

@@ -7,6 +7,7 @@ use App\Http\Requests\StoreClienteRequest;
 use App\Http\Requests\UpdateClienteRequest;
 use App\Models\Agente;
 use App\Models\Cliente;
+use App\Support\CityRegistryService;
 use App\Support\PrivateMediaUrl;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -14,6 +15,10 @@ use Throwable;
 
 class ClienteController extends Controller
 {
+    public function __construct(private readonly CityRegistryService $cityRegistry)
+    {
+    }
+
     public function index(Request $request): JsonResponse
     {
         $authUser = $request->user();
@@ -145,6 +150,8 @@ class ClienteController extends Controller
         $data = $request->validated();
 
         try {
+            $this->cityRegistry->ensureExists((string) $data['ciudad']);
+
             $foto = $request->file('foto')->store('clientes', 'local');
             $portada = $request->file('portada')->store('clientes', 'local');
 

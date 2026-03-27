@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePropiedadRequest;
 use App\Models\Agente;
 use App\Models\Propiedad;
+use App\Support\CityRegistryService;
 use App\Support\PrivateMediaUrl;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -14,6 +15,10 @@ use Throwable;
 
 class PropiedadController extends Controller
 {
+    public function __construct(private readonly CityRegistryService $cityRegistry)
+    {
+    }
+
     public function index(Request $request): JsonResponse
     {
         $query = Propiedad::query();
@@ -23,6 +28,7 @@ class PropiedadController extends Controller
         $nombre = $this->queryValue($request, ['nombre', 'Nombre']);
         $tagline = $this->queryValue($request, ['tagline', 'Tagline']);
         $ciudadEstado = $this->queryValue($request, ['ciudad_estado', 'Ciudad_Estado']);
+        $zona = $this->queryValue($request, ['zona', 'Zona']);
         $tipoInmueble = $this->queryValue($request, ['tipo_inmueble', 'Tipo_Inmueble']);
         $estadoInterno = $this->queryValue($request, ['estado_interno', 'Estado_Interno']);
         $estadoPublico = $this->queryValue($request, ['estado_publico', 'Estado_Publico']);
@@ -46,6 +52,9 @@ class PropiedadController extends Controller
         }
         if ($ciudadEstado !== null) {
             $query->where('ciudad_estado', 'like', '%'.$ciudadEstado.'%');
+        }
+        if ($zona !== null) {
+            $query->where('zona', 'like', '%'.$zona.'%');
         }
         if ($tipoInmueble !== null) {
             $query->where('tipo_inmueble', 'like', '%'.$tipoInmueble.'%');
@@ -125,6 +134,7 @@ class PropiedadController extends Controller
                 'Nombre' => $propiedad->getAttribute('nombre'),
                 'Tagline' => $propiedad->getAttribute('tagline'),
                 'Ciudad_Estado' => $propiedad->getAttribute('ciudad_estado'),
+                'Zona' => $propiedad->getAttribute('zona'),
                 'Tipo_Inmueble' => $propiedad->getAttribute('tipo_inmueble'),
                 'Precio' => (float) $propiedad->getAttribute('precio'),
                 'Estado_Interno' => $propiedad->getAttribute('estado_interno'),
@@ -181,11 +191,14 @@ class PropiedadController extends Controller
         }
 
         try {
+            $this->cityRegistry->ensureExists($this->extractCityName((string) $data['ciudad_estado']));
+
             Propiedad::query()->create([
                 'id_publico' => $data['id_publico'],
                 'nombre' => $data['nombre'],
                 'tagline' => $data['tagline'],
                 'ciudad_estado' => $data['ciudad_estado'],
+                'zona' => $data['zona'],
                 'tipo_inmueble' => $data['tipo_inmueble'],
                 'precio' => $data['precio'],
                 'estado_interno' => $data['estado_interno'],
@@ -208,6 +221,18 @@ class PropiedadController extends Controller
                 'status' => 'ERROR',
             ], 500);
         }
+    }
+
+    private function extractCityName(string $ciudadEstado): string
+    {
+        $ciudadEstado = trim($ciudadEstado);
+        if ($ciudadEstado === '') {
+            return '';
+        }
+
+        $parts = preg_split('/,/', $ciudadEstado, 2);
+
+        return trim((string) ($parts[0] ?? $ciudadEstado));
     }
 
     private function queryValue(Request $request, array $keys): mixed
