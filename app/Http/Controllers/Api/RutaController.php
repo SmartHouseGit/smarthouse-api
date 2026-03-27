@@ -185,7 +185,9 @@ class RutaController extends Controller
 
         $dataToUpdate = [];
         if (array_key_exists('resultados', $payload)) {
-            $dataToUpdate['resultados'] = $payload['resultados'];
+            $currentResultados = $this->normalizeResultadosForAppend($ruta->getAttribute('resultados'));
+            $incomingResultados = $this->normalizeResultadosForAppend($payload['resultados']);
+            $dataToUpdate['resultados'] = array_values(array_merge($currentResultados, $incomingResultados));
         }
         if (array_key_exists('nota', $payload)) {
             $dataToUpdate['notas'] = $payload['nota'];
@@ -215,5 +217,22 @@ class RutaController extends Controller
         }
 
         return null;
+    }
+
+    private function normalizeResultadosForAppend(mixed $resultados): array
+    {
+        if ($resultados === null) {
+            return [];
+        }
+
+        if (! is_array($resultados)) {
+            return [];
+        }
+
+        if (array_is_list($resultados)) {
+            return $resultados;
+        }
+
+        return [$resultados];
     }
 }

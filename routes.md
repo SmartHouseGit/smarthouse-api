@@ -1341,6 +1341,7 @@ Reglas por rol:
 
 Notas:
 
+- `resultados` se agrega al arreglo actual (append), no reemplaza los datos existentes.
 - Debes enviar al menos un campo adicional a `id_ruta`.
 - `nota` actualiza el campo `notas` en BD.
 
