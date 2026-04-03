@@ -147,24 +147,116 @@ class AdminController extends Controller
         }
 
         $payload = $request->validated();
-        unset($payload['foto_portada'], $payload['foto_perfil']);
+        $adminPayload = $payload;
+        $userPayload = [];
+
+        $oldFotoPortada = $admin->getAttribute('foto_portada');
+        $oldFotoPerfil = $admin->getAttribute('foto_perfil');
+        $newFotoPortada = null;
+        $newFotoPerfil = null;
+
+        unset($adminPayload['foto_portada'], $adminPayload['foto_perfil']);
 
         if ($request->hasFile('foto_portada')) {
-            $payload['foto_portada'] = $request->file('foto_portada')->store('admins', 'local');
+            $newFotoPortada = $request->file('foto_portada')->store('admins', 'local');
+            $adminPayload['foto_portada'] = $newFotoPortada;
         }
 
         if ($request->hasFile('foto_perfil')) {
-            $payload['foto_perfil'] = $request->file('foto_perfil')->store('admins', 'local');
+            $newFotoPerfil = $request->file('foto_perfil')->store('admins', 'local');
+            $adminPayload['foto_perfil'] = $newFotoPerfil;
+        }
+
+        if (array_key_exists('usuario', $payload)) {
+            $userPayload['email'] = $payload['usuario'];
+            unset($adminPayload['usuario']);
+        }
+
+        if (array_key_exists('password', $payload)) {
+            $userPayload['password'] = $payload['password'];
+            unset($adminPayload['password']);
+        }
+
+        if (array_key_exists('nombre', $payload) || array_key_exists('apellido', $payload)) {
+            $nombre = (string) ($adminPayload['nombre'] ?? $admin->getAttribute('nombre') ?? '');
+            $apellido = (string) ($adminPayload['apellido'] ?? $admin->getAttribute('apellido') ?? '');
+            $fullName = trim($nombre.' '.$apellido);
+
+            if ($fullName !== '') {
+                $userPayload['name'] = $fullName;
+            }
         }
 
         try {
-            $admin->fill($payload);
+            DB::beginTransaction();
+
+            if ($userPayload !== []) {
+                $userId = (int) $admin->getAttribute('userLink');
+                $user = User::query()->where('id', $userId)->first();
+
+                if (! $user) {
+                    DB::rollBack();
+
+                    if (is_string($newFotoPortada) && $newFotoPortada !== '') {
+                        Storage::disk('local')->delete($newFotoPortada);
+                    }
+                    if (is_string($newFotoPerfil) && $newFotoPerfil !== '') {
+                        Storage::disk('local')->delete($newFotoPerfil);
+                    }
+
+                    return response()->json([
+                        'status' => 'ERROR',
+                    ], 404);
+                }
+
+                $user->fill($userPayload);
+                $user->save();
+            }
+
+            $admin->fill($adminPayload);
             $admin->save();
+
+            DB::commit();
+
+            if (
+                is_string($newFotoPortada) &&
+                $newFotoPortada !== '' &&
+                is_string($oldFotoPortada) &&
+                $oldFotoPortada !== '' &&
+                ! preg_match('/^https?:\/\//i', $oldFotoPortada)
+            ) {
+                Storage::disk('local')->delete($oldFotoPortada);
+            }
+
+            if (
+                is_string($newFotoPerfil) &&
+                $newFotoPerfil !== '' &&
+                is_string($oldFotoPerfil) &&
+                $oldFotoPerfil !== '' &&
+                ! preg_match('/^https?:\/\//i', $oldFotoPerfil)
+            ) {
+                Storage::disk('local')->delete($oldFotoPerfil);
+            }
 
             return response()->json([
                 'status' => 'OK',
             ]);
         } catch (Throwable $exception) {
+            DB::rollBack();
+
+            if (is_string($newFotoPortada) && $newFotoPortada !== '') {
+                Storage::disk('local')->delete($newFotoPortada);
+            }
+            if (is_string($newFotoPerfil) && $newFotoPerfil !== '') {
+                Storage::disk('local')->delete($newFotoPerfil);
+            }
+
+            if ($exception instanceof QueryException && (string) $exception->getCode() === '23000') {
+                return response()->json([
+                    'status' => 'ERROR',
+                ], 409);
+            }
+
             return response()->json([
                 'status' => 'ERROR',
             ], 500);

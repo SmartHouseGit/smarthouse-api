@@ -108,7 +108,7 @@ class PropiedadController extends Controller
 
         $agentesById = Agente::query()
             ->whereIn('id_agente', $propiedadesResult->pluck('id_agente')->filter()->unique()->values())
-            ->get(['id_agente', 'nombre', 'apellido'])
+            ->get(['id_agente', 'nombre', 'apellido', 'telefono'])
             ->keyBy('id_agente');
 
         $propiedades = $propiedadesResult->map(function (Propiedad $propiedad) use ($agentesById): array {
@@ -144,6 +144,7 @@ class PropiedadController extends Controller
                 'Datos_Especificos' => $propiedad->getAttribute('datos_especificos') ?? [],
                 'id_agente' => $idAgente,
                 'Agente_Encargado' => $agenteEncargado,
+                'Telefono_Agente' => $agente instanceof Agente ? $agente->getAttribute('telefono') : null,
                 'Propietario' => $propiedad->getAttribute('propietario'),
                 'Coordenadas' => [
                     'latitud' => $propiedad->getAttribute('latitud'),

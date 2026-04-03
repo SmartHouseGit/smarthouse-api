@@ -39,7 +39,7 @@ CREATE TABLE `admins` (
   KEY `idx_admins_apellido` (`apellido`),
   KEY `idx_admins_telefono` (`telefono`),
   CONSTRAINT `fk_admins_users` FOREIGN KEY (`userLink`) REFERENCES `users` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,7 +51,8 @@ LOCK TABLES `admins` WRITE;
 set autocommit=0;
 INSERT INTO `admins` VALUES
 (1,4,0,NULL,NULL,'Laura','Mendoza','+584149998877','Admin senior de operaciones.'),
-(2,10,0,NULL,NULL,'Luis ','Bolivar','+584149998877','Admin senior de operaciones.');
+(2,10,0,NULL,NULL,'Luis ','Bolivar','+584149998877','Admin senior de operaciones.'),
+(3,24,22,NULL,NULL,'Yostin','Licon','04145689856','Vendedor profesional');
 /*!40000 ALTER TABLE `admins` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -78,7 +79,7 @@ CREATE TABLE `agentes` (
   KEY `idx_agentes_apellido` (`apellido`),
   KEY `idx_agentes_telefono` (`telefono`),
   KEY `idx_agentes_userLink` (`userLink`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,8 +93,8 @@ INSERT INTO `agentes` VALUES
 (1,0,0,'https://mi-cdn.com/agentes/portada-1.jpg','https://mi-cdn.com/agentes/perfil-1.jpg','Ramona','Mendoza','+584121234567','Asesora comercial con enfoque en inmuebles residenciales.'),
 (2,0,0,'https://mi-cdn.com/agentes/portada-2.jpg','https://mi-cdn.com/agentes/perfil-2.jpg','Aup','Mendoza','+584148887766','Especialista en cierre de operaciones y negociacion inmobiliaria.'),
 (4,2,0,NULL,NULL,'Mis huevos','Redondos','+584121234567','Asesora comercial con enfoque en inmuebles residenciales.'),
-(5,5,4,NULL,NULL,'Luis','Mora','+584149998877','Asesor inmobiliario'),
-(6,6,4,NULL,NULL,'Raul','de Cervantes','+584243659965','buen vendedor'),
+(5,5,4,NULL,NULL,'Luisss','Mora','+584149998877','Asesor inmobiliario'),
+(6,6,4,NULL,NULL,'Raul','de Cervantes12','+58 414-110-5522','Captacion y negociacion de propiedades premium con seguimiento personalizado.'),
 (7,7,4,NULL,NULL,'pedro','casanova','42566956856','Prof'),
 (8,8,4,NULL,NULL,'Yonnel','Licon','04126789078','Yonnel'),
 (9,9,4,NULL,NULL,'Yonnel12','Licon','041256789098','Yonnel Moises'),
@@ -101,7 +102,11 @@ INSERT INTO `agentes` VALUES
 (12,12,10,NULL,NULL,'Pepe','Alcaravan','+584243073956','Mejor Agenmte'),
 (13,13,10,NULL,NULL,'Maria','Oropeza','+5755656584547','Sin notas add'),
 (16,16,14,NULL,NULL,'Rafa','Pedromo','+58424665845','prueba'),
-(19,19,4,NULL,NULL,'Yonnel','Licon','041238238213','Vendedor informal');
+(19,19,4,NULL,NULL,'Yonnel','Licon','041238238213','Vendedor informal'),
+(23,23,4,NULL,NULL,'Moises Yon','Licon','04124512048','Nuevo agente'),
+(25,25,24,NULL,NULL,'Ramos','Ramos','041456894552','Vendedor'),
+(26,26,24,NULL,NULL,'Muffin la bomba','Perro','04226368930','Perro perro'),
+(27,27,4,NULL,NULL,'Anderson','Valezquez','04245678908','Anderson, padre de muffin');
 /*!40000 ALTER TABLE `agentes` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -145,17 +150,69 @@ LOCK TABLES `cache` WRITE;
 /*!40000 ALTER TABLE `cache` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `cache` VALUES
-('laravel-cache-illuminate:queue:restart','i:1774457038;',2089817038),
-('laravel-cache-login|admin@sm.com|104.22.1.32','i:1;',1774474862),
-('laravel-cache-login|admin@sm.com|104.22.1.32:timer','i:1774474862;',1774474862),
-('laravel-cache-login|admin@sm.com|104.22.24.234','i:1;',1774482476),
-('laravel-cache-login|admin@sm.com|104.22.24.234:timer','i:1774482476;',1774482476),
-('laravel-cache-login|admin@sm.com|172.71.31.11','i:1;',1774474867),
-('laravel-cache-login|admin@sm.com|172.71.31.11:timer','i:1774474867;',1774474867),
-('laravel-cache-login|raul@sm.com|108.162.238.115','i:1;',1774474910),
-('laravel-cache-login|raul@sm.com|108.162.238.115:timer','i:1774474910;',1774474910),
-('laravel-cache-login|yonnel@sm.com|104.22.1.32','i:1;',1774590486),
-('laravel-cache-login|yonnel@sm.com|104.22.1.32:timer','i:1774590486;',1774590486);
+('laravel-cache-illuminate:queue:restart','i:1774626298;',2089986298),
+('laravel-cache-login|anderson@a.a|104.23.248.24','i:1;',1775239434),
+('laravel-cache-login|anderson@a.a|104.23.248.24:timer','i:1775239434;',1775239434),
+('laravel-cache-login|anderson@a.a|104.23.248.25','i:1;',1775239428),
+('laravel-cache-login|anderson@a.a|104.23.248.25:timer','i:1775239428;',1775239428),
+('laravel-cache-login|anderson@a.a|172.70.255.67','i:1;',1775239419),
+('laravel-cache-login|anderson@a.a|172.70.255.67:timer','i:1775239419;',1775239419),
+('laravel-cache-login|luis@sm.com|104.23.245.7','i:1;',1774642978),
+('laravel-cache-login|luis@sm.com|104.23.245.7:timer','i:1774642978;',1774642978),
+('laravel-cache-login|moi@gmail,com|104.23.248.25','i:2;',1775241094),
+('laravel-cache-login|moi@gmail,com|104.23.248.25:timer','i:1775241094;',1775241094),
+('laravel-cache-login|moi@gmail,com|172.68.12.50','i:1;',1775241087),
+('laravel-cache-login|moi@gmail,com|172.68.12.50:timer','i:1775241087;',1775241087),
+('laravel-cache-login|moi@gmail,com|172.70.83.153','i:1;',1775241081),
+('laravel-cache-login|moi@gmail,com|172.70.83.153:timer','i:1775241081;',1775241081),
+('laravel-cache-login|moises@sm.com|104.23.245.7','i:1;',1774649186),
+('laravel-cache-login|moises@sm.com|104.23.245.7:timer','i:1774649186;',1774649186),
+('laravel-cache-login|moises@sm.com|172.68.70.116','i:1;',1774647729),
+('laravel-cache-login|moises@sm.com|172.68.70.116:timer','i:1774647729;',1774647729),
+('laravel-cache-login|moises@sm.com|172.68.70.117','i:1;',1774649102),
+('laravel-cache-login|moises@sm.com|172.68.70.117:timer','i:1774649102;',1774649102),
+('laravel-cache-login|mora@fm.com|104.23.245.7','i:1;',1774649018),
+('laravel-cache-login|mora@fm.com|104.23.245.7:timer','i:1774649018;',1774649018),
+('laravel-cache-login|mora@sm.com|104.22.56.188','i:1;',1774645923),
+('laravel-cache-login|mora@sm.com|104.22.56.188:timer','i:1774645923;',1774645923),
+('laravel-cache-login|mora@sm.com|104.22.56.189','i:2;',1774645853),
+('laravel-cache-login|mora@sm.com|104.22.56.189:timer','i:1774645853;',1774645853),
+('laravel-cache-login|mora@sm.com|108.162.238.116','i:1;',1774645905),
+('laravel-cache-login|mora@sm.com|108.162.238.116:timer','i:1774645905;',1774645905),
+('laravel-cache-login|owner@sm.com|172.69.70.198','i:1;',1774653858),
+('laravel-cache-login|owner@sm.com|172.69.70.198:timer','i:1774653858;',1774653858),
+('laravel-cache-login|perro@sm.com|172.71.31.11','i:2;',1774735585),
+('laravel-cache-login|perro@sm.com|172.71.31.11:timer','i:1774735585;',1774735585),
+('laravel-cache-login|ramos@sm.com|104.22.1.32','i:1;',1774713627),
+('laravel-cache-login|ramos@sm.com|104.22.1.32:timer','i:1774713627;',1774713627),
+('laravel-cache-login|ramos@sm.com|104.22.24.235','i:1;',1774713623),
+('laravel-cache-login|ramos@sm.com|104.22.24.235:timer','i:1774713623;',1774713623),
+('laravel-cache-login|raul@sm.com|104.22.24.234','i:1;',1774660289),
+('laravel-cache-login|raul@sm.com|104.22.24.234:timer','i:1774660289;',1774660289),
+('laravel-cache-login|raul@sm.com|172.71.31.12','i:1;',1774660207),
+('laravel-cache-login|raul@sm.com|172.71.31.12:timer','i:1774660207;',1774660207),
+('laravel-cache-login|sameul@sm.com|104.23.245.7','i:1;',1774731968),
+('laravel-cache-login|sameul@sm.com|104.23.245.7:timer','i:1774731968;',1774731968),
+('laravel-cache-login|yon@sm.com|104.22.24.234','i:1;',1774642997),
+('laravel-cache-login|yon@sm.com|104.22.24.234:timer','i:1774642997;',1774642997),
+('laravel-cache-login|yon@sm.com|104.23.248.24','i:1;',1775241010),
+('laravel-cache-login|yon@sm.com|104.23.248.24:timer','i:1775241010;',1775241010),
+('laravel-cache-login|yon@sm.com|172.70.83.154','i:1;',1775241015),
+('laravel-cache-login|yon@sm.com|172.70.83.154:timer','i:1775241015;',1775241015),
+('laravel-cache-login|yon1@gmail.com|172.68.70.117','i:1;',1774642941),
+('laravel-cache-login|yon1@gmail.com|172.68.70.117:timer','i:1774642941;',1774642941),
+('laravel-cache-login|yon1@sm.com|104.22.1.32','i:1;',1774642912),
+('laravel-cache-login|yon1@sm.com|104.22.1.32:timer','i:1774642912;',1774642912),
+('laravel-cache-login|yon1@sm.com|104.22.56.189','i:1;',1774642929),
+('laravel-cache-login|yon1@sm.com|104.22.56.189:timer','i:1774642929;',1774642929),
+('laravel-cache-login|yon1@sm.com|172.71.31.12','i:1;',1774642923),
+('laravel-cache-login|yon1@sm.com|172.71.31.12:timer','i:1774642923;',1774642923),
+('laravel-cache-login|yonnel@sm.com|104.22.56.189','i:1;',1774627528),
+('laravel-cache-login|yonnel@sm.com|104.22.56.189:timer','i:1774627528;',1774627528),
+('laravel-cache-login|yonnel@sm.com|104.23.248.24','i:1;',1775094078),
+('laravel-cache-login|yonnel@sm.com|104.23.248.24:timer','i:1775094078;',1775094078),
+('laravel-cache-login|yonnel@sm.com|172.70.83.154','i:1;',1775241020),
+('laravel-cache-login|yonnel@sm.com|172.70.83.154:timer','i:1775241020;',1775241020);
 /*!40000 ALTER TABLE `cache` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -217,7 +274,7 @@ CREATE TABLE `cierres` (
   KEY `idx_cierres_cliente` (`id_cliente`),
   CONSTRAINT `fk_cierres_agentes_ref` FOREIGN KEY (`ref`) REFERENCES `agentes` (`id_agente`) ON UPDATE CASCADE,
   CONSTRAINT `fk_cierres_clientes` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -228,10 +285,12 @@ LOCK TABLES `cierres` WRITE;
 /*!40000 ALTER TABLE `cierres` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `cierres` VALUES
-(1,6,'2026-03-19','Venta','Inicial',NULL,'Holas',2000.00,20000.00,4,'Maracay','[\"cierres\\/lvOEqbMHGSNFypdjlIGpafOcPKMEj4ecXuHBTA0C.pdf\"]','sjdsad'),
+(1,6,'2026-03-19','Venta','terminado',NULL,'Holas',2000.00,20000.00,4,'Maracay','[\"cierres\\/lvOEqbMHGSNFypdjlIGpafOcPKMEj4ecXuHBTA0C.pdf\"]','sjdsad'),
 (2,12,'2026-03-19','Alquiler','Inicial',NULL,'prueba cierre',15000.00,20000.00,11,'Maracay',NULL,'prueba'),
 (3,11,'2026-03-19','asesoria','Inicial',NULL,'prueba 2',15680.00,170000.00,7,'Caracas',NULL,'prueba'),
-(4,19,'2026-03-26','Venta','terminado',NULL,'Cierre cerrado',20000.00,20000.00,14,'Cagua',NULL,'holas');
+(4,19,'2026-03-26','Venta','terminado',NULL,'Cierre cerrado',20000.00,20000.00,14,'Cagua',NULL,'holas'),
+(5,25,'2026-03-28','Venta','Inicial','[\"PUB-0012\"]','Cierre venta | prueba cierre',20000.00,300000.00,NULL,'Caracas','[\"cierres\\/PHVQbG5hGKkTkCRZvWNRr0CQxfwPJq55XlumsHkl.pdf\"]','casa vendida'),
+(6,19,'2026-04-03','Venta','terminado','[\"PUB-0006\"]','Cierre venta | Casa preciosa',20000.00,30000.00,14,'Maracay',NULL,'cierre seleccionado');
 /*!40000 ALTER TABLE `cierres` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -248,7 +307,7 @@ CREATE TABLE `ciudades` (
   `nombre` varchar(120) NOT NULL,
   PRIMARY KEY (`id_ciudad`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -259,7 +318,9 @@ LOCK TABLES `ciudades` WRITE;
 /*!40000 ALTER TABLE `ciudades` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `ciudades` VALUES
+(5,'Cagua'),
 (3,'Caracas'),
+(6,'Los teques'),
 (1,'Maracay'),
 (2,'Valencia'),
 (4,'Villa de cura');
@@ -297,7 +358,7 @@ CREATE TABLE `clientes` (
   KEY `idx_clientes_correo` (`correo`),
   KEY `idx_clientes_agente_res` (`agente_res`),
   CONSTRAINT `fk_clientes_agentes_userLink` FOREIGN KEY (`agente_res`) REFERENCES `agentes` (`userLink`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -311,7 +372,7 @@ INSERT INTO `clientes` VALUES
 (1,'clientes/miehbg70QEX823Efzd1HbJlkf01y4L7ymYYuVwCR.png','clientes/q53mHiWUG6hCqKnsutlOnWvmk2ieIrXbxMEvKeW1.jpg','Yonnel','Comprador','Comprador','Activo','04124512048','Yonn@yon.com','Villa','Maracay','29659564','Yooooon',6),
 (2,'clientes/miehbg70QEX823Efzd1HbJlkf01y4L7ymYYuVwCR.png','clientes/q53mHiWUG6hCqKnsutlOnWvmk2ieIrXbxMEvKeW1.jpg','Yonnelf','Comprador','Compradorg','Activog','04124512048','Yonn@yon.comg','Villa','Maracayfs','29659564','sffsfsf',5),
 (3,'clientes/lU4ilDCRoswTGZPOhuNdc4BlCWJFGQJnFbbMDIld.png','clientes/QjwP3eyCl2L3AOwUVBXtUUNPeytijzlplvkp3b2s.jpg','NiñaCorp','Niña','Corporativo','Activo','04125627890','corp@niña.com','Niña','Valencia','78675432','Niñaaa',6),
-(4,'clientes/aOpdLTh1ZccTTj3uUNjEZXrG8gp7vpEBQ1qfyLn9.png','clientes/NI7OR4PwpuiCpTVOA3pbUqZN3h8tG7vNvIj0DSlk.jpg','daso','daso','Comprador','Activo','0412345678','daso@gamil.com','daso','Maracay','1238213812123','daso',6),
+(4,'clientes/aOpdLTh1ZccTTj3uUNjEZXrG8gp7vpEBQ1qfyLn9.png','clientes/NI7OR4PwpuiCpTVOA3pbUqZN3h8tG7vNvIj0DSlk.jpg','ElXokas','Streamer','Comprador','Activo','0412345678','daso@gamil.com','daso','Maracay','1238213812123','daso\n\nTipo API: Comprador',6),
 (5,'clientes/vq5DdZRqCtUR296qBxFloXczZLlTSgJPMwEHwt3Q.png','clientes/x06BZoPyiDswJY0j1PXzSbVVuBTb5eTGce9fOsdl.jpg','nose','nose','Corporativo','Activo','04123503289','nose@gmail.com','nose','Caracas','83839393','nose',6),
 (6,'clientes/vDLKe6IyeYOOruZaXYThrR0WQnFDSrKIRr1sqjv6.jpg','clientes/EyzJ8NcnjiERwBFkNiGFDEwJa4Ts8f7hE449guC2.jpg','Cliente 1','prueba cliente natural','Comprador','Activo','+584246956685','cliente1@sm.com','maracay','Maracay','12456865','Sin nota ocupable',11),
 (7,'clientes/B9fXXHDejS0vETbZMLIEF8D2eRBycNVldyQT5unk.jpg','clientes/Ci9UHZCqDhRVbG0OZO32SDxyXQBuxQ7aaVTNIIhF.jpg','Corp 1','perfilde prueba corp','Corporativo','Activo','+575132454474','corp1@sm.com','bogota','bogota','457598158415','prueba corp 1',11),
@@ -319,7 +380,8 @@ INSERT INTO `clientes` VALUES
 (12,'clientes/TIgvn3MQNJqVQ4jxL7jbiZrnJ00ULXpCduFiOu38.png','clientes/kf3hWKsiP00lQUga9X7UDsYPiozupxhePwUxjePN.png','Ranso','Comprador premium','Comprador','Nuevo','041223823993','rank@1.com','Altamira','Caracas','373782829','Comprador',6),
 (13,'clientes/aTYwqiAiUU1Ogh8HSeRezqDx7vi8QaQgwRr0tdR5.jpg','clientes/5yoGk14RQtbjyb2dk6yMUaeqRVXxy13UwvuSchnZ.png','Reis','Comprador inversionista','Corporativo','Nuevo','0412482948','yonn@a.com','Su casa','Villa de cura','38213812','Casita',6),
 (14,'clientes/xflgCO0glNu2X6M0asBAcTSdGOyQM2xVbReFERD0.jpg','clientes/E09RWz3IzkT1JNluxCqt8g9Eb4ifzHWRB338CPrG.png','dasdsa','hdsdhsdh','Comprador','Nuevo','312312312','sdjasd@gmail.com','sjsj','Maracay','2312312','jsadjkasdksajdasdj',19),
-(15,'clientes/5kj4alP1wyesbLKzvYn8HZ9f0HWiBV5rBvjuqVd7.png','clientes/pv7uVVMaqMJw5ri7IS1UkRa8QHq4seayqiqS4z8l.png','hsdh','jkjkk','Corporativo','Nuevo','0123213123','hasdjasd@a.com','ksdjkasd','Maracay','2831287','lkl',19);
+(15,'clientes/5kj4alP1wyesbLKzvYn8HZ9f0HWiBV5rBvjuqVd7.png','clientes/pv7uVVMaqMJw5ri7IS1UkRa8QHq4seayqiqS4z8l.png','hsdh','jkjkk','Corporativo','Nuevo','0123213123','hasdjasd@a.com','ksdjkasd','Maracay','2831287','lkl',19),
+(16,'clientes/UDuiYf2dWnluofgi6X6dgeThm8koOKuSCroc6ORm.jpg','clientes/vlqgFLf1Kgbep4yOrLBtox4jeA2tidYmNiCfXVlX.jpg','Encargado de propiedades','premium','Corporativo','Nuevo','04129168395','yon@gmail.com','Su casa','Los teques','2546984652','Casa preciosa en los teques',19);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -351,7 +413,7 @@ LOCK TABLES `configs` WRITE;
 /*!40000 ALTER TABLE `configs` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `configs` VALUES
-(1,'Tu hogar ideal, sin complicaciones','config/LVLSL4E1AQz9yudpv8cvWTuwOyrCudCbWpqwPp56.png','[{\"titulo\":\"Holas a todos\",\"valor\":\"Hello mundo\"}]','[{\"titulo\":\"Casa preciosa en Cagua\",\"valor\":\"5\"},{\"titulo\":\"Residencias en casa\",\"valor\":\"1\"},{\"titulo\":\"Mejor\",\"valor\":\"3\"}]','[\"config\\/AIJwYWurkE24d9uBfIQhbhT7Bn2CpVsW3SiUPBZR.jpg\"]','[{\"nombre\":\"Se\\u00f1or Jos\\u00e9\",\"subtitulo\":\"Lider\",\"comentario\":\"Casa espectacular, trato incre\\u00edble\"}]');
+(1,'Tu hogar ideal, sin complicaciones','config/LVLSL4E1AQz9yudpv8cvWTuwOyrCudCbWpqwPp56.png','[{\"titulo\":\"Holas a todos\",\"valor\":\"Hello mundo\"}]','[{\"titulo\":\"Casa preciosa en Cagua\",\"valor\":\"5\"},{\"titulo\":\"Residencias en casa\",\"valor\":\"1\"},{\"titulo\":\"Mejor\",\"valor\":\"3\"}]','[\"config\\/AIJwYWurkE24d9uBfIQhbhT7Bn2CpVsW3SiUPBZR.jpg\"]','[{\"nombre\":\"Se\\u00f1or Jos\\u00e9\",\"subtitulo\":\"Lider\",\"comentario\":\"Casa espectacular, trato incre\\u00edble\"},{\"nombre\":\"Dra. Mar\\u00eda Perez\",\"subtitulo\":\"Ingeniera Civil\",\"comentario\":\"Hogares de alto nivel para personas de alto nivel\"}]');
 /*!40000 ALTER TABLE `configs` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -373,7 +435,7 @@ CREATE TABLE `contactos` (
   `ref` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_contactos_email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -384,7 +446,11 @@ LOCK TABLES `contactos` WRITE;
 /*!40000 ALTER TABLE `contactos` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `contactos` VALUES
-(1,1,'Yonn','Yonnn@gmail.com','Comprar para vivir','Prueba 1',11);
+(1,1,'Yonn','Yonnn@gmail.com','Comprar para vivir','Prueba 1',11),
+(2,1,'Moises','Moi@gmail.com','Comprar para vivir','Yonnel',6),
+(3,1,'gfdg','fdg@gmail.com','Comprar para vivir','asdasd',8),
+(4,2,'asdasd','sad@gmail.com','Asesor comercial senior','asdsa',6),
+(5,1,'Moises','uo@gmail.com','Comprar para vivir','hokak',25);
 /*!40000 ALTER TABLE `contactos` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -512,7 +578,7 @@ CREATE TABLE `loan_cuts` (
   KEY `idx_loan_cuts_status` (`status`),
   KEY `idx_loan_cuts_due_date` (`due_date`),
   CONSTRAINT `fk_loan_cuts_loans` FOREIGN KEY (`loan_id`) REFERENCES `loans` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=184 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -602,7 +668,19 @@ INSERT INTO `loan_cuts` VALUES
 (165,29,3,'2026-06-25','2026-06-25',13200.00,0.00,13200.00,'pending',NULL,NULL,NULL,'2026-03-25 21:31:22','2026-03-25 21:31:22'),
 (166,30,1,'2026-03-25','2026-03-25',200.00,0.00,200.00,'pending',NULL,NULL,NULL,'2026-03-25 21:34:04','2026-03-25 17:34:49'),
 (167,30,2,'2026-05-25','2026-05-25',200.00,0.00,200.00,'pending',NULL,NULL,NULL,'2026-03-25 21:34:04','2026-03-25 21:34:04'),
-(168,30,3,'2026-06-25','2026-06-25',2200.00,0.00,2200.00,'pending',NULL,NULL,NULL,'2026-03-25 21:34:04','2026-03-25 21:34:04');
+(168,30,3,'2026-06-25','2026-06-25',2200.00,0.00,2200.00,'pending',NULL,NULL,NULL,'2026-03-25 21:34:04','2026-03-25 21:34:04'),
+(172,32,1,'2026-02-01','2026-02-01',18090.00,0.00,18090.00,'paid','Pago cash o fina','loans/proofs/9dQWVwuqW4sgpiPPR1jvFYakmfIqPqHoWjkNIPfb.jpg','2026-03-30 14:53:48','2026-03-29 19:30:24','2026-03-30 18:53:48'),
+(173,32,2,'2026-03-01','2026-03-01',18090.00,0.00,18090.00,'paid','Pago cash oficina','loans/proofs/DFhIHQj540K3udQbZdk9WBNnEhxVUyVXcXzpPAEn.jpg','2026-03-30 14:54:21','2026-03-29 19:30:24','2026-03-30 18:54:21'),
+(174,32,3,'2026-04-01','2026-04-01',18090.00,0.00,18090.00,'pending',NULL,NULL,NULL,'2026-03-29 19:30:24','2026-03-29 19:30:24'),
+(175,32,4,'2026-05-01','2026-05-01',18090.00,0.00,18090.00,'pending',NULL,NULL,NULL,'2026-03-29 19:30:24','2026-03-29 19:30:24'),
+(176,32,5,'2026-06-01','2026-06-01',18090.00,0.00,18090.00,'pending',NULL,NULL,NULL,'2026-03-29 19:30:24','2026-03-29 19:30:24'),
+(177,32,6,'2026-07-01','2026-07-01',18090.00,0.00,18090.00,'pending',NULL,NULL,NULL,'2026-03-29 19:30:24','2026-03-29 19:30:24'),
+(178,32,7,'2026-08-01','2026-08-01',18090.00,0.00,18090.00,'pending',NULL,NULL,NULL,'2026-03-29 19:30:24','2026-03-29 19:30:24'),
+(179,32,8,'2026-09-01','2026-09-01',18090.00,0.00,18090.00,'pending',NULL,NULL,NULL,'2026-03-29 19:30:24','2026-03-29 19:30:24'),
+(180,32,9,'2026-10-01','2026-10-01',18090.00,0.00,18090.00,'pending',NULL,NULL,NULL,'2026-03-29 19:30:24','2026-03-29 19:30:24'),
+(181,32,10,'2026-11-01','2026-11-01',18090.00,0.00,18090.00,'pending',NULL,NULL,NULL,'2026-03-29 19:30:24','2026-03-29 19:30:24'),
+(182,32,11,'2026-12-01','2026-12-01',18090.00,0.00,18090.00,'pending',NULL,NULL,NULL,'2026-03-29 19:30:24','2026-03-29 19:30:24'),
+(183,32,12,'2027-01-01','2027-01-01',688090.00,0.00,688090.00,'pending',NULL,NULL,NULL,'2026-03-29 19:30:24','2026-03-29 19:30:24');
 /*!40000 ALTER TABLE `loan_cuts` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -641,7 +719,7 @@ CREATE TABLE `loans` (
   KEY `idx_loans_owner` (`id_owner`),
   CONSTRAINT `fk_loans_users_created_by` FOREIGN KEY (`created_by_user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_loans_users_owner` FOREIGN KEY (`id_owner`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -659,7 +737,8 @@ INSERT INTO `loans` VALUES
 (27,'Carlos Gaviria','19531106',30000.00,'mensual',3,10.0000,3000.00,33000.00,9000.00,39000.00,'2026-03-07','2026-06-07','active',17,17,'2026-03-24 10:36:08','2026-03-24 19:56:10'),
 (28,'Freddy Arguello','18230702',6000.00,'mensual',12,1.0000,60.00,6060.00,720.00,6720.00,'2026-04-01','2027-04-01','active',17,17,'2026-03-24 21:36:21','2026-03-24 21:36:21'),
 (29,'prueba','15245411',12000.00,'mensual',3,10.0000,1200.00,13200.00,3600.00,15600.00,'2026-03-25','2026-06-25','active',20,20,'2026-03-25 21:31:22','2026-03-25 21:31:22'),
-(30,'Muffin','42542542',2000.00,'mensual',3,10.0000,200.00,2200.00,600.00,2600.00,'2026-03-25','2026-06-25','active',NULL,NULL,'2026-03-25 21:34:04','2026-03-25 21:34:04');
+(30,'Muffin','42542542',2000.00,'mensual',3,10.0000,200.00,2200.00,600.00,2600.00,'2026-03-25','2026-06-25','active',NULL,NULL,'2026-03-25 21:34:04','2026-03-25 21:34:04'),
+(32,'Deliplaza','15609424',670000.00,'mensual',12,2.7000,18090.00,688090.00,217080.00,887080.00,'2026-01-01','2027-01-01','active',18,18,'2026-03-29 19:30:24','2026-03-29 19:30:24');
 /*!40000 ALTER TABLE `loans` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -781,7 +860,7 @@ CREATE TABLE `personal_access_tokens` (
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`),
   KEY `personal_access_tokens_expires_at_index` (`expires_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=180 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -835,11 +914,11 @@ INSERT INTO `personal_access_tokens` VALUES
 (41,'App\\Models\\User',18,'frontend','64676c0f2bc6508c9e50abc86ee23830163f66e87df7a89e017c17dc8b2b9328','[\"*\"]','2026-03-25 20:47:14',NULL,'2026-03-24 01:28:47','2026-03-25 20:47:14'),
 (42,'App\\Models\\User',18,'frontend','528842d3059f90606d856998b5f286c65ca49665ff4f8bba5e856deb5b3f2cbf','[\"*\"]','2026-03-24 01:41:02',NULL,'2026-03-24 01:39:56','2026-03-24 01:41:02'),
 (43,'App\\Models\\User',18,'frontend','3f8c52196d7698c331ca9736ec31cbe06fd0f9cee2330bc06c64a04b75187aa7','[\"*\"]','2026-03-25 21:09:17',NULL,'2026-03-24 01:41:10','2026-03-25 21:09:17'),
-(44,'App\\Models\\User',17,'frontend','40e4146bc24dc027410d8d9efc7468e8c555786b0d4ab5b70b7a2ec1ce99bec3','[\"*\"]','2026-03-27 02:52:13',NULL,'2026-03-24 01:54:24','2026-03-27 02:52:13'),
+(44,'App\\Models\\User',17,'frontend','40e4146bc24dc027410d8d9efc7468e8c555786b0d4ab5b70b7a2ec1ce99bec3','[\"*\"]','2026-04-01 23:00:11',NULL,'2026-03-24 01:54:24','2026-04-01 23:00:11'),
 (45,'App\\Models\\User',18,'frontend','ab341ea52ac394af25d8e0b265a4f902b05b9cdbf03b6053ebfd509f24d6caaf','[\"*\"]','2026-03-25 20:40:11',NULL,'2026-03-24 14:29:56','2026-03-25 20:40:11'),
 (46,'App\\Models\\User',18,'frontend','75876de5881f456e4a4bbe49e8b13dba0c781b449d1635d4a44835f42081080d','[\"*\"]','2026-03-24 15:15:12',NULL,'2026-03-24 15:15:12','2026-03-24 15:15:12'),
 (47,'App\\Models\\User',18,'frontend','91dbbb09c1b33ab147a633265a3c087e31df98d59789f15c145632ad129d3395','[\"*\"]','2026-03-24 17:06:39',NULL,'2026-03-24 15:20:18','2026-03-24 17:06:39'),
-(48,'App\\Models\\User',18,'frontend','d63e7986cbf9fa0323c08bd464aacb87940c853d861e7ccafa6bd5d7d5254139','[\"*\"]','2026-03-24 17:07:04',NULL,'2026-03-24 17:07:04','2026-03-24 17:07:04'),
+(48,'App\\Models\\User',18,'frontend','d63e7986cbf9fa0323c08bd464aacb87940c853d861e7ccafa6bd5d7d5254139','[\"*\"]','2026-04-02 03:01:09',NULL,'2026-03-24 17:07:04','2026-04-02 03:01:09'),
 (49,'App\\Models\\User',4,'frontend','419759ab5badfd4a9a86a698c2006e1ed63a495d57baa4dd97fa474322371fe8','[\"*\"]','2026-03-25 03:48:22',NULL,'2026-03-25 00:40:30','2026-03-25 03:48:22'),
 (50,'App\\Models\\User',6,'frontend','239bcfc727a5b7b36aed78bbf25b225b6683a0842669a6befa4ba26633e9004e','[\"*\"]','2026-03-25 15:57:31',NULL,'2026-03-25 03:51:21','2026-03-25 15:57:31'),
 (51,'App\\Models\\User',4,'frontend','f78e2aa09ab6066f82c346d4ad51eaa4b9b172bfa8404c2e9eb7bbe30c89b890','[\"*\"]','2026-03-25 15:58:53',NULL,'2026-03-25 15:58:20','2026-03-25 15:58:53'),
@@ -924,7 +1003,53 @@ INSERT INTO `personal_access_tokens` VALUES
 (130,'App\\Models\\User',4,'frontend','4e43caab18a4b2b191fbc39e2565123b759ea8b56c8d3aba6c1f3649e71ce230','[\"*\"]','2026-03-26 09:41:13',NULL,'2026-03-26 09:34:00','2026-03-26 09:41:13'),
 (131,'App\\Models\\User',4,'frontend','676a30bc0a5a4b9015c2eb30f0e659528ca08dbc130bf557ff06762a7f7c6327','[\"*\"]','2026-03-26 19:52:27',NULL,'2026-03-26 19:36:34','2026-03-26 19:52:27'),
 (132,'App\\Models\\User',4,'frontend','1026d3a65b43c89ca50c84428cf13313e2aa21f4af801b1e8c5341bee1bf9a65','[\"*\"]','2026-03-27 09:46:38',NULL,'2026-03-27 09:34:10','2026-03-27 09:46:38'),
-(133,'App\\Models\\User',19,'frontend','f03b03b18a85112f334b646fe9b2126defe68f870dead0f43489dc673b3ab807','[\"*\"]','2026-03-27 10:08:54',NULL,'2026-03-27 09:47:12','2026-03-27 10:08:54');
+(133,'App\\Models\\User',19,'frontend','f03b03b18a85112f334b646fe9b2126defe68f870dead0f43489dc673b3ab807','[\"*\"]','2026-03-27 10:08:54',NULL,'2026-03-27 09:47:12','2026-03-27 10:08:54'),
+(134,'App\\Models\\User',19,'frontend','bd8636dd96243c1f423da8e83709cc6d00d7aff995ff9aabae4121bb1c54d82c','[\"*\"]','2026-03-27 22:09:13',NULL,'2026-03-27 20:04:39','2026-03-27 22:09:13'),
+(135,'App\\Models\\User',4,'frontend','2017f30ff276dc1848da923f2a465e6457b64851d72d6b4248ffbe21f9e0f844','[\"*\"]','2026-03-27 20:08:47',NULL,'2026-03-27 20:05:17','2026-03-27 20:08:47'),
+(136,'App\\Models\\User',4,'frontend','987c1f9a6bb907f2468da5469a4a9fca213101efd0879eb12b9c831efb505fd2','[\"*\"]','2026-03-27 22:40:43',NULL,'2026-03-27 20:10:16','2026-03-27 22:40:43'),
+(137,'App\\Models\\User',19,'frontend','9cda537d73371a9f8be8247b58d019c995c67387d651d5741a095b8cad7a5368','[\"*\"]','2026-03-28 00:16:43',NULL,'2026-03-27 22:21:22','2026-03-28 00:16:43'),
+(138,'App\\Models\\User',4,'frontend','6a9709094577b0bff3034f0b2b2a4b25a7ac8edfcd76c3f6eb1937fbbe3ee94d','[\"*\"]','2026-03-28 00:19:56',NULL,'2026-03-27 22:41:11','2026-03-28 00:19:56'),
+(139,'App\\Models\\User',6,'frontend','e1f473d45446a8d80753b654da48c17b56685ec5e5f4cef33055245cac85c101','[\"*\"]','2026-03-28 01:06:54',NULL,'2026-03-28 00:17:11','2026-03-28 01:06:54'),
+(140,'App\\Models\\User',19,'frontend','8e077633935b269612d70f6e92eb52d5c526e44bd8555ea3db97c28eb354340c','[\"*\"]','2026-03-28 00:20:32',NULL,'2026-03-28 00:20:27','2026-03-28 00:20:32'),
+(141,'App\\Models\\User',9,'frontend','999e63bd4e6ed9ba2d91e4f8ebcce26059d3a33c379774b6c163176de17a3800','[\"*\"]','2026-03-28 00:21:45',NULL,'2026-03-28 00:21:28','2026-03-28 00:21:45'),
+(142,'App\\Models\\User',19,'frontend','a33cd3220c04c97aa455ec4ac7e4a2d28e98286003f761e48dfe585779a5e133','[\"*\"]','2026-03-28 00:22:25',NULL,'2026-03-28 00:22:20','2026-03-28 00:22:25'),
+(143,'App\\Models\\User',4,'frontend','16776d94f20166e8b020c6e40df4a029f12b36c03327a34a0b7f42b8819b9c57','[\"*\"]','2026-03-28 00:24:51',NULL,'2026-03-28 00:22:53','2026-03-28 00:24:51'),
+(144,'App\\Models\\User',23,'frontend','8064286edfe2174ffea20016d30440031b6e7183d1c21435e5e0d712e031a2f8','[\"*\"]','2026-03-28 00:26:52',NULL,'2026-03-28 00:25:04','2026-03-28 00:26:52'),
+(145,'App\\Models\\User',4,'frontend','d100a59125a8056f7e678c47b75b0640169e2c6070cd612435a21cb7c8d6ae1d','[\"*\"]','2026-03-28 01:09:29',NULL,'2026-03-28 00:33:36','2026-03-28 01:09:29'),
+(146,'App\\Models\\User',6,'frontend','fec89923212fe0b815ee6dc3161dec76b6d6b0cfe566729696b3aacac44dc31c','[\"*\"]','2026-03-28 05:08:53',NULL,'2026-03-28 01:07:25','2026-03-28 05:08:53'),
+(147,'App\\Models\\User',4,'frontend','3ff0f1c359a3fd1d5bfa19b70cea94acc238dd82c296bfa7fd9615ad06658d24','[\"*\"]','2026-03-28 01:38:22',NULL,'2026-03-28 01:11:18','2026-03-28 01:38:22'),
+(148,'App\\Models\\User',4,'frontend','aa5a2581e21791e14e2ed57136c61b2703a510791702eb66ab5d39098e08160e','[\"*\"]','2026-03-28 01:39:41',NULL,'2026-03-28 01:39:15','2026-03-28 01:39:41'),
+(149,'App\\Models\\User',23,'frontend','9ef710a508abdb66177b600d8ac73557cc6d72fa30e8eb45559b2be4048e2b03','[\"*\"]','2026-03-28 01:40:16',NULL,'2026-03-28 01:40:15','2026-03-28 01:40:16'),
+(150,'App\\Models\\User',4,'frontend','ebcc41620beca7a7f4f9083585cc735e2ef8ccfb55c4ff2f55396b44a1b72b30','[\"*\"]','2026-03-28 01:40:55',NULL,'2026-03-28 01:40:30','2026-03-28 01:40:55'),
+(151,'App\\Models\\User',23,'frontend','3e17d5636550ac9c534a55d044771ff4338c1847542915b0d212baf4071a70d1','[\"*\"]','2026-03-28 01:49:09',NULL,'2026-03-28 01:41:25','2026-03-28 01:49:09'),
+(152,'App\\Models\\User',4,'frontend','45051a7d35c4dc5e9eb54690c817aece61472ea7e875af5ba31ba63e89cb6887','[\"*\"]','2026-03-28 02:02:19',NULL,'2026-03-28 02:01:51','2026-03-28 02:02:19'),
+(153,'App\\Models\\User',4,'frontend','b059edbde8a37a47859b58a8bd63c57a19772b9940fcdebdf03d14ed02f05ef4','[\"*\"]','2026-03-28 02:03:50',NULL,'2026-03-28 02:03:05','2026-03-28 02:03:50'),
+(154,'App\\Models\\User',23,'frontend','af62d51a0a0a4682e33720dbb4d81072af07a6fd4e99c23b4e4ee0496e474931','[\"*\"]','2026-03-28 02:04:16',NULL,'2026-03-28 02:04:15','2026-03-28 02:04:16'),
+(155,'App\\Models\\User',23,'frontend','62ebf05d0cc9e0fb1222bf3ae3d300996218478a9d521df7222e842b08abb58a','[\"*\"]','2026-03-28 02:05:03',NULL,'2026-03-28 02:04:33','2026-03-28 02:05:03'),
+(156,'App\\Models\\User',23,'frontend','4442df86ac56a60e6b7d6a64d55209ed134b00481e84515cd377a8591cfb615a','[\"*\"]','2026-03-28 02:10:05',NULL,'2026-03-28 02:05:32','2026-03-28 02:10:05'),
+(157,'App\\Models\\User',4,'frontend','a7a729d1c4b7964799010dc01436f04e6fd56bcc3a9554929dcdbc65d77f486d','[\"*\"]','2026-03-28 02:19:34',NULL,'2026-03-28 02:11:50','2026-03-28 02:19:34'),
+(158,'App\\Models\\User',4,'frontend','58eceec755a556c07e766c5faed0b924c611c61d7371f8de2bbf1929bb1367ce','[\"*\"]','2026-03-28 05:05:55',NULL,'2026-03-28 03:19:28','2026-03-28 05:05:55'),
+(159,'App\\Models\\User',22,'frontend','610edcb77098d87924195f412df50bad9dee2869bca64a3522069d123ac3e210','[\"*\"]','2026-03-28 05:02:58',NULL,'2026-03-28 03:23:25','2026-03-28 05:02:58'),
+(160,'App\\Models\\User',22,'frontend','42c7924f53b9f70e9bfa39ee370b574a657f2553d4fce2a4593811dad4d250a8','[\"*\"]','2026-03-30 18:39:16',NULL,'2026-03-28 05:03:18','2026-03-30 18:39:16'),
+(161,'App\\Models\\User',4,'frontend','114a4cc65f9a64ad794a88fbf41b95ec3ef361b9e1ca88ccb565918702819a25','[\"*\"]','2026-03-28 19:30:36',NULL,'2026-03-28 05:06:27','2026-03-28 19:30:36'),
+(162,'App\\Models\\User',6,'frontend','444b04afefcc516070c3bf1cbb4afc7ac9a810ad2d5a066a7048776cfa5d0849','[\"*\"]','2026-03-28 05:10:01',NULL,'2026-03-28 05:09:18','2026-03-28 05:10:01'),
+(163,'App\\Models\\User',6,'frontend','e0cfd7672fc2d5b857173de4dbfb7deb0c5c5088f447c36b14f1a1ca28178032','[\"*\"]','2026-03-28 05:12:38',NULL,'2026-03-28 05:10:34','2026-03-28 05:12:38'),
+(164,'App\\Models\\User',6,'frontend','8e630ffb330d0b76312fea2b399ee510e9e10056eb7da9790c2702cd16cc56ca','[\"*\"]','2026-03-28 19:29:57',NULL,'2026-03-28 05:13:10','2026-03-28 19:29:57'),
+(165,'App\\Models\\User',24,'frontend','950ad6dfc2287486eae6ea3c2729789e8295851887e13005445eb591f2fc1b2f','[\"*\"]','2026-03-29 02:05:11',NULL,'2026-03-28 19:55:14','2026-03-29 02:05:11'),
+(166,'App\\Models\\User',25,'frontend','0b1226acfa046b1ebb1402676542951ae9bb65c11ad881c717788ce62321aea8','[\"*\"]','2026-03-28 20:02:54',NULL,'2026-03-28 19:59:37','2026-03-28 20:02:54'),
+(167,'App\\Models\\User',23,'frontend','cfc0ac6cba78a0da02fab691087f4caf9b9ff1227163de58a99b45f6ade85e19','[\"*\"]','2026-03-29 01:20:06',NULL,'2026-03-29 01:05:17','2026-03-29 01:20:06'),
+(168,'App\\Models\\User',4,'frontend','8d2222b18904e30ca9fd5412979089dcb1148f934eaf46b4c5e8e68f9ad0fc9c','[\"*\"]','2026-03-29 02:05:52',NULL,'2026-03-29 02:05:48','2026-03-29 02:05:52'),
+(169,'App\\Models\\User',23,'frontend','2a490d88f9a5bfc1fd32ccde9f837b9bfe6abff710577e992a4e68e3f8c3997d','[\"*\"]','2026-03-29 02:06:09',NULL,'2026-03-29 02:06:08','2026-03-29 02:06:09'),
+(170,'App\\Models\\User',24,'frontend','ea59a2a69f4b8fd927e11881c7f1ab14c897b2598c2dfd6b35f7e9cb945d2151','[\"*\"]','2026-03-30 09:19:01',NULL,'2026-03-29 02:07:28','2026-03-30 09:19:01'),
+(171,'App\\Models\\User',26,'frontend','e6e14bc2ebbc58fbc3b95a87f9096c7846cddb444eb3b932271f543ad3b30be3','[\"*\"]','2026-04-02 05:39:09',NULL,'2026-03-29 02:08:02','2026-04-02 05:39:09'),
+(172,'App\\Models\\User',19,'frontend','96657e14746c717945642d27a4a03dbc4c76286ed1840bedb8714350e27a71a2','[\"*\"]','2026-04-03 21:17:37',NULL,'2026-04-02 05:40:24','2026-04-03 21:17:37'),
+(173,'App\\Models\\User',4,'frontend','bf11796e2243f3edb0bb939d5a2820ac705cd64d43829ecdc1648855d878afb5','[\"*\"]','2026-04-03 22:01:30',NULL,'2026-04-03 21:58:54','2026-04-03 22:01:30'),
+(174,'App\\Models\\User',27,'frontend','f29d9ea881422117b735c398eafd0effe385c699d986158ae30359708ec44f59','[\"*\"]','2026-04-03 22:03:59',NULL,'2026-04-03 22:03:08','2026-04-03 22:03:59'),
+(175,'App\\Models\\User',27,'frontend','c31ade213114ffced0ab16ee65e80162c8f83c3e30a092acce3fbf1f5c2381d4','[\"*\"]','2026-04-03 22:04:39',NULL,'2026-04-03 22:04:16','2026-04-03 22:04:39'),
+(176,'App\\Models\\User',27,'frontend','df0559520f5e9f6c2d5196d5ab6bfc523abc506f3dab5bee78aa29f940bcbfb8','[\"*\"]','2026-04-03 22:05:30',NULL,'2026-04-03 22:05:30','2026-04-03 22:05:30'),
+(177,'App\\Models\\User',4,'frontend','ce36dbae914d2561577d3999d1c6f86309016f69a5cb26471b4cae98cb0bef28','[\"*\"]','2026-04-03 22:07:27',NULL,'2026-04-03 22:06:36','2026-04-03 22:07:27'),
+(178,'App\\Models\\User',4,'frontend','c9f53cd6b29db63130c5e1042362bdd158b19eeb30911709c30f34a81bd4c01a','[\"*\"]','2026-04-03 22:29:34',NULL,'2026-04-03 22:29:33','2026-04-03 22:29:34'),
+(179,'App\\Models\\User',4,'frontend','f78c72f1de1c9d87f5d31edc198758b9eda08edcdf481f2e4a4eebb85fe87c98','[\"*\"]','2026-04-03 22:30:58',NULL,'2026-04-03 22:30:54','2026-04-03 22:30:58');
 /*!40000 ALTER TABLE `personal_access_tokens` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -966,7 +1091,7 @@ CREATE TABLE `propiedades` (
   KEY `idx_propiedades_id_agente` (`id_agente`),
   KEY `idx_propiedades_propietario` (`propietario`),
   CONSTRAINT `fk_propiedades_agentes` FOREIGN KEY (`id_agente`) REFERENCES `agentes` (`id_agente`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -986,7 +1111,10 @@ INSERT INTO `propiedades` VALUES
 (7,'PUB-0007','Casa 2','En venta','Maracay','','Apartamento',30000.00,'disponible','publicado','Casa en Maracay','{\"dormitorios\":2,\"banos\":2,\"area_m2\":200,\"estacionamientos\":1,\"con_piscina\":false,\"pet_friendly\":false,\"ano_construccion\":2026,\"amoblada\":false,\"balcon\":false,\"seguridad_privada\":true,\"financiable\":false}',19,NULL,10.2398190,-67.5920240,'propiedades/pXXCpugzxQ15ImalluvRklzkAA1VLjVAR2ZQUx12.jpg','[\"propiedades\\/JXQyUjHM9hlAUkD31QroY2N0xGzPqegyB0VfnGHX.jpg\"]'),
 (8,'PUB-0008','casa 3','En venta','Maracay','','Apartamento',300000.00,'disponible','publicado','Casa 3','{\"dormitorios\":0,\"banos\":0,\"area_m2\":0,\"estacionamientos\":0,\"con_piscina\":false,\"pet_friendly\":false,\"ano_construccion\":2026,\"amoblada\":false,\"balcon\":false,\"seguridad_privada\":true,\"financiable\":false}',19,NULL,10.2547220,-67.5673770,'propiedades/QcTCwFzNMrVf65ryXLObvptZAsu9UiPCeYs6zA8p.jpg','[]'),
 (9,'PUB-0009','Linda casa 5','En venta','Maracay','','Apartamento',300000.00,'disponible','publicado','Casa prueba 4','{\"dormitorios\":2,\"banos\":2,\"area_m2\":300,\"estacionamientos\":2,\"con_piscina\":false,\"pet_friendly\":false,\"ano_construccion\":2026,\"amoblada\":false,\"balcon\":false,\"seguridad_privada\":true,\"financiable\":false}',19,NULL,10.2708050,-67.6300010,'propiedades/kaIWbOxelRX6f0yYMrmo32cmvH5iAbpaTzlFWA0e.jpg','[\"propiedades\\/7iUj3pNEztNc2Gnu6gL5veC9hXPzkXauzcPHrlcW.jpg\"]'),
-(10,'PUB-0010','Casa 5','En venta','Maracay','','Apartamento',2000.00,'disponible','publicado','Casa linda en Maracay','{\"dormitorios\":2,\"banos\":2,\"area_m2\":200,\"estacionamientos\":2,\"con_piscina\":false,\"pet_friendly\":false,\"ano_construccion\":2026,\"amoblada\":false,\"balcon\":false,\"seguridad_privada\":true,\"financiable\":false}',19,14,10.2422210,-67.5699970,'propiedades/1jF2CKhRs1cesMHo33WKtf6YyxrkLuezPlWOeF8O.jpg','[\"propiedades\\/ps9pYKE1vGmBMWzmEIdtRNT9fvEqLepXlkrF3XnQ.jpg\"]');
+(10,'PUB-0010','Casa 5','En venta','Maracay','','Apartamento',2000.00,'disponible','publicado','Casa linda en Maracay','{\"dormitorios\":2,\"banos\":2,\"area_m2\":200,\"estacionamientos\":2,\"con_piscina\":false,\"pet_friendly\":false,\"ano_construccion\":2026,\"amoblada\":false,\"balcon\":false,\"seguridad_privada\":true,\"financiable\":false}',19,14,10.2422210,-67.5699970,'propiedades/1jF2CKhRs1cesMHo33WKtf6YyxrkLuezPlWOeF8O.jpg','[\"propiedades\\/ps9pYKE1vGmBMWzmEIdtRNT9fvEqLepXlkrF3XnQ.jpg\"]'),
+(11,'PUB-0011','Casita','En venta','Cagua','las vegas','Apartamento',200000.00,'disponible','publicado','Casita en cagua','{\"dormitorios\":2,\"banos\":2,\"area_m2\":200,\"estacionamientos\":2,\"con_piscina\":false,\"pet_friendly\":false,\"ano_construccion\":2026,\"amoblada\":false,\"balcon\":false,\"seguridad_privada\":true,\"financiable\":false}',19,NULL,10.1628120,-67.4449910,'propiedades/3fubE8zxHaJt74CCux5EqbcTqwFkGK1uwflSVxKU.jpg','[\"propiedades\\/X0wnVz7MA57ZWrdAXBUPCHrbVKpkNO8nxVFIMKqd.jpg\"]'),
+(12,'PUB-0012','prueba cierre','cierre','Caracas','altamira','Apartamento',20000.00,'disponible','publicado','cierre','{\"dormitorios\":2,\"banos\":2,\"area_m2\":200,\"estacionamientos\":2,\"con_piscina\":false,\"pet_friendly\":false,\"ano_construccion\":2026,\"amoblada\":false,\"balcon\":false,\"seguridad_privada\":true,\"financiable\":false}',25,NULL,10.4955890,-66.8488590,'propiedades/lB7aVD2njpgeesVjq3UunypphFlSV6KyQGHRD0Hm.png','[\"propiedades\\/mwPupZUXXIvdLLsO1xnI2RC1xr9ieKaEzcOsvNRg.png\"]'),
+(13,'PUB-0013','casa muffin','muffin','Villa de cura','cementerio','Apartamento',30000.00,'disponible','publicado','muffin house','{\"dormitorios\":2,\"banos\":2,\"area_m2\":200,\"estacionamientos\":2,\"con_piscina\":false,\"pet_friendly\":false,\"ano_construccion\":2026,\"amoblada\":false,\"balcon\":false,\"seguridad_privada\":true,\"financiable\":false}',26,NULL,10.0348150,-67.4948840,'propiedades/X6ik8U6GDvc47tffLXj4GDuMmO18VIz1wQGnE9mV.jpg','[\"propiedades\\/9pTs3WUkoXkrMUS48qtZWrWuG6GhJcLFIsmADfAP.jpg\"]');
 /*!40000 ALTER TABLE `propiedades` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -1008,9 +1136,10 @@ CREATE TABLE `publicar_ins` (
   `imagen_referencial` varchar(500) NOT NULL,
   `mensaje` text NOT NULL,
   `ref` int(11) DEFAULT NULL,
+  `estado` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_publicar_ciudad_zona` (`ciudad`,`zona`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1021,7 +1150,10 @@ LOCK TABLES `publicar_ins` WRITE;
 /*!40000 ALTER TABLE `publicar_ins` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `publicar_ins` VALUES
-(1,'Yonnel','04129168395','Maracay','Casa','Casa','publicar-in/KDonuP1KOoOSeHHO2qy2EuOt7Xmc6oJ8ujmaR5fW.jpg','Casa',0);
+(1,'Yonnel','04129168395','Maracay','Casa','Casa','publicar-in/KDonuP1KOoOSeHHO2qy2EuOt7Xmc6oJ8ujmaR5fW.jpg','Casa',0,NULL),
+(2,'Yonn','04124512048','Caracas','altamira','Casa','publicar-in/ugWHh3MiZ3vQieir6BGc7Mvedm1I43GAjN1ffLPf.jpg','Casa',8,NULL),
+(3,'Juanito','20145415255','mariara','mariara','casa','publicar-in/gbeDYGvz1ttP73NxmxVBRn5EsJzBTVVbmRRuNN51.jpg','Casa para perros',6,NULL),
+(4,'sjasd','04125465556','Los teques','la arboleda','casa','publicar-in/JAkAljMnZubTqXf9IoPsvcAIjwpvJWuxpHaQ19mO.png','casa',25,NULL);
 /*!40000 ALTER TABLE `publicar_ins` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -1105,7 +1237,7 @@ CREATE TABLE `push_notifications` (
   KEY `idx_push_notifications_loan` (`loan_id`),
   KEY `idx_push_notifications_user` (`user_id`),
   CONSTRAINT `fk_push_notifications_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=155 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1120,7 +1252,74 @@ INSERT INTO `push_notifications` VALUES
 (84,20,29,163,'due_hourly','2026-03-25',20,'user:20:cut:163:due_hourly:2026-03-25:20','Corte con vencimiento hoy','prueba: hoy vence tu corte de 1200.00.','https://smarthouse-ve.com/jrplks/?view=history&loanId=29&cutId=163','loan-due-today-cut-163-h20','2026-03-25 20:00:00','sent',1,3,2,1,'2026-03-25 20:00:01',NULL,'2026-03-26 00:00:01','2026-03-26 00:00:01'),
 (85,20,29,163,'due_hourly','2026-03-25',21,'user:20:cut:163:due_hourly:2026-03-25:21','Corte con vencimiento hoy','prueba: hoy vence tu corte de 1200.00.','https://smarthouse-ve.com/jrplks/?view=history&loanId=29&cutId=163','loan-due-today-cut-163-h21','2026-03-25 21:00:00','sent',1,2,2,0,'2026-03-25 21:00:01',NULL,'2026-03-26 01:00:01','2026-03-26 01:00:02'),
 (86,20,29,163,'due_hourly','2026-03-25',22,'user:20:cut:163:due_hourly:2026-03-25:22','Corte con vencimiento hoy','prueba: hoy vence tu corte de 1200.00.','https://smarthouse-ve.com/jrplks/?view=history&loanId=29&cutId=163','loan-due-today-cut-163-h22','2026-03-25 22:00:00','sent',1,2,2,0,'2026-03-25 22:00:02',NULL,'2026-03-26 02:00:02','2026-03-26 02:00:02'),
-(87,20,29,163,'due_hourly','2026-03-25',23,'user:20:cut:163:due_hourly:2026-03-25:23','Corte con vencimiento hoy','prueba: hoy vence tu corte de 1200.00.','https://smarthouse-ve.com/jrplks/?view=history&loanId=29&cutId=163','loan-due-today-cut-163-h23','2026-03-25 23:00:00','sent',1,2,2,0,'2026-03-25 23:00:02',NULL,'2026-03-26 03:00:02','2026-03-26 03:00:02');
+(87,20,29,163,'due_hourly','2026-03-25',23,'user:20:cut:163:due_hourly:2026-03-25:23','Corte con vencimiento hoy','prueba: hoy vence tu corte de 1200.00.','https://smarthouse-ve.com/jrplks/?view=history&loanId=29&cutId=163','loan-due-today-cut-163-h23','2026-03-25 23:00:00','sent',1,2,2,0,'2026-03-25 23:00:02',NULL,'2026-03-26 03:00:02','2026-03-26 03:00:02'),
+(88,17,24,93,'due_hourly','2026-04-01',0,'user:17:cut:93:due_hourly:2026-04-01:00','Corte con vencimiento hoy','Adrián Proautos: hoy vence tu corte de 500.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=24&cutId=93','loan-due-today-cut-93-h00','2026-04-01 00:00:00','sent',1,1,1,0,'2026-04-01 00:00:04',NULL,'2026-04-01 04:00:02','2026-04-01 04:00:09'),
+(89,18,32,174,'due_hourly','2026-04-01',0,'user:18:cut:174:due_hourly:2026-04-01:00','Corte con vencimiento hoy','Deliplaza: hoy vence tu corte de 18090.00.','https://smarthouse-ve.com/Z4rwKp771903/?view=history&loanId=32&cutId=174','loan-due-today-cut-174-h00','2026-04-01 00:00:20','sent',1,1,1,0,'2026-04-01 00:01:01',NULL,'2026-04-01 04:00:03','2026-04-01 04:01:01'),
+(90,17,24,93,'due_hourly','2026-04-01',1,'user:17:cut:93:due_hourly:2026-04-01:01','Corte con vencimiento hoy','Adrián Proautos: hoy vence tu corte de 500.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=24&cutId=93','loan-due-today-cut-93-h01','2026-04-01 01:00:00','sent',1,1,1,0,'2026-04-01 01:00:01',NULL,'2026-04-01 05:00:01','2026-04-01 05:00:02'),
+(91,18,32,174,'due_hourly','2026-04-01',1,'user:18:cut:174:due_hourly:2026-04-01:01','Corte con vencimiento hoy','Deliplaza: hoy vence tu corte de 18090.00.','https://smarthouse-ve.com/Z4rwKp771903/?view=history&loanId=32&cutId=174','loan-due-today-cut-174-h01','2026-04-01 01:00:20','sent',1,1,1,0,'2026-04-01 01:01:01',NULL,'2026-04-01 05:00:01','2026-04-01 05:01:01'),
+(92,17,24,93,'due_hourly','2026-04-01',2,'user:17:cut:93:due_hourly:2026-04-01:02','Corte con vencimiento hoy','Adrián Proautos: hoy vence tu corte de 500.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=24&cutId=93','loan-due-today-cut-93-h02','2026-04-01 02:00:00','sent',1,1,1,0,'2026-04-01 02:00:01',NULL,'2026-04-01 06:00:01','2026-04-01 06:00:01'),
+(93,18,32,174,'due_hourly','2026-04-01',2,'user:18:cut:174:due_hourly:2026-04-01:02','Corte con vencimiento hoy','Deliplaza: hoy vence tu corte de 18090.00.','https://smarthouse-ve.com/Z4rwKp771903/?view=history&loanId=32&cutId=174','loan-due-today-cut-174-h02','2026-04-01 02:00:20','sent',1,1,1,0,'2026-04-01 02:01:02',NULL,'2026-04-01 06:00:01','2026-04-01 06:01:02'),
+(94,17,24,93,'due_hourly','2026-04-01',3,'user:17:cut:93:due_hourly:2026-04-01:03','Corte con vencimiento hoy','Adrián Proautos: hoy vence tu corte de 500.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=24&cutId=93','loan-due-today-cut-93-h03','2026-04-01 03:00:00','sent',1,1,1,0,'2026-04-01 03:00:01',NULL,'2026-04-01 07:00:01','2026-04-01 07:00:01'),
+(95,18,32,174,'due_hourly','2026-04-01',3,'user:18:cut:174:due_hourly:2026-04-01:03','Corte con vencimiento hoy','Deliplaza: hoy vence tu corte de 18090.00.','https://smarthouse-ve.com/Z4rwKp771903/?view=history&loanId=32&cutId=174','loan-due-today-cut-174-h03','2026-04-01 03:00:20','sent',1,1,1,0,'2026-04-01 03:01:02',NULL,'2026-04-01 07:00:01','2026-04-01 07:01:02'),
+(96,17,24,93,'due_hourly','2026-04-01',4,'user:17:cut:93:due_hourly:2026-04-01:04','Corte con vencimiento hoy','Adrián Proautos: hoy vence tu corte de 500.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=24&cutId=93','loan-due-today-cut-93-h04','2026-04-01 04:00:00','sent',1,1,1,0,'2026-04-01 04:00:01',NULL,'2026-04-01 08:00:01','2026-04-01 08:00:01'),
+(97,18,32,174,'due_hourly','2026-04-01',4,'user:18:cut:174:due_hourly:2026-04-01:04','Corte con vencimiento hoy','Deliplaza: hoy vence tu corte de 18090.00.','https://smarthouse-ve.com/Z4rwKp771903/?view=history&loanId=32&cutId=174','loan-due-today-cut-174-h04','2026-04-01 04:00:20','sent',1,1,1,0,'2026-04-01 04:01:02',NULL,'2026-04-01 08:00:01','2026-04-01 08:01:02'),
+(98,17,24,93,'due_hourly','2026-04-01',5,'user:17:cut:93:due_hourly:2026-04-01:05','Corte con vencimiento hoy','Adrián Proautos: hoy vence tu corte de 500.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=24&cutId=93','loan-due-today-cut-93-h05','2026-04-01 05:00:00','sent',1,1,1,0,'2026-04-01 05:00:01',NULL,'2026-04-01 09:00:01','2026-04-01 09:00:01'),
+(99,18,32,174,'due_hourly','2026-04-01',5,'user:18:cut:174:due_hourly:2026-04-01:05','Corte con vencimiento hoy','Deliplaza: hoy vence tu corte de 18090.00.','https://smarthouse-ve.com/Z4rwKp771903/?view=history&loanId=32&cutId=174','loan-due-today-cut-174-h05','2026-04-01 05:00:20','sent',1,1,1,0,'2026-04-01 05:01:02',NULL,'2026-04-01 09:00:01','2026-04-01 09:01:02'),
+(100,17,24,93,'due_hourly','2026-04-01',6,'user:17:cut:93:due_hourly:2026-04-01:06','Corte con vencimiento hoy','Adrián Proautos: hoy vence tu corte de 500.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=24&cutId=93','loan-due-today-cut-93-h06','2026-04-01 06:00:00','sent',1,1,1,0,'2026-04-01 06:00:02',NULL,'2026-04-01 10:00:02','2026-04-01 10:00:02'),
+(101,18,32,174,'due_hourly','2026-04-01',6,'user:18:cut:174:due_hourly:2026-04-01:06','Corte con vencimiento hoy','Deliplaza: hoy vence tu corte de 18090.00.','https://smarthouse-ve.com/Z4rwKp771903/?view=history&loanId=32&cutId=174','loan-due-today-cut-174-h06','2026-04-01 06:00:20','sent',1,1,1,0,'2026-04-01 06:01:01',NULL,'2026-04-01 10:00:02','2026-04-01 10:01:01'),
+(102,17,24,93,'due_hourly','2026-04-01',7,'user:17:cut:93:due_hourly:2026-04-01:07','Corte con vencimiento hoy','Adrián Proautos: hoy vence tu corte de 500.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=24&cutId=93','loan-due-today-cut-93-h07','2026-04-01 07:00:00','sent',1,1,1,0,'2026-04-01 07:00:01',NULL,'2026-04-01 11:00:01','2026-04-01 11:00:01'),
+(103,18,32,174,'due_hourly','2026-04-01',7,'user:18:cut:174:due_hourly:2026-04-01:07','Corte con vencimiento hoy','Deliplaza: hoy vence tu corte de 18090.00.','https://smarthouse-ve.com/Z4rwKp771903/?view=history&loanId=32&cutId=174','loan-due-today-cut-174-h07','2026-04-01 07:00:20','sent',1,1,1,0,'2026-04-01 07:01:02',NULL,'2026-04-01 11:00:01','2026-04-01 11:01:02'),
+(104,17,24,93,'due_hourly','2026-04-01',8,'user:17:cut:93:due_hourly:2026-04-01:08','Corte con vencimiento hoy','Adrián Proautos: hoy vence tu corte de 500.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=24&cutId=93','loan-due-today-cut-93-h08','2026-04-01 08:00:00','sent',1,1,1,0,'2026-04-01 08:00:02',NULL,'2026-04-01 12:00:02','2026-04-01 12:00:02'),
+(105,18,32,174,'due_hourly','2026-04-01',8,'user:18:cut:174:due_hourly:2026-04-01:08','Corte con vencimiento hoy','Deliplaza: hoy vence tu corte de 18090.00.','https://smarthouse-ve.com/Z4rwKp771903/?view=history&loanId=32&cutId=174','loan-due-today-cut-174-h08','2026-04-01 08:00:20','sent',1,1,1,0,'2026-04-01 08:01:01',NULL,'2026-04-01 12:00:02','2026-04-01 12:01:01'),
+(106,17,24,93,'due_hourly','2026-04-01',9,'user:17:cut:93:due_hourly:2026-04-01:09','Corte con vencimiento hoy','Adrián Proautos: hoy vence tu corte de 500.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=24&cutId=93','loan-due-today-cut-93-h09','2026-04-01 09:00:00','sent',1,1,1,0,'2026-04-01 09:00:01',NULL,'2026-04-01 13:00:01','2026-04-01 13:00:01'),
+(107,18,32,174,'due_hourly','2026-04-01',9,'user:18:cut:174:due_hourly:2026-04-01:09','Corte con vencimiento hoy','Deliplaza: hoy vence tu corte de 18090.00.','https://smarthouse-ve.com/Z4rwKp771903/?view=history&loanId=32&cutId=174','loan-due-today-cut-174-h09','2026-04-01 09:00:20','sent',1,1,1,0,'2026-04-01 09:01:02',NULL,'2026-04-01 13:00:01','2026-04-01 13:01:02'),
+(108,17,24,93,'due_hourly','2026-04-01',10,'user:17:cut:93:due_hourly:2026-04-01:10','Corte con vencimiento hoy','Adrián Proautos: hoy vence tu corte de 500.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=24&cutId=93','loan-due-today-cut-93-h10','2026-04-01 10:00:00','sent',1,1,1,0,'2026-04-01 10:00:02',NULL,'2026-04-01 14:00:02','2026-04-01 14:00:02'),
+(109,18,32,174,'due_hourly','2026-04-01',10,'user:18:cut:174:due_hourly:2026-04-01:10','Corte con vencimiento hoy','Deliplaza: hoy vence tu corte de 18090.00.','https://smarthouse-ve.com/Z4rwKp771903/?view=history&loanId=32&cutId=174','loan-due-today-cut-174-h10','2026-04-01 10:00:20','sent',1,1,1,0,'2026-04-01 10:01:01',NULL,'2026-04-01 14:00:02','2026-04-01 14:01:01'),
+(110,17,24,93,'due_hourly','2026-04-01',11,'user:17:cut:93:due_hourly:2026-04-01:11','Corte con vencimiento hoy','Adrián Proautos: hoy vence tu corte de 500.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=24&cutId=93','loan-due-today-cut-93-h11','2026-04-01 11:00:00','sent',1,1,1,0,'2026-04-01 11:00:01',NULL,'2026-04-01 15:00:01','2026-04-01 15:00:01'),
+(111,18,32,174,'due_hourly','2026-04-01',11,'user:18:cut:174:due_hourly:2026-04-01:11','Corte con vencimiento hoy','Deliplaza: hoy vence tu corte de 18090.00.','https://smarthouse-ve.com/Z4rwKp771903/?view=history&loanId=32&cutId=174','loan-due-today-cut-174-h11','2026-04-01 11:00:20','sent',1,1,1,0,'2026-04-01 11:01:01',NULL,'2026-04-01 15:00:01','2026-04-01 15:01:02'),
+(112,17,24,93,'due_hourly','2026-04-01',12,'user:17:cut:93:due_hourly:2026-04-01:12','Corte con vencimiento hoy','Adrián Proautos: hoy vence tu corte de 500.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=24&cutId=93','loan-due-today-cut-93-h12','2026-04-01 12:00:00','sent',1,1,1,0,'2026-04-01 12:00:01',NULL,'2026-04-01 16:00:01','2026-04-01 16:00:01'),
+(113,18,32,174,'due_hourly','2026-04-01',12,'user:18:cut:174:due_hourly:2026-04-01:12','Corte con vencimiento hoy','Deliplaza: hoy vence tu corte de 18090.00.','https://smarthouse-ve.com/Z4rwKp771903/?view=history&loanId=32&cutId=174','loan-due-today-cut-174-h12','2026-04-01 12:00:20','sent',1,1,1,0,'2026-04-01 12:01:01',NULL,'2026-04-01 16:00:01','2026-04-01 16:01:01'),
+(114,17,24,93,'due_hourly','2026-04-01',13,'user:17:cut:93:due_hourly:2026-04-01:13','Corte con vencimiento hoy','Adrián Proautos: hoy vence tu corte de 500.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=24&cutId=93','loan-due-today-cut-93-h13','2026-04-01 13:00:00','sent',1,1,1,0,'2026-04-01 13:00:01',NULL,'2026-04-01 17:00:01','2026-04-01 17:00:01'),
+(115,18,32,174,'due_hourly','2026-04-01',13,'user:18:cut:174:due_hourly:2026-04-01:13','Corte con vencimiento hoy','Deliplaza: hoy vence tu corte de 18090.00.','https://smarthouse-ve.com/Z4rwKp771903/?view=history&loanId=32&cutId=174','loan-due-today-cut-174-h13','2026-04-01 13:00:20','sent',1,1,1,0,'2026-04-01 13:01:02',NULL,'2026-04-01 17:00:01','2026-04-01 17:01:02'),
+(116,17,24,93,'due_hourly','2026-04-01',14,'user:17:cut:93:due_hourly:2026-04-01:14','Corte con vencimiento hoy','Adrián Proautos: hoy vence tu corte de 500.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=24&cutId=93','loan-due-today-cut-93-h14','2026-04-01 14:00:00','sent',1,1,1,0,'2026-04-01 14:00:01',NULL,'2026-04-01 18:00:01','2026-04-01 18:00:02'),
+(117,18,32,174,'due_hourly','2026-04-01',14,'user:18:cut:174:due_hourly:2026-04-01:14','Corte con vencimiento hoy','Deliplaza: hoy vence tu corte de 18090.00.','https://smarthouse-ve.com/Z4rwKp771903/?view=history&loanId=32&cutId=174','loan-due-today-cut-174-h14','2026-04-01 14:00:20','sent',1,1,1,0,'2026-04-01 14:01:01',NULL,'2026-04-01 18:00:01','2026-04-01 18:01:01'),
+(118,17,24,93,'due_hourly','2026-04-01',15,'user:17:cut:93:due_hourly:2026-04-01:15','Corte con vencimiento hoy','Adrián Proautos: hoy vence tu corte de 500.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=24&cutId=93','loan-due-today-cut-93-h15','2026-04-01 15:00:00','sent',1,1,1,0,'2026-04-01 15:00:02',NULL,'2026-04-01 19:00:02','2026-04-01 19:00:02'),
+(119,18,32,174,'due_hourly','2026-04-01',15,'user:18:cut:174:due_hourly:2026-04-01:15','Corte con vencimiento hoy','Deliplaza: hoy vence tu corte de 18090.00.','https://smarthouse-ve.com/Z4rwKp771903/?view=history&loanId=32&cutId=174','loan-due-today-cut-174-h15','2026-04-01 15:00:20','sent',1,1,1,0,'2026-04-01 15:01:01',NULL,'2026-04-01 19:00:02','2026-04-01 19:01:02'),
+(120,17,24,93,'due_hourly','2026-04-01',16,'user:17:cut:93:due_hourly:2026-04-01:16','Corte con vencimiento hoy','Adrián Proautos: hoy vence tu corte de 500.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=24&cutId=93','loan-due-today-cut-93-h16','2026-04-01 16:00:00','sent',1,1,1,0,'2026-04-01 16:00:02',NULL,'2026-04-01 20:00:02','2026-04-01 20:00:02'),
+(121,18,32,174,'due_hourly','2026-04-01',16,'user:18:cut:174:due_hourly:2026-04-01:16','Corte con vencimiento hoy','Deliplaza: hoy vence tu corte de 18090.00.','https://smarthouse-ve.com/Z4rwKp771903/?view=history&loanId=32&cutId=174','loan-due-today-cut-174-h16','2026-04-01 16:00:20','sent',1,1,1,0,'2026-04-01 16:01:01',NULL,'2026-04-01 20:00:02','2026-04-01 20:01:02'),
+(122,17,24,93,'due_hourly','2026-04-01',17,'user:17:cut:93:due_hourly:2026-04-01:17','Corte con vencimiento hoy','Adrián Proautos: hoy vence tu corte de 500.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=24&cutId=93','loan-due-today-cut-93-h17','2026-04-01 17:00:00','sent',1,1,1,0,'2026-04-01 17:00:01',NULL,'2026-04-01 21:00:01','2026-04-01 21:00:01'),
+(123,18,32,174,'due_hourly','2026-04-01',17,'user:18:cut:174:due_hourly:2026-04-01:17','Corte con vencimiento hoy','Deliplaza: hoy vence tu corte de 18090.00.','https://smarthouse-ve.com/Z4rwKp771903/?view=history&loanId=32&cutId=174','loan-due-today-cut-174-h17','2026-04-01 17:00:20','sent',1,1,1,0,'2026-04-01 17:01:01',NULL,'2026-04-01 21:00:01','2026-04-01 21:01:01'),
+(124,17,24,93,'due_hourly','2026-04-01',18,'user:17:cut:93:due_hourly:2026-04-01:18','Corte con vencimiento hoy','Adrián Proautos: hoy vence tu corte de 500.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=24&cutId=93','loan-due-today-cut-93-h18','2026-04-01 18:00:00','sent',1,1,1,0,'2026-04-01 18:00:01',NULL,'2026-04-01 22:00:01','2026-04-01 22:00:02'),
+(125,18,32,174,'due_hourly','2026-04-01',18,'user:18:cut:174:due_hourly:2026-04-01:18','Corte con vencimiento hoy','Deliplaza: hoy vence tu corte de 18090.00.','https://smarthouse-ve.com/Z4rwKp771903/?view=history&loanId=32&cutId=174','loan-due-today-cut-174-h18','2026-04-01 18:00:20','sent',1,1,1,0,'2026-04-01 18:01:01',NULL,'2026-04-01 22:00:01','2026-04-01 22:01:01'),
+(126,17,24,93,'due_hourly','2026-04-01',19,'user:17:cut:93:due_hourly:2026-04-01:19','Corte con vencimiento hoy','Adrián Proautos: hoy vence tu corte de 500.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=24&cutId=93','loan-due-today-cut-93-h19','2026-04-01 19:00:00','sent',1,1,1,0,'2026-04-01 19:00:01',NULL,'2026-04-01 23:00:01','2026-04-01 23:00:01'),
+(127,18,32,174,'due_hourly','2026-04-01',19,'user:18:cut:174:due_hourly:2026-04-01:19','Corte con vencimiento hoy','Deliplaza: hoy vence tu corte de 18090.00.','https://smarthouse-ve.com/Z4rwKp771903/?view=history&loanId=32&cutId=174','loan-due-today-cut-174-h19','2026-04-01 19:00:20','sent',1,1,1,0,'2026-04-01 19:01:02',NULL,'2026-04-01 23:00:01','2026-04-01 23:01:02'),
+(128,17,24,93,'due_hourly','2026-04-01',20,'user:17:cut:93:due_hourly:2026-04-01:20','Corte con vencimiento hoy','Adrián Proautos: hoy vence tu corte de 500.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=24&cutId=93','loan-due-today-cut-93-h20','2026-04-01 20:00:00','sent',1,1,1,0,'2026-04-01 20:00:02',NULL,'2026-04-02 00:00:02','2026-04-02 00:00:02'),
+(129,18,32,174,'due_hourly','2026-04-01',20,'user:18:cut:174:due_hourly:2026-04-01:20','Corte con vencimiento hoy','Deliplaza: hoy vence tu corte de 18090.00.','https://smarthouse-ve.com/Z4rwKp771903/?view=history&loanId=32&cutId=174','loan-due-today-cut-174-h20','2026-04-01 20:00:20','sent',1,1,1,0,'2026-04-01 20:01:01',NULL,'2026-04-02 00:00:02','2026-04-02 00:01:01'),
+(130,17,24,93,'due_hourly','2026-04-01',21,'user:17:cut:93:due_hourly:2026-04-01:21','Corte con vencimiento hoy','Adrián Proautos: hoy vence tu corte de 500.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=24&cutId=93','loan-due-today-cut-93-h21','2026-04-01 21:00:00','sent',1,1,1,0,'2026-04-01 21:00:01',NULL,'2026-04-02 01:00:01','2026-04-02 01:00:02'),
+(131,18,32,174,'due_hourly','2026-04-01',21,'user:18:cut:174:due_hourly:2026-04-01:21','Corte con vencimiento hoy','Deliplaza: hoy vence tu corte de 18090.00.','https://smarthouse-ve.com/Z4rwKp771903/?view=history&loanId=32&cutId=174','loan-due-today-cut-174-h21','2026-04-01 21:00:20','sent',1,1,1,0,'2026-04-01 21:01:01',NULL,'2026-04-02 01:00:01','2026-04-02 01:01:01'),
+(132,17,24,93,'due_hourly','2026-04-01',22,'user:17:cut:93:due_hourly:2026-04-01:22','Corte con vencimiento hoy','Adrián Proautos: hoy vence tu corte de 500.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=24&cutId=93','loan-due-today-cut-93-h22','2026-04-01 22:00:00','sent',1,1,1,0,'2026-04-01 22:00:01',NULL,'2026-04-02 02:00:01','2026-04-02 02:00:01'),
+(133,18,32,174,'due_hourly','2026-04-01',22,'user:18:cut:174:due_hourly:2026-04-01:22','Corte con vencimiento hoy','Deliplaza: hoy vence tu corte de 18090.00.','https://smarthouse-ve.com/Z4rwKp771903/?view=history&loanId=32&cutId=174','loan-due-today-cut-174-h22','2026-04-01 22:00:20','sent',1,1,1,0,'2026-04-01 22:01:02',NULL,'2026-04-02 02:00:01','2026-04-02 02:01:02'),
+(134,17,24,93,'due_hourly','2026-04-01',23,'user:17:cut:93:due_hourly:2026-04-01:23','Corte con vencimiento hoy','Adrián Proautos: hoy vence tu corte de 500.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=24&cutId=93','loan-due-today-cut-93-h23','2026-04-01 23:00:00','sent',1,1,1,0,'2026-04-01 23:00:02',NULL,'2026-04-02 03:00:02','2026-04-02 03:00:02'),
+(135,18,32,174,'due_hourly','2026-04-01',23,'user:18:cut:174:due_hourly:2026-04-01:23','Corte con vencimiento hoy','Deliplaza: hoy vence tu corte de 18090.00.','https://smarthouse-ve.com/Z4rwKp771903/?view=history&loanId=32&cutId=174','loan-due-today-cut-174-h23','2026-04-01 23:00:20','sent',1,1,1,0,'2026-04-01 23:01:01',NULL,'2026-04-02 03:00:02','2026-04-02 03:01:01'),
+(136,17,23,89,'due_hourly','2026-04-03',0,'user:17:cut:89:due_hourly:2026-04-03:00','Corte con vencimiento hoy','Gaby Kalach: hoy vence tu corte de 1000.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=23&cutId=89','loan-due-today-cut-89-h00','2026-04-03 00:00:00','sent',1,1,1,0,'2026-04-03 00:00:02',NULL,'2026-04-03 04:00:02','2026-04-03 04:00:02'),
+(137,17,23,89,'due_hourly','2026-04-03',1,'user:17:cut:89:due_hourly:2026-04-03:01','Corte con vencimiento hoy','Gaby Kalach: hoy vence tu corte de 1000.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=23&cutId=89','loan-due-today-cut-89-h01','2026-04-03 01:00:00','sent',1,1,1,0,'2026-04-03 01:00:02',NULL,'2026-04-03 05:00:02','2026-04-03 05:00:02'),
+(138,17,23,89,'due_hourly','2026-04-03',2,'user:17:cut:89:due_hourly:2026-04-03:02','Corte con vencimiento hoy','Gaby Kalach: hoy vence tu corte de 1000.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=23&cutId=89','loan-due-today-cut-89-h02','2026-04-03 02:00:00','sent',1,1,1,0,'2026-04-03 02:00:01',NULL,'2026-04-03 06:00:01','2026-04-03 06:00:01'),
+(139,17,23,89,'due_hourly','2026-04-03',3,'user:17:cut:89:due_hourly:2026-04-03:03','Corte con vencimiento hoy','Gaby Kalach: hoy vence tu corte de 1000.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=23&cutId=89','loan-due-today-cut-89-h03','2026-04-03 03:00:00','sent',1,1,1,0,'2026-04-03 03:00:01',NULL,'2026-04-03 07:00:01','2026-04-03 07:00:01'),
+(140,17,23,89,'due_hourly','2026-04-03',4,'user:17:cut:89:due_hourly:2026-04-03:04','Corte con vencimiento hoy','Gaby Kalach: hoy vence tu corte de 1000.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=23&cutId=89','loan-due-today-cut-89-h04','2026-04-03 04:00:00','sent',1,1,1,0,'2026-04-03 04:00:01',NULL,'2026-04-03 08:00:01','2026-04-03 08:00:01'),
+(141,17,23,89,'due_hourly','2026-04-03',5,'user:17:cut:89:due_hourly:2026-04-03:05','Corte con vencimiento hoy','Gaby Kalach: hoy vence tu corte de 1000.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=23&cutId=89','loan-due-today-cut-89-h05','2026-04-03 05:00:00','sent',1,1,1,0,'2026-04-03 05:00:02',NULL,'2026-04-03 09:00:02','2026-04-03 09:00:02'),
+(142,17,23,89,'due_hourly','2026-04-03',6,'user:17:cut:89:due_hourly:2026-04-03:06','Corte con vencimiento hoy','Gaby Kalach: hoy vence tu corte de 1000.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=23&cutId=89','loan-due-today-cut-89-h06','2026-04-03 06:00:00','sent',1,1,1,0,'2026-04-03 06:00:01',NULL,'2026-04-03 10:00:01','2026-04-03 10:00:02'),
+(143,17,23,89,'due_hourly','2026-04-03',7,'user:17:cut:89:due_hourly:2026-04-03:07','Corte con vencimiento hoy','Gaby Kalach: hoy vence tu corte de 1000.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=23&cutId=89','loan-due-today-cut-89-h07','2026-04-03 07:00:00','sent',1,1,1,0,'2026-04-03 07:00:02',NULL,'2026-04-03 11:00:02','2026-04-03 11:00:02'),
+(144,17,23,89,'due_hourly','2026-04-03',8,'user:17:cut:89:due_hourly:2026-04-03:08','Corte con vencimiento hoy','Gaby Kalach: hoy vence tu corte de 1000.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=23&cutId=89','loan-due-today-cut-89-h08','2026-04-03 08:00:00','sent',1,1,1,0,'2026-04-03 08:00:02',NULL,'2026-04-03 12:00:02','2026-04-03 12:00:02'),
+(145,17,23,89,'due_hourly','2026-04-03',9,'user:17:cut:89:due_hourly:2026-04-03:09','Corte con vencimiento hoy','Gaby Kalach: hoy vence tu corte de 1000.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=23&cutId=89','loan-due-today-cut-89-h09','2026-04-03 09:00:00','sent',1,1,1,0,'2026-04-03 09:00:02',NULL,'2026-04-03 13:00:02','2026-04-03 13:00:02'),
+(146,17,23,89,'due_hourly','2026-04-03',10,'user:17:cut:89:due_hourly:2026-04-03:10','Corte con vencimiento hoy','Gaby Kalach: hoy vence tu corte de 1000.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=23&cutId=89','loan-due-today-cut-89-h10','2026-04-03 10:00:00','sent',1,1,1,0,'2026-04-03 10:00:02',NULL,'2026-04-03 14:00:02','2026-04-03 14:00:02'),
+(147,17,23,89,'due_hourly','2026-04-03',11,'user:17:cut:89:due_hourly:2026-04-03:11','Corte con vencimiento hoy','Gaby Kalach: hoy vence tu corte de 1000.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=23&cutId=89','loan-due-today-cut-89-h11','2026-04-03 11:00:00','sent',1,1,1,0,'2026-04-03 11:00:01',NULL,'2026-04-03 15:00:01','2026-04-03 15:00:02'),
+(148,17,23,89,'due_hourly','2026-04-03',12,'user:17:cut:89:due_hourly:2026-04-03:12','Corte con vencimiento hoy','Gaby Kalach: hoy vence tu corte de 1000.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=23&cutId=89','loan-due-today-cut-89-h12','2026-04-03 12:00:00','sent',1,1,1,0,'2026-04-03 12:00:02',NULL,'2026-04-03 16:00:02','2026-04-03 16:00:02'),
+(149,17,23,89,'due_hourly','2026-04-03',13,'user:17:cut:89:due_hourly:2026-04-03:13','Corte con vencimiento hoy','Gaby Kalach: hoy vence tu corte de 1000.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=23&cutId=89','loan-due-today-cut-89-h13','2026-04-03 13:00:00','sent',1,1,1,0,'2026-04-03 13:00:02',NULL,'2026-04-03 17:00:02','2026-04-03 17:00:02'),
+(150,17,23,89,'due_hourly','2026-04-03',14,'user:17:cut:89:due_hourly:2026-04-03:14','Corte con vencimiento hoy','Gaby Kalach: hoy vence tu corte de 1000.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=23&cutId=89','loan-due-today-cut-89-h14','2026-04-03 14:00:00','sent',1,1,1,0,'2026-04-03 14:00:01',NULL,'2026-04-03 18:00:01','2026-04-03 18:00:01'),
+(151,17,23,89,'due_hourly','2026-04-03',15,'user:17:cut:89:due_hourly:2026-04-03:15','Corte con vencimiento hoy','Gaby Kalach: hoy vence tu corte de 1000.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=23&cutId=89','loan-due-today-cut-89-h15','2026-04-03 15:00:00','sent',1,1,1,0,'2026-04-03 15:00:02',NULL,'2026-04-03 19:00:02','2026-04-03 19:00:02'),
+(152,17,23,89,'due_hourly','2026-04-03',16,'user:17:cut:89:due_hourly:2026-04-03:16','Corte con vencimiento hoy','Gaby Kalach: hoy vence tu corte de 1000.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=23&cutId=89','loan-due-today-cut-89-h16','2026-04-03 16:00:00','sent',1,1,1,0,'2026-04-03 16:00:02',NULL,'2026-04-03 20:00:02','2026-04-03 20:00:02'),
+(153,17,23,89,'due_hourly','2026-04-03',17,'user:17:cut:89:due_hourly:2026-04-03:17','Corte con vencimiento hoy','Gaby Kalach: hoy vence tu corte de 1000.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=23&cutId=89','loan-due-today-cut-89-h17','2026-04-03 17:00:00','sent',1,1,1,0,'2026-04-03 17:00:01',NULL,'2026-04-03 21:00:01','2026-04-03 21:00:02'),
+(154,17,23,89,'due_hourly','2026-04-03',18,'user:17:cut:89:due_hourly:2026-04-03:18','Corte con vencimiento hoy','Gaby Kalach: hoy vence tu corte de 1000.00.','https://smarthouse-ve.com/V6dsVt232541/?view=history&loanId=23&cutId=89','loan-due-today-cut-89-h18','2026-04-03 18:00:00','sent',1,1,1,0,'2026-04-03 18:00:01',NULL,'2026-04-03 22:00:01','2026-04-03 22:00:01');
 /*!40000 ALTER TABLE `push_notifications` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -1146,7 +1345,7 @@ CREATE TABLE `push_subscriptions` (
   KEY `idx_push_device_id` (`device_id`),
   KEY `idx_push_user_id` (`user_id`),
   CONSTRAINT `fk_push_subscriptions_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1159,7 +1358,8 @@ set autocommit=0;
 INSERT INTO `push_subscriptions` VALUES
 (19,20,'d14f4631-d972-49f1-970a-53df763b3df8','https://fcm.googleapis.com/fcm/send/dtx5fNkedCw:APA91bH01NtZWdit-R5F22yXumuAnnBKe0qh7DOSdGfSNLZLq_M2FhgZ44d06613KtwZbZhft_Icko8jSImWmWeYv9XPwgL-06EzVESPMcb4W9P2btT_J6gn2lbRQRmf3IDlEzHm__st','BOozOjdG40k_UlN9DLqODrgNCdsYZ3FWElh1Ue_9HzrE4TbgiU9SbRj17gf-uTA0zudT_KGB5VDgb2aab1kkKFE','wy6-9jvOXelAM2P0ft9f4Q','2026-03-25 23:08:35','2026-03-25 23:08:35'),
 (20,20,'588a28a4-8541-4fb9-960c-a4aab48372fb','https://web.push.apple.com/QDg6wgX9GtiaBOStW_LSA6Ln9Vaztuxvr-MWpvFYdVHf9kj5nmLcnPjFtSoGjwKjSvxPHB_QG-6THDOtqc5ZBu_p2gzKJcCxYy8JnmhqcRCYn25Pq0mf0g2Jt2neK2I0ITGlqWc6ZaMXGwdBOsMZ1xsxQk1KNRGWJig_bpd4sUI','BO9FHzl1o35rXJJhrDsbuRZNbYsSE63lYrXUy6Xl0GtV40WVZZ-MiFmwTCmWv-h3Rf4vGBEQ4iqEeMOu_x37Chc','Qks11iQZw5-dtvTeTkOySA','2026-03-25 23:08:42','2026-03-25 23:08:42'),
-(21,17,'d62144f0-9f54-470d-b928-566cd5cfe0e5','https://web.push.apple.com/QA-OuxEpKDCn_OmyTgXcO407468qcZNAqrWE9EmH0oBh5NLkw8yK5IhGRPfQ-KsTZZNyPeWa9O6JBcBd0olnE9oHb11n95koxpwHnwGaI4DWET2pJOs3qgJxyDAHlZvt7Nt8RmeSyY2EuhWwG8K0blivn3qZrw_4PzveI1HOtVY','BPiNSDp9VtKpRbkN8H7zMilUcrpYjLjm5Hi0mBzjKDuZ5JTCsr6n6MAYKtL2zFm2_b2aVK10ReowtxfkJDErxHQ','ltbhwsaGljzdgWc4ao-oTw','2026-03-25 23:13:46','2026-03-25 23:13:46');
+(21,17,'d62144f0-9f54-470d-b928-566cd5cfe0e5','https://web.push.apple.com/QA-OuxEpKDCn_OmyTgXcO407468qcZNAqrWE9EmH0oBh5NLkw8yK5IhGRPfQ-KsTZZNyPeWa9O6JBcBd0olnE9oHb11n95koxpwHnwGaI4DWET2pJOs3qgJxyDAHlZvt7Nt8RmeSyY2EuhWwG8K0blivn3qZrw_4PzveI1HOtVY','BPiNSDp9VtKpRbkN8H7zMilUcrpYjLjm5Hi0mBzjKDuZ5JTCsr6n6MAYKtL2zFm2_b2aVK10ReowtxfkJDErxHQ','ltbhwsaGljzdgWc4ao-oTw','2026-03-25 23:13:46','2026-03-25 23:13:46'),
+(22,18,'147fb720-82c7-4a69-b445-d3c74124a2b3','https://web.push.apple.com/QFqE7yEoEyqqdT-w0uYGngZbOMXbjjgcCbOd7rPeIFUwvND155DQlD_uIE8KCiRdi3JVEO-YwGhoGB2aoE3Yk01HCaRb1COCalu5zn0CcJbEX2M8eAcrOdqwu4mlwMRWOxvjmBdtsqxK98EBEnYybupS3JXbYFBXqloloxr4oj0','BBMpcXBiIdRfO8UVLeTcRsjYO19TqbvwnfOpJgqgTi8UIXnmpHWXjacb6KeSFlEbmXJ9RaHP25KjRpFMcNPt8_I','5m9HfIdGyXIqhfVilL58Gw','2026-03-30 18:52:37','2026-03-30 18:52:37');
 /*!40000 ALTER TABLE `push_subscriptions` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -1187,7 +1387,7 @@ CREATE TABLE `reuniones` (
   KEY `idx_reuniones_ref` (`ref`),
   KEY `idx_reuniones_cliente` (`id_cliente`),
   CONSTRAINT `fk_reuniones_clientes` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1206,12 +1406,14 @@ INSERT INTO `reuniones` VALUES
 (6,'prueba reunion','2026-03-25','09:00:00','Maracay',4,'todo bien',6,1,'completada'),
 (7,'Jola','2026-03-26','09:00:00','oficina',NULL,'Hola',19,0,NULL),
 (8,'preu','2026-03-26','09:00:00','oficina',NULL,'Reunion',6,0,NULL),
-(9,'todos','2026-03-27','09:00:00','oficina',NULL,'todos',6,0,NULL),
+(9,'todos','2026-03-30','09:00:00','oficina',NULL,'todos\nReprogramada: debemos reprogramar',6,0,'reprogramada'),
 (10,'todos','2026-03-27','09:00:00','oficina',NULL,'todos',156,0,NULL),
 (11,'todos','2026-03-27','09:00:00','oficina',NULL,'todos',5,0,NULL),
 (12,'todos','2026-03-27','09:00:00','oficina',NULL,'todos',7,0,NULL),
 (13,'todos','2026-03-30','09:00:00','oficina',NULL,'todos\nReprogramada: Necesario',19,0,'reprogramada'),
-(14,'todos','2026-03-27','09:00:00','oficina',NULL,'todos',9,0,NULL);
+(14,'todos','2026-03-27','09:00:00','oficina',NULL,'todos',9,0,NULL),
+(15,'reunion importante','2026-03-27','09:00:00','oficina',4,'reunión',23,0,NULL),
+(16,'Rosa2','2026-04-01','09:00:00','Casa de rosa',NULL,'Reprogramada: Dorito',19,1,'reprogramada');
 /*!40000 ALTER TABLE `reuniones` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -1239,7 +1441,7 @@ CREATE TABLE `rutas` (
   KEY `idx_rutas_ref` (`ref`),
   KEY `idx_rutas_zona` (`zona`),
   CONSTRAINT `fk_rutas_users_ref` FOREIGN KEY (`ref`) REFERENCES `users` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1250,8 +1452,10 @@ LOCK TABLES `rutas` WRITE;
 /*!40000 ALTER TABLE `rutas` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `rutas` VALUES
-(1,4,'Test','08:30:00','12:30:00','[\"la arboleda\",\"el valle\",\"cualquier cosa\"]','{\"lat\":10.187529,\"lng\":-64.634298}','[\"volantes entregados\",\"Visitas\",\"Muestras\"]',NULL,'[{\"id_agente\":6,\"requisito\":\"volantes entregados\",\"resultado\":\"29\"},{\"id_agente\":6,\"requisito\":\"Visitas\",\"resultado\":\"13\"},{\"id_agente\":6,\"requisito\":\"Muestras\",\"resultado\":\"5\"}]','interesante'),
-(2,4,'Maracay','08:30:00','12:30:00','[\"Maracay\",\"Urbanizaci\\u00f3n el centro\"]','{\"lat\":10.236058,\"lng\":-67.59797}','[\"Casas\",\"apartamentos\"]',NULL,NULL,NULL);
+(1,4,'Test','08:30:00','12:30:00','[\"la arboleda\",\"el valle\",\"cualquier cosa\"]','{\"lat\":10.187529,\"lng\":-64.634298}','[\"volantes entregados\",\"Visitas\",\"Muestras\"]',NULL,'[{\"id_agente\":6,\"requisito\":\"volantes entregados\",\"resultado\":\"29\"},{\"id_agente\":6,\"requisito\":\"Visitas\",\"resultado\":\"13\"},{\"id_agente\":6,\"requisito\":\"Muestras\",\"resultado\":\"5\"},{\"id_agente\":19,\"requisito\":\"volantes entregados\",\"resultado\":\"10\"},{\"id_agente\":19,\"requisito\":\"Visitas\",\"resultado\":\"10\"},{\"id_agente\":19,\"requisito\":\"Muestras\",\"resultado\":\"5\"}]','buena vista'),
+(2,4,'Maracay','08:30:00','12:30:00','[\"Maracay\",\"Urbanizaci\\u00f3n el centro\"]','{\"lat\":10.236058,\"lng\":-67.59797}','[\"Casas\",\"apartamentos\"]',NULL,NULL,NULL),
+(3,4,'centro','08:30:00','12:30:00','[\"corinsa\"]','{\"lat\":10.169819,\"lng\":-67.462114}','[\"Contactos\",\"Personas\",\"Volantes entregados\"]',NULL,NULL,NULL),
+(4,4,'corinsa','08:30:00','12:30:00','[\"Avenida Turmero\"]','{\"lat\":10.170372,\"lng\":-67.460949}','[\"vistas\"]',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `rutas` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -1284,60 +1488,68 @@ LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `sessions` VALUES
-('1WF1VEQI0bZuT4hvDBwKSdBY6EqS2Gyyw4JSQa4D',NULL,'172.70.94.97','Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiRTEzdDY1cGp2cUlnNjRzMWJ6ODg1b2VFeE0ybGJhVEk0c0dJRXRxSiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774512434),
-('1WJZwUpGOPZr7AmglMpjO9rEvKhIozdysQmLygT4',NULL,'172.69.11.7','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiWmJSOGFFQWZibkNhOHozZHdtQklydVQxVFpoQm5Ga2lzVkV6amw5RSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774467638),
-('2DCTZUjrLotb8Xl7lf8HJ3muutQzb1at2fc6lLzT',NULL,'172.71.98.89','Mozilla/5.0 (Linux; U; Android 8.0.0; zh-cn; BKL-AL20 Build/HUAWEIBKL-AL20) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/8.4 Mobile Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiQTFtYjFwZVd1MXhZcXRvR1VlTHZkTWI0OFZkYXBmajA5S05mVEdrYiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774477305),
-('5CdTttyw7RwzS2ZSdNv945MGgJEgfMF47dUdorap',NULL,'162.159.113.83','Opera/9.80 (Windows NT 5.1; U;) Presto/2.7.62 Version/11.01','YTozOntzOjY6Il90b2tlbiI7czo0MDoiTVdrcE9xS2ZkZTRzdEprUDdSOTdvNVptY3BNUVBSR2JwUXVHbnl3UCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774567967),
-('5CeLAZinYpSvRoDX4rKQXnsmNpvWmJkl66EAkgUW',NULL,'104.23.229.3','curl/8.7.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiRlJONEg5bXMzRjYzTXZQNlJ4eUx3UFBwRTRSaWRvVkcxblY2Z0VZcCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774594648),
-('6pKccD3SAaLz0J4dFgpKkcPtXmLpmKVrcYgTsunG',NULL,'172.70.127.138','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiYkpxRkw4TWZlU2NVeTgzRGlWQXhNUXlGZXY4UUlIdG9DdEJ1bGpuWCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774503193),
-('75bet2VMgQWNrsiTFWDPY8dR0YY4pA35NAF8k5EY',NULL,'162.158.178.161','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiRUJQTU91R0tWM2JzM3ZXVWZlNEZHMDZ1VlMxcG9Qd1czR0ZYYzAxSyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774513345),
-('7SBlGtwpx5z8JJsZpMlP6ImkiH6lkNs07y5MLcnb',NULL,'172.69.130.99','Mozilla/5.0 (compatible; AhrefsBot/7.0; +http://ahrefs.com/robot/)','YTozOntzOjY6Il90b2tlbiI7czo0MDoid3B5NnlPNVlLVjFYWkloNjU0d0tEZVlLdDRZajlGU2xSdnRlMGdHMyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774545819),
-('8e1v0uSpPaGSOumsdVze65ODqtiLEORq7D6bameH',NULL,'104.23.166.155','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiNEg0ME9ITEFUdlV6bUlKOXJSSXkyb3NmM0djZjJhZ0QwOFZtdlhwUyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774533270),
-('8Lda2d2x8XmAAALhLLISR5pYpmXSAu2yvhVYa7pw',NULL,'104.23.221.109','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123','YTozOntzOjY6Il90b2tlbiI7czo0MDoiQU5wV0g3S2ZMSE53bHlLWWh2bHFWU2RXNDJqNVVrZmFYRnFNdDBPaSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjozZXBoOUtweFlTNTdlSGhxIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774452796),
-('B484nzKIG4ZdrE68DsEGPqWtF5tirwa2RkYkwK2F',NULL,'104.22.20.158','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiSEZtWFVmZFYzTW1ZdkhkZkF6MU1GNWVEMHJiT0hIRVh2YnZQa3lsUiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774573819),
-('BhZdH7sxJrIq1cV2I18orEs2CdIc7efz1dh3Fo3Y',NULL,'162.158.123.67','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiUWN4RVIxZzdCZk9YUXI0bmxxNkF4VWFSbzJRVzBIZ0JnUHlJeEJVWCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774585120),
-('bMKPlFOjsHeBsEvNcGctiLcBjCetHClf8Aok6ocg',NULL,'172.71.172.123','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiWHBRN3Bnb2VWbzQzYjNOSFdzd25KS3BHTjMyTXc2cTJwU0N4c0lWOSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774534141),
-('bo6FsbCT4Bz6ux4GK1vjpbZDEDt5JXjB49RJcB4P',NULL,'172.71.194.253','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; BuiltWith/1.4; rb.gy/xprgqj) Chrome/124.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiQ2syVURSWW5oNHdXZEVhckg3YjVEbEJ1cEVOeFczejQ5MW01TUlkZSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774468430),
-('BU2P0Qlj3sy8nE6FZZmoiFkiflkc0003JvH1UN6V',NULL,'162.158.230.166','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36','YToyOntzOjY6Il90b2tlbiI7czo0MDoiRnBuQWlNeEoxa0tKN2EyZXdWcndUMVVxT1Zqam1vSnI2eENDc2xpZiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774592045),
-('CHf96umjzjPfpyI3bz4v9FBZat5Hc30bVCXewNUS',NULL,'172.69.6.105','Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)','YTozOntzOjY6Il90b2tlbiI7czo0MDoiOFlxdlpjUlkwc0NkRXU0QldmcWVTV1oxNHZvbVJVU2hCRWNkRG9BMyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774571759),
-('CKnoP2GziQv8WkyoSJoDTiLvO4AzR1XbvYC0gkbV',NULL,'108.162.245.126','Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)','YTozOntzOjY6Il90b2tlbiI7czo0MDoiR05zODJ0OG5IeVVFUkk5Z1haSEMzamhiVlhoZjc4RWZHWlJaMHRoYiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774477797),
-('DGazaPU4rTbmVZutlzu3u8w4mXQ9inayjjn39NHw',NULL,'172.70.43.141','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.79','YTozOntzOjY6Il90b2tlbiI7czo0MDoiV0JhRjBrRVRmUkRyblFwMGhxRTdmcnNIbTdGM3VmR0loQXk2MnZPbSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774473289),
-('DMkymt7jrmuIfUT8zWzeH40OFXQo7sarKypMut8O',NULL,'104.22.23.17','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiMHhkbWhzVFJkdEVZeU5HS2dGQnRxWmRYRnduaEZ6WVhKTjdEcTVHMCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774532768),
-('ElcTIhQBu6qOLKO34JmYNgpNNMGbYoOJpEkigGxX',NULL,'172.69.86.240','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoicjdEaFJzZDhsRDF4dUE3TG1JaUlrOWg1WDNmWkdjZXc3eHV0bXdHOCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjozZXBoOUtweFlTNTdlSGhxIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774447245),
-('EZHQEQFIXe4bms2TuAWJi2ga8oAPcXMVLNGT4CKL',NULL,'104.22.20.158','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiZnNsR1YybTh5YjdrTUhaTHlzMFNkMXpJbjlOTXVZaE8zYlVNdnV4UyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774491517),
-('FFBZ3BJGJpOOm56SE2XrzpsuA2dqIrgyqhFbhvCL',NULL,'104.23.172.107','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiRHk2SjJTMTdwQWg3c3pTazE5ME9Wa0xxRkRlRE1NNWNCSHlyc0p4VyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774506178),
-('ffKuyucIBAJIkjQCG1EkoGPnxsx6cxxVsdP7I4hL',NULL,'172.71.202.145','Mozilla/5.0 (X11; Linux x86_64; rv:142.0) Gecko/20100101 Firefox/142.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoiclh4cEhwSzZuOEwzMVdBeDRIMEVDTjZkZnFTVmtlSTlyUkJIRUZoVyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774622362),
-('FvaLU29z0Xbos75KFdWReuNsWzZQVAxsiEYNOULs',NULL,'172.68.134.45','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiZVFOSjBSTUFFaER2T0gyS2JDN0gwYmZQVFRCZTNtbkwyTzVyYm5EciI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774506733),
-('grcr84HJDe3uF3YAPyjB3VSFlrUWLjNdTFn02WPO',NULL,'172.71.95.90','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoieWl1cFU3VGNLcHc2SEhvNko4SU5mM2FDbndmVVdjSnlzNW5tVDJRcyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjozZXBoOUtweFlTNTdlSGhxIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774453917),
-('i4Vqpds5iUm5sv2wyuaWv7m5tMg8h32S2ElsqJuO',NULL,'172.69.176.123','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiV2lzZWlrVnlXRXBNR3pGeDY5WlB0emQwSFRaVzlIdnlSd0lvRGljUyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjozZXBoOUtweFlTNTdlSGhxIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774443411),
-('iTZ1fr3XD5cf9nqmsNS8tigvz3ayZmTCmqSKt1jN',NULL,'104.23.223.3','Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:109.0) Gecko/20100101 Firefox/115','YTozOntzOjY6Il90b2tlbiI7czo0MDoiazYwQmM5RjNYamtNRUN1NDRCdnNZTDFYWEM3YlN2TTZFU3AwYkUySSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774510183),
-('KBV9QIPFLZ1QaI1uHgpecxpjhF5XD0Ol4QB4zWmg',NULL,'104.23.229.2','Hello from Palo Alto Networks, find out more about our scans in https://docs-cortex.paloaltonetworks.com/r/1/Cortex-Xpanse/Scanning-activity','YTozOntzOjY6Il90b2tlbiI7czo0MDoiWkpMWVh3cEVObk02Skd1UmtYMlk5NU40VHRsNWR2R2pWRG1JZUdwUCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774496574),
-('KpPUu4e5zOIEK4m27P99LV6bFrvY8ZrJPgT0s08i',NULL,'162.158.178.161','Mozilla/5.0 (Android 11; Mobile; rv:128.4.0) Gecko/128.4.0 Firefox/128.4.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoiMU80REJjU0NXUnVhS24zRWZMTkU5SkZyOUswU25MVjVvV1haTjM5SiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjozZXBoOUtweFlTNTdlSGhxIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774440417),
-('LChd74C7KBreH4bxXVvMVH5H3CQGLeDYf835gbGy',NULL,'198.41.227.71','Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiVzYwbDBDWE9wOGlWa0YxSjNLUkUwcVg3VElDd0FNT0xlSVpVQU1RQiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774601958),
-('N21xENXH6O3z0CCLC5F80eYqqgYoioCAQfyInZz3',NULL,'104.23.253.24','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoicDNaVUJ5V1hFUEFRbks0R1R2UUlrclU1d1dlVFpyam5ZdEJ2cnNZViI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774545026),
-('nqPc8vvPpeb8DzotEXog1PHbYY2UgvJQkGIWnHxh',NULL,'162.158.41.95','Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)','YTozOntzOjY6Il90b2tlbiI7czo0MDoiRnA3UVNNbG40YkVzN1NXQkZTVldSVDJtZ2kyZXpuYndVRVNPVGFUZyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774577046),
-('nyTkMvgwPLva5tVjlUsEVAawOfo7VrOJZQrUaSNt',NULL,'104.22.62.114','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiRmRvT1dyWHNNWmphQzlkR1dNTVhmcjhtSU9JbnpTSWlvSDhhbkJrTyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774589607),
-('o07McEsCUyix3OHE1ejuzhDNPOzXKkK4bElgp0uE',NULL,'104.22.17.195','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoieW9WOHVGTHRaVDExMjRHY1VnMWlQSGtaUVkwSXVVc3ZTSndxTGE3eSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774487416),
-('OaqbZsijEUpn6JmYxfrI6wK6E7k2Jq9QcPdTmuHV',NULL,'172.71.183.106','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11) AppleWebKit/601.1.27 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/601.1.27','YTozOntzOjY6Il90b2tlbiI7czo0MDoiQUsyWFpqTHA3N0IxMXhFdTNLTTd2b0gyV0tucDFxVk9GOHJtNlpoOCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774477243),
-('oQPEPCmz0TJwaIWx1YRtJJAeursNMoJh2Kf3WU9G',NULL,'172.71.24.158','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiZFo4bXg5ajFSNkczblM1ZDcxRnBCUm44b04xeDRwS2xTNUxYZGxyeiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774557567),
-('PejZWYFef45FCl0C09koK66LFhLgVcIZJry99qSh',NULL,'172.68.103.45','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiM0thVFpsSEVyYmt3VE1vSXExeEM1TTM0cllBbXFxZmNyWUdJVkU4bCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774593292),
-('Pv9jM6zYnTBnLsHsJza5dEoVIsXxdMKJPIC4dGzO',NULL,'172.71.98.88','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiWnlGYU03S2Z5VUdpS2JwR1lZSFJCdENaS3o0U0xqR3RaNVhFRUxKcSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774560702),
-('PVwkkxV2p8ZN4znMm3GYhmu361WrA3g2XDTxRZqT',NULL,'172.70.127.148','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiVlNHSjc4Tm5iQ3RQaXRpaFQ3R1pYd1FNcVFuazc2WldnSkI0TlF4MiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjozZXBoOUtweFlTNTdlSGhxIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774447338),
-('QJCHLE6tzbpzmZVQTkH7yS7BU2YfCOOpXVVV8b7E',NULL,'172.70.240.85','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoibFV0VDR5Zzh6VGF5MFhnWWdiRzJrMjZJaURkaDczQ1RjZjQzMXE4MyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774608318),
-('S2gzgxiekxleGqAXjaVOxR0LAx6dEAqWWY0EQOnu',NULL,'172.71.103.171','Dalvik/2.1.0 (Linux; U; Android 9.0; ZTE BA520 Build/MRA58K)','YTozOntzOjY6Il90b2tlbiI7czo0MDoidUxMdmRGZFRPd2tEVm14OURGNXFidWlZM21CeEE3MjlhbUFnWlRJRSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774568061),
-('SDmThadNAHLpirtbCQcG5R2Ily07fHKDDWjaPSuS',NULL,'162.158.91.73','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiN3liczc4OFBTMUNRWjl5aXQ4ZXBHeG9lUDRkQmZDa3lyc0wyWWFHNCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774588199),
-('sKpj0Rz9ZYd8g7mnVldQP5zWBiBor2lBjdhCA7m9',NULL,'104.23.172.107','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiZ2I1Q3lsamhaRXAycGFmTThTd2RwdXdVc2w4OGw0YzZPdUhybUVXSSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774533274),
-('ud6tiS47WHy7AbSQMzGX8mjmldBJxYa8N0um0Om7',NULL,'172.71.150.89','Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)','YTozOntzOjY6Il90b2tlbiI7czo0MDoicXo4U2lmSDFiQWpkaDlISjkyM3p5UXFncExFRmJtYlJ4UlBLT1h3RyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774477796),
-('UeGHMr7m9vzNq4B7zHUCd129HmL3K9zkFStcdPD4',NULL,'162.158.230.165','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36','YToyOntzOjY6Il90b2tlbiI7czo0MDoiUnMxUTBnSFY1SU5mMHFWZW9LaEduRGROUHZzUG1sRFdoYkR5cTlSZSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774592044),
-('UhA37hx2ug3C21rX6ODjlPLL2YioAS4HFtnsse3b',NULL,'162.158.238.200','python-requests/2.32.4','YTozOntzOjY6Il90b2tlbiI7czo0MDoiTHp0Mmx3U0hGYVM4U1VFcVFuYXNRTzlzeTFLYmo3cWFDYzVUNFVoaCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774573991),
-('UIMWo0jYbh9p8L5HL4E06uCAvoh7QliQ2Hee5GCb',NULL,'104.23.253.25','Mozilla/5.0 (X11; Linux i686; rv:109.0) Gecko/20100101 Firefox/120.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoiY2drQWpsVExmT29QMUg4UGZIaU85Rmh3YUtEcGM4TFkzdGtPQmd5MyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774510259),
-('vnWCwhlpqiO26Oo0byu1DVjTDkSBElbZwi4aC033',NULL,'172.68.103.45','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiQXJyZ3psUEVMN2RaODllbmhUOUppMU1xbTlDd0dOTGp1dVlaODlGUSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774506734),
-('Xe0lFI8qn09BMGbtC3lhJJ61kiJgDnsrmjToyH8d',NULL,'162.158.114.67','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiTUVzYzQ1RzFwU3F0TjJXMFpralpFTVdNRFF5bVZRUjNvQUR1Z05wbSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774581348),
-('xYtnebybV7KNFSBcQNCpkkY8En0YDhm5AlchYUpy',NULL,'162.158.23.44','Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoieXpLbUptbnpGREV2c0VsV2k4MEtBczBjaFdqZVZ5YkNkR1ppUjlXNCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774619460),
-('Y2XI2rUDkh7CPfDJhLiAzwSarqKoW3mZfRNryd9F',NULL,'104.23.223.2','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiNDhLNGF4RXFBbUlEWEFrMlgwZU5GWDlEdmliQnJHTk5MTmMzMldnYiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774518758),
-('yGbZtAqC0oVTFF37bxnUSFTCV60VZt45gXzWSraz',NULL,'172.71.103.171','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiR0tTNHdzTU9oYTJPdHNKeDNHdGpyNTRQMFQzV0RMb1dKSjREbk5jRiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjozZXBoOUtweFlTNTdlSGhxIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774441235),
-('ZUs7AciTn5JZZOPjvlm6sNXcIbKxN6LAc4Dbwxnn',NULL,'172.69.214.41','Mozilla/5.0 (compatible; AhrefsBot/7.0; +http://ahrefs.com/robot/)','YTozOntzOjY6Il90b2tlbiI7czo0MDoiNEsxN1V0bk5xZWtSd3VMN000VzB2aFc3aFh4QnBtOW5QTHF2blpCWiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjozZXBoOUtweFlTNTdlSGhxIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774456622),
-('zZqTQjwwDtOGU2OnLmfOam8PtP58AlYFefCkCprV',NULL,'162.158.217.144','Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoicmJrR0lLb2FCaXBiZzh6MHdrWFJmbGlpWjNFS3ZMVVl4NDkzMmtWbiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjp1MUhaZ0p5bzEwcktqbmtZIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774504439);
+('0cdGJAKXAICkp078ndknznFXIQBVy4dqKkDYA21S',NULL,'172.71.159.166','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiV0tmdmY2NWduNVdHNHJIOWlVWWp2alozYm9BbE5sSGl4MkJKcVIybiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775220913),
+('2ooKA8sTuoCTjudVf3s8GeBh3dnWxSxPNI0BAFop',NULL,'172.71.159.165','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiQndDOTI2bXpOQWxLZjZmUmxxTTdpWDdUQUp2N2JnS0tReG9TVUxtWCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775173132),
+('3JplRwWWcZQsbCpIPucYIJWwp1PjtqX7ONSZeWyV',NULL,'162.158.111.140','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiNFJKVWZBdk85UmpJcW0xcENaZnNlMk1rN240MlF5T1Iwc1BrT3dpVyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775007966),
+('5GLSmeg1CAkvl7XZNDiKZC85VRJE4RzKqr0MnnDj',NULL,'172.69.23.83','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiUzRoT0dST2N4dzZ6U004S1BTcDdSbzlLS3lkaXVFWndYTHR2TW9SZCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775092237),
+('82oJQrCpCFdtWCYXeudrzcYlkswtlMsJL0B1foip',NULL,'104.23.221.109','Mozilla/5.0 (Android 14; Mobile; rv:123.0) Gecko/123.0 Firefox/123','YTozOntzOjY6Il90b2tlbiI7czo0MDoiZ1Y0SHJ3RjFZM2F0SVVXelV4dmllb3l5T1ZPcDdvTEE1RU9Bc2R6eCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775076438),
+('8ojR20eelNQ2yrWdvCro0itswCq0P4OVkhhlPZYB',NULL,'104.22.23.16','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiaEpyZ1o5TjhOZGtFOUhSRllad1Z1cVVKYnlKZ3lVWXRnaHFSQ0hjbSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775150099),
+('Ancd9Cjtk5zMMcRKZtzL0DM1hLfCtDUpujvTs88K',NULL,'108.162.216.212','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoieWEzQ2RLb1VKaDlMNk1uUWlDSjJKNXFJeHA1V0FrdGtNRU8zTzVOTiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775075679),
+('aOfE6NLzwswOlw9T3lzHlfgI3faOzdVHRasc20Xm',NULL,'104.22.23.17','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiTnNZeFppMHdxdVMzV1FqQkVDb0dzb3MxS044bVBsdTBXUTJzbWdLWiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775051040),
+('C5ir7Tgvjiq4trLlHNmi8mvLM7GwsdA7WiliDMaX',NULL,'162.158.217.144','Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiYzZPN3NIbGhnMlRlaUFUY2d0UUxoaENpakE4dlZKNzFRcFp3QnB1NyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775108317),
+('cFQ1n8XxtUKnKSI0clH2OasrHJig6O5SjyhFTdE5',NULL,'172.70.127.137','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiV3B0bGM1MExjOUVWTlNrbDVvZ0dFTUdLR1RPVlFzN2hneE9ZS29BdCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774985565),
+('CUhTo5ejKs8K3tc8jAvwGQZUTgCHoSWSET78GIxJ',NULL,'172.69.6.104','Mozilla/5.0 (iPhone; CPU iPhone OS 26_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/144.0.7559.95 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiVkFzbThCZ3dGYkRHZUJURWhoM0ZYbXIxdGxhMlNqWlBoazFzOWlvbCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775070656),
+('DnUj7CyqVCjexsswwG7a8k5tb4dmIxTLqnRGjxIP',NULL,'172.71.82.61','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiaE5VemtUYUtxbUNJdUY1M0dKa3Z2VHVBRE5lYUFkRzdyU25UOGRDWiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775005833),
+('ehbnTdC3VCR9WAHJPQXIlxEpiCdgdtMFBJWqUL45',NULL,'104.23.253.25','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Firefox/98.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoiTnhZM1hseGdiUTRpMGR2aDZCWVlpOTRHVzJuVjQ1cGxiMVB2Q29DTyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775125742),
+('eZSvCUrRhUkeEh2WoWz80MMCKalTlXqYrZFvfWF1',NULL,'172.69.234.167','Mozilla/5.0 (Macintosh; Intel Mac OS X 15_7_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Safari/605.1.15','YTozOntzOjY6Il90b2tlbiI7czo0MDoiY1Y1bmZNTnpLdnNzQzJsR21uZlpzNnZ5ZTFtNHRtNEJHR09jN2lwRyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775173475),
+('fpMLWrU4CH74RId9pXSxeT0CDMJxzIM0a02BaqiY',NULL,'162.158.159.158','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiTUNhUnNWZU9MT24yd0J6ZXZGTzIzNUhJUEI5MUNBUFJaZUltMWF3cCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775058225),
+('FrG7YO5LkaIT2oCLW8ducOrlk7UzNkpN6uNxPjt2',NULL,'104.23.168.39','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiQnp3NVdqUm41Y2FFQmF6bEhtNzA0TEVLSXdScU5ydVpFY0JxOXNWUSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775015812),
+('FyAljUAXELKjQEsYbrjDCWB1NAc3yTDnyN42D5fp',NULL,'172.70.38.87','Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoiam5rdEZWZmg5UWFFSFJmY0lGRkVFOHhmemxOMFdMSDhqVnJaMERJSCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775096407),
+('gdCXwzs7MIqf7bT0wcNT0nRFxkRkru3mNX6CPzef',NULL,'172.69.222.97','Mozilla/5.0 (compatible; AhrefsBot/7.0; +http://ahrefs.com/robot/)','YTozOntzOjY6Il90b2tlbiI7czo0MDoiOE9GQlpBbXZKMEJtYmk5OWZxd05wY2xaSzJ1cjFHSlQyZGRhNHlMSiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775123225),
+('h6GfMD8BF7IvrpB75xh4kw1NdBMyo2NVgusLrZHD',NULL,'162.158.216.112','Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:114.0) Gecko/20100101 Firefox/114.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoidGtUcHk1U3pTbmpTWDgwbTBsOHlENzZRaEdzSDI2ZDB5RmloT1haVSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775000063),
+('HSIwIbui3u9j9umNHOl0jrzBqmZOQKGT7nYpKHk6',NULL,'141.101.76.74','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiWXBzVmhCandsY3JDWmhva0RLRmVYeURzaFVHRTF1M3NMZ2FHZVY4OSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775110376),
+('HZid3ADCoen3DZ68Wbf4XQt0VPd9T6I4NVFJipbN',NULL,'104.22.17.195','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:104.0) Gecko/20100101 Firefox/104.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoiREhocURsSU92dGphNUdlTXRGVXYxbUQ0ZWVRNTgxNVpPT3Z6UE44WSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775210031),
+('IIHkH3T6K5sp6lvkteU53V8ChcWHhycz4d2CT8JE',NULL,'162.159.106.82','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.5938.132 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoid0JDV25hU2lGVHloS1c3b1g0eWNwdnRKQlgyMUJKeGk3NDdjS3JvViI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775076322),
+('IyPT00cV2v2cioIhW2dHCI55h0poXO1iBBxYm771',NULL,'172.71.159.166','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiOG5MQklHY2R5V0FQTFQ5M3AwZmxkR2RqdnJDZkM1OXdWaVAwa0pZUSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775077892),
+('JNH0POA5aJbdkudFOI18iT9QkNrXCebgdXxrxthl',NULL,'172.69.176.122','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiMnpkM1BXN21rRkEzeTY0c2Y3dlgwUmdhUDRMVkc0eWRoN1dHR2JNRCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775101920),
+('jOLQewKakQObZw00BInzVK5wf3vQ9qGnms9UlRiT',NULL,'104.23.170.81','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiOXBSdkYxV3JTZWNEcEFrQ09CNTkyQUJsbTJ0RVJ5dXZXSlR3Zm1UTyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775063117),
+('k1Obw7xyWfNhmgo5T2NIP1RN0zWVk2JAD7y2Ugp9',NULL,'172.69.214.40','Mozilla/5.0 (compatible; AhrefsBot/7.0; +http://ahrefs.com/robot/)','YTozOntzOjY6Il90b2tlbiI7czo0MDoiQlZWeVVhQzE4czNXNEhVOVgxMUxOZWxHM1R0NTYxRGJhUlhwNXg2UiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775011632),
+('kISh9xtnVR5iYPTm8JmY1FWEzEShoU9f5wOBc7NM',NULL,'172.71.95.89','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoicWJUaVNkU2pkZDhTcng5NWk3NTNtS29QNVRrQ2t0cWx6SE1xN1UwaSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775158178),
+('LAqiErrknWlkI7qnQFCEU7WKBzqVFIieXLuAqtrg',NULL,'172.68.243.206','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiTWlnSlpUU3FQREhubzBMbFo1bkZlV0hUd1hLc0tjNXM4NkU4SnUxciI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775068079),
+('mfK8urXw1rCX2HwSVARn7YBUWVVDsetUOvIp5orw',NULL,'172.71.155.9','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiTDdsb1VwMXFTdWhGTkRzbXg2Zk5KQm01THowdHJ5VzVST1d4WFJIaCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774983600),
+('mIdyQ2XQqFac29xP2QiDsulTZSIN4YtyQXDtKCFn',NULL,'172.69.17.7','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiVnFRbmx3YnBaODZIS3NFRVVIZDVweFcxN3V2WWRNeW9rc3hraGtCeiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775075607),
+('mTJfGQXuwltbdw3O8Hk7lJH4IHeW3OgnykVYiTvJ',NULL,'172.71.255.44','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoibFBZTmlHbE10NjVpenFmNXp5QU4xZ0lCOTdITHd3RHZSUHJCY1BIQSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775107993),
+('MVtaC38RtqtHvCj1qhUO8Kfw1GetDf38nG3zremy',NULL,'172.71.238.156','Hello from Palo Alto Networks, find out more about our scans in https://docs-cortex.paloaltonetworks.com/r/1/Cortex-Xpanse/Scanning-activity','YTozOntzOjY6Il90b2tlbiI7czo0MDoiWlpwOE5lZnhkYXlHSk9jZExTQzFldVNEbEkySHgwc2ZDSmpmZmdNVyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775021394),
+('mZDHLUOMKKBS3jazjnmwYsTQqC0UaurHeL0k6x8P',NULL,'172.71.255.44','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoieEJjRFRDdzZodU1mZkV4d2JrOG1QVmkxcU5SdnJkZjQ0Ujk2OXhycCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774985377),
+('NJuRUcy7Nq3MoEgyTsZxwZhaI4uPnG0LtIYfdcZn',NULL,'104.23.223.2','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.3','YTozOntzOjY6Il90b2tlbiI7czo0MDoiN1FIWTh1TzJiVmhrRzVuaGo2OEVCV3Q5OEVDYUVMM2ZrRkJPYU1pSiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775190168),
+('NKLyJQ5pXxMWZk4wQmO0AtNy2laTQJzCI6iMDMhU',NULL,'172.71.182.47','Mozilla/5.0 (compatible; AhrefsBot/7.0; +http://ahrefs.com/robot/)','YTozOntzOjY6Il90b2tlbiI7czo0MDoiWnZrNFRvb1VHdkczaURvUVBDYlNyUEV4WW02TjNsU3A5c1dneGtWNCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775233561),
+('NOeRYQBhq6IRzmyQkmktBMLgU1At1iElOT2uAC8o',NULL,'104.22.20.158','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiTUFVYlNLcWVMZFFwNHdVM0NDQUhhN2g0ZWY4Z2V3RHZkcldzUVdVRCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775178812),
+('NOWhINKMWfqbVB2NKMqRvH6zfBPkluWXVkoCOinI',NULL,'172.71.159.166','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiRE5wSmFTaTFKdUxSd2JuYnBTWnhFckVIVUY3UmF4MTBOckhSWXNJSiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775126312),
+('nZg79WTmYa4Z8qN2qwIRA1bI69PE3QbGG4t1pxXW',NULL,'104.22.20.158','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiVEx6SGpyUnFBOWM1RHk3WEgxemFyUGlsWDZzNzluOUNOcUlGaG43ZyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775138807),
+('odQNYLdnxqWGQfVxuTLoImvSIDRYKesC9Xiwh2Fb',NULL,'172.68.234.33','Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiNXFBQnpScW5nZDJXZFUzUTNYb0hLU3pDcUN5ZVNJUUdYSFM5UllaNyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775032806),
+('P075eeSU2BJgZU3Zg14218gZioQ45xPo2IqDbYmJ',NULL,'104.22.62.115','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoickh3ZE1mY1o1VjVFbDNMYXhOamlVcVI1YzJjbTlzdW1iYWc1YWhiRCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1774985563),
+('qoBZeNWjmxyYzsO2jkYAGT3bBltLzNdsFNWX8T4E',NULL,'172.64.223.166','Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoiVUFvTGs1YkdmN1h6b1JWdVYzYXRhSWVvTFBqdGJlRU56aVk1Y1o4WCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775068898),
+('qsO2ECrQzguvM0hUZLFsc0fWEQVPDC86taHG3Oo6',NULL,'172.71.127.140','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4240.193 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiVUl6TXFXOGhNT1RDRjFwMmFtSzFQN1k1U3RGVWM5RlVrVFFXc1NLTyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775185009),
+('R545Ia5rCdvpiCzbqaLyCsyFkruMq8fUCYNfqhNQ',NULL,'172.70.111.163','Mozilla/5.0 (X11; Linux x86_64; rv:142.0) Gecko/20100101 Firefox/142.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoiWFhiZ0JMY1Bya2dVYm9hRDZKMlpFa0dFRmtIbU9VdW9WM2tWU1JpRSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775136445),
+('RgAevW4U6gomCwfMrlUAJXyrrWRHYu6qgpS3SLh9',NULL,'104.22.20.159','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiT2pvRmlNaHN4YjZwNnJOSmZvdkJKV3JwUnlJN01OdDRwYU5jOWx1NCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775198164),
+('roVFzAbWMjHEmuVSgd9ZWsUTL8xowijy9dEMc6tr',NULL,'172.71.135.15','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiSFdOcGRhMmlaM2ZqanN2M2FEMTF2Q2xtRU5za2tPVXhibGY3ejgwNSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MTE0OiJodHRwczovL2s3cHIyd245eG00dGI2dmwxenE4LmluZm8vaW5kZXgucGhwP29yZGVyPWFzYyZvcmRlcmJ5PWlkJnBhZ2U9MSZwZXJfcGFnZT0xMDAmcmVzdF9yb3V0ZT0lMkZ3cCUyRnYyJTJGdXNlcnMiO3M6NToicm91dGUiO3M6Mjc6ImdlbmVyYXRlZDo6SDB6Nk9zN3F1NGpVRWdYbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=',1775100073),
+('SSaCB9imSDQ9MEv73LoeQSH4EPNhGAmn6gsuO7Ma',NULL,'104.22.20.159','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiVTBzWnhpT2cweEF1WHpWTnRaRnJlQm03b1hjSGw1THBWMHJnOEtXVSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775031198),
+('taLY9jg7lUI3PFuaX8AbxEMRKCdLBWRkRtkkkD7E',NULL,'172.70.47.17','Mozilla/5.0 (Linux; Android 10; Nokia 3.2 Build/QKQ1.191008.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/80.0.3987.162 YaBrowser/19.6.0.158 (lite) Mobile Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiOFY3WGtlYVV5SzRmcUxLa3ZVZk1IdXM5bVpadHNBRXRncnRubk1rVyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775189568),
+('Tawi0A3QUhK9zFFm3DDG2lWmL4jZ40Ab3xeAnEP9',NULL,'108.162.249.74','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiaUhOdmJpMXduSXh5c1VCN1l3UWJPWW92bzJiVkVVT3pqYmlkNlpRSiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775061954),
+('UcVe8mVINU9ONeGwcp9Pv6zg8i159bhXyl7x6RH6',NULL,'172.71.223.27','Mozilla/5.0 (iPhone; CPU iPhone OS 26_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/144.0.7559.95 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoielQyeUNFeE1CeFRmRmlTRzBWNEVTc01MNzhnZlQxZFAxbVc5RDBTaCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775070635),
+('vVLx4AID3YdwLUACFnlE0SCThy86DHDas4p8GpsI',NULL,'104.22.17.195','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:65.0) Gecko/20100101 Firefox/65.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoicjhwS3dxNUFuNmZrdlNsQVJCTjVueU02R29Jd3V6VWFLaVc5VDFrNyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775167881),
+('Vzk6h3iLvrclti2dRAyV8sScDfdHTsHFFS1Qs3WG',NULL,'104.22.20.158','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiakhZRTZRNk4xZmNCTDI0Y3BhOTJuQldySmRXM2NBMElOa0kxRkZMMiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775157918),
+('wGHQ4G3qfuVU5GUyOG7LYbPQ6tuAJRwJRcwQx6lE',NULL,'162.158.217.145','Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiYVJBYjREY2FjRTNlU2pYT2FxT0lldVJaZ0FhMVlaSFJTSzRVSDhyTyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775111728),
+('wTKa9Yf4GMzVWtEPYJRQcFGVMt5PhlLBWqVDVdSs',NULL,'104.23.160.96','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoic3hQOFpIbWlJZktvUlBhbkJJSFFhcHo2Yk9NTDBnaGhLd0xwd2o3ZCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775119629),
+('WVieq2pJNvqSxxNP5BZYzzkmarJuQpLN8tft2qyg',NULL,'172.71.155.9','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiVnA5bHk1TW5uUEVnaFZGNXJBS0s4QWJQajQyZk5HaTNJZlEzVVBRcCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775052887),
+('X8Y4ZRr9zroL4mIOza2bE6TUJwYEH4z8vTUqwChg',NULL,'172.69.114.54','Hello from Palo Alto Networks, find out more about our scans in https://docs-cortex.paloaltonetworks.com/r/1/Cortex-Xpanse/Scanning-activity','YTozOntzOjY6Il90b2tlbiI7czo0MDoiTWMybkVLc2dZSjNyd0ZGZDZGcXA0ME5BRXVKTVl2UjRmTEpKREdWVSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775057730),
+('xaJ0ZiRfSCeIfWQPndEH5cYaXTqz93y1sYFBMymg',NULL,'104.22.62.114','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoibExOTzlyMWd6ZG5QRGpGb0VETmoxbzZ3elVENUNUZUhzQlBBbGlwciI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775165445),
+('XEmwgxQfy1uWUBIjT1Y6AWDUS4jGZPhpCAAxMpyO',NULL,'172.69.58.246','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiUm42ZEtqbm1zWG9aRE5xMTR2eWFkbVE5V1htSkFNak9yTXRUU2N1NiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775165444),
+('xsOxVvRTxuO8j6fKWzSpnxxSMcbgvMQka2mnHTG5',NULL,'172.69.17.6','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiUmNzS2x1Nk9ld3ZFVE9QaVlDTVY3R3ZkbEJLY25iTldZdWI0SnlGZSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775075677),
+('xZcgX9K9OBSpJxHLztshk7Fkkpw0HxsCkl9ozVuj',NULL,'172.70.174.139','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiYnFNSWVqU0FkYW1OUWJ6SVEwdnh6SEZzV0M2OEJxSGxudEFzN2hvQSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775124564),
+('Z3HULVJ0WUa7ewUJP7zMxNlLEVU8Na308ZigyJSV',NULL,'172.71.124.208','Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)','YTozOntzOjY6Il90b2tlbiI7czo0MDoiZER0OExpajdpY0dmNUF4SUJCeVh5b1dGeTNFbEh6cE9jRml4UFE2SSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775198983),
+('zgoGKbfQyKjSIUxOPHJSmBrE5uBptHZ9pes4zLbX',NULL,'172.70.127.138','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiZkQ0YUR2V3FrTDlKcXY2c1RiRWl0Tm92R282U3I3ZU5ITFdRWUFhTiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775165578),
+('zQ1EHSvNkUTnFa21cVZexaAyNbRamH7QhG0h7Spd',NULL,'172.69.23.83','Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1','YTozOntzOjY6Il90b2tlbiI7czo0MDoiVnJQSDloVEEwcnNUdkViWlNuQW1MZHBsVXFaRDhGTWRrZ3IwcW9OViI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHBzOi8vazdwcjJ3bjl4bTR0YjZ2bDF6cTguaW5mbyI7czo1OiJyb3V0ZSI7czoyNzoiZ2VuZXJhdGVkOjpIMHo2T3M3cXU0alVFZ1huIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1775146704);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -1360,9 +1572,10 @@ CREATE TABLE `solicitar_ins` (
   `mensaje` text NOT NULL,
   `datos_especificos` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`datos_especificos`)),
   `ref` int(11) DEFAULT NULL,
+  `estado` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_solicitar_ciudad_zona` (`ciudad`,`zona`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1373,7 +1586,10 @@ LOCK TABLES `solicitar_ins` WRITE;
 /*!40000 ALTER TABLE `solicitar_ins` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `solicitar_ins` VALUES
-(1,'Yonnel','04129168395','Caracas','Cara','Casa',20000000.00,'Casa','[]',12);
+(1,'Yonnel','04129168395','Caracas','Cara','Casa',20000000.00,'Casa','[]',12,NULL),
+(2,'sadas','041254512048','Caracas','asd','casa',2000.00,'sdas','{\"numero_dormitorios\":3,\"cantidad_banos\":3,\"area_minima_m2\":200,\"estacionamientos_minimos\":200,\"con_piscina\":true,\"pet_friendly\":false}',5,NULL),
+(3,'Casaaa','0412456124156','Cagua','Corinsa','Casota',120000.00,'Una casa habitable','[]',23,NULL),
+(4,'sdds','0145241564565','Maracay','Altamira','Casa',200000.00,'casa','[]',25,NULL);
 /*!40000 ALTER TABLE `solicitar_ins` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -1428,7 +1644,7 @@ CREATE TABLE `users` (
   `url` varchar(254) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1456,7 +1672,12 @@ INSERT INTO `users` VALUES
 (18,'Prueba user','user@control.com',NULL,8,'$2y$12$FqvaCbj.dLxG4jajFMHAueXGpsbr/.T3Q4GRCMW2H2RKj6DFEmLvi',NULL,'2026-03-17 23:43:14','2026-03-24 17:06:30','https://smarthouse-ve.com/Z4rwKp771903/'),
 (19,'Yonnel Licon','yonnel@sm.com',NULL,3,'$2y$12$EkghVsJx6UVHZm1u/lq8Tu4tXLfHmXKhlk1qG0nbvlPfwdBx3rGbm',NULL,'2026-03-25 16:37:01','2026-03-25 16:37:01',NULL),
 (20,'Prueba1','uno@a.a',NULL,8,'$2y$12$ru1InYpFqva8v3rJmZwgbOwKbBiZddNXYvKN.dYTHWcCafd047ibi',NULL,'2026-03-17 23:43:14','2026-03-25 20:46:04','https://smarthouse-ve.com/jrplks/'),
-(22,'Pedro Rasova','owner@a.a',NULL,1,'$2y$12$jd8CdHgY33NvHxkTl6VE6.dzQ235P2HQeK34IyH3uog0OVZIsB1km',NULL,'2026-03-17 23:43:14','2026-03-17 23:43:14',NULL);
+(22,'Pedro Rasova','owner@a.a',NULL,1,'$2y$12$jd8CdHgY33NvHxkTl6VE6.dzQ235P2HQeK34IyH3uog0OVZIsB1km',NULL,'2026-03-17 23:43:14','2026-03-17 23:43:14',NULL),
+(23,'Moises Licon','moises@sm.com',NULL,3,'$2y$12$0fz5l2yr.cC/zcRXnuTPROTToalyTwq1Yc9p/AmpCNG0CC0Sd/jmq',NULL,'2026-03-28 00:24:13','2026-03-28 00:24:13',NULL),
+(24,'Yostin Licon','yostin@sm.com',NULL,2,'$2y$12$ohs8Sw2owV5uQRFHGiJhXe.ODjozr9OGregFh.2uOKuabBB6zfbVG',NULL,'2026-03-28 18:46:28','2026-03-28 18:46:28',NULL),
+(25,'Ramos Ramos','ramos@sm.com',NULL,3,'$2y$12$TDjTMTJo755BuvWjT7Ek6uPo6cTbR37N0oAOeLoTG6AmsG17cnUB6',NULL,'2026-03-28 19:56:01','2026-03-28 19:56:01',NULL),
+(26,'Muffin la bomba Perro','perro@sm.cm',NULL,3,'$2y$12$5XRdAPt0LmS6Tw8jlRQOiOc3mfumQSaDl0dvfmN9PFRvnyXCmVeUm',NULL,'2026-03-29 02:05:10','2026-03-29 02:05:10',NULL),
+(27,'Anderson Javier','ander@a.a',NULL,3,'$2y$12$Hk9UMfDQcFHTkhfVKCNMLueMENWHZ8i0UgqDcRLf8Tf16gnGEoXzK',NULL,'2026-04-03 21:59:35','2026-04-03 21:59:35',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -1474,4 +1695,4 @@ commit;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*M!100616 SET NOTE_VERBOSITY=@OLD_NOTE_VERBOSITY */;
 
--- Dump completed on 2026-03-27 10:44:39
+-- Dump completed on 2026-04-03 13:38:40

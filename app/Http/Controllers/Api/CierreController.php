@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCierreRequest;
 use App\Http\Requests\UpdateCierreRequest;
 use App\Models\Agente;
 use App\Models\Cierre;
+use App\Models\Propiedad;
 use App\Support\PrivateMediaUrl;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -177,6 +178,7 @@ class CierreController extends Controller
 
         $data = $request->validated();
         $storedFiles = [];
+        $codigosPropiedades = $this->normalizeCodigosPropiedades($data['codigos_propiedades'] ?? null);
 
         try {
             DB::beginTransaction();
@@ -199,7 +201,7 @@ class CierreController extends Controller
                 'fecha' => $data['fecha'],
                 'tipo_cierre' => $data['tipo_cierre'],
                 'estado_cierre' => $data['estado_cierre'],
-                'codigos_propiedades' => $data['codigos_propiedades'] ?? null,
+                'codigos_propiedades' => $codigosPropiedades !== [] ? $codigosPropiedades : null,
                 'titulo' => $data['titulo'],
                 'precio_base' => $data['precio_base'],
                 'monto_cerrado' => $data['monto_cerrado'],
@@ -208,6 +210,8 @@ class CierreController extends Controller
                 'archivos' => count($storedFiles) > 0 ? $storedFiles : null,
                 'nota' => $data['nota'] ?? null,
             ]);
+
+            $this->updatePropiedadesEstadoInterno($codigosPropiedades, 'En negociacion');
 
             DB::commit();
 
@@ -340,6 +344,7 @@ class CierreController extends Controller
             }
         }
 
+        $estadoCierreAnterior = (string) ($cierre->getAttribute('estado_cierre') ?? '');
         $newStoredFiles = [];
         $oldStoredFiles = [];
         $replaceFiles = $request->hasFile('archivos');
@@ -370,6 +375,15 @@ class CierreController extends Controller
             $cierre->fill($payload);
             $cierre->save();
 
+            $estadoCierreActual = (string) ($cierre->getAttribute('estado_cierre') ?? '');
+            $estadoAnteriorNormalizado = mb_strtolower(trim($estadoCierreAnterior), 'UTF-8');
+            $estadoActualNormalizado = mb_strtolower(trim($estadoCierreActual), 'UTF-8');
+
+            if ($estadoAnteriorNormalizado === 'inicial' && $estadoActualNormalizado === 'terminado') {
+                $codigosPropiedades = $this->normalizeCodigosPropiedades($cierre->getAttribute('codigos_propiedades'));
+                $this->updatePropiedadesEstadoInterno($codigosPropiedades, 'Cerrada');
+            }
+
             DB::commit();
 
             if ($replaceFiles) {
@@ -396,6 +410,45 @@ class CierreController extends Controller
                 'status' => 'ERROR',
             ], 500);
         }
+    }
+
+    private function normalizeCodigosPropiedades(mixed $codigosPropiedades): array
+    {
+        if (is_string($codigosPropiedades)) {
+            $decoded = json_decode($codigosPropiedades, true);
+            if (is_array($decoded)) {
+                $codigosPropiedades = $decoded;
+            } elseif ($codigosPropiedades !== '') {
+                $codigosPropiedades = [$codigosPropiedades];
+            }
+        }
+
+        if (! is_array($codigosPropiedades)) {
+            return [];
+        }
+
+        $codigos = array_map(static function ($codigo): string {
+            if (is_string($codigo) || is_numeric($codigo)) {
+                return trim((string) $codigo);
+            }
+
+            return '';
+        }, $codigosPropiedades);
+
+        $codigos = array_filter($codigos, static fn (string $codigo): bool => $codigo !== '');
+
+        return array_values(array_unique($codigos));
+    }
+
+    private function updatePropiedadesEstadoInterno(array $codigosPropiedades, string $estado): void
+    {
+        if ($codigosPropiedades === []) {
+            return;
+        }
+
+        Propiedad::query()
+            ->whereIn('id_publico', $codigosPropiedades)
+            ->update(['estado_interno' => $estado]);
     }
 
     private function queryValue(Request $request, array $keys): mixed

@@ -324,8 +324,45 @@ curl -X POST "http://127.0.0.1:8000/delegarCon" \
   -H "Authorization: Bearer TU_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
+    "tipo": "SolIn",
     "id_registro": 9,
     "id_agente": 5
+  }'
+```
+
+### Ejemplo response
+
+```json
+{
+  "status": "OK"
+}
+```
+
+
+## PATCH /updSol
+
+Actualiza el campo `estado` de una solicitud en `contactos`, `solicitar_ins` o `publicar_ins`.
+
+Autenticacion requerida:
+
+- Bearer token (`Authorization: Bearer <token>`)
+
+Campos:
+
+- `tipo` (requerido): `cont`, `SolIn` o `PubIn`
+- `id_registro` (requerido): id del registro a actualizar
+- `estado` (requerido como campo; puede ser texto o `null`)
+
+### Ejemplo request
+
+```bash
+curl -X PATCH "http://127.0.0.1:8000/updSol" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "tipo": "SolIn",
+    "id_registro": 9,
+    "estado": "En seguimiento"
   }'
 ```
 
@@ -518,6 +555,7 @@ curl -X GET "http://127.0.0.1:8000/obtPropiedades?ciudad_estado=Valencia&zona=Ce
       },
       "id_agente": 1,
       "Agente_Encargado": "Ramona Rojas",
+      "Telefono_Agente": "+584121234567",
       "Propietario": 101,
       "Coordenadas": {
         "latitud": 10.162,
@@ -640,10 +678,22 @@ curl -X POST "http://127.0.0.1:8000/setAdmin" \
 
 Actualiza admin de forma parcial o total.
 
+Autenticacion requerida:
+
+- Bearer token (`Authorization: Bearer <token>`)
+
+Campos opcionales relevantes:
+
+- `usuario` (email, actualiza `users.email`)
+- `password` (actualiza `users.password`)
+- `nombre` y/o `apellido` (actualiza `admins` y sincroniza `users.name`)
+- `telefono`, `descripcion_breve`, `foto_portada`, `foto_perfil`
+
 ### Ejemplo request
 
 ```bash
 curl -X PATCH "http://127.0.0.1:8000/updAdmin/1" \
+  -H "Authorization: Bearer TU_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "telefono": "+584149998877"
@@ -789,10 +839,22 @@ curl -X POST "http://127.0.0.1:8000/setAgente" \
 
 Actualiza agente de forma parcial o total.
 
+Autenticacion requerida:
+
+- Bearer token (`Authorization: Bearer <token>`)
+
+Campos opcionales relevantes:
+
+- `usuario` (email, actualiza `users.email`)
+- `password` (actualiza `users.password`)
+- `nombre` y/o `apellido` (actualiza `agentes` y sincroniza `users.name`)
+- `telefono`, `descripcion_breve`, `foto_portada`, `foto_perfil`
+
 ### Ejemplo request (solo apellido)
 
 ```bash
 curl -X PATCH "http://127.0.0.1:8000/updAgente/1" \
+  -H "Authorization: Bearer TU_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "apellido": "Mendoza"
@@ -803,6 +865,7 @@ curl -X PATCH "http://127.0.0.1:8000/updAgente/1" \
 
 ```bash
 curl -X PATCH "http://127.0.0.1:8000/updAgente/1" \
+  -H "Authorization: Bearer TU_TOKEN" \
   -F "foto_portada=@/ruta/local/nueva-portada.jpg"
 ```
 
@@ -1020,6 +1083,7 @@ Notas:
 - El backend identifica el agente por token (`agentes.userLink = users.id`).
 - Se guarda `ref` con `agentes.id_agente`.
 - Archivos se guardan en almacenamiento local bajo `cierres/`.
+- Si envias `codigos_propiedades`, esas propiedades pasan a `estado_interno = En negociacion` al crear el cierre.
 
 ### Ejemplo request multipart
 
@@ -1077,6 +1141,7 @@ Notas:
 - Debes enviar al menos un campo adicional a `id_cierre`.
 - Si envias `archivos[]`, el cierre reemplaza la lista actual de archivos por los nuevos.
 - Se mantiene el control por token/rol: owner puede actualizar todos; admin y agente solo cierres dentro de su alcance.
+- Si `estado_cierre` cambia de `Inicial` a `terminado`, las propiedades asociadas quedan con `estado_interno = Cerrada`.
 
 ### Ejemplo request multipart
 

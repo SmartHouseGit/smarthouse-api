@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DelegarConRequest;
 use App\Http\Requests\ListSolRequest;
+use App\Http\Requests\UpdateSolEstadoRequest;
 use App\Models\Contacto;
 use App\Models\PublicarIn;
 use App\Models\SolicitarIn;
@@ -91,6 +92,41 @@ class SolicitudesController extends Controller
             $updated = $query
                 ->where('id', $idRegistro)
                 ->update(['ref' => $idAgente]);
+
+            if ($updated === 0) {
+                return response()->json([
+                    'status' => 'ERROR',
+                ], 404);
+            }
+
+            return response()->json([
+                'status' => 'OK',
+            ]);
+        } catch (Throwable $exception) {
+            return response()->json([
+                'status' => 'ERROR',
+            ], 500);
+        }
+    }
+
+    public function updateEstado(UpdateSolEstadoRequest $request): JsonResponse
+    {
+        $authUser = $request->user();
+        if (! $authUser) {
+            return response()->json([
+                'status' => 'ERROR',
+            ], 401);
+        }
+
+        $data = $request->validated();
+        $tipo = $data['tipo'];
+        $idRegistro = (int) $data['id_registro'];
+
+        try {
+            $query = $this->queryForType($tipo);
+            $updated = $query
+                ->where('id', $idRegistro)
+                ->update(['estado' => $data['estado'] ?? null]);
 
             if ($updated === 0) {
                 return response()->json([

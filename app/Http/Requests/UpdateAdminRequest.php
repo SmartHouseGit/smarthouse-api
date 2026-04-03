@@ -35,6 +35,8 @@ class UpdateAdminRequest extends FormRequest
             'Descripcion breve',
             'descripcion breve',
         ]);
+        $usuario = $this->firstInput(['usuario', 'Usuario', 'email', 'Email']);
+        $password = $this->firstInput(['password', 'Password', 'contrasena']);
 
         if ($fotoPortada !== null) {
             $data['foto_portada'] = $fotoPortada;
@@ -54,6 +56,12 @@ class UpdateAdminRequest extends FormRequest
         if ($descripcionBreve !== null) {
             $data['descripcion_breve'] = $descripcionBreve;
         }
+        if ($usuario !== null) {
+            $data['usuario'] = $usuario;
+        }
+        if ($password !== null) {
+            $data['password'] = $password;
+        }
 
         if ($data !== []) {
             $this->merge($data);
@@ -69,6 +77,8 @@ class UpdateAdminRequest extends FormRequest
             'apellido' => ['sometimes', 'string', 'max:120'],
             'telefono' => ['sometimes', 'string', 'max:40'],
             'descripcion_breve' => ['sometimes', 'string', 'max:2000'],
+            'usuario' => ['sometimes', 'email', 'max:255'],
+            'password' => ['sometimes', 'string', 'min:8', 'max:255'],
         ];
     }
 
@@ -82,6 +92,8 @@ class UpdateAdminRequest extends FormRequest
                 'apellido',
                 'telefono',
                 'descripcion_breve',
+                'usuario',
+                'password',
             ]) || $this->hasFile('foto_portada') || $this->hasFile('foto_perfil');
 
             if (! $hasFields) {
