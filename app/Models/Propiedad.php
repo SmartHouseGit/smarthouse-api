@@ -18,6 +18,8 @@ class Propiedad extends Model
         'tagline',
         'ciudad_estado',
         'zona',
+        'tipo_af',
+        'af_content',
         'tipo_inmueble',
         'precio',
         'estado_interno',

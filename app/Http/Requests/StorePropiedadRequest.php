@@ -61,6 +61,7 @@ class StorePropiedadRequest extends FormRequest
 
         $latitud = $this->firstInput(['latitud', 'Latitud']);
         $longitud = $this->firstInput(['longitud', 'Longitud', 'lng', 'Lng']);
+        $tipoAf = $this->firstInput(['tipo_af', 'Tipo_AF', 'tipoAF', 'tipo af']);
 
         if (is_array($coordenadas)) {
             $latitud = $coordenadas['latitud']
@@ -107,6 +108,15 @@ class StorePropiedadRequest extends FormRequest
                     ?? null,
                 'financiable' => $datosEspecificos['financiable'] ?? null,
             ], static fn ($value) => $value !== null);
+        }
+
+        if (is_string($tipoAf)) {
+            $tipoAfLower = mb_strtolower(trim($tipoAf));
+            if ($tipoAfLower === 'interna') {
+                $tipoAf = 'Interna';
+            } elseif ($tipoAfLower === 'externa') {
+                $tipoAf = 'Externa';
+            }
         }
 
         $this->merge([
@@ -162,6 +172,8 @@ class StorePropiedadRequest extends FormRequest
                 'longitud' => $longitud,
             ],
             'datos_especificos' => $datosEspecificos,
+            'tipo_af' => $tipoAf,
+            'af_content' => $this->firstInput(['af_content', 'AF_Content', 'afContent', 'af content']),
         ]);
     }
 
@@ -198,6 +210,8 @@ class StorePropiedadRequest extends FormRequest
             'foto_principal' => ['required', 'file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:8192'],
             'fotos_secundarias' => ['nullable', 'array', 'max:8'],
             'fotos_secundarias.*' => ['nullable', 'file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:8192'],
+            'tipo_af' => ['nullable', 'string', 'in:Interna,Externa'],
+            'af_content' => ['nullable', 'string', 'max:65535'],
         ];
     }
 

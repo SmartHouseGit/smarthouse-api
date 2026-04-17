@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePropiedadRequest;
 use App\Models\Agente;
 use App\Models\Propiedad;
+use App\Models\User;
 use App\Support\CityRegistryService;
 use App\Support\PrivateMediaUrl;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use Laravel\Sanctum\PersonalAccessToken;
 use Throwable;
 
 class PropiedadController extends Controller
@@ -22,6 +24,8 @@ class PropiedadController extends Controller
     public function index(Request $request): JsonResponse
     {
         $query = Propiedad::query();
+        $authenticatedUser = $this->resolveAuthenticatedUserFromToken($request);
+        $includeAfFields = $authenticatedUser instanceof User;
 
         $idInterno = $this->queryValue($request, ['id_interno', 'ID_interno']);
         $idPublico = $this->queryValue($request, ['id_publico', 'ID_publico']);
@@ -111,7 +115,7 @@ class PropiedadController extends Controller
             ->get(['id_agente', 'nombre', 'apellido', 'telefono'])
             ->keyBy('id_agente');
 
-        $propiedades = $propiedadesResult->map(function (Propiedad $propiedad) use ($agentesById): array {
+        $propiedades = $propiedadesResult->map(function (Propiedad $propiedad) use ($agentesById, $includeAfFields): array {
             $fotosSecundarias = $propiedad->getAttribute('fotos_secundarias') ?? [];
             if (! is_array($fotosSecundarias)) {
                 $fotosSecundarias = [];
@@ -128,7 +132,7 @@ class PropiedadController extends Controller
                 }
             }
 
-            return [
+            $item = [
                 'id_interno' => $propiedad->getAttribute('id_interno'),
                 'id_publico' => $propiedad->getAttribute('id_publico'),
                 'Nombre' => $propiedad->getAttribute('nombre'),
@@ -155,6 +159,18 @@ class PropiedadController extends Controller
                     'secundarias' => PrivateMediaUrl::mapMany($fotosSecundarias),
                 ],
             ];
+
+            if ($includeAfFields) {
+                $tipoAf = $this->normalizeTipoAf($propiedad->getAttribute('tipo_af'));
+
+                $item['tipo_af'] = $tipoAf;
+                $item['af_content'] = $this->formatAfContentForResponse(
+                    $tipoAf,
+                    $propiedad->getAttribute('af_content')
+                );
+            }
+
+            return $item;
         })->values();
 
         return response()->json([
@@ -165,6 +181,22 @@ class PropiedadController extends Controller
     public function store(StorePropiedadRequest $request): JsonResponse
     {
         $data = $request->validated();
+        $tipoAf = $this->normalizeTipoAf($data['tipo_af'] ?? null);
+        $afContent = null;
+
+        if ($tipoAf === 'Interna') {
+            $internalAf = $this->buildInternalAfContent((string) ($data['af_content'] ?? ''));
+            if (! $internalAf['ok']) {
+                return response()->json([
+                    'status' => 'ERROR',
+                    'message' => 'Revise los correos de los agentes ingresados.',
+                ], 422);
+            }
+
+            $afContent = $internalAf['content'];
+        } elseif ($tipoAf === 'Externa') {
+            $afContent = $this->buildExternalAfContent((string) ($data['af_content'] ?? ''));
+        }
 
         $fotoPrincipal = $request->file('foto_principal')->store('propiedades', 'local');
 
@@ -201,6 +233,8 @@ class PropiedadController extends Controller
                 'tagline' => $data['tagline'],
                 'ciudad_estado' => $data['ciudad_estado'],
                 'zona' => $data['zona'],
+                'tipo_af' => $tipoAf,
+                'af_content' => $afContent,
                 'tipo_inmueble' => $data['tipo_inmueble'],
                 'precio' => $data['precio'],
                 'estado_interno' => $data['estado_interno'],
@@ -264,5 +298,130 @@ class PropiedadController extends Controller
         }
 
         $query->where("datos_especificos->{$field}", $value);
+    }
+
+    private function normalizeTipoAf(mixed $tipoAf): ?string
+    {
+        if (! is_string($tipoAf)) {
+            return null;
+        }
+
+        $normalized = mb_strtolower(trim($tipoAf));
+
+        return match ($normalized) {
+            'interna' => 'Interna',
+            'externa' => 'Externa',
+            default => null,
+        };
+    }
+
+    private function splitCommaList(string $value): array
+    {
+        $parts = array_map(
+            static fn (string $item): string => trim($item),
+            explode(',', $value)
+        );
+
+        return array_values(array_filter($parts, static fn (string $item): bool => $item !== ''));
+    }
+
+    private function buildInternalAfContent(string $rawContent): array
+    {
+        $emails = $this->splitCommaList($rawContent);
+        if ($emails === []) {
+            return ['ok' => true, 'content' => null];
+        }
+
+        $normalizedEmails = array_map(
+            static fn (string $email): string => mb_strtolower($email),
+            $emails
+        );
+
+        $users = User::query()
+            ->whereIn('email', $normalizedEmails)
+            ->get(['id', 'email']);
+
+        $userByEmail = $users->keyBy(
+            static fn (User $user): string => mb_strtolower((string) $user->getAttribute('email'))
+        );
+
+        $agentsByUserId = Agente::query()
+            ->whereIn('userLink', $users->pluck('id'))
+            ->get(['id_agente', 'userLink', 'nombre', 'apellido'])
+            ->keyBy('userLink');
+
+        $resolved = [];
+        foreach ($normalizedEmails as $email) {
+            $user = $userByEmail->get($email);
+            if (! $user instanceof User) {
+                return ['ok' => false, 'content' => null];
+            }
+
+            $agent = $agentsByUserId->get((int) $user->getAttribute('id'));
+            if (! $agent instanceof Agente) {
+                return ['ok' => false, 'content' => null];
+            }
+
+            $name = trim(
+                (string) $agent->getAttribute('nombre').' '.(string) $agent->getAttribute('apellido')
+            );
+
+            if ($name === '') {
+                $name = 'Agente';
+            }
+
+            $resolved[] = $name.'-'.$agent->getAttribute('id_agente');
+        }
+
+        return ['ok' => true, 'content' => implode(',', $resolved)];
+    }
+
+    private function buildExternalAfContent(string $rawContent): ?string
+    {
+        $names = $this->splitCommaList($rawContent);
+        if ($names === []) {
+            return null;
+        }
+
+        return implode(',', $names);
+    }
+
+    private function formatAfContentForResponse(?string $tipoAf, mixed $afContent): ?string
+    {
+        if (! is_string($afContent)) {
+            return null;
+        }
+
+        $parts = $this->splitCommaList($afContent);
+        if ($parts === []) {
+            return null;
+        }
+
+        if ($tipoAf === 'Interna') {
+            $parts = array_map(
+                static fn (string $item): string => preg_replace('/-\d+$/', '', $item) ?? $item,
+                $parts
+            );
+        }
+
+        return implode(',', $parts);
+    }
+
+    private function resolveAuthenticatedUserFromToken(Request $request): ?User
+    {
+        $requestUser = $request->user('sanctum');
+        if ($requestUser instanceof User) {
+            return $requestUser;
+        }
+
+        $token = $request->bearerToken();
+        if (! is_string($token) || trim($token) === '') {
+            return null;
+        }
+
+        $accessToken = PersonalAccessToken::findToken($token);
+        $tokenable = $accessToken?->tokenable;
+
+        return $tokenable instanceof User ? $tokenable : null;
     }
 }

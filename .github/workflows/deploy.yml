@@ -58,48 +58,7 @@ jobs:
               exit 1
             fi
 
-            if [ -s database/deploy/temp.sql ]; then
-              log "Aplicando dump SQL: database/deploy/temp.sql"
-
-              env_value() {
-                key="$1"
-                default_value="${2:-}"
-                value="$(grep -m1 "^${key}=" .env | cut -d= -f2- || true)"
-                value="${value%\"}"
-                value="${value#\"}"
-
-                if [ -z "$value" ]; then
-                  echo "$default_value"
-                else
-                  echo "$value"
-                fi
-              }
-
-              DB_HOST="$(env_value DB_HOST 127.0.0.1)"
-              DB_PORT="$(env_value DB_PORT 3306)"
-              DB_DATABASE="$(env_value DB_DATABASE)"
-              DB_USERNAME="$(env_value DB_USERNAME root)"
-              DB_PASSWORD="$(env_value DB_PASSWORD)"
-
-              if [ -z "$DB_DATABASE" ]; then
-                log "DB_DATABASE vacio en .env. Abortando deploy."
-                exit 1
-              fi
-
-              MYSQL_BIN="$(command -v mysql || command -v mariadb || true)"
-              if [ -z "$MYSQL_BIN" ]; then
-                log "No se encontro cliente mysql/mariadb en VPS."
-                exit 1
-              fi
-
-              if [ -n "$DB_PASSWORD" ]; then
-                MYSQL_PWD="$DB_PASSWORD" "$MYSQL_BIN" -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USERNAME" "$DB_DATABASE" < database/deploy/temp.sql
-              else
-                "$MYSQL_BIN" -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USERNAME" "$DB_DATABASE" < database/deploy/temp.sql
-              fi
-            else
-              log "No existe database/deploy/temp.sql (o esta vacio). Se omite import de BD."
-            fi
+            log "Pasos de BD desactivados en deploy (sin import SQL ni migraciones)."
 
             APP_USER="$(id -un)"
             APP_GROUP="www-data"
@@ -129,7 +88,6 @@ jobs:
             "$PHP_BIN" "$COMPOSER_BIN" check-platform-reqs --no-dev
 
             log "Ejecutando tareas Laravel"
-            "$PHP_BIN" artisan migrate --force
             "$PHP_BIN" artisan optimize:clear
             "$PHP_BIN" artisan config:cache
             "$PHP_BIN" artisan route:cache

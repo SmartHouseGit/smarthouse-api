@@ -446,6 +446,10 @@ Campos principales:
 - `detalles`
 - `id_agente`
 - `propietario` (id de cliente, opcional por ahora)
+- `tipo_af` (opcional: `Interna` o `Externa`)
+- `af_content` (opcional: lista separada por comas)
+  - Si `tipo_af=Interna`: enviar correos de agentes. Se guarda como `Nombre Apellido-ID`.
+  - Si `tipo_af=Externa`: enviar nombres. Se guarda tal cual (sin ids).
 - `coordenadas` (`latitud`, `longitud`)
 - `datos_especificos` (`dormitorios`, `banos`, `area_m2`, `estacionamientos`, `con_piscina`, `pet_friendly`, `ano_construccion`, `amoblada`, `balcon`, `seguridad_privada`, `financiable`)
 - `foto_principal`
@@ -467,6 +471,8 @@ curl -X POST "http://127.0.0.1:8000/setPropiedades" \
   -F "detalles=Casa de dos niveles remodelada." \
   -F "id_agente=2" \
   -F "propietario=202" \
+  -F "tipo_af=Interna" \
+  -F "af_content=agente1@dominio.com,agente2@dominio.com" \
   -F "coordenadas={\"latitud\":10.4806,\"longitud\":-66.9036}" \
   -F "datos_especificos={\"dormitorios\":4,\"banos\":3,\"area_m2\":220,\"estacionamientos\":2,\"con_piscina\":false,\"pet_friendly\":true,\"ano_construccion\":2012,\"amoblada\":false,\"balcon\":true,\"seguridad_privada\":true,\"financiable\":true}" \
   -F "foto_principal=@/ruta/local/principal.jpg" \
@@ -486,6 +492,12 @@ curl -X POST "http://127.0.0.1:8000/setPropiedades" \
 
 Obtiene la lista de propiedades.
 Las fotos se devuelven como URLs privadas firmadas y temporales.
+
+Comportamiento con Bearer token:
+
+- Con token valido: cada propiedad incluye `tipo_af` y `af_content`.
+  - En `af_content` para `Interna` se devuelven solo nombres (sin ids).
+- Sin token (o token invalido): no se devuelven `tipo_af` ni `af_content`.
 
 Filtros soportados (query params):
 
@@ -556,6 +568,8 @@ curl -X GET "http://127.0.0.1:8000/obtPropiedades?ciudad_estado=Valencia&zona=Ce
       "id_agente": 1,
       "Agente_Encargado": "Ramona Rojas",
       "Telefono_Agente": "+584121234567",
+      "tipo_af": "Interna",
+      "af_content": "Ramon Gonzales,Maria Rubieta,Luis Alvarado",
       "Propietario": 101,
       "Coordenadas": {
         "latitud": 10.162,
