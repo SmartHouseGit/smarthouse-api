@@ -15,17 +15,7 @@ jobs:
       - name: Build release archive
         run: |
           rm -f release.tar.gz
-          tar \
-            --exclude='.git' \
-            --exclude='node_modules' \
-            --exclude='vendor' \
-            --exclude='release.tar.gz' \
-            --exclude='storage/logs/*' \
-            --exclude='storage/framework/cache/*' \
-            --exclude='storage/framework/sessions/*' \
-            --exclude='storage/framework/views/*' \
-            --exclude='bootstrap/cache/*.php' \
-            -czf release.tar.gz .
+          git archive --format=tar HEAD | gzip -9 > release.tar.gz
 
       - name: Upload release archive to VPS
         uses: appleboy/scp-action@v0.1.7
