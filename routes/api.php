@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\CiudadController;
 use App\Http\Controllers\Api\ClienteController;
 use App\Http\Controllers\Api\ConfigController;
 use App\Http\Controllers\Api\ContactoController;
+use App\Http\Controllers\Api\DivisionCierreController;
 use App\Http\Controllers\Api\LoanController;
 use App\Http\Controllers\Api\MediaController;
 use App\Http\Controllers\Api\MensajeController;
@@ -62,6 +63,8 @@ Route::post('/setCliente', [ClienteController::class, 'store'])->middleware('aut
 Route::get('/obtCierres', [CierreController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/setCierre', [CierreController::class, 'store'])->middleware('auth:sanctum');
 Route::patch('/updCierre', [CierreController::class, 'update'])->middleware('auth:sanctum');
+Route::post('/setDivisionCierre', [DivisionCierreController::class, 'store'])->middleware('auth:sanctum');
+Route::get('/obtDivisionCierres', [DivisionCierreController::class, 'index'])->middleware('auth:sanctum');
 Route::get('/obtReuniones', [ReunionController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/setReunion', [ReunionController::class, 'store'])->middleware('auth:sanctum');
 Route::patch('/updReunion', [ReunionController::class, 'update'])->middleware('auth:sanctum');

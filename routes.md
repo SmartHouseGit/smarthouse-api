@@ -1176,6 +1176,118 @@ curl -X PATCH "http://127.0.0.1:8000/updCierre" \
 }
 ```
 
+## POST /setDivisionCierre
+
+Crea la division de comision para un cierre y propiedad.
+
+Autenticacion requerida:
+
+- Bearer token (`Authorization: Bearer <token>`)
+
+Campos requeridos:
+
+- `id_cierre`
+- `id_propiedad`
+- `tipo_afiliacion` (`ninguna`, `interna`, `externa`)
+- `participantes` (objeto JSON: clave `nombre_o_correo`, valor `Captador` o `Vendedor`)
+
+Reglas:
+
+- Solo permite un registro por combinacion `id_cierre + id_propiedad`.
+- Si en `participantes` viene correo, se resuelve agente por `users.email -> agentes.userLink`.
+- Si correo no corresponde a un agente: `422` con mensaje `El agente no existe.`
+- Debe existir al menos un `Captador` y un `Vendedor`; si no, retorna `422`.
+
+Calculo:
+
+- Si `monto_cerrado <= 20000`: `comision_total = 1000`.
+- Si `monto_cerrado > 20000`: `comision_total = monto_cerrado * 0.05`.
+- `comision_inmobiliaria = 40%` de `comision_total`.
+- `bolsa_participantes = 60%` de `comision_total`.
+- `pool_captadores = 50%` de `bolsa_participantes`.
+- `pool_vendedores = 50%` de `bolsa_participantes`.
+- Cada pool se reparte equitativamente por cantidad de participantes de su tipo.
+
+### Ejemplo request
+
+```bash
+curl -X POST "http://127.0.0.1:8000/setDivisionCierre" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "id_cierre": 12,
+    "id_propiedad": 5,
+    "tipo_afiliacion": "interna",
+    "participantes": {
+      "agent4@s.s": "Captador",
+      "Maria Eugenia": "Captador",
+      "Raul Savientos": "Vendedor",
+      "Pedor acosta": "Vendedor"
+    }
+  }'
+```
+
+### Ejemplo response
+
+```json
+{
+  "status": "OK"
+}
+```
+
+## GET /obtDivisionCierres
+
+Lista divisiones de cierres.
+
+Autenticacion requerida:
+
+- Bearer token (`Authorization: Bearer <token>`)
+
+Regla de acceso:
+
+- Solo Owner (`rol = 1`) puede consultar.
+
+Filtros opcionales:
+
+- `id_division`
+- `id_cierre`
+- `id_propiedad`
+- `tipo_afiliacion`
+- `cantidad`
+
+### Ejemplo request
+
+```bash
+curl -X GET "http://127.0.0.1:8000/obtDivisionCierres?id_cierre=12" \
+  -H "Authorization: Bearer TU_TOKEN_OWNER"
+```
+
+### Ejemplo response
+
+```json
+{
+  "Divisiones": [
+    {
+      "id_division": 3,
+      "id_cierre": 12,
+      "id_propiedad": 5,
+      "tipo_afiliacion": "interna",
+      "monto_cerrado": 50000,
+      "comision_total": 2500,
+      "comision_inmobiliaria": 1000,
+      "bolsa_participantes": 1500,
+      "pool_captadores": 750,
+      "pool_vendedores": 750,
+      "participantes": [],
+      "distribucion": [],
+      "created_by": 1,
+      "created_at": "2026-04-17T00:00:00.000000Z",
+      "updated_at": "2026-04-17T00:00:00.000000Z"
+    }
+  ]
+}
+```
+
 ## GET /obtReuniones
 
 Lista reuniones segun rol y parametro `sel`.
