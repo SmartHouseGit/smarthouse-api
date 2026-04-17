@@ -9,7 +9,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy via SSH
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Build release archive
+        run: |
+          tar \
+            --exclude='.git' \
+            --exclude='node_modules' \
+            --exclude='vendor' \
+            --exclude='storage/logs/*' \
+            --exclude='storage/framework/cache/*' \
+            --exclude='storage/framework/sessions/*' \
+            --exclude='storage/framework/views/*' \
+            --exclude='bootstrap/cache/*.php' \
+            -czf release.tar.gz .
+
+      - name: Upload release archive to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          source: "release.tar.gz"
+          target: "/tmp"
+
+      - name: Run deploy on VPS
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -22,19 +48,20 @@ jobs:
 
             log() { echo "[DEPLOY] $1"; }
 
-            cd /var/www/smarthouse-api
-            log "Repo: $(pwd)"
+            APP_DIR="/var/www/smarthouse-api"
+            ARCHIVE="/tmp/release.tar.gz"
+            mkdir -p "$APP_DIR"
+            cd "$APP_DIR"
+            log "Destino: $(pwd)"
 
-            git config --global --add safe.directory /var/www/smarthouse-api
-            if [ -n "$(git status --porcelain)" ]; then
-              log "Repositorio con cambios locales. Guardando respaldo en /tmp..."
-              git diff > "/tmp/smarthouse-predeploy-$(date +%F-%H%M%S).patch" || true
+            if [ ! -f "$ARCHIVE" ]; then
+              log "No se encontro $ARCHIVE en el VPS."
+              exit 1
             fi
 
-            log "Sincronizando con origin/main"
-            git fetch --prune origin main
-            git reset --hard origin/main
-            rm -f FETCH_HEAD
+            log "Extrayendo release..."
+            tar -xzf "$ARCHIVE" -C "$APP_DIR"
+            rm -f "$ARCHIVE"
 
             PHP_BIN="$(command -v php8.4 || true)"
             if [ -z "$PHP_BIN" ]; then
