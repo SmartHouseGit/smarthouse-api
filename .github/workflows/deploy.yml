@@ -14,10 +14,12 @@ jobs:
 
       - name: Build release archive
         run: |
+          rm -f release.tar.gz
           tar \
             --exclude='.git' \
             --exclude='node_modules' \
             --exclude='vendor' \
+            --exclude='release.tar.gz' \
             --exclude='storage/logs/*' \
             --exclude='storage/framework/cache/*' \
             --exclude='storage/framework/sessions/*' \
