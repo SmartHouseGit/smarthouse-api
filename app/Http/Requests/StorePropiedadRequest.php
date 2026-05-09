@@ -76,40 +76,6 @@ class StorePropiedadRequest extends FormRequest
                 ?? $longitud;
         }
 
-        if (is_array($datosEspecificos)) {
-            $datosEspecificos = array_filter([
-                'dormitorios' => $datosEspecificos['dormitorios'] ?? $datosEspecificos['Dormitorios'] ?? null,
-                'banos' => $datosEspecificos['banos']
-                    ?? $datosEspecificos['baños']
-                    ?? $datosEspecificos['Banos']
-                    ?? $datosEspecificos['Baños']
-                    ?? null,
-                'area_m2' => $datosEspecificos['area_m2']
-                    ?? $datosEspecificos['area en m2']
-                    ?? $datosEspecificos['Area en m2']
-                    ?? null,
-                'estacionamientos' => $datosEspecificos['estacionamientos']
-                    ?? $datosEspecificos['Estacionamientos']
-                    ?? null,
-                'con_piscina' => $datosEspecificos['con_piscina']
-                    ?? $datosEspecificos['piscina']
-                    ?? null,
-                'pet_friendly' => $datosEspecificos['pet_friendly']
-                    ?? $datosEspecificos['pet friendly']
-                    ?? null,
-                'ano_construccion' => $datosEspecificos['ano_construccion']
-                    ?? $datosEspecificos['año de construccion']
-                    ?? $datosEspecificos['ano de construccion']
-                    ?? null,
-                'amoblada' => $datosEspecificos['amoblada'] ?? null,
-                'balcon' => $datosEspecificos['balcon'] ?? null,
-                'seguridad_privada' => $datosEspecificos['seguridad_privada']
-                    ?? $datosEspecificos['seguridad privada']
-                    ?? null,
-                'financiable' => $datosEspecificos['financiable'] ?? null,
-            ], static fn ($value) => $value !== null);
-        }
-
         if (is_string($tipoAf)) {
             $tipoAfLower = mb_strtolower(trim($tipoAf));
             if ($tipoAfLower === 'interna') {
@@ -196,17 +162,6 @@ class StorePropiedadRequest extends FormRequest
             'coordenadas.latitud' => ['required', 'numeric', 'between:-90,90'],
             'coordenadas.longitud' => ['required', 'numeric', 'between:-180,180'],
             'datos_especificos' => ['required', 'array'],
-            'datos_especificos.dormitorios' => ['nullable', 'integer', 'min:0'],
-            'datos_especificos.banos' => ['nullable', 'integer', 'min:0'],
-            'datos_especificos.area_m2' => ['nullable', 'numeric', 'min:0'],
-            'datos_especificos.estacionamientos' => ['nullable', 'integer', 'min:0'],
-            'datos_especificos.con_piscina' => ['nullable', 'boolean'],
-            'datos_especificos.pet_friendly' => ['nullable', 'boolean'],
-            'datos_especificos.ano_construccion' => ['nullable', 'integer', 'min:1800', 'max:2100'],
-            'datos_especificos.amoblada' => ['nullable', 'boolean'],
-            'datos_especificos.balcon' => ['nullable', 'boolean'],
-            'datos_especificos.seguridad_privada' => ['nullable', 'boolean'],
-            'datos_especificos.financiable' => ['nullable', 'boolean'],
             'foto_principal' => ['required', 'file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:8192'],
             'fotos_secundarias' => ['nullable', 'array', 'max:12'],
             'fotos_secundarias.*' => ['nullable', 'file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:8192'],
