@@ -384,6 +384,11 @@ class CierreController extends Controller
                 $this->updatePropiedadesEstados($codigosPropiedades, 'Cerrada', 'inactivo');
             }
 
+            if ($estadoAnteriorNormalizado !== 'cancelado' && $estadoActualNormalizado === 'cancelado') {
+                $codigosPropiedades = $this->normalizeCodigosPropiedades($cierre->getAttribute('codigos_propiedades'));
+                $this->updatePropiedadesEstados($codigosPropiedades, 'disponible', 'publicado');
+            }
+
             DB::commit();
 
             if ($replaceFiles) {

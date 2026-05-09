@@ -1154,7 +1154,7 @@ Notas:
 - El backend identifica el agente por token (`agentes.userLink = users.id`).
 - Se guarda `ref` con `agentes.id_agente`.
 - Archivos se guardan en almacenamiento local bajo `cierres/`.
-- Si envias `codigos_propiedades`, esas propiedades pasan a `estado_interno = En negociacion` al crear el cierre.
+- Si envias `codigos_propiedades`, esas propiedades pasan a `estado_interno = En negociacion` y `estado_publico = inactivo` al crear el cierre.
 
 ### Ejemplo request multipart
 
@@ -1196,7 +1196,7 @@ Campos:
 - `id_cierre` (requerido)
 - `fecha` (opcional)
 - `tipo_cierre` (opcional)
-- `estado_cierre` (opcional)
+- `estado_cierre` (opcional: `Inicial`, `terminado`, `cancelado`)
 - `codigos_propiedades` (opcional, JSON array)
 - `titulo` (opcional)
 - `precio_base` (opcional)
@@ -1212,7 +1212,8 @@ Notas:
 - Debes enviar al menos un campo adicional a `id_cierre`.
 - Si envias `archivos[]`, el cierre reemplaza la lista actual de archivos por los nuevos.
 - Se mantiene el control por token/rol: owner puede actualizar todos; admin y agente solo cierres dentro de su alcance.
-- Si `estado_cierre` cambia de `Inicial` a `terminado`, las propiedades asociadas quedan con `estado_interno = Cerrada`.
+- Si `estado_cierre` cambia de `Inicial` a `terminado`, las propiedades asociadas quedan con `estado_interno = Cerrada` y `estado_publico = inactivo`.
+- Si `estado_cierre` cambia a `cancelado`, las propiedades asociadas quedan con `estado_interno = disponible` y `estado_publico = publicado`.
 
 ### Ejemplo request multipart
 

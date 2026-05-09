@@ -123,7 +123,7 @@ class UpdateCierreRequest extends FormRequest
             'id_cierre' => ['required', 'integer', 'min:1', 'exists:cierres,id_cierre'],
             'fecha' => ['sometimes', 'date'],
             'tipo_cierre' => ['sometimes', 'in:Venta,Alquiler,Remodelacion,asesoria,negocio'],
-            'estado_cierre' => ['sometimes', 'in:Inicial,terminado'],
+            'estado_cierre' => ['sometimes', 'in:Inicial,terminado,cancelado'],
             'codigos_propiedades' => ['sometimes', 'nullable', 'array'],
             'codigos_propiedades.*' => ['nullable', 'string', 'max:120'],
             'titulo' => ['sometimes', 'string', 'max:180'],
