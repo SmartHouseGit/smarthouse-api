@@ -526,7 +526,7 @@ Reglas de afiliacion:
 
 ```bash
 curl -X PATCH "http://127.0.0.1:8000/updPropiedad/12" \
-  -H "Authorization: Bearer TU_TOKEN" \
+  -H "Authorization: Bearer TU_TOKEN s" \
   -F "nombre=Casa Los Naranjos (actualizada)" \
   -F "etiqueta=Oportunidad de inversion" \
   -F "precio=195000" \
