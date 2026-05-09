@@ -488,6 +488,63 @@ curl -X POST "http://127.0.0.1:8000/setPropiedades" \
 }
 ```
 
+## PATCH /updPropiedad/{id_interno}
+
+Actualiza una propiedad existente de forma parcial.
+
+Autenticacion requerida:
+
+- Bearer token (`Authorization: Bearer <token>`)
+
+Todos los campos son opcionales (se actualizan solo los enviados):
+
+- `id_publico`
+- `nombre`
+- `etiqueta`
+- `ciudad_estado`
+- `zona`
+- `tipo_inmueble`
+- `precio`
+- `estado_interno`
+- `estado_publico`
+- `detalles`
+- `id_agente`
+- `propietario`
+- `tipo_af` (`Interna` o `Externa`)
+- `af_content` (lista separada por comas)
+- `coordenadas` (`latitud`, `longitud`)
+- `datos_especificos`
+- `foto_principal` (archivo)
+- `fotos_secundarias` (archivos, maximo 12)
+
+Reglas de afiliacion:
+
+- Si `tipo_af=Interna`, `af_content` debe contener correos validos de agentes.
+- Si `tipo_af=Externa`, `af_content` se guarda como nombres en texto.
+
+### Ejemplo request multipart
+
+```bash
+curl -X PATCH "http://127.0.0.1:8000/updPropiedad/12" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -F "nombre=Casa Los Naranjos (actualizada)" \
+  -F "etiqueta=Oportunidad de inversion" \
+  -F "precio=195000" \
+  -F "estado_interno=disponible" \
+  -F "coordenadas={\"latitud\":10.4806,\"longitud\":-66.9036}" \
+  -F "foto_principal=@/ruta/local/nueva-principal.jpg" \
+  -F "fotos_secundarias[]=@/ruta/local/sec-1.jpg" \
+  -F "fotos_secundarias[]=@/ruta/local/sec-2.jpg"
+```
+
+### Ejemplo response
+
+```json
+{
+  "status": "OK"
+}
+```
+
 ## GET /obtPropiedades
 
 Obtiene la lista de propiedades.

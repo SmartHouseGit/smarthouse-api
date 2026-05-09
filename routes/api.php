@@ -52,6 +52,7 @@ Route::patch('/updSol', [SolicitudesController::class, 'updateEstado'])->middlew
 Route::get('/ciudades', [CiudadController::class, 'index']);
 Route::get('/obtPropiedades', [PropiedadController::class, 'index']);
 Route::post('/setPropiedades', [PropiedadController::class, 'store']);
+Route::patch('/updPropiedad/{id_interno}', [PropiedadController::class, 'update'])->middleware('auth:sanctum');
 Route::get('/obtAdmins', [AdminController::class, 'index']);
 Route::post('/setAdmin', [AdminController::class, 'store'])->middleware('auth:sanctum');
 Route::patch('/updAdmin/{id_admin}', [AdminController::class, 'update'])->middleware('auth:sanctum');

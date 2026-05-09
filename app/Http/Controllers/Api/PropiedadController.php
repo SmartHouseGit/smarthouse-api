@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePropiedadRequest;
+use App\Http\Requests\UpdatePropiedadRequest;
 use App\Models\Agente;
 use App\Models\Propiedad;
 use App\Models\User;
@@ -12,6 +13,8 @@ use App\Support\PrivateMediaUrl;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\PersonalAccessToken;
 use Throwable;
 
@@ -254,6 +257,150 @@ class PropiedadController extends Controller
                 'status' => 'OK',
             ]);
         } catch (Throwable $exception) {
+            return response()->json([
+                'status' => 'ERROR',
+            ], 500);
+        }
+    }
+
+    public function update(UpdatePropiedadRequest $request, int $id_interno): JsonResponse
+    {
+        $propiedad = Propiedad::query()->where('id_interno', $id_interno)->first();
+        if (! $propiedad) {
+            return response()->json([
+                'status' => 'ERROR',
+            ], 404);
+        }
+
+        $payload = $request->validated();
+        $oldFotoPrincipal = $propiedad->getAttribute('foto_principal');
+        $oldFotosSecundarias = $propiedad->getAttribute('fotos_secundarias');
+        if (! is_array($oldFotosSecundarias)) {
+            $oldFotosSecundarias = [];
+        }
+
+        if (array_key_exists('coordenadas', $payload)) {
+            $payload['latitud'] = $payload['coordenadas']['latitud'] ?? null;
+            $payload['longitud'] = $payload['coordenadas']['longitud'] ?? null;
+            unset($payload['coordenadas']);
+        }
+
+        $tipoAfProvided = array_key_exists('tipo_af', $payload);
+        $afContentProvided = array_key_exists('af_content', $payload);
+
+        if ($tipoAfProvided) {
+            $payload['tipo_af'] = $this->normalizeTipoAf($payload['tipo_af']);
+        }
+
+        $effectiveTipoAf = $tipoAfProvided
+            ? $payload['tipo_af']
+            : $this->normalizeTipoAf($propiedad->getAttribute('tipo_af'));
+
+        if ($afContentProvided || $tipoAfProvided) {
+            if ($effectiveTipoAf === 'Interna') {
+                $internalAf = $this->buildInternalAfContent((string) ($payload['af_content'] ?? ''));
+                if (! $internalAf['ok']) {
+                    return response()->json([
+                        'status' => 'ERROR',
+                        'message' => 'Revise los correos de los agentes ingresados.',
+                    ], 422);
+                }
+
+                $payload['af_content'] = $internalAf['content'];
+            } elseif ($effectiveTipoAf === 'Externa') {
+                $payload['af_content'] = $this->buildExternalAfContent((string) ($payload['af_content'] ?? ''));
+            } else {
+                $payload['af_content'] = null;
+            }
+        }
+
+        if (array_key_exists('ciudad_estado', $payload)) {
+            $this->cityRegistry->ensureExists($this->extractCityName((string) $payload['ciudad_estado']));
+        }
+
+        $newFotoPrincipal = null;
+        $newFotosSecundarias = null;
+        $storedPaths = [];
+        $transactionOpen = false;
+
+        try {
+            if (array_key_exists('foto_principal', $payload)) {
+                unset($payload['foto_principal']);
+            }
+
+            if ($request->hasFile('foto_principal')) {
+                $newFotoPrincipal = $request->file('foto_principal')->store('propiedades', 'local');
+                $storedPaths[] = $newFotoPrincipal;
+                $payload['foto_principal'] = $newFotoPrincipal;
+            }
+
+            if (array_key_exists('fotos_secundarias', $payload)) {
+                unset($payload['fotos_secundarias']);
+            }
+
+            if ($request->hasFile('fotos_secundarias')) {
+                $files = $request->file('fotos_secundarias');
+                if (! is_array($files)) {
+                    $files = [$files];
+                }
+
+                $newFotosSecundarias = [];
+                foreach ($files as $file) {
+                    if ($file instanceof UploadedFile) {
+                        $path = $file->store('propiedades', 'local');
+                        $newFotosSecundarias[] = $path;
+                        $storedPaths[] = $path;
+                    }
+                }
+
+                $payload['fotos_secundarias'] = $newFotosSecundarias;
+            }
+
+            DB::beginTransaction();
+            $transactionOpen = true;
+
+            $propiedad->fill($payload);
+            $propiedad->save();
+
+            DB::commit();
+            $transactionOpen = false;
+
+            if (
+                is_string($newFotoPrincipal) &&
+                $newFotoPrincipal !== '' &&
+                is_string($oldFotoPrincipal) &&
+                $oldFotoPrincipal !== '' &&
+                ! preg_match('/^https?:\/\//i', $oldFotoPrincipal)
+            ) {
+                Storage::disk('local')->delete($oldFotoPrincipal);
+            }
+
+            if (is_array($newFotosSecundarias)) {
+                foreach ($oldFotosSecundarias as $oldPath) {
+                    if (
+                        is_string($oldPath) &&
+                        $oldPath !== '' &&
+                        ! preg_match('/^https?:\/\//i', $oldPath)
+                    ) {
+                        Storage::disk('local')->delete($oldPath);
+                    }
+                }
+            }
+
+            return response()->json([
+                'status' => 'OK',
+            ]);
+        } catch (Throwable $exception) {
+            if ($transactionOpen) {
+                DB::rollBack();
+            }
+
+            foreach ($storedPaths as $path) {
+                if (is_string($path) && $path !== '') {
+                    Storage::disk('local')->delete($path);
+                }
+            }
+
             return response()->json([
                 'status' => 'ERROR',
             ], 500);
