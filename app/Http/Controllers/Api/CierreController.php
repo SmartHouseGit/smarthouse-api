@@ -211,7 +211,7 @@ class CierreController extends Controller
                 'nota' => $data['nota'] ?? null,
             ]);
 
-            $this->updatePropiedadesEstadoInterno($codigosPropiedades, 'En negociacion');
+            $this->updatePropiedadesEstados($codigosPropiedades, 'En negociacion', 'inactivo');
 
             DB::commit();
 
@@ -381,7 +381,7 @@ class CierreController extends Controller
 
             if ($estadoAnteriorNormalizado === 'inicial' && $estadoActualNormalizado === 'terminado') {
                 $codigosPropiedades = $this->normalizeCodigosPropiedades($cierre->getAttribute('codigos_propiedades'));
-                $this->updatePropiedadesEstadoInterno($codigosPropiedades, 'Cerrada');
+                $this->updatePropiedadesEstados($codigosPropiedades, 'Cerrada', 'inactivo');
             }
 
             DB::commit();
@@ -440,7 +440,11 @@ class CierreController extends Controller
         return array_values(array_unique($codigos));
     }
 
-    private function updatePropiedadesEstadoInterno(array $codigosPropiedades, string $estado): void
+    private function updatePropiedadesEstados(
+        array $codigosPropiedades,
+        string $estadoInterno,
+        string $estadoPublico
+    ): void
     {
         if ($codigosPropiedades === []) {
             return;
@@ -448,7 +452,10 @@ class CierreController extends Controller
 
         Propiedad::query()
             ->whereIn('id_publico', $codigosPropiedades)
-            ->update(['estado_interno' => $estado]);
+            ->update([
+                'estado_interno' => $estadoInterno,
+                'estado_publico' => $estadoPublico,
+            ]);
     }
 
     private function queryValue(Request $request, array $keys): mixed
