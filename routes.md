@@ -436,7 +436,7 @@ Campos principales:
 
 - `id_publico`
 - `nombre`
-- `tagline`
+- `etiqueta`
 - `ciudad_estado`
 - `zona`
 - `tipo_inmueble`
@@ -453,7 +453,7 @@ Campos principales:
 - `coordenadas` (`latitud`, `longitud`)
 - `datos_especificos` (`dormitorios`, `banos`, `area_m2`, `estacionamientos`, `con_piscina`, `pet_friendly`, `ano_construccion`, `amoblada`, `balcon`, `seguridad_privada`, `financiable`)
 - `foto_principal`
-- `fotos_secundarias` (máximo 8)
+- `fotos_secundarias` (máximo 12)
 
 ### Ejemplo request multipart (archivo)
 
@@ -461,7 +461,7 @@ Campos principales:
 curl -X POST "http://127.0.0.1:8000/setPropiedades" \
   -F "id_publico=PUB-0002" \
   -F "nombre=Casa Los Naranjos" \
-  -F "tagline=Casa familiar en zona exclusiva" \
+  -F "etiqueta=Casa familiar en zona exclusiva" \
   -F "ciudad_estado=Caracas, Distrito Capital" \
   -F "zona=Los Naranjos" \
   -F "tipo_inmueble=Casa" \
@@ -504,7 +504,7 @@ Filtros soportados (query params):
 - `id_interno`
 - `id_publico`
 - `nombre`
-- `tagline`
+- `etiqueta`
 - `ciudad_estado`
 - `zona`
 - `tipo_inmueble`
@@ -532,7 +532,7 @@ Filtros soportados (query params):
 ### Ejemplo request
 
 ```bash
-curl -X GET "http://127.0.0.1:8000/obtPropiedades?ciudad_estado=Valencia&zona=Centro&tipo_inmueble=Apartamento&id_agente=1&tagline=retorno&precio_min=100000&precio_max=180000&dormitorios=3&con_piscina=true&cantidad=20"
+curl -X GET "http://127.0.0.1:8000/obtPropiedades?ciudad_estado=Valencia&zona=Centro&tipo_inmueble=Apartamento&id_agente=1&etiqueta=retorno&precio_min=100000&precio_max=180000&dormitorios=3&con_piscina=true&cantidad=20"
 ```
 
 ### Ejemplo response
@@ -544,7 +544,7 @@ curl -X GET "http://127.0.0.1:8000/obtPropiedades?ciudad_estado=Valencia&zona=Ce
       "id_interno": 1,
       "id_publico": "PUB-0001",
       "Nombre": "Residencias El Bosque",
-      "Tagline": "Ubicacion premium y excelente retorno",
+      "Etiqueta": "Ubicacion premium y excelente retorno",
       "Ciudad_Estado": "Valencia, Carabobo",
       "Zona": "Zona Referencial",
       "Tipo_Inmueble": "Apartamento",

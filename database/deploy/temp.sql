@@ -1065,7 +1065,7 @@ CREATE TABLE `propiedades` (
   `id_interno` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `id_publico` varchar(100) NOT NULL,
   `nombre` varchar(180) NOT NULL,
-  `tagline` varchar(255) NOT NULL,
+  `etiqueta` varchar(255) NOT NULL,
   `ciudad_estado` varchar(180) NOT NULL,
   `zona` varchar(25) NOT NULL,
   `tipo_inmueble` varchar(120) NOT NULL,
@@ -1087,7 +1087,7 @@ CREATE TABLE `propiedades` (
   KEY `idx_propiedades_precio` (`precio`),
   KEY `idx_propiedades_estado_publico` (`estado_publico`),
   KEY `idx_propiedades_estado_interno` (`estado_interno`),
-  KEY `idx_propiedades_tagline` (`tagline`),
+  KEY `idx_propiedades_etiqueta` (`etiqueta`),
   KEY `idx_propiedades_id_agente` (`id_agente`),
   KEY `idx_propiedades_propietario` (`propietario`),
   CONSTRAINT `fk_propiedades_agentes` FOREIGN KEY (`id_agente`) REFERENCES `agentes` (`id_agente`) ON UPDATE CASCADE

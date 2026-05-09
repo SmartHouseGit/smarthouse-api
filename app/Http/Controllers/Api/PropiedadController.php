@@ -30,7 +30,7 @@ class PropiedadController extends Controller
         $idInterno = $this->queryValue($request, ['id_interno', 'ID_interno']);
         $idPublico = $this->queryValue($request, ['id_publico', 'ID_publico']);
         $nombre = $this->queryValue($request, ['nombre', 'Nombre']);
-        $tagline = $this->queryValue($request, ['tagline', 'Tagline']);
+        $etiqueta = $this->queryValue($request, ['etiqueta', 'Etiqueta']);
         $ciudadEstado = $this->queryValue($request, ['ciudad_estado', 'Ciudad_Estado']);
         $zona = $this->queryValue($request, ['zona', 'Zona']);
         $tipoInmueble = $this->queryValue($request, ['tipo_inmueble', 'Tipo_Inmueble']);
@@ -51,8 +51,8 @@ class PropiedadController extends Controller
         if ($nombre !== null) {
             $query->where('nombre', 'like', '%'.$nombre.'%');
         }
-        if ($tagline !== null) {
-            $query->where('tagline', 'like', '%'.$tagline.'%');
+        if ($etiqueta !== null) {
+            $query->where('etiqueta', 'like', '%'.$etiqueta.'%');
         }
         if ($ciudadEstado !== null) {
             $query->where('ciudad_estado', 'like', '%'.$ciudadEstado.'%');
@@ -136,7 +136,8 @@ class PropiedadController extends Controller
                 'id_interno' => $propiedad->getAttribute('id_interno'),
                 'id_publico' => $propiedad->getAttribute('id_publico'),
                 'Nombre' => $propiedad->getAttribute('nombre'),
-                'Tagline' => $propiedad->getAttribute('tagline'),
+                'Etiqueta' => $propiedad->getAttribute('etiqueta'),
+                'etiqueta' => $propiedad->getAttribute('etiqueta'),
                 'Ciudad_Estado' => $propiedad->getAttribute('ciudad_estado'),
                 'Zona' => $propiedad->getAttribute('zona'),
                 'zona' => $propiedad->getAttribute('zona'),
@@ -218,7 +219,7 @@ class PropiedadController extends Controller
             $fotosSecundarias = [$fotosSecundarias];
         }
 
-        if (count($fotosSecundarias) > 8) {
+        if (count($fotosSecundarias) > 12) {
             return response()->json([
                 'status' => 'ERROR',
             ], 422);
@@ -230,7 +231,7 @@ class PropiedadController extends Controller
             Propiedad::query()->create([
                 'id_publico' => $data['id_publico'],
                 'nombre' => $data['nombre'],
-                'tagline' => $data['tagline'],
+                'etiqueta' => $data['etiqueta'],
                 'ciudad_estado' => $data['ciudad_estado'],
                 'zona' => $data['zona'],
                 'tipo_af' => $tipoAf,

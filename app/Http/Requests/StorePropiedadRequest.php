@@ -122,7 +122,7 @@ class StorePropiedadRequest extends FormRequest
         $this->merge([
             'id_publico' => $this->firstInput(['id_publico', 'ID publico', 'ID_publico', 'idPublico']),
             'nombre' => $this->firstInput(['nombre', 'Nombre']),
-            'tagline' => $this->firstInput(['tagline', 'Tagline']),
+            'etiqueta' => $this->firstInput(['etiqueta', 'Etiqueta']),
             'ciudad_estado' => $this->firstInput([
                 'ciudad_estado',
                 'Ciudad, Estado',
@@ -182,7 +182,7 @@ class StorePropiedadRequest extends FormRequest
         return [
             'id_publico' => ['required', 'string', 'max:100'],
             'nombre' => ['required', 'string', 'max:180'],
-            'tagline' => ['required', 'string', 'max:255'],
+            'etiqueta' => ['required', 'string', 'max:255'],
             'ciudad_estado' => ['required', 'string', 'max:180'],
             'zona' => ['required', 'string', 'max:180'],
             'tipo_inmueble' => ['required', 'string', 'max:120'],
@@ -208,7 +208,7 @@ class StorePropiedadRequest extends FormRequest
             'datos_especificos.seguridad_privada' => ['nullable', 'boolean'],
             'datos_especificos.financiable' => ['nullable', 'boolean'],
             'foto_principal' => ['required', 'file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:8192'],
-            'fotos_secundarias' => ['nullable', 'array', 'max:8'],
+            'fotos_secundarias' => ['nullable', 'array', 'max:12'],
             'fotos_secundarias.*' => ['nullable', 'file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:8192'],
             'tipo_af' => ['nullable', 'string', 'in:Interna,Externa'],
             'af_content' => ['nullable', 'string', 'max:65535'],

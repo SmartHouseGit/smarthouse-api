@@ -15,7 +15,7 @@ class Propiedad extends Model
     protected $fillable = [
         'id_publico',
         'nombre',
-        'tagline',
+        'etiqueta',
         'ciudad_estado',
         'zona',
         'tipo_af',
