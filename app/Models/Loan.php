@@ -14,6 +14,7 @@ class Loan extends Model
     protected $fillable = [
         'full_name',
         'document_id',
+        'loan_type',
         'principal_amount',
         'cut_frequency',
         'term_cuts',
@@ -31,6 +32,7 @@ class Loan extends Model
 
     protected $casts = [
         'principal_amount' => 'float',
+        'loan_type' => 'string',
         'rate_per_cut' => 'float',
         'per_cut_amount' => 'float',
         'final_cut_amount' => 'float',

@@ -2049,11 +2049,17 @@ Body JSON:
 
 - `fullName` (requerido)
 - `documentId` (requerido)
+- `loanType` (opcional: `loan` o `rent`; por defecto `loan`)
 - `principalUnit` (requerido)
 - `cutFrequency` (requerido: `mensual`, `quincenal`, `semanal`)
 - `termValue` (requerido)
-- `ratePerCut` (requerido)
+- `ratePerCut` (requerido para `loan`; si `loanType=rent` puede omitirse y se toma como `0`)
 - `startDate` (requerido, formato `Y-m-d`)
+
+Tipos:
+
+- `loan`: logica de prestamo actual. Cortes intermedios cobran interes y el ultimo cobra capital + interes.
+- `rent`: logica de alquiler. Cada corte cobra `principalUnit`, sin interes.
 
 ### Ejemplo request
 
@@ -2064,11 +2070,29 @@ curl -X POST "http://127.0.0.1:8000/loans" \
   -d '{
     "fullName": "Andrea Soto",
     "documentId": "V-18299311",
+    "loanType": "loan",
     "principalUnit": 1000,
     "cutFrequency": "mensual",
     "termValue": 3,
     "ratePerCut": 10,
     "startDate": "2026-03-21"
+  }'
+```
+
+### Ejemplo alquiler sin interes
+
+```bash
+curl -X POST "http://127.0.0.1:8000/loans" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "fullName": "Apartamento La Floresta",
+    "documentId": "ALQ-001",
+    "loanType": "rent",
+    "principalUnit": 500,
+    "cutFrequency": "mensual",
+    "termValue": 12,
+    "startDate": "2026-05-13"
   }'
 ```
 
@@ -2118,6 +2142,7 @@ Campos (al menos uno):
 
 - `fullName` (opcional)
 - `documentId` (opcional)
+- `loanType` (opcional: `loan` o `rent`)
 - `status` (opcional: `active`, `completed`, `cancelled`)
 - `principalUnit` (opcional)
 - `cutFrequency` (opcional: `mensual`, `quincenal`, `semanal`)
@@ -2128,7 +2153,8 @@ Campos (al menos uno):
 
 Reglas de recalculo:
 
-- Si cambias `principalUnit`, `cutFrequency`, `termValue`, `ratePerCut` o `startDate`, el backend recalcula `perCutAmount`, `finalCutAmount`, `totalGain`, `totalToCollect` y `endDate`.
+- Si cambias `loanType`, `principalUnit`, `cutFrequency`, `termValue`, `ratePerCut` o `startDate`, el backend recalcula `perCutAmount`, `finalCutAmount`, `totalGain`, `totalToCollect` y `endDate`.
+- Si `loanType=rent`, cada corte queda por `principalUnit`, `ratePerCut` queda en `0`, `totalGain` queda en `0` y `totalToCollect = principalUnit * termValue`.
 - Los cortes pendientes siempre se reajustan con nuevos montos y fechas.
 - Si `afecta=false` o no se envia, los cortes pagados quedan intactos.
 - Si `afecta=true`, los cortes pagados reajustan sus montos con el nuevo calculo, pero conservan sus fechas, `paid_at`, comprobante y nota.
@@ -2144,6 +2170,7 @@ curl -X PATCH "http://127.0.0.1:8000/loans/15/data" \
   -d '{
     "fullName": "Andrea Soto Actualizada",
     "documentId": "V-18299311",
+    "loanType": "loan",
     "principalUnit": 1500,
     "cutFrequency": "mensual",
     "termValue": 4,

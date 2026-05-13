@@ -17,6 +17,7 @@ class UpdateLoanDataRequest extends FormRequest
     {
         $fullName = $this->firstInput(['fullName', 'full_name']);
         $documentId = $this->firstInput(['documentId', 'document_id']);
+        $loanType = $this->normalizeLoanTypeInput($this->firstInput(['loanType', 'loan_type', 'type']));
         $status = $this->firstInput(['status']);
         $principalUnit = $this->firstInput(['principalUnit', 'principal_amount', 'principalAmount']);
         $cutFrequency = $this->firstInput(['cutFrequency', 'cut_frequency']);
@@ -42,6 +43,10 @@ class UpdateLoanDataRequest extends FormRequest
 
         if ($documentId !== null) {
             $payload['documentId'] = $documentId;
+        }
+
+        if ($loanType !== null) {
+            $payload['loanType'] = $loanType;
         }
 
         if ($status !== null) {
@@ -82,6 +87,7 @@ class UpdateLoanDataRequest extends FormRequest
         return [
             'fullName' => ['sometimes', 'string', 'max:180'],
             'documentId' => ['sometimes', 'string', 'max:80'],
+            'loanType' => ['sometimes', 'in:loan,rent'],
             'status' => ['sometimes', 'in:active,completed,cancelled'],
             'principalUnit' => ['sometimes', 'numeric', 'min:0.01'],
             'cutFrequency' => ['sometimes', 'in:mensual,quincenal,semanal'],
@@ -98,6 +104,7 @@ class UpdateLoanDataRequest extends FormRequest
             $hasAny = $this->hasAny([
                 'fullName',
                 'documentId',
+                'loanType',
                 'status',
                 'principalUnit',
                 'cutFrequency',
@@ -134,5 +141,20 @@ class UpdateLoanDataRequest extends FormRequest
         }
 
         return null;
+    }
+
+    private function normalizeLoanTypeInput(mixed $loanType): ?string
+    {
+        if (! is_string($loanType) || trim($loanType) === '') {
+            return null;
+        }
+
+        $normalized = mb_strtolower(trim($loanType));
+
+        return match ($normalized) {
+            'rent', 'alquiler' => 'rent',
+            'loan', 'prestamo', 'préstamo' => 'loan',
+            default => $loanType,
+        };
     }
 }

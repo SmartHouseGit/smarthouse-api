@@ -31,27 +31,25 @@ class LoanController extends Controller
             $loan = DB::transaction(function () use ($data, $request): Loan {
                 $principal = round((float) $data['principalUnit'], 2);
                 $termCuts = (int) $data['termValue'];
-                $ratePerCut = round((float) $data['ratePerCut'], 4);
-
-                $perCutAmount = round($principal * ($ratePerCut / 100), 2);
-                $finalCutAmount = round($principal + $perCutAmount, 2);
-                $totalGain = round($perCutAmount * $termCuts, 2);
-                $totalToCollect = round($principal + $totalGain, 2);
+                $loanType = $this->normalizeLoanType($data['loanType'] ?? null);
+                $ratePerCut = $loanType === 'rent' ? 0.0 : round((float) $data['ratePerCut'], 4);
 
                 $startDate = Carbon::createFromFormat('Y-m-d', $data['startDate'])->startOfDay();
                 $endDate = $this->nextDateByFrequency($startDate, $data['cutFrequency'], $termCuts);
+                $amounts = $this->calculateLoanAmounts($loanType, $principal, $termCuts, $ratePerCut);
 
                 $loan = Loan::query()->create([
                     'full_name' => $data['fullName'],
                     'document_id' => $data['documentId'],
+                    'loan_type' => $loanType,
                     'principal_amount' => $principal,
                     'cut_frequency' => $data['cutFrequency'],
                     'term_cuts' => $termCuts,
                     'rate_per_cut' => $ratePerCut,
-                    'per_cut_amount' => $perCutAmount,
-                    'final_cut_amount' => $finalCutAmount,
-                    'total_gain' => $totalGain,
-                    'total_to_collect' => $totalToCollect,
+                    'per_cut_amount' => $amounts['perCutAmount'],
+                    'final_cut_amount' => $amounts['finalCutAmount'],
+                    'total_gain' => $amounts['totalGain'],
+                    'total_to_collect' => $amounts['totalToCollect'],
                     'start_date' => $startDate->toDateString(),
                     'end_date' => $endDate->toDateString(),
                     'status' => 'active',
@@ -61,7 +59,7 @@ class LoanController extends Controller
 
                 for ($cutNumber = 1; $cutNumber <= $termCuts; $cutNumber++) {
                     $dueDate = $this->nextDateByFrequency($startDate, $data['cutFrequency'], $cutNumber);
-                    $baseAmount = $cutNumber === $termCuts ? $finalCutAmount : $perCutAmount;
+                    $baseAmount = $this->baseAmountForCut($loanType, $cutNumber, $termCuts, $amounts);
 
                     $loan->cuts()->create([
                         'cut_number' => $cutNumber,
@@ -299,6 +297,10 @@ class LoanController extends Controller
                     $updates['document_id'] = $data['documentId'];
                 }
 
+                if (array_key_exists('loanType', $data)) {
+                    $updates['loan_type'] = $this->normalizeLoanType($data['loanType']);
+                }
+
                 if (array_key_exists('status', $data)) {
                     $updates['status'] = $data['status'];
                 }
@@ -309,6 +311,7 @@ class LoanController extends Controller
                     'termValue',
                     'ratePerCut',
                     'startDate',
+                    'loanType',
                 ];
                 $mustRecalculate = collect($financialFields)
                     ->contains(static fn (string $field): bool => array_key_exists($field, $data));
@@ -316,27 +319,26 @@ class LoanController extends Controller
                 if ($mustRecalculate) {
                     $principal = round((float) ($data['principalUnit'] ?? $loan->getAttribute('principal_amount')), 2);
                     $termCuts = (int) ($data['termValue'] ?? $loan->getAttribute('term_cuts'));
-                    $ratePerCut = round((float) ($data['ratePerCut'] ?? $loan->getAttribute('rate_per_cut')), 4);
+                    $loanType = $this->normalizeLoanType($data['loanType'] ?? $loan->getAttribute('loan_type'));
+                    $ratePerCut = $loanType === 'rent' ? 0.0 : round((float) ($data['ratePerCut'] ?? $loan->getAttribute('rate_per_cut')), 4);
                     $cutFrequency = (string) ($data['cutFrequency'] ?? $loan->getAttribute('cut_frequency'));
                     $startDateValue = $data['startDate'] ?? $loan->getAttribute('start_date');
                     $startDate = $startDateValue instanceof \DateTimeInterface
                         ? Carbon::instance($startDateValue)->startOfDay()
                         : Carbon::parse((string) $startDateValue)->startOfDay();
 
-                    $perCutAmount = round($principal * ($ratePerCut / 100), 2);
-                    $finalCutAmount = round($principal + $perCutAmount, 2);
-                    $totalGain = round($perCutAmount * $termCuts, 2);
-                    $totalToCollect = round($principal + $totalGain, 2);
+                    $amounts = $this->calculateLoanAmounts($loanType, $principal, $termCuts, $ratePerCut);
                     $endDate = $this->nextDateByFrequency($startDate, $cutFrequency, $termCuts);
 
+                    $updates['loan_type'] = $loanType;
                     $updates['principal_amount'] = $principal;
                     $updates['cut_frequency'] = $cutFrequency;
                     $updates['term_cuts'] = $termCuts;
                     $updates['rate_per_cut'] = $ratePerCut;
-                    $updates['per_cut_amount'] = $perCutAmount;
-                    $updates['final_cut_amount'] = $finalCutAmount;
-                    $updates['total_gain'] = $totalGain;
-                    $updates['total_to_collect'] = $totalToCollect;
+                    $updates['per_cut_amount'] = $amounts['perCutAmount'];
+                    $updates['final_cut_amount'] = $amounts['finalCutAmount'];
+                    $updates['total_gain'] = $amounts['totalGain'];
+                    $updates['total_to_collect'] = $amounts['totalToCollect'];
                     $updates['start_date'] = $startDate->toDateString();
                     $updates['end_date'] = $endDate->toDateString();
                 }
@@ -436,10 +438,58 @@ class LoanController extends Controller
         $loan->save();
     }
 
+    private function normalizeLoanType(mixed $loanType): string
+    {
+        if (! is_string($loanType) || trim($loanType) === '') {
+            return 'loan';
+        }
+
+        return mb_strtolower(trim($loanType)) === 'rent' ? 'rent' : 'loan';
+    }
+
+    /**
+     * @return array{perCutAmount:float,finalCutAmount:float,totalGain:float,totalToCollect:float}
+     */
+    private function calculateLoanAmounts(string $loanType, float $principal, int $termCuts, float $ratePerCut): array
+    {
+        if ($loanType === 'rent') {
+            return [
+                'perCutAmount' => $principal,
+                'finalCutAmount' => $principal,
+                'totalGain' => 0.0,
+                'totalToCollect' => round($principal * $termCuts, 2),
+            ];
+        }
+
+        $perCutAmount = round($principal * ($ratePerCut / 100), 2);
+        $finalCutAmount = round($principal + $perCutAmount, 2);
+        $totalGain = round($perCutAmount * $termCuts, 2);
+
+        return [
+            'perCutAmount' => $perCutAmount,
+            'finalCutAmount' => $finalCutAmount,
+            'totalGain' => $totalGain,
+            'totalToCollect' => round($principal + $totalGain, 2),
+        ];
+    }
+
+    /**
+     * @param array{perCutAmount:float,finalCutAmount:float,totalGain:float,totalToCollect:float} $amounts
+     */
+    private function baseAmountForCut(string $loanType, int $cutNumber, int $termCuts, array $amounts): float
+    {
+        if ($loanType === 'rent') {
+            return $amounts['perCutAmount'];
+        }
+
+        return $cutNumber === $termCuts ? $amounts['finalCutAmount'] : $amounts['perCutAmount'];
+    }
+
     private function syncLoanCutsAfterRecalculate(Loan $loan, bool $affectsPaid): void
     {
         $principal = round((float) $loan->getAttribute('principal_amount'), 2);
         $termCuts = (int) $loan->getAttribute('term_cuts');
+        $loanType = $this->normalizeLoanType($loan->getAttribute('loan_type'));
         $ratePerCut = round((float) $loan->getAttribute('rate_per_cut'), 4);
         $cutFrequency = (string) $loan->getAttribute('cut_frequency');
         $startDateValue = $loan->getAttribute('start_date');
@@ -447,8 +497,7 @@ class LoanController extends Controller
             ? Carbon::instance($startDateValue)->startOfDay()
             : Carbon::parse((string) $startDateValue)->startOfDay();
 
-        $perCutAmount = round($principal * ($ratePerCut / 100), 2);
-        $finalCutAmount = round($principal + $perCutAmount, 2);
+        $amounts = $this->calculateLoanAmounts($loanType, $principal, $termCuts, $ratePerCut);
 
         $existingCuts = LoanCut::query()
             ->where('loan_id', $loan->id)
@@ -460,7 +509,7 @@ class LoanController extends Controller
 
         for ($cutNumber = 1; $cutNumber <= $termCuts; $cutNumber++) {
             $dueDate = $this->nextDateByFrequency($startDate, $cutFrequency, $cutNumber);
-            $baseAmount = $cutNumber === $termCuts ? $finalCutAmount : $perCutAmount;
+            $baseAmount = $this->baseAmountForCut($loanType, $cutNumber, $termCuts, $amounts);
 
             $cut = $existingCuts->get($cutNumber);
             if (! $cut instanceof LoanCut) {
@@ -542,6 +591,7 @@ class LoanController extends Controller
             'id' => (int) $loan->getAttribute('id'),
             'fullName' => $loan->getAttribute('full_name'),
             'documentId' => $loan->getAttribute('document_id'),
+            'loanType' => $this->normalizeLoanType($loan->getAttribute('loan_type')),
             'principalUnit' => (float) $loan->getAttribute('principal_amount'),
             'cutFrequency' => $loan->getAttribute('cut_frequency'),
             'termValue' => (int) $loan->getAttribute('term_cuts'),
