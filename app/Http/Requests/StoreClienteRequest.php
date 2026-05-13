@@ -48,7 +48,7 @@ class StoreClienteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'foto' => ['required', 'file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+            'foto' => ['nullable', 'file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
             'portada' => ['required', 'file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
             'nombre' => ['required', 'string', 'max:180'],
             'perfil' => ['required', 'string', 'max:5000'],

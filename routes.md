@@ -1010,7 +1010,7 @@ curl -X GET "http://127.0.0.1:8000/obtClientes?ciudad=Valencia&tipo=Comprador&ca
 ## POST /setCliente
 
 Crea un cliente nuevo.
-Las imágenes deben enviarse como archivos en `multipart/form-data`.
+La imagen de portada debe enviarse como archivo en `multipart/form-data`.
 
 Autenticacion requerida:
 
@@ -1018,7 +1018,6 @@ Autenticacion requerida:
 
 Campos:
 
-- `foto`
 - `portada`
 - `nombre`
 - `perfil`
@@ -1041,7 +1040,6 @@ Notas:
 ```bash
 curl -X POST "http://127.0.0.1:8000/setCliente" \
   -H "Authorization: Bearer TU_TOKEN" \
-  -F "foto=@/ruta/local/foto.jpg" \
   -F "portada=@/ruta/local/portada.jpg" \
   -F "nombre=Carlos Rojas" \
   -F "perfil=Cliente interesado en compra de apartamento familiar." \

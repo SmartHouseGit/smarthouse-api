@@ -152,7 +152,9 @@ class ClienteController extends Controller
         try {
             $this->cityRegistry->ensureExists((string) $data['ciudad']);
 
-            $foto = $request->file('foto')->store('clientes', 'local');
+            $foto = $request->hasFile('foto')
+                ? $request->file('foto')->store('clientes', 'local')
+                : null;
             $portada = $request->file('portada')->store('clientes', 'local');
 
             Cliente::query()->create([
