@@ -303,8 +303,51 @@ class LoanController extends Controller
                     $updates['status'] = $data['status'];
                 }
 
+                $financialFields = [
+                    'principalUnit',
+                    'cutFrequency',
+                    'termValue',
+                    'ratePerCut',
+                    'startDate',
+                ];
+                $mustRecalculate = collect($financialFields)
+                    ->contains(static fn (string $field): bool => array_key_exists($field, $data));
+
+                if ($mustRecalculate) {
+                    $principal = round((float) ($data['principalUnit'] ?? $loan->getAttribute('principal_amount')), 2);
+                    $termCuts = (int) ($data['termValue'] ?? $loan->getAttribute('term_cuts'));
+                    $ratePerCut = round((float) ($data['ratePerCut'] ?? $loan->getAttribute('rate_per_cut')), 4);
+                    $cutFrequency = (string) ($data['cutFrequency'] ?? $loan->getAttribute('cut_frequency'));
+                    $startDateValue = $data['startDate'] ?? $loan->getAttribute('start_date');
+                    $startDate = $startDateValue instanceof \DateTimeInterface
+                        ? Carbon::instance($startDateValue)->startOfDay()
+                        : Carbon::parse((string) $startDateValue)->startOfDay();
+
+                    $perCutAmount = round($principal * ($ratePerCut / 100), 2);
+                    $finalCutAmount = round($principal + $perCutAmount, 2);
+                    $totalGain = round($perCutAmount * $termCuts, 2);
+                    $totalToCollect = round($principal + $totalGain, 2);
+                    $endDate = $this->nextDateByFrequency($startDate, $cutFrequency, $termCuts);
+
+                    $updates['principal_amount'] = $principal;
+                    $updates['cut_frequency'] = $cutFrequency;
+                    $updates['term_cuts'] = $termCuts;
+                    $updates['rate_per_cut'] = $ratePerCut;
+                    $updates['per_cut_amount'] = $perCutAmount;
+                    $updates['final_cut_amount'] = $finalCutAmount;
+                    $updates['total_gain'] = $totalGain;
+                    $updates['total_to_collect'] = $totalToCollect;
+                    $updates['start_date'] = $startDate->toDateString();
+                    $updates['end_date'] = $endDate->toDateString();
+                }
+
                 $loan->fill($updates);
                 $loan->save();
+
+                if ($mustRecalculate) {
+                    $afecta = filter_var($data['afecta'] ?? false, FILTER_VALIDATE_BOOL);
+                    $this->syncLoanCutsAfterRecalculate($loan, $afecta);
+                }
             });
 
             $loan->refresh()->load(['cuts' => fn ($query) => $query->orderBy('cut_number')]);
@@ -391,6 +434,92 @@ class LoanController extends Controller
 
         $loan->setAttribute('status', $hasPending ? 'active' : 'completed');
         $loan->save();
+    }
+
+    private function syncLoanCutsAfterRecalculate(Loan $loan, bool $affectsPaid): void
+    {
+        $principal = round((float) $loan->getAttribute('principal_amount'), 2);
+        $termCuts = (int) $loan->getAttribute('term_cuts');
+        $ratePerCut = round((float) $loan->getAttribute('rate_per_cut'), 4);
+        $cutFrequency = (string) $loan->getAttribute('cut_frequency');
+        $startDateValue = $loan->getAttribute('start_date');
+        $startDate = $startDateValue instanceof \DateTimeInterface
+            ? Carbon::instance($startDateValue)->startOfDay()
+            : Carbon::parse((string) $startDateValue)->startOfDay();
+
+        $perCutAmount = round($principal * ($ratePerCut / 100), 2);
+        $finalCutAmount = round($principal + $perCutAmount, 2);
+
+        $existingCuts = LoanCut::query()
+            ->where('loan_id', $loan->id)
+            ->orderBy('cut_number')
+            ->get()
+            ->keyBy('cut_number');
+
+        $affectedCutIds = [];
+
+        for ($cutNumber = 1; $cutNumber <= $termCuts; $cutNumber++) {
+            $dueDate = $this->nextDateByFrequency($startDate, $cutFrequency, $cutNumber);
+            $baseAmount = $cutNumber === $termCuts ? $finalCutAmount : $perCutAmount;
+
+            $cut = $existingCuts->get($cutNumber);
+            if (! $cut instanceof LoanCut) {
+                $cut = $loan->cuts()->create([
+                    'cut_number' => $cutNumber,
+                    'original_due_date' => $dueDate->toDateString(),
+                    'due_date' => $dueDate->toDateString(),
+                    'base_amount' => $baseAmount,
+                    'penalty_percent' => 0,
+                    'amount' => $baseAmount,
+                    'status' => 'pending',
+                    'note' => null,
+                    'proof_path' => null,
+                    'paid_at' => null,
+                ]);
+
+                $affectedCutIds[] = (int) $cut->getAttribute('id');
+                continue;
+            }
+
+            $isPaid = $cut->getAttribute('status') === 'paid';
+            if ($isPaid && ! $affectsPaid) {
+                continue;
+            }
+
+            $penaltyPercent = (float) $cut->getAttribute('penalty_percent');
+            $amount = round($baseAmount + ($baseAmount * ($penaltyPercent / 100)), 2);
+
+            $cut->setAttribute('base_amount', $baseAmount);
+            $cut->setAttribute('amount', $amount);
+
+            if (! $isPaid) {
+                $cut->setAttribute('original_due_date', $dueDate->toDateString());
+                $cut->setAttribute('due_date', $dueDate->toDateString());
+            }
+
+            $cut->save();
+            $affectedCutIds[] = (int) $cut->getAttribute('id');
+        }
+
+        $cutsOutsidePlan = LoanCut::query()
+            ->where('loan_id', $loan->id)
+            ->where('cut_number', '>', $termCuts)
+            ->get();
+
+        foreach ($cutsOutsidePlan as $cut) {
+            if ($cut->getAttribute('status') === 'paid') {
+                continue;
+            }
+
+            $affectedCutIds[] = (int) $cut->getAttribute('id');
+            $cut->delete();
+        }
+
+        PushNotification::query()
+            ->where('loan_id', $loan->id)
+            ->where('status', 'pending')
+            ->when($affectedCutIds !== [], fn ($query) => $query->whereIn('loan_cut_id', array_unique($affectedCutIds)))
+            ->delete();
     }
 
     private function formatLoan(Loan $loan): array

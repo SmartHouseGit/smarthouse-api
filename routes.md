@@ -2112,13 +2112,28 @@ curl -X PATCH "http://127.0.0.1:8000/loans/15" \
 
 ## PATCH /loans/{id}/data
 
-Actualiza solo datos del prestamo (no cortes).
+Actualiza datos del prestamo. Si se envian campos financieros, recalcula el prestamo y reajusta los cortes.
 
 Campos (al menos uno):
 
 - `fullName` (opcional)
 - `documentId` (opcional)
 - `status` (opcional: `active`, `completed`, `cancelled`)
+- `principalUnit` (opcional)
+- `cutFrequency` (opcional: `mensual`, `quincenal`, `semanal`)
+- `termValue` (opcional)
+- `ratePerCut` (opcional)
+- `startDate` (opcional, `Y-m-d`)
+- `afecta` (opcional, boolean)
+
+Reglas de recalculo:
+
+- Si cambias `principalUnit`, `cutFrequency`, `termValue`, `ratePerCut` o `startDate`, el backend recalcula `perCutAmount`, `finalCutAmount`, `totalGain`, `totalToCollect` y `endDate`.
+- Los cortes pendientes siempre se reajustan con nuevos montos y fechas.
+- Si `afecta=false` o no se envia, los cortes pagados quedan intactos.
+- Si `afecta=true`, los cortes pagados reajustan sus montos con el nuevo calculo, pero conservan sus fechas, `paid_at`, comprobante y nota.
+- Si el nuevo plazo reduce cortes, los cortes pendientes sobrantes se eliminan; los pagados sobrantes se conservan.
+- Las notificaciones push pendientes de los cortes reajustados se limpian para que el scheduler las regenere con datos nuevos.
 
 ### Ejemplo request
 
@@ -2128,7 +2143,13 @@ curl -X PATCH "http://127.0.0.1:8000/loans/15/data" \
   -H "Content-Type: application/json" \
   -d '{
     "fullName": "Andrea Soto Actualizada",
-    "documentId": "V-18299311"
+    "documentId": "V-18299311",
+    "principalUnit": 1500,
+    "cutFrequency": "mensual",
+    "termValue": 4,
+    "ratePerCut": 12,
+    "startDate": "2026-03-21",
+    "afecta": false
   }'
 ```
 
