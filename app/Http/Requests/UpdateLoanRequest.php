@@ -66,7 +66,7 @@ class UpdateLoanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'action' => ['required', 'in:update_loan,pay_cut,extend_cut,penalize_cut'],
+            'action' => ['required', 'in:update_loan,pay_cut,extend_cut,penalize_cut,reset_cut'],
             'fullName' => ['sometimes', 'nullable', 'string', 'max:180'],
             'documentId' => ['sometimes', 'nullable', 'string', 'max:80'],
             'status' => ['sometimes', 'nullable', 'in:active,completed,cancelled'],
@@ -112,6 +112,10 @@ class UpdateLoanRequest extends FormRequest
                 if (! $this->filled('penaltyPercent')) {
                     $validator->errors()->add('penaltyPercent', 'penaltyPercent es requerido para penalize_cut.');
                 }
+            }
+
+            if ($action === 'reset_cut' && ! $this->filled('cutId')) {
+                $validator->errors()->add('cutId', 'cutId es requerido para reset_cut.');
             }
         });
     }

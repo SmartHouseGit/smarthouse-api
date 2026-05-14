@@ -2120,6 +2120,7 @@ Acciones:
 - `pay_cut`
 - `extend_cut`
 - `penalize_cut`
+- `reset_cut`
 
 ### Ejemplo pay_cut (multipart)
 
@@ -2130,6 +2131,20 @@ curl -X PATCH "http://127.0.0.1:8000/loans/15" \
   -F "cutId=44" \
   -F "note=Pago confirmado" \
   -F "proof=@/ruta/local/comprobante.jpg"
+```
+
+### Ejemplo reset_cut
+
+Devuelve un corte pagado a pendiente. Limpia `paidAt`, `note` y comprobante, pero conserva fechas, penalizacion y monto.
+
+```bash
+curl -X PATCH "http://127.0.0.1:8000/loans/15" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "action": "reset_cut",
+    "cutId": 44
+  }'
 ```
 
 ## PATCH /loans/{id}/data

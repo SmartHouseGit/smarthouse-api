@@ -15,6 +15,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Throwable;
 
 class LoanController extends Controller
@@ -236,6 +237,30 @@ class LoanController extends Controller
                     $cut->save();
 
                     return 'Corte penalizado';
+                }
+
+                if ($action === 'reset_cut') {
+                    if ($cut->getAttribute('status') !== 'paid') {
+                        throw new \RuntimeException('Solo puedes resetear un corte pagado.');
+                    }
+
+                    $proofPath = $cut->getAttribute('proof_path');
+
+                    $cut->setAttribute('status', 'pending');
+                    $cut->setAttribute('paid_at', null);
+                    $cut->setAttribute('note', null);
+                    $cut->setAttribute('proof_path', null);
+                    $cut->save();
+
+                    if (is_string($proofPath) && $proofPath !== '' && ! preg_match('/^https?:\/\//i', $proofPath)) {
+                        DB::afterCommit(static function () use ($proofPath): void {
+                            Storage::disk('local')->delete($proofPath);
+                        });
+                    }
+
+                    $this->refreshLoanStatus($loan);
+
+                    return 'Corte reseteado';
                 }
 
                 throw new \RuntimeException('Accion no soportada.');
